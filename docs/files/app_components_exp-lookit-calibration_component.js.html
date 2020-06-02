@@ -22,13 +22,10 @@
                     <p>Version: latest <br>(v1.2.0)</p>
                     <select name="select_version" onchange="location = this.value;">
                         <option value="">--Select different version--</option>
-                            <option value="releases/v1.2.0/">v1.2.0</option>
+                            <option value="releases/v1.2.0/index.html">v1.2.0</option>
                     </select>
               </div>
-
               </h2>
-
-
               <div id="api-list">
                   <div id="api-tabview">
               
@@ -37,6 +34,7 @@
                         <ul id="api-modules" class="apis modules">
                             <li class="module-sidebar-exp-player"><a href="../modules/exp-player.html">exp-player</a></li>
                             <li class="module-sidebar-frames"><a href="../modules/frames.html">frames</a></li>
+                            <li class="module-sidebar-frames-deprecated"><a href="../modules/frames-deprecated.html">frames-deprecated</a></li>
                             <li class="module-sidebar-mixins"><a href="../modules/mixins.html">mixins</a></li>
                             <li class="module-sidebar-randomizers"><a href="../modules/randomizers.html">randomizers</a></li>
                         </ul>
@@ -59,7 +57,10 @@
                             <li><a href="../classes/Exp-lookit-mood-questionnaire.html">Exp-lookit-mood-questionnaire</a></li>
                             <li><a href="../classes/Exp-lookit-observation.html">Exp-lookit-observation</a></li>
                             <li><a href="../classes/Exp-lookit-preferential-looking.html">Exp-lookit-preferential-looking</a></li>
+                            <li><a href="../classes/Exp-lookit-preview-explanation.html">Exp-lookit-preview-explanation</a></li>
+                            <li><a href="../classes/Exp-lookit-start-recording.html">Exp-lookit-start-recording</a></li>
                             <li><a href="../classes/Exp-lookit-stimuli-preview.html">Exp-lookit-stimuli-preview</a></li>
+                            <li><a href="../classes/Exp-lookit-stop-recording.html">Exp-lookit-stop-recording</a></li>
                             <li><a href="../classes/Exp-lookit-story-page.html">Exp-lookit-story-page</a></li>
                             <li><a href="../classes/Exp-lookit-survey.html">Exp-lookit-survey</a></li>
                             <li><a href="../classes/Exp-lookit-text.html">Exp-lookit-text</a></li>
@@ -346,7 +347,7 @@ export default ExpFrameBaseComponent.extend(FullScreen, MediaReload, VideoRecord
          */
         calibrationImage: {
             anyOf: imageAssetOptions,
-            description: &#x27;TODO&#x27;,
+            description: &#x27;Image to use for calibration&#x27;,
             default: &#x27;&#x27;
         },
 
@@ -360,14 +361,12 @@ export default ExpFrameBaseComponent.extend(FullScreen, MediaReload, VideoRecord
         calibrationImageAnimation: {
             type: &#x27;string&#x27;,
             enum: [&#x27;bounce&#x27;, &#x27;spin&#x27;, &#x27;&#x27;],
-            description: &#x27;TODO&#x27;,
+            description: &#x27;Which animation to use for the calibration image&#x27;,
             default: &#x27;spin&#x27;
         }
     },
 
     meta: {
-        name: &#x27;Video player&#x27;,
-        description: &#x27;Component that plays a video&#x27;,
         data: {
             type: &#x27;object&#x27;,
             properties: {
@@ -480,7 +479,7 @@ export default ExpFrameBaseComponent.extend(FullScreen, MediaReload, VideoRecord
 
         // Apply background colors
         if (isColor(this.get(&#x27;backgroundColor&#x27;))) {
-            $(&#x27;div.exp-lookit-image-audio&#x27;).css(&#x27;background-color&#x27;, this.get(&#x27;backgroundColor&#x27;));
+            $(&#x27;div.exp-lookit-calibration&#x27;).css(&#x27;background-color&#x27;, this.get(&#x27;backgroundColor&#x27;));
         } else {
             console.warn(&#x27;Invalid background color provided; not applying.&#x27;);
         }

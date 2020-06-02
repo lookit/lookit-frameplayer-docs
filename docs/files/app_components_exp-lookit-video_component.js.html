@@ -22,13 +22,10 @@
                     <p>Version: latest <br>(v1.2.0)</p>
                     <select name="select_version" onchange="location = this.value;">
                         <option value="">--Select different version--</option>
-                            <option value="releases/v1.2.0/">v1.2.0</option>
+                            <option value="releases/v1.2.0/index.html">v1.2.0</option>
                     </select>
               </div>
-
               </h2>
-
-
               <div id="api-list">
                   <div id="api-tabview">
               
@@ -37,6 +34,7 @@
                         <ul id="api-modules" class="apis modules">
                             <li class="module-sidebar-exp-player"><a href="../modules/exp-player.html">exp-player</a></li>
                             <li class="module-sidebar-frames"><a href="../modules/frames.html">frames</a></li>
+                            <li class="module-sidebar-frames-deprecated"><a href="../modules/frames-deprecated.html">frames-deprecated</a></li>
                             <li class="module-sidebar-mixins"><a href="../modules/mixins.html">mixins</a></li>
                             <li class="module-sidebar-randomizers"><a href="../modules/randomizers.html">randomizers</a></li>
                         </ul>
@@ -59,7 +57,10 @@
                             <li><a href="../classes/Exp-lookit-mood-questionnaire.html">Exp-lookit-mood-questionnaire</a></li>
                             <li><a href="../classes/Exp-lookit-observation.html">Exp-lookit-observation</a></li>
                             <li><a href="../classes/Exp-lookit-preferential-looking.html">Exp-lookit-preferential-looking</a></li>
+                            <li><a href="../classes/Exp-lookit-preview-explanation.html">Exp-lookit-preview-explanation</a></li>
+                            <li><a href="../classes/Exp-lookit-start-recording.html">Exp-lookit-start-recording</a></li>
                             <li><a href="../classes/Exp-lookit-stimuli-preview.html">Exp-lookit-stimuli-preview</a></li>
+                            <li><a href="../classes/Exp-lookit-stop-recording.html">Exp-lookit-stop-recording</a></li>
                             <li><a href="../classes/Exp-lookit-story-page.html">Exp-lookit-story-page</a></li>
                             <li><a href="../classes/Exp-lookit-survey.html">Exp-lookit-survey</a></li>
                             <li><a href="../classes/Exp-lookit-text.html">Exp-lookit-text</a></li>
@@ -137,6 +138,9 @@ let {
 /**
  * Video display frame. This may be used for displaying videos to older children or parents, as well as for
  * typical looking measures trials or as brief filler in between test trials.
+ *
+ * (Note: this frame replaced the previous exp-lookit-video frame, which is now called
+ *  {{#crossLink &quot;Exp-lookit-composite-video-trial&quot;}}{{/crossLink}}.)
  *
  * This is very customizable: you can...
  *   - position the video wherever you want on the screen, including specifying that it should fill the screen (while maintaining aspect ratio)
@@ -526,8 +530,6 @@ export default ExpFrameBaseComponent.extend(FullScreen, VideoRecord, ExpandAsset
     },
 
     meta: {
-        name: &#x27;Video player&#x27;,
-        description: &#x27;Component that plays a video&#x27;,
         data: {
             type: &#x27;object&#x27;,
             properties: {
@@ -575,6 +577,10 @@ export default ExpFrameBaseComponent.extend(FullScreen, VideoRecord, ExpandAsset
              *
              * @event videoStarted
              */
+            if (this.get(&#x27;isDestroying&#x27;) || this.get(&#x27;isDestroyed&#x27;)) {
+                return;
+            }
+
             this.send(&#x27;setTimeEvent&#x27;, &#x27;videoStarted&#x27;);
             this.set(&#x27;testVideoTimesPlayed&#x27;, this.get(&#x27;testVideoTimesPlayed&#x27;) + 1);
             if (this.get(&#x27;testVideoTimesPlayed&#x27;) === 1) {
@@ -592,14 +598,16 @@ export default ExpFrameBaseComponent.extend(FullScreen, VideoRecord, ExpandAsset
                         this.readyToFinish();
                     }
                 }
-                let audio = this.get(&#x27;audio_parsed&#x27;);
-                if (audio.hasOwnProperty(&#x27;source&#x27;) &amp;&amp; audio.source.length) {
+                if ($(&#x27;#player-audio&#x27;).length) {
                     $(&#x27;#player-audio&#x27;)[0].play();
                 }
             }
         },
 
         videoStopped() {
+            if (this.get(&#x27;isDestroying&#x27;) || this.get(&#x27;isDestroyed&#x27;)) {
+                return;
+            }
             /**
              * When video completes playback (recorded each time if played more than once)
              *
@@ -610,13 +618,16 @@ export default ExpFrameBaseComponent.extend(FullScreen, VideoRecord, ExpandAsset
                 this.readyToFinish();
             }
             // Restart the video if it&#x27;s supposed to loop OR if it&#x27;s supposed to play another time
-            if (this.get(&#x27;video.loop&#x27;) || (this.get(&#x27;testVideoTimesPlayed&#x27;) &lt; this.get(&#x27;requireVideoCount&#x27;))) {
-                this.$(&#x27;#player-video&#x27;)[0].currentTime = 0;
-                this.$(&#x27;#player-video&#x27;)[0].play();
+            if ($(&#x27;#player-video&#x27;).length &amp;&amp; (this.get(&#x27;video.loop&#x27;) || (this.get(&#x27;testVideoTimesPlayed&#x27;) &lt; this.get(&#x27;requireVideoCount&#x27;)))) {
+                $(&#x27;#player-video&#x27;)[0].currentTime = 0;
+                $(&#x27;#player-video&#x27;)[0].play();
             }
         },
 
         audioStarted() {
+            if (this.get(&#x27;isDestroying&#x27;) || this.get(&#x27;isDestroyed&#x27;)) {
+                return;
+            }
             /**
              * When audio begins playing (recorded each time video starts if played through more than once)
              *
@@ -627,6 +638,9 @@ export default ExpFrameBaseComponent.extend(FullScreen, VideoRecord, ExpandAsset
         },
 
         audioStopped() {
+            if (this.get(&#x27;isDestroying&#x27;) || this.get(&#x27;isDestroyed&#x27;)) {
+                return;
+            }
             /**
              * When audio completes playback (recorded each time if played more than once)
              *
@@ -637,18 +651,21 @@ export default ExpFrameBaseComponent.extend(FullScreen, VideoRecord, ExpandAsset
                 this.readyToFinish();
             }
             // Restart the video if it&#x27;s supposed to loop OR if it&#x27;s supposed to play another time
-            if (this.get(&#x27;audio.loop&#x27;) || (this.get(&#x27;testAudioTimesPlayed&#x27;) &lt; this.get(&#x27;requireAudioCount&#x27;))) {
-                this.$(&#x27;#player-audio&#x27;)[0].currentTime = 0;
-                this.$(&#x27;#player-audio&#x27;)[0].play();
+            if ($(&#x27;#player-audio&#x27;).length &amp;&amp; (this.get(&#x27;audio.loop&#x27;) || (this.get(&#x27;testAudioTimesPlayed&#x27;) &lt; this.get(&#x27;requireAudioCount&#x27;)))) {
+                $(&#x27;#player-audio&#x27;)[0].currentTime = 0;
+                $(&#x27;#player-audio&#x27;)[0].play();
             }
         },
 
         finish() {
-            // Move to next frame altogether
             // Call this something separate from next because stopRecorder promise needs
             // to call next AFTER recording is stopped and we don&#x27;t want this to have
             // already been destroyed at that point.
 
+            // Pause audio/video so we don&#x27;t trigger started/stopped handlers while destroying
+            $(&#x27;audio, video&#x27;).each(function() {
+                this.pause();
+            });
             /**
              * When trial is complete and begins cleanup (may then wait for video upload)
              *
@@ -841,6 +858,7 @@ export default ExpFrameBaseComponent.extend(FullScreen, VideoRecord, ExpandAsset
         $(&#x27;#waitForVideo&#x27;).hide();
     }
 });
+
     </pre>
 </div>
                     </div>

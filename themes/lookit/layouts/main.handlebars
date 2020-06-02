@@ -21,20 +21,18 @@
 
                 {{#if is_release}}
                     <p>Version: {{version}}</p>
+                    <a href="{{../projectRoot}}../../index.html">(switch to latest)</a>
                 {{else}}
                     <p>Version: latest <br>({{version}})</p>
                     <select name="select_version" onchange="location = this.value;">
                         <option value="">--Select different version--</option>
                         {{#each other_versions}}
-                            <option value="releases/{{this}}/">{{this}}</option>
+                            <option value="releases/{{this}}/index.html">{{this}}</option>
                         {{/each}}
                     </select>
                 {{/if}}
               </div>
-
               </h2>
-
-
               {{>sidebar}}
             </div>
         </div>

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>app/components/exp-lookit-stop-recording/component.js - ember-lookit-frameplayer</title>
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="https://yui-s.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="https://yui-s.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+<div id="doc">
+    <div id="bd" class="yui3-g">
+        <div class="yui3-u-1-5">
+            <div id="docs-sidebar" class="sidebar apidocs">
+              <h2 style="display:inline;">
+              <div>
+                <img style="float:right; vertical-align:middle;" src="../assets/css/logo.png" height="70">
+                <span>Lookit<br> component<br> docs</span>
+
+                    <p>Version: latest <br>(v1.2.0)</p>
+                    <select name="select_version" onchange="location = this.value;">
+                        <option value="">--Select different version--</option>
+                            <option value="releases/v1.2.0/index.html">v1.2.0</option>
+                    </select>
+              </div>
+              </h2>
+              <div id="api-list">
+                  <div id="api-tabview">
+              
+                    <div id="api-tabview-panel">
+                        <h2 class="off-left">Collections</h2>
+                        <ul id="api-modules" class="apis modules">
+                            <li class="module-sidebar-exp-player"><a href="../modules/exp-player.html">exp-player</a></li>
+                            <li class="module-sidebar-frames"><a href="../modules/frames.html">frames</a></li>
+                            <li class="module-sidebar-frames-deprecated"><a href="../modules/frames-deprecated.html">frames-deprecated</a></li>
+                            <li class="module-sidebar-mixins"><a href="../modules/mixins.html">mixins</a></li>
+                            <li class="module-sidebar-randomizers"><a href="../modules/randomizers.html">randomizers</a></li>
+                        </ul>
+                        <h2 class="off-left">All elements</h2>
+                              <div id="api-tabview-filter">
+                      <input type="search" id="api-filter" placeholder="Type to filter">
+                    </div>
+                        <ul id="api-classes" class="apis classes">
+                            <li><a href="../classes/Exp-frame-base.html">Exp-frame-base</a></li>
+                            <li><a href="../classes/Exp-frame-select.html">Exp-frame-select</a></li>
+                            <li><a href="../classes/Exp-lookit-calibration.html">Exp-lookit-calibration</a></li>
+                            <li><a href="../classes/Exp-lookit-change-detection.html">Exp-lookit-change-detection</a></li>
+                            <li><a href="../classes/Exp-lookit-composite-video-trial.html">Exp-lookit-composite-video-trial</a></li>
+                            <li><a href="../classes/Exp-lookit-dialogue-page.html">Exp-lookit-dialogue-page</a></li>
+                            <li><a href="../classes/Exp-lookit-exit-survey.html">Exp-lookit-exit-survey</a></li>
+                            <li><a href="../classes/Exp-lookit-geometry-alternation.html">Exp-lookit-geometry-alternation</a></li>
+                            <li><a href="../classes/Exp-lookit-geometry-alternation-open.html">Exp-lookit-geometry-alternation-open</a></li>
+                            <li><a href="../classes/Exp-lookit-images-audio.html">Exp-lookit-images-audio</a></li>
+                            <li><a href="../classes/Exp-lookit-instructions.html">Exp-lookit-instructions</a></li>
+                            <li><a href="../classes/Exp-lookit-mood-questionnaire.html">Exp-lookit-mood-questionnaire</a></li>
+                            <li><a href="../classes/Exp-lookit-observation.html">Exp-lookit-observation</a></li>
+                            <li><a href="../classes/Exp-lookit-preferential-looking.html">Exp-lookit-preferential-looking</a></li>
+                            <li><a href="../classes/Exp-lookit-preview-explanation.html">Exp-lookit-preview-explanation</a></li>
+                            <li><a href="../classes/Exp-lookit-start-recording.html">Exp-lookit-start-recording</a></li>
+                            <li><a href="../classes/Exp-lookit-stimuli-preview.html">Exp-lookit-stimuli-preview</a></li>
+                            <li><a href="../classes/Exp-lookit-stop-recording.html">Exp-lookit-stop-recording</a></li>
+                            <li><a href="../classes/Exp-lookit-story-page.html">Exp-lookit-story-page</a></li>
+                            <li><a href="../classes/Exp-lookit-survey.html">Exp-lookit-survey</a></li>
+                            <li><a href="../classes/Exp-lookit-text.html">Exp-lookit-text</a></li>
+                            <li><a href="../classes/Exp-lookit-video.html">Exp-lookit-video</a></li>
+                            <li><a href="../classes/Exp-lookit-video-assent.html">Exp-lookit-video-assent</a></li>
+                            <li><a href="../classes/Exp-lookit-video-consent.html">Exp-lookit-video-consent</a></li>
+                            <li><a href="../classes/Exp-lookit-webcam-display.html">Exp-lookit-webcam-display</a></li>
+                            <li><a href="../classes/Exp-video-config.html">Exp-video-config</a></li>
+                            <li><a href="../classes/Exp-video-config-quality.html">Exp-video-config-quality</a></li>
+                            <li><a href="../classes/Expand-assets.html">Expand-assets</a></li>
+                            <li><a href="../classes/Full-screen.html">Full-screen</a></li>
+                            <li><a href="../classes/Media-reload.html">Media-reload</a></li>
+                            <li><a href="../classes/Permute.html">Permute</a></li>
+                            <li><a href="../classes/Random-parameter-set.html">Random-parameter-set</a></li>
+                            <li><a href="../classes/Select.html">Select</a></li>
+                            <li><a href="../classes/Session-record.html">Session-record</a></li>
+                            <li><a href="../classes/Video-record.html">Video-record</a></li>
+                            <li><a href="../classes/video-recorder.html">video-recorder</a></li>
+                        </ul>
+                    </div>
+              
+                  </div>
+              </div>
+            </div>
+        </div>
+        <div class="yui3-u-4-5">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1 class="file-heading">File: app/components/exp-lookit-stop-recording/component.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+import Ember from &#x27;ember&#x27;;
+import layout from &#x27;./template&#x27;;
+import ExpFrameBaseComponent from &#x27;../exp-frame-base/component&#x27;;
+import ExpandAssets from &#x27;../../mixins/expand-assets&#x27;;
+import isColor from &#x27;../../utils/is-color&#x27;;
+import { imageAssetOptions, videoAssetOptions } from &#x27;../../mixins/expand-assets&#x27;;
+
+let {
+    $
+} = Ember;
+
+/**
+ * @module exp-player
+ * @submodule frames
+ */
+
+/**
+* Dedicated frame to stop session recording.
+*
+* This frame will take a few seconds to upload an ongoing session-level recording, then proceed
+* immediately to the next frame. (See https://lookit.readthedocs.io/en/develop/researchers-create-experiment.html?highlight=startSessionRecording#recording-webcam-video
+* for information about session-level vs. individual-frame recording.)
+*
+* It will time out after a default of 5 minutes of waiting for the upload to complete, or
+* after 5 seconds of not seeing any progress (i.e. something went wrong with starting the
+* upload process). If there is no active session recording, it proceeds immediately.
+*
+*
+*
+* (You could also set stopSessionRecording to true on any frame, but you generally wouldn&#x27;t
+* get any specialized functionality for displaying a nice message about upload progress.)
+*
+* Just like for exp-lookit-calibration, you can display a video or an optionally animated
+* image (see below for examples of each) as a placeholder while getting recording started.
+*
+* For details about specifying media locations, please see
+* https://lookit.readthedocs.io/en/develop/researchers-prep-stimuli.html?highlight=basedir#directory-structure
+*
+* Example usage:
+
+&#x60;&#x60;&#x60;json
+
+    &quot;stop-recording-with-image&quot;: {
+        &quot;kind&quot;: &quot;exp-lookit-stop-recording&quot;,
+        &quot;baseDir&quot;: &quot;https://www.mit.edu/~kimscott/placeholderstimuli/&quot;,
+        &quot;videoTypes&quot;: [
+            &quot;webm&quot;,
+            &quot;mp4&quot;
+        ],
+        &quot;image&quot;: &quot;peekaboo_remy.jpg&quot;,
+        &quot;imageAnimation&quot;: &quot;spin&quot;
+        &quot;displayFullscreen&quot;: true
+    },
+
+    &quot;stop-recording-with-video&quot;: {
+        &quot;kind&quot;: &quot;exp-lookit-stop-recording&quot;,
+        &quot;baseDir&quot;: &quot;https://www.mit.edu/~kimscott/placeholderstimuli/&quot;,
+        &quot;videoTypes&quot;: [
+            &quot;webm&quot;,
+            &quot;mp4&quot;
+        ],
+        &quot;video&quot;: &quot;attentiongrabber&quot;,
+        &quot;displayFullscreen&quot;: true
+    },
+
+* &#x60;&#x60;&#x60;
+* @class Exp-lookit-stop-recording
+* @extends Exp-frame-base
+* @uses Full-screen
+* @uses Media-reload
+* @uses Video-record
+* @uses Expand-assets
+*/
+
+export default ExpFrameBaseComponent.extend(ExpandAssets, {
+    layout: layout,
+    type: &#x27;exp-lookit-stop-recording&#x27;,
+
+    fullScreenElementId: &#x27;experiment-player&#x27;,
+    fsButtonID: &#x27;fsButton&#x27;,
+
+    endSessionRecording: true,
+    sessionMaxUploadSeconds: 3000, // 5 minutes - generous default for possibly long recording
+
+    hasStartedUpload: false,
+
+    progressTimer: null,
+    allowProceedTimer: null,
+
+    assetsToExpand: {
+        &#x27;audio&#x27;: [],
+        &#x27;video&#x27;: [
+            &#x27;video&#x27;
+        ],
+        &#x27;image&#x27;: [
+            &#x27;image&#x27;
+        ]
+    },
+
+    frameSchemaProperties: {
+        /**
+         * Whether to display this frame in full-screen mode         *
+         * @property {Boolean} displayFullscreen
+         * @default true
+         */
+        displayFullscreen: {
+            type: &#x27;boolean&#x27;,
+            description: &#x27;Whether to display this frame in full-screen mode&#x27;,
+            default: true
+        },
+        /**
+         * Color of background. See https://developer.mozilla.org/en-US/docs/Web/CSS/color_value
+         * for acceptable syntax: can use color names (&#x27;blue&#x27;, &#x27;red&#x27;, &#x27;green&#x27;, etc.), or
+         * rgb hex values (e.g. &#x27;#800080&#x27; - include the &#x27;#&#x27;)
+         *
+         * @property {String} backgroundColor
+         * @default &#x27;black&#x27;
+         */
+        backgroundColor: {
+            type: &#x27;string&#x27;,
+            description: &#x27;Color of background&#x27;,
+            default: &#x27;white&#x27;
+        },
+        /**
+         * Video to play (looping) while waiting. Supply
+         * either a video or image, not both.
+         *
+         * This can be either an array of {src: &#x27;url&#x27;, type: &#x27;MIMEtype&#x27;} objects or
+         * just a string like &#x60;attentiongrabber&#x60; to rely on the &#x60;baseDir&#x60; and &#x60;videoTypes&#x60;
+         * to generate full paths.
+         *
+         * @property {Object[]} video
+         * @default []
+         */
+        video: {
+            anyOf: videoAssetOptions,
+            description: &#x27;list of objects specifying video src and type for calibration audio&#x27;,
+            default: []
+        },
+        /**
+         * Image to display while waiting. Supply
+         * either a video or image, not both.
+         *
+         * This can be either a full URL or just the filename (e.g. &quot;star.png&quot;) to
+         * use the full path based on &#x60;baseDir&#x60; (e.g. &#x60;baseDir/img/star.png&#x60;).
+         *
+         * @property {String} image
+         * @default []
+         */
+        image: {
+            anyOf: imageAssetOptions,
+            description: &#x27;Image to display while uploading&#x27;,
+            default: &#x27;&#x27;
+        },
+
+        /**
+         * Which animation to use for the image. Options are &#x27;bounce&#x27;, &#x27;spin&#x27;,
+         * or &#x27;&#x27; (empty to not animate).
+         *
+         * @property {String} imageAnimation
+         * @default []
+         */
+        imageAnimation: {
+            type: &#x27;string&#x27;,
+            enum: [&#x27;bounce&#x27;, &#x27;spin&#x27;, &#x27;&#x27;],
+            description: &#x27;Which animation to use for the image.&#x27;,
+            default: &#x27;spin&#x27;
+        }
+    },
+
+    // TODO: store some data about what happened!
+    meta: {
+        data: {
+            type: &#x27;object&#x27;,
+            properties: {
+            }
+        }
+    },
+
+
+    didInsertElement() {
+        this._super(...arguments);
+        this.set(&#x27;hasVideo&#x27;, this.get(&#x27;video&#x27;).length &gt; 0);
+
+        // Apply background colors
+        if (isColor(this.get(&#x27;backgroundColor&#x27;))) {
+            $(&#x27;div.exp-lookit-start-recording&#x27;).css(&#x27;background-color&#x27;, this.get(&#x27;backgroundColor&#x27;));
+        } else {
+            console.warn(&#x27;Invalid background color provided; not applying.&#x27;);
+        }
+
+        // Apply image animation class
+        if (this.get(&#x27;image&#x27;)) {
+            $(&#x27;#placeholder-image&#x27;).addClass(this.get(&#x27;imageAnimation&#x27;));
+        }
+
+        // Make sure we&#x27;re already recording at the session level!
+        if (!this.get(&#x27;sessionRecordingInProgress&#x27;)) {
+            /**
+             * If there&#x27;s no active session recording so this frame is proceeding
+             * immediately.
+             *
+             * @event warningNoActiveSessionRecording
+             */
+            this.send(&#x27;setTimeEvent&#x27;, &#x27;warningNoActiveSessionRecording&#x27;);
+            this.send(&#x27;next&#x27;);
+        }
+
+        var _this = this;
+        this.stopSessionRecorder().finally(() =&gt; {
+            _this.send(&#x27;next&#x27;);
+        });
+
+        this.set(&#x27;progressTimer&#x27;, window.setInterval(function() {
+            let msg = $(&#x27;.pipeMsgOverlay&#x27;).html();
+            let match = msg.match(/\d*%/);
+            if (match) {
+                $(&#x27;#progress&#x27;).html(&#x60;Uploading video... ${match[0]}&#x60;);
+                $(&#x27;.progress-bar&#x27;).css(&#x27;width&#x27;, match);
+                _this.set(&#x27;hasStartedUpload&#x27;, true);
+            } else if (msg) {
+                $(&#x27;#progress&#x27;).html(msg);
+            } else {
+                $(&#x27;#progress&#x27;).html(&#x27;Uploading video...&#x27;)
+            }
+        }, 100));
+
+        this.set(&#x27;allowProceedTimer&#x27;, window.setTimeout(function() {
+            if (!_this.get(&#x27;hasStartedUpload&#x27;)) {
+                /**
+                 * If no progress update about upload is available within 10s, and
+                 * frame proceeds automatically. Otherwise if the upload has started
+                 * (e.g. we know it is 10% done) it will continue waiting.
+                 *
+                 * @event warningUploadTimeoutError
+                 */
+                _this.send(&#x27;setTimeEvent&#x27;, &#x27;warningUploadTimeoutError&#x27;);
+                _this.send(&#x27;next&#x27;);
+            }
+        }, 5000));
+
+    },
+
+    willDestroyElement() {
+        window.clearInterval(this.get(&#x27;progressTimer&#x27;));
+        window.clearInterval(this.get(&#x27;allowProceedTimer&#x27;));
+        this._super(...arguments);
+    }
+
+});
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

@@ -22,13 +22,10 @@
                     <p>Version: latest <br>(v1.2.0)</p>
                     <select name="select_version" onchange="location = this.value;">
                         <option value="">--Select different version--</option>
-                            <option value="releases/v1.2.0/">v1.2.0</option>
+                            <option value="releases/v1.2.0/index.html">v1.2.0</option>
                     </select>
               </div>
-
               </h2>
-
-
               <div id="api-list">
                   <div id="api-tabview">
               
@@ -37,6 +34,7 @@
                         <ul id="api-modules" class="apis modules">
                             <li class="module-sidebar-exp-player"><a href="../modules/exp-player.html">exp-player</a></li>
                             <li class="module-sidebar-frames"><a href="../modules/frames.html">frames</a></li>
+                            <li class="module-sidebar-frames-deprecated"><a href="../modules/frames-deprecated.html">frames-deprecated</a></li>
                             <li class="module-sidebar-mixins"><a href="../modules/mixins.html">mixins</a></li>
                             <li class="module-sidebar-randomizers"><a href="../modules/randomizers.html">randomizers</a></li>
                         </ul>
@@ -59,7 +57,10 @@
                             <li><a href="../classes/Exp-lookit-mood-questionnaire.html">Exp-lookit-mood-questionnaire</a></li>
                             <li><a href="../classes/Exp-lookit-observation.html">Exp-lookit-observation</a></li>
                             <li><a href="../classes/Exp-lookit-preferential-looking.html">Exp-lookit-preferential-looking</a></li>
+                            <li><a href="../classes/Exp-lookit-preview-explanation.html">Exp-lookit-preview-explanation</a></li>
+                            <li><a href="../classes/Exp-lookit-start-recording.html">Exp-lookit-start-recording</a></li>
                             <li><a href="../classes/Exp-lookit-stimuli-preview.html">Exp-lookit-stimuli-preview</a></li>
+                            <li><a href="../classes/Exp-lookit-stop-recording.html">Exp-lookit-stop-recording</a></li>
                             <li><a href="../classes/Exp-lookit-story-page.html">Exp-lookit-story-page</a></li>
                             <li><a href="../classes/Exp-lookit-survey.html">Exp-lookit-survey</a></li>
                             <li><a href="../classes/Exp-lookit-text.html">Exp-lookit-text</a></li>
@@ -135,28 +136,22 @@ let {
  *
  * A mixin that can be used to add basic support for video recording to a particular experiment frame
  *
- * By default, the recorder will be installed when this frame loads, but recording
- * will not start automatically. To override either of these settings, set
- * the properties &#x60;doUseCamera&#x60; and/or &#x60;startRecordingAutomatically&#x60; in the consuming
- * frame.
- *
  * You will also need to set &#x60;sessionRecorderElement&#x60; if the recorder is to be housed other than
- * in an element identified by the ID &#x60;recorder&#x60;.
+ * in an element identified by the ID &#x60;sessionRecorder&#x60;.
  *
- * The properties &#x60;recorder&#x60;, &#x60;sessionRecorderReady&#x60;, and
+ * The properties &#x60;sessionRecorder&#x60;, &#x60;sessionRecorderReady&#x60;, and
  * &#x60;sessionVideoId&#x60; become available to the consuming frame. The recorder object has fields
  * that give information about its state: &#x60;hasWebCam&#x60;, &#x27;hasCamAccess&#x60;, &#x60;recording&#x60;,
  * &#x60;connected&#x60;, and &#x60;micChecked&#x60; - for details, see services/video-recorder.js. These
  * can be accessed from the consuming frame as e.g. &#x60;this.get(&#x27;recorder&#x27;).get(&#x27;hasWebCam&#x27;)&#x60;.
  *
- * If starting recording automatically, the function &#x60;whenPossibleToRecord&#x60; will be called
- * once recording is possible, and will start recording. If you want to do other things
- * at this point, like proceeding to a test trial, you can override this function in your
- * frame.
+ * If starting recording, the function &#x60;onSessionRecordingStarted&#x60; will be called
+ * once recording begins. If you want to do other things at this point, like proceeding
+ * to a test trial, you can add this hook in your frame.
  *
- * See &#x27;methods&#x27; for the functions you can use on a frame that extends VideoRecord.
+ * See &#x27;methods&#x27; for the functions you can use on a frame that extends SessionRecord.
  *
- * Events recorded in a frame that extends VideoRecord will automatically have additional
+ * Events recorded in a frame that extends SessionRecord will automatically have additional
  * fields sessionVideoId (video filename), pipeId (temporary filename initially assigned by
  * the recording service),
  * and streamTime (when in the video they happened, in s).
@@ -365,21 +360,22 @@ export default Ember.Mixin.create({
         this._super(...arguments);
     },
 
+    // Note: if leaving this component via &#x27;next&#x27;, that handles actually stopping the
+    // session recorder if needed and calling next once complete. This provides a
+    // fallback to stop if leaving via closing the window, etc. and also handles
+    // actually destroying the recorder any time the component is destroyed.
     willDestroyElement() {
         var _this = this;
-        if (_this.get(&#x27;sessionRecorder&#x27;) &amp;&amp; _this.get(&#x27;endSessionRecording&#x27;)) {
-            if (!(_this.get(&#x27;session&#x27;).get(&#x27;recordingInProgress&#x27;))) {
-                _this.destroySessionRecorder();
+        if (this.get(&#x27;sessionRecorder&#x27;) &amp;&amp; this.get(&#x27;endSessionRecording&#x27;)) {
+            if (!(this.get(&#x27;session&#x27;).get(&#x27;recordingInProgress&#x27;))) {
+                this.destroySessionRecorder();
             } else {
-                _this.stopSessionRecorder().then(() =&gt; {
-                    _this.set(&#x27;stoppedSessionRecording&#x27;, true);
-                    _this.destroySessionRecorder();
-                }, () =&gt; {
+                this.stopSessionRecorder().finally(() =&gt; {
                     _this.destroySessionRecorder();
                 });
             }
         }
-        _this._super(...arguments);
+        this._super(...arguments);
     },
 
     /**

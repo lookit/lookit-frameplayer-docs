@@ -22,13 +22,10 @@
                     <p>Version: latest <br>(v1.2.0)</p>
                     <select name="select_version" onchange="location = this.value;">
                         <option value="">--Select different version--</option>
-                            <option value="releases/v1.2.0/">v1.2.0</option>
+                            <option value="releases/v1.2.0/index.html">v1.2.0</option>
                     </select>
               </div>
-
               </h2>
-
-
               <div id="api-list">
                   <div id="api-tabview">
               
@@ -37,6 +34,7 @@
                         <ul id="api-modules" class="apis modules">
                             <li class="module-sidebar-exp-player"><a href="../modules/exp-player.html">exp-player</a></li>
                             <li class="module-sidebar-frames"><a href="../modules/frames.html">frames</a></li>
+                            <li class="module-sidebar-frames-deprecated"><a href="../modules/frames-deprecated.html">frames-deprecated</a></li>
                             <li class="module-sidebar-mixins"><a href="../modules/mixins.html">mixins</a></li>
                             <li class="module-sidebar-randomizers"><a href="../modules/randomizers.html">randomizers</a></li>
                         </ul>
@@ -59,7 +57,10 @@
                             <li><a href="../classes/Exp-lookit-mood-questionnaire.html">Exp-lookit-mood-questionnaire</a></li>
                             <li><a href="../classes/Exp-lookit-observation.html">Exp-lookit-observation</a></li>
                             <li><a href="../classes/Exp-lookit-preferential-looking.html">Exp-lookit-preferential-looking</a></li>
+                            <li><a href="../classes/Exp-lookit-preview-explanation.html">Exp-lookit-preview-explanation</a></li>
+                            <li><a href="../classes/Exp-lookit-start-recording.html">Exp-lookit-start-recording</a></li>
                             <li><a href="../classes/Exp-lookit-stimuli-preview.html">Exp-lookit-stimuli-preview</a></li>
+                            <li><a href="../classes/Exp-lookit-stop-recording.html">Exp-lookit-stop-recording</a></li>
                             <li><a href="../classes/Exp-lookit-story-page.html">Exp-lookit-story-page</a></li>
                             <li><a href="../classes/Exp-lookit-survey.html">Exp-lookit-survey</a></li>
                             <li><a href="../classes/Exp-lookit-text.html">Exp-lookit-text</a></li>
@@ -149,10 +150,9 @@ let {
  * &#x60;connected&#x60;, and &#x60;micChecked&#x60; - for details, see services/video-recorder.js. These
  * can be accessed from the consuming frame as e.g. &#x60;this.get(&#x27;recorder&#x27;).get(&#x27;hasWebCam&#x27;)&#x60;.
  *
- * If starting recording automatically, the function &#x60;whenPossibleToRecord&#x60; will be called
- * once recording is possible, and will start recording. If you want to do other things
- * at this point, like proceeding to a test trial, you can override this function in your
- * frame.
+ * If starting recording automatically,  the function &#x60;onRecordingStarted&#x60; will be called
+ * once recording begins. If you want to do other things at this point, like proceeding
+ * to a test trial, you can add this hook in your frame.
  *
  * See &#x27;methods&#x27; for the functions you can use on a frame that extends VideoRecord.
  *
@@ -371,44 +371,6 @@ export default Ember.Mixin.create({
     },
 
     /**
-     * Pause the recorder (and capture timing events). For webRTC recorder, this is
-     * just a placeholder and doesn&#x27;t actually pause the recording. If webRTC used,
-     * includes extra data actuallyPaused: false. This is for backwards compatibility
-     * with frames that pause/resume recording, and should not be used going forward -
-     * instead stop/start and make separate clips if needed.
-     * @method pauseRecorder
-     * @param [skipIfMissing=false] If provided (and true), don&#x27;t raise an error if recording isn&#x27;t ready yet. Not actually used for WebRTC.
-     */
-    pauseRecorder(skipIfMissing = false) {  // eslint-disable-line no-unused-vars
-        // leave skipIfMissing param for backwards compatibility
-        const recorder = this.get(&#x27;recorder&#x27;);
-        if (recorder) {
-            this.send(&#x27;setTimeEvent&#x27;, &#x27;pauseCapture&#x27;, {
-                actuallyPaused: false
-            });
-            // Would pause here!
-        }
-    },
-
-    /**
-     * Resume a paused recording. For webRTC recorder, this is just a placeholder and
-     * doesn&#x27;t actually pause the recording. If webRTC used, includes extra data
-     * wasActuallyPaused: false. This is for backwards compatibility
-     * with frames that pause/resume recording, and should not be used going forward -
-     * instead stop/start and make separate clips if needed.
-     * @method resumeRecorder
-     */
-    resumeRecorder() {
-        const recorder = this.get(&#x27;recorder&#x27;);
-        if (recorder) {
-            this.send(&#x27;setTimeEvent&#x27;, &#x27;unpauseCapture&#x27;, {
-                wasActuallyPaused: false
-            });
-            // Would resume here!
-        }
-    },
-
-    /**
      * Start recording
      * @method startRecorder
      * @return Promise Resolves when recording has started
@@ -480,6 +442,12 @@ export default Ember.Mixin.create({
     },
 
     didInsertElement() {
+        // Give any active session recorder precedence over individual-frame recording
+        if (this.get(&#x27;sessionRecorder&#x27;) &amp;&amp; this.get(&#x27;session&#x27;).get(&#x27;recordingInProgress&#x27;)) {
+            console.warn(&#x27;Recording on this frame was specified, but session recording is already active. Not making frame recording.&#x27;);
+            this.set(&#x27;doUseCamera&#x27;, false);
+        }
+
         if (this.get(&#x27;doUseCamera&#x27;)) {
             var _this = this;
             this.setupRecorder(this.$(this.get(&#x27;recorderElement&#x27;))).then(() =&gt; {

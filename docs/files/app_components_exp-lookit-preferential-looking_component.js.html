@@ -22,13 +22,10 @@
                     <p>Version: latest <br>(v1.2.0)</p>
                     <select name="select_version" onchange="location = this.value;">
                         <option value="">--Select different version--</option>
-                            <option value="releases/v1.2.0/">v1.2.0</option>
+                            <option value="releases/v1.2.0/index.html">v1.2.0</option>
                     </select>
               </div>
-
               </h2>
-
-
               <div id="api-list">
                   <div id="api-tabview">
               
@@ -37,6 +34,7 @@
                         <ul id="api-modules" class="apis modules">
                             <li class="module-sidebar-exp-player"><a href="../modules/exp-player.html">exp-player</a></li>
                             <li class="module-sidebar-frames"><a href="../modules/frames.html">frames</a></li>
+                            <li class="module-sidebar-frames-deprecated"><a href="../modules/frames-deprecated.html">frames-deprecated</a></li>
                             <li class="module-sidebar-mixins"><a href="../modules/mixins.html">mixins</a></li>
                             <li class="module-sidebar-randomizers"><a href="../modules/randomizers.html">randomizers</a></li>
                         </ul>
@@ -59,7 +57,10 @@
                             <li><a href="../classes/Exp-lookit-mood-questionnaire.html">Exp-lookit-mood-questionnaire</a></li>
                             <li><a href="../classes/Exp-lookit-observation.html">Exp-lookit-observation</a></li>
                             <li><a href="../classes/Exp-lookit-preferential-looking.html">Exp-lookit-preferential-looking</a></li>
+                            <li><a href="../classes/Exp-lookit-preview-explanation.html">Exp-lookit-preview-explanation</a></li>
+                            <li><a href="../classes/Exp-lookit-start-recording.html">Exp-lookit-start-recording</a></li>
                             <li><a href="../classes/Exp-lookit-stimuli-preview.html">Exp-lookit-stimuli-preview</a></li>
+                            <li><a href="../classes/Exp-lookit-stop-recording.html">Exp-lookit-stop-recording</a></li>
                             <li><a href="../classes/Exp-lookit-story-page.html">Exp-lookit-story-page</a></li>
                             <li><a href="../classes/Exp-lookit-survey.html">Exp-lookit-survey</a></li>
                             <li><a href="../classes/Exp-lookit-text.html">Exp-lookit-text</a></li>
@@ -137,9 +138,12 @@ let {
 /**
 * Basic image display for looking measures (e.g. preferential looking, looking time).
 * Trial consists of four phases, each of which is optional.
- *
- * This is a composite trial very similar to exp-lookit-composite-video-trial except that
- * it allows specifying either video stimuli or static images.
+*
+* This is a composite trial very similar to exp-lookit-composite-video-trial except that
+* it allows specifying either video stimuli or static images.
+*
+* In general it may be simpler to use a combination of exp-lookit-calibration,
+* exp-lookit-video, and exp-lookit-images-audio frames.
 *
 * 1. Announcement: The audio in announcementAudio is played while the announcementVideo
 * video is played centrally, looping as needed. This lasts for announcementLength seconds
@@ -656,8 +660,6 @@ export default ExpFrameBaseComponent.extend(FullScreen, MediaReload, VideoRecord
     },
 
     meta: {
-        name: &#x27;ExpLookitPreferentialLooking&#x27;,
-        description: &#x27;Component that displays video or images for looking measurements&#x27;,
         data: {
             type: &#x27;object&#x27;,
             properties: {
@@ -1016,11 +1018,6 @@ export default ExpFrameBaseComponent.extend(FullScreen, MediaReload, VideoRecord
                 }
                 this.set(&#x27;currentTask&#x27;, &#x27;announce&#x27;);
 
-                try {
-                    this.resumeRecorder();
-                } catch (_) {
-                    return;
-                }
             } else if (pause || !wasPaused) { // Not currently paused: pause
                 //this.showRecorder();
                 window.clearInterval(this.get(&#x27;testTimer&#x27;));
@@ -1033,7 +1030,6 @@ export default ExpFrameBaseComponent.extend(FullScreen, MediaReload, VideoRecord
                 this.send(&#x27;setTimeEvent&#x27;, &#x27;pauseVideo&#x27;, {
                     currentTask: this.get(&#x27;currentTask&#x27;)
                 });
-                this.pauseRecorder(true);
                 $(&#x27;#player-calibration-video&#x27;).removeClass(this.get(&#x27;calibrationPositions&#x27;).join(&#x27; &#x27;));
                 $(&#x27;#player-calibration-video&#x27;).hide();
                 if ($(&#x27;audio#exp-music&#x27;).length) {

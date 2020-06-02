@@ -22,13 +22,10 @@
                     <p>Version: latest <br>(v1.2.0)</p>
                     <select name="select_version" onchange="location = this.value;">
                         <option value="">--Select different version--</option>
-                            <option value="releases/v1.2.0/">v1.2.0</option>
+                            <option value="releases/v1.2.0/index.html">v1.2.0</option>
                     </select>
               </div>
-
               </h2>
-
-
               <div id="api-list">
                   <div id="api-tabview">
               
@@ -37,6 +34,7 @@
                         <ul id="api-modules" class="apis modules">
                             <li class="module-sidebar-exp-player"><a href="../modules/exp-player.html">exp-player</a></li>
                             <li class="module-sidebar-frames"><a href="../modules/frames.html">frames</a></li>
+                            <li class="module-sidebar-frames-deprecated"><a href="../modules/frames-deprecated.html">frames-deprecated</a></li>
                             <li class="module-sidebar-mixins"><a href="../modules/mixins.html">mixins</a></li>
                             <li class="module-sidebar-randomizers"><a href="../modules/randomizers.html">randomizers</a></li>
                         </ul>
@@ -59,7 +57,10 @@
                             <li><a href="../classes/Exp-lookit-mood-questionnaire.html">Exp-lookit-mood-questionnaire</a></li>
                             <li><a href="../classes/Exp-lookit-observation.html">Exp-lookit-observation</a></li>
                             <li><a href="../classes/Exp-lookit-preferential-looking.html">Exp-lookit-preferential-looking</a></li>
+                            <li><a href="../classes/Exp-lookit-preview-explanation.html">Exp-lookit-preview-explanation</a></li>
+                            <li><a href="../classes/Exp-lookit-start-recording.html">Exp-lookit-start-recording</a></li>
                             <li><a href="../classes/Exp-lookit-stimuli-preview.html">Exp-lookit-stimuli-preview</a></li>
+                            <li><a href="../classes/Exp-lookit-stop-recording.html">Exp-lookit-stop-recording</a></li>
                             <li><a href="../classes/Exp-lookit-story-page.html">Exp-lookit-story-page</a></li>
                             <li><a href="../classes/Exp-lookit-survey.html">Exp-lookit-survey</a></li>
                             <li><a href="../classes/Exp-lookit-text.html">Exp-lookit-text</a></li>
@@ -320,6 +321,9 @@ we would have keys <code>1-study-procedure</code>, <code>1-study-procedure-0</co
                                 <a href="#attr_eventTimings">eventTimings</a>
                             </li>
                             <li class="index-item attr inherited">
+                                <a href="#attr_frameDuration">frameDuration</a>
+                            </li>
+                            <li class="index-item attr inherited">
                                 <a href="#attr_frameType">frameType</a>
                             </li>
                             <li class="index-item attr inherited">
@@ -386,7 +390,7 @@ we would have keys <code>1-study-procedure</code>, <code>1-study-procedure-0</co
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Session-record.html#method_destroySessionRecorder">Session-record</a>:
-        <a href="../files/app_mixins_session-record.js.html#l217"><code>app&#x2F;mixins&#x2F;session-record.js:217</code></a>
+        <a href="../files/app_mixins_session-record.js.html#l211"><code>app&#x2F;mixins&#x2F;session-record.js:211</code></a>
         </p>
 
 
@@ -458,7 +462,7 @@ we would have keys <code>1-study-procedure</code>, <code>1-study-procedure-0</co
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Exp-frame-base.html#method_makeTimeEvent">Exp-frame-base</a>:
-        <a href="../files/app_components_exp-frame-base_component.js.html#l498"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:498</code></a>
+        <a href="../files/app_components_exp-frame-base_component.js.html#l501"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:501</code></a>
         </p>
 
 
@@ -527,7 +531,7 @@ event sent by a particular frame</p>
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Session-record.html#method_onSessionRecordingStarted">Session-record</a>:
-        <a href="../files/app_mixins_session-record.js.html#l267"><code>app&#x2F;mixins&#x2F;session-record.js:267</code></a>
+        <a href="../files/app_mixins_session-record.js.html#l262"><code>app&#x2F;mixins&#x2F;session-record.js:262</code></a>
         </p>
 
 
@@ -567,7 +571,7 @@ frame-specific actions at this point (e.g., beginning a test trial).
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Exp-frame-base.html#method_serializeContent">Exp-frame-base</a>:
-        <a href="../files/app_components_exp-frame-base_component.js.html#l480"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:480</code></a>
+        <a href="../files/app_components_exp-frame-base_component.js.html#l478"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:478</code></a>
         </p>
 
 
@@ -632,7 +636,7 @@ Individual frames may define additional properties that are sent.</p>
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Session-record.html#method_setupRecorder">Session-record</a>:
-        <a href="../files/app_mixins_session-record.js.html#l132"><code>app&#x2F;mixins&#x2F;session-record.js:132</code></a>
+        <a href="../files/app_mixins_session-record.js.html#l126"><code>app&#x2F;mixins&#x2F;session-record.js:126</code></a>
         </p>
 
 
@@ -722,7 +726,7 @@ Individual frames may define additional properties that are sent.</p>
                 Session-record
             </a>
             but overwritten in
-        <a href="../files/app_mixins_session-record.js.html#l183"><code>app&#x2F;mixins&#x2F;session-record.js:183</code></a>
+        <a href="../files/app_mixins_session-record.js.html#l177"><code>app&#x2F;mixins&#x2F;session-record.js:177</code></a>
         </p>
 
 
@@ -759,7 +763,7 @@ Individual frames may define additional properties that are sent.</p>
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Session-record.html#method_whenPossibleToRecordSessionObserver">Session-record</a>:
-        <a href="../files/app_mixins_session-record.js.html#l276"><code>app&#x2F;mixins&#x2F;session-record.js:276</code></a>
+        <a href="../files/app_mixins_session-record.js.html#l271"><code>app&#x2F;mixins&#x2F;session-record.js:271</code></a>
         </p>
 
 
@@ -870,7 +874,7 @@ a survey between test trials in fullscreen mode.)
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Session-record.html#property_endSessionRecording">Session-record </a> (click for formatted description):
-        <a href="../files/app_mixins_session-record.js.html#l104"><code>app&#x2F;mixins&#x2F;session-record.js:104</code></a>
+        <a href="../files/app_mixins_session-record.js.html#l98"><code>app&#x2F;mixins&#x2F;session-record.js:98</code></a>
         </p>
 
 
@@ -978,7 +982,7 @@ commmonFrameProperties, but for a single frame in frameOptions, include
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Exp-frame-base.html#property_generateProperties">Exp-frame-base </a> (click for formatted description):
-        <a href="../files/app_components_exp-frame-base_component.js.html#l85"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:85</code></a>
+        <a href="../files/app_components_exp-frame-base_component.js.html#l76"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:76</code></a>
         </p>
 
 
@@ -1063,7 +1067,7 @@ to be on one line.)</p>
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Exp-frame-base.html#property_parameters">Exp-frame-base </a> (click for formatted description):
-        <a href="../files/app_components_exp-frame-base_component.js.html#l232"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:232</code></a>
+        <a href="../files/app_components_exp-frame-base_component.js.html#l223"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:223</code></a>
         </p>
 
 
@@ -1132,7 +1136,7 @@ generated for this randomizer.</li>
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Exp-frame-base.html#property_selectNextFrame">Exp-frame-base </a> (click for formatted description):
-        <a href="../files/app_components_exp-frame-base_component.js.html#l169"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:169</code></a>
+        <a href="../files/app_components_exp-frame-base_component.js.html#l160"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:160</code></a>
         </p>
 
 
@@ -1199,7 +1203,7 @@ just used for attempts to leave the study early</li>
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Session-record.html#property_sessionAudioOnly">Session-record </a> (click for formatted description):
-        <a href="../files/app_mixins_session-record.js.html#l114"><code>app&#x2F;mixins&#x2F;session-record.js:114</code></a>
+        <a href="../files/app_mixins_session-record.js.html#l108"><code>app&#x2F;mixins&#x2F;session-record.js:108</code></a>
         </p>
 
 
@@ -1224,7 +1228,7 @@ just used for attempts to leave the study early</li>
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Session-record.html#property_sessionMaxUploadSeconds">Session-record </a> (click for formatted description):
-        <a href="../files/app_mixins_session-record.js.html#l95"><code>app&#x2F;mixins&#x2F;session-record.js:95</code></a>
+        <a href="../files/app_mixins_session-record.js.html#l89"><code>app&#x2F;mixins&#x2F;session-record.js:89</code></a>
         </p>
 
 
@@ -1251,7 +1255,7 @@ losing data.
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Session-record.html#property_startSessionRecording">Session-record </a> (click for formatted description):
-        <a href="../files/app_mixins_session-record.js.html#l88"><code>app&#x2F;mixins&#x2F;session-record.js:88</code></a>
+        <a href="../files/app_mixins_session-record.js.html#l82"><code>app&#x2F;mixins&#x2F;session-record.js:82</code></a>
         </p>
 
 
@@ -1320,7 +1324,7 @@ randomizer.)</p>
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Exp-frame-base.html#attr_eventTimings">Exp-frame-base</a>:
-                            <a href="../files/app_components_exp-frame-base_component.js.html#l472"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:472</code></a>
+                            <a href="../files/app_components_exp-frame-base_component.js.html#l470"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:470</code></a>
                             </p>
                     
                     
@@ -1331,6 +1335,35 @@ randomizer.)</p>
                     represented as an object with at least the properties
                     <code>{'eventType': EVENTNAME, 'timestamp': TIMESTAMP}</code>.
                     See Events tab for details of events that might be captured.</p>
+                    
+                        </div>
+                    
+                    
+                    
+                    </div>
+                    <div id="attr_frameDuration" class="attr item inherited">
+                        <a name="config_frameDuration"></a> 
+                        <h3 class="name"><code>frameDuration</code></h3>
+                        <span class="type"></span>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>Inherited from
+                                    <a href="../classes/Exp-frame-base.html#attr_frameDuration">Exp-frame-base</a>:
+                            <a href="../files/app_components_exp-frame-base_component.js.html#l459"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:459</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Duration between frame being inserted and call to <code>next</code></p>
                     
                         </div>
                     
@@ -1352,7 +1385,7 @@ randomizer.)</p>
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Exp-frame-base.html#attr_frameType">Exp-frame-base</a>:
-                            <a href="../files/app_components_exp-frame-base_component.js.html#l466"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:466</code></a>
+                            <a href="../files/app_components_exp-frame-base_component.js.html#l464"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:464</code></a>
                             </p>
                     
                     
@@ -1382,7 +1415,7 @@ randomizer.)</p>
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Exp-frame-base.html#attr_generatedProperties">Exp-frame-base</a>:
-                            <a href="../files/app_components_exp-frame-base_component.js.html#l460"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:460</code></a>
+                            <a href="../files/app_components_exp-frame-base_component.js.html#l453"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:453</code></a>
                             </p>
                     
                     
@@ -1437,7 +1470,7 @@ randomizer.)</p>
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Session-record.html#event_hasCamAccess">Session-record</a>:
-                            <a href="../files/app_mixins_session-record.js.html#l49"><code>app&#x2F;mixins&#x2F;session-record.js:49</code></a>
+                            <a href="../files/app_mixins_session-record.js.html#l43"><code>app&#x2F;mixins&#x2F;session-record.js:43</code></a>
                             </p>
                     
                     
@@ -1501,7 +1534,7 @@ randomizer.)</p>
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Exp-frame-base.html#event_nextFrame">Exp-frame-base</a>:
-                            <a href="../files/app_components_exp-frame-base_component.js.html#l543"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:543</code></a>
+                            <a href="../files/app_components_exp-frame-base_component.js.html#l546"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:546</code></a>
                             </p>
                     
                     
@@ -1526,7 +1559,7 @@ randomizer.)</p>
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Exp-frame-base.html#event_previousFrame">Exp-frame-base</a>:
-                            <a href="../files/app_components_exp-frame-base_component.js.html#l598"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:598</code></a>
+                            <a href="../files/app_components_exp-frame-base_component.js.html#l606"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:606</code></a>
                             </p>
                     
                     
@@ -1551,7 +1584,7 @@ randomizer.)</p>
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Session-record.html#event_sessionRecorderReady">Session-record</a>:
-                            <a href="../files/app_mixins_session-record.js.html#l236"><code>app&#x2F;mixins&#x2F;session-record.js:236</code></a>
+                            <a href="../files/app_mixins_session-record.js.html#l230"><code>app&#x2F;mixins&#x2F;session-record.js:230</code></a>
                             </p>
                     
                     
@@ -1575,7 +1608,7 @@ randomizer.)</p>
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Session-record.html#event_stoppingCapture">Session-record</a>:
-                            <a href="../files/app_mixins_session-record.js.html#l64"><code>app&#x2F;mixins&#x2F;session-record.js:64</code></a>
+                            <a href="../files/app_mixins_session-record.js.html#l58"><code>app&#x2F;mixins&#x2F;session-record.js:58</code></a>
                             </p>
                     
                     
@@ -1599,7 +1632,7 @@ randomizer.)</p>
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Session-record.html#event_videoStreamConnection">Session-record</a>:
-                            <a href="../files/app_mixins_session-record.js.html#l56"><code>app&#x2F;mixins&#x2F;session-record.js:56</code></a>
+                            <a href="../files/app_mixins_session-record.js.html#l50"><code>app&#x2F;mixins&#x2F;session-record.js:50</code></a>
                             </p>
                     
                     

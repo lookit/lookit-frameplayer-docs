@@ -22,13 +22,10 @@
                     <p>Version: latest <br>(v1.2.0)</p>
                     <select name="select_version" onchange="location = this.value;">
                         <option value="">--Select different version--</option>
-                            <option value="releases/v1.2.0/">v1.2.0</option>
+                            <option value="releases/v1.2.0/index.html">v1.2.0</option>
                     </select>
               </div>
-
               </h2>
-
-
               <div id="api-list">
                   <div id="api-tabview">
               
@@ -37,6 +34,7 @@
                         <ul id="api-modules" class="apis modules">
                             <li class="module-sidebar-exp-player"><a href="../modules/exp-player.html">exp-player</a></li>
                             <li class="module-sidebar-frames"><a href="../modules/frames.html">frames</a></li>
+                            <li class="module-sidebar-frames-deprecated"><a href="../modules/frames-deprecated.html">frames-deprecated</a></li>
                             <li class="module-sidebar-mixins"><a href="../modules/mixins.html">mixins</a></li>
                             <li class="module-sidebar-randomizers"><a href="../modules/randomizers.html">randomizers</a></li>
                         </ul>
@@ -59,7 +57,10 @@
                             <li><a href="../classes/Exp-lookit-mood-questionnaire.html">Exp-lookit-mood-questionnaire</a></li>
                             <li><a href="../classes/Exp-lookit-observation.html">Exp-lookit-observation</a></li>
                             <li><a href="../classes/Exp-lookit-preferential-looking.html">Exp-lookit-preferential-looking</a></li>
+                            <li><a href="../classes/Exp-lookit-preview-explanation.html">Exp-lookit-preview-explanation</a></li>
+                            <li><a href="../classes/Exp-lookit-start-recording.html">Exp-lookit-start-recording</a></li>
                             <li><a href="../classes/Exp-lookit-stimuli-preview.html">Exp-lookit-stimuli-preview</a></li>
+                            <li><a href="../classes/Exp-lookit-stop-recording.html">Exp-lookit-stop-recording</a></li>
                             <li><a href="../classes/Exp-lookit-story-page.html">Exp-lookit-story-page</a></li>
                             <li><a href="../classes/Exp-lookit-survey.html">Exp-lookit-survey</a></li>
                             <li><a href="../classes/Exp-lookit-text.html">Exp-lookit-text</a></li>
@@ -128,19 +129,12 @@ import SessionRecord from &#x27;../../mixins/session-record&#x27;;
  * @submodule frames
  */
 
-/** An abstract component for defining experimenter frames
+/** An abstract component to extend when defining new Lookit frames
  *
  * This provides common base behavior required for any experiment frame. All experiment frames must extend this one.
  *
- * This frame has no configuration options because all of its logic is internal, and is almost never directly used
- *   in an experiment. It exports no data. Sample experiment definition usage (provided for completeness):
-  &#x60;&#x60;&#x60;json
-    &quot;frames&quot;: {
-       &quot;my-sample-frame&quot;: {
-         &quot;kind&quot;: &quot;exp-base-frame&quot;
-       }
-    }
- * &#x60;&#x60;&#x60;
+ * This frame has no configuration options because all of its logic is internal, and should not be directly used
+ * in an experiment.
  *
  * As a user you will almost never need to insert a component into a template directly- the platform should handle that
  *  by automatically inserting an &lt;a href=&quot;../classes/Exp-player.html&quot; class=&quot;crosslink&quot;&gt;exp-player&lt;/a&gt; component when your experiment starts.
@@ -185,8 +179,6 @@ export default Ember.Component.extend(FullScreen, SessionRecord, {
     },
 
     meta: { // Configuration for all fields available on the component/template
-        name: &#x27;Base Experimenter Frame&#x27;,
-        description: &#x27;The abstract base frame for Experimenter frames.&#x27;,
         data: { // Controls what and how parameters are serialized and sent to the server. Ideally there should be a validation mechanism.
             type: &#x27;object&#x27;,
             properties: {}
@@ -401,6 +393,8 @@ export default Ember.Component.extend(FullScreen, SessionRecord, {
 
     session: null,
 
+    frameStartTimestamp: null, // keep track of when frame started to store duration
+
     // see https://github.com/emberjs/ember.js/issues/3908. Moved
     // to init because we were losing the first event per instance of a frame
     // when it was in didReceiveAttrs.
@@ -582,6 +576,11 @@ export default Ember.Component.extend(FullScreen, SessionRecord, {
      */
 
     /**
+     * Duration between frame being inserted and call to &#x60;next&#x60;
+     * @attribute frameDuration
+     */
+
+    /**
      * Type of frame: EXIT (exit survey), CONSENT (consent or assent frame), or DEFAULT
      * (anything else)
      * @attribute frameType
@@ -610,6 +609,11 @@ export default Ember.Component.extend(FullScreen, SessionRecord, {
         serialized.generatedProperties = this.get(&#x27;generatedProperties&#x27;);
         serialized.eventTimings = this.get(&#x27;eventTimings&#x27;);
         serialized.frameType = this.get(&#x27;frameType&#x27;);
+        try {
+            serialized.frameDuration = (new Date().getTime() - this.get(&#x27;frameStartTimestamp&#x27;))/1000;
+        } catch(e){
+            serialized.frameDuration = null;
+        }
         return serialized;
     },
 
@@ -694,13 +698,18 @@ export default Ember.Component.extend(FullScreen, SessionRecord, {
             this.send(&#x27;save&#x27;);
 
             if (this.get(&#x27;endSessionRecording&#x27;) &amp;&amp; this.get(&#x27;sessionRecorder&#x27;)) {
-                this.get(&#x27;session&#x27;).set(&#x27;recordingInProgress&#x27;, false);
                 var _this = this;
-                this.stopSessionRecorder().finally(() =&gt; {
+                if (!(this.get(&#x27;session&#x27;).get(&#x27;recordingInProgress&#x27;))) {
                     _this.sendAction(&#x27;next&#x27;, iNextFrame);
                     window.scrollTo(0, 0);
-                    _this.destroySessionRecorder();
-                });
+                } else {
+                    this.get(&#x27;session&#x27;).set(&#x27;recordingInProgress&#x27;, false);
+                    this.stopSessionRecorder().finally(() =&gt; {
+                        _this.sendAction(&#x27;next&#x27;, iNextFrame);
+                        window.scrollTo(0, 0);
+                    });
+                }
+
             } else {
                 this.sendAction(&#x27;next&#x27;, iNextFrame);
                 window.scrollTo(0, 0);
@@ -734,6 +743,7 @@ export default Ember.Component.extend(FullScreen, SessionRecord, {
         Ember.$(&#x27;*&#x27;).removeClass(&#x27;player-fullscreen&#x27;);
         Ember.$(&#x27;*&#x27;).removeClass(&#x27;player-fullscreen-override&#x27;);
         Ember.$(&#x27;#application-parse-error-text&#x27;).hide();
+        this.set(&#x27;frameStartTimestamp&#x27;, new Date().getTime());
         var $element = Ember.$(&#x60;#${this.get(&#x27;fullScreenElementId&#x27;)}&#x60;);
         if (this.get(&#x27;displayFullscreenOverride&#x27;) &amp;&amp; !this.get(&#x27;displayFullscreen&#x27;)) {
             $element.addClass(&#x27;player-fullscreen-override&#x27;);

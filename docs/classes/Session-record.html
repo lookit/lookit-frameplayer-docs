@@ -22,13 +22,10 @@
                     <p>Version: latest <br>(v1.2.0)</p>
                     <select name="select_version" onchange="location = this.value;">
                         <option value="">--Select different version--</option>
-                            <option value="releases/v1.2.0/">v1.2.0</option>
+                            <option value="releases/v1.2.0/index.html">v1.2.0</option>
                     </select>
               </div>
-
               </h2>
-
-
               <div id="api-list">
                   <div id="api-tabview">
               
@@ -37,6 +34,7 @@
                         <ul id="api-modules" class="apis modules">
                             <li class="module-sidebar-exp-player"><a href="../modules/exp-player.html">exp-player</a></li>
                             <li class="module-sidebar-frames"><a href="../modules/frames.html">frames</a></li>
+                            <li class="module-sidebar-frames-deprecated"><a href="../modules/frames-deprecated.html">frames-deprecated</a></li>
                             <li class="module-sidebar-mixins"><a href="../modules/mixins.html">mixins</a></li>
                             <li class="module-sidebar-randomizers"><a href="../modules/randomizers.html">randomizers</a></li>
                         </ul>
@@ -59,7 +57,10 @@
                             <li><a href="../classes/Exp-lookit-mood-questionnaire.html">Exp-lookit-mood-questionnaire</a></li>
                             <li><a href="../classes/Exp-lookit-observation.html">Exp-lookit-observation</a></li>
                             <li><a href="../classes/Exp-lookit-preferential-looking.html">Exp-lookit-preferential-looking</a></li>
+                            <li><a href="../classes/Exp-lookit-preview-explanation.html">Exp-lookit-preview-explanation</a></li>
+                            <li><a href="../classes/Exp-lookit-start-recording.html">Exp-lookit-start-recording</a></li>
                             <li><a href="../classes/Exp-lookit-stimuli-preview.html">Exp-lookit-stimuli-preview</a></li>
+                            <li><a href="../classes/Exp-lookit-stop-recording.html">Exp-lookit-stop-recording</a></li>
                             <li><a href="../classes/Exp-lookit-story-page.html">Exp-lookit-story-page</a></li>
                             <li><a href="../classes/Exp-lookit-survey.html">Exp-lookit-survey</a></li>
                             <li><a href="../classes/Exp-lookit-text.html">Exp-lookit-text</a></li>
@@ -132,20 +133,15 @@
 <div class="box intro">
     <p>Reference for DEVELOPERS of new frames only!
 A mixin that can be used to add basic support for video recording to a particular experiment frame
-By default, the recorder will be installed when this frame loads, but recording
-will not start automatically. To override either of these settings, set
-the properties <code>doUseCamera</code> and/or <code>startRecordingAutomatically</code> in the consuming
-frame.
 You will also need to set <code>sessionRecorderElement</code> if the recorder is to be housed other than
-in an element identified by the ID <code>recorder</code>.
-The properties <code>recorder</code>, <code>sessionRecorderReady</code>, and
+in an element identified by the ID <code>sessionRecorder</code>.
+The properties <code>sessionRecorder</code>, <code>sessionRecorderReady</code>, and
 <code>sessionVideoId</code> become available to the consuming frame. The recorder object has fields
-that give information about its state: <code>hasWebCam</code>, 'hasCamAccess<code>,</code>recording<code>,</code>connected<code>, and</code>micChecked<code>- for details, see services/video-recorder.js. These can be accessed from the consuming frame as e.g.</code>this.get('recorder').get('hasWebCam')<code>. If starting recording automatically, the function</code>whenPossibleToRecord` will be called
-once recording is possible, and will start recording. If you want to do other things
-at this point, like proceeding to a test trial, you can override this function in your
-frame.
-See 'methods' for the functions you can use on a frame that extends VideoRecord.
-Events recorded in a frame that extends VideoRecord will automatically have additional
+that give information about its state: <code>hasWebCam</code>, 'hasCamAccess<code>,</code>recording<code>,</code>connected<code>, and</code>micChecked<code>- for details, see services/video-recorder.js. These can be accessed from the consuming frame as e.g.</code>this.get('recorder').get('hasWebCam')<code>. If starting recording, the function</code>onSessionRecordingStarted` will be called
+once recording begins. If you want to do other things at this point, like proceeding
+to a test trial, you can add this hook in your frame.
+See 'methods' for the functions you can use on a frame that extends SessionRecord.
+Events recorded in a frame that extends SessionRecord will automatically have additional
 fields sessionVideoId (video filename), pipeId (temporary filename initially assigned by
 the recording service),
 and streamTime (when in the video they happened, in s).</p>
@@ -266,7 +262,7 @@ and streamTime (when in the video they happened, in s).</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/app_mixins_session-record.js.html#l217"><code>app&#x2F;mixins&#x2F;session-record.js:217</code></a>
+        <a href="../files/app_mixins_session-record.js.html#l211"><code>app&#x2F;mixins&#x2F;session-record.js:211</code></a>
         </p>
 
 
@@ -297,7 +293,7 @@ and streamTime (when in the video they happened, in s).</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/app_mixins_session-record.js.html#l267"><code>app&#x2F;mixins&#x2F;session-record.js:267</code></a>
+        <a href="../files/app_mixins_session-record.js.html#l262"><code>app&#x2F;mixins&#x2F;session-record.js:262</code></a>
         </p>
 
 
@@ -338,7 +334,7 @@ frame-specific actions at this point (e.g., beginning a test trial).</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/app_mixins_session-record.js.html#l132"><code>app&#x2F;mixins&#x2F;session-record.js:132</code></a>
+        <a href="../files/app_mixins_session-record.js.html#l126"><code>app&#x2F;mixins&#x2F;session-record.js:126</code></a>
         </p>
 
 
@@ -398,7 +394,7 @@ frame-specific actions at this point (e.g., beginning a test trial).</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/app_mixins_session-record.js.html#l183"><code>app&#x2F;mixins&#x2F;session-record.js:183</code></a>
+        <a href="../files/app_mixins_session-record.js.html#l177"><code>app&#x2F;mixins&#x2F;session-record.js:177</code></a>
         </p>
 
 
@@ -440,7 +436,7 @@ frame-specific actions at this point (e.g., beginning a test trial).</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/app_mixins_session-record.js.html#l202"><code>app&#x2F;mixins&#x2F;session-record.js:202</code></a>
+        <a href="../files/app_mixins_session-record.js.html#l196"><code>app&#x2F;mixins&#x2F;session-record.js:196</code></a>
         </p>
 
 
@@ -479,7 +475,7 @@ frame-specific actions at this point (e.g., beginning a test trial).</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/app_mixins_session-record.js.html#l276"><code>app&#x2F;mixins&#x2F;session-record.js:276</code></a>
+        <a href="../files/app_mixins_session-record.js.html#l271"><code>app&#x2F;mixins&#x2F;session-record.js:271</code></a>
         </p>
 
 
@@ -511,7 +507,7 @@ frame-specific actions at this point (e.g., beginning a test trial).</p>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_mixins_session-record.js.html#l104"><code>app&#x2F;mixins&#x2F;session-record.js:104</code></a>
+        <a href="../files/app_mixins_session-record.js.html#l98"><code>app&#x2F;mixins&#x2F;session-record.js:98</code></a>
         </p>
 
 
@@ -537,7 +533,7 @@ frame-specific actions at this point (e.g., beginning a test trial).</p>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_mixins_session-record.js.html#l114"><code>app&#x2F;mixins&#x2F;session-record.js:114</code></a>
+        <a href="../files/app_mixins_session-record.js.html#l108"><code>app&#x2F;mixins&#x2F;session-record.js:108</code></a>
         </p>
 
 
@@ -563,7 +559,7 @@ frame-specific actions at this point (e.g., beginning a test trial).</p>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_mixins_session-record.js.html#l95"><code>app&#x2F;mixins&#x2F;session-record.js:95</code></a>
+        <a href="../files/app_mixins_session-record.js.html#l89"><code>app&#x2F;mixins&#x2F;session-record.js:89</code></a>
         </p>
 
 
@@ -591,7 +587,7 @@ losing data.</p>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_mixins_session-record.js.html#l88"><code>app&#x2F;mixins&#x2F;session-record.js:88</code></a>
+        <a href="../files/app_mixins_session-record.js.html#l82"><code>app&#x2F;mixins&#x2F;session-record.js:82</code></a>
         </p>
 
 
@@ -623,7 +619,7 @@ losing data.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/app_mixins_session-record.js.html#l49"><code>app&#x2F;mixins&#x2F;session-record.js:49</code></a>
+                            <a href="../files/app_mixins_session-record.js.html#l43"><code>app&#x2F;mixins&#x2F;session-record.js:43</code></a>
                             </p>
                     
                     
@@ -664,7 +660,7 @@ losing data.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/app_mixins_session-record.js.html#l236"><code>app&#x2F;mixins&#x2F;session-record.js:236</code></a>
+                            <a href="../files/app_mixins_session-record.js.html#l230"><code>app&#x2F;mixins&#x2F;session-record.js:230</code></a>
                             </p>
                     
                     
@@ -689,7 +685,7 @@ losing data.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/app_mixins_session-record.js.html#l64"><code>app&#x2F;mixins&#x2F;session-record.js:64</code></a>
+                            <a href="../files/app_mixins_session-record.js.html#l58"><code>app&#x2F;mixins&#x2F;session-record.js:58</code></a>
                             </p>
                     
                     
@@ -714,7 +710,7 @@ losing data.</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/app_mixins_session-record.js.html#l56"><code>app&#x2F;mixins&#x2F;session-record.js:56</code></a>
+                            <a href="../files/app_mixins_session-record.js.html#l50"><code>app&#x2F;mixins&#x2F;session-record.js:50</code></a>
                             </p>
                     
                     

@@ -22,13 +22,10 @@
                     <p>Version: latest <br>(v1.2.0)</p>
                     <select name="select_version" onchange="location = this.value;">
                         <option value="">--Select different version--</option>
-                            <option value="releases/v1.2.0/">v1.2.0</option>
+                            <option value="releases/v1.2.0/index.html">v1.2.0</option>
                     </select>
               </div>
-
               </h2>
-
-
               <div id="api-list">
                   <div id="api-tabview">
               
@@ -37,6 +34,7 @@
                         <ul id="api-modules" class="apis modules">
                             <li class="module-sidebar-exp-player"><a href="../modules/exp-player.html">exp-player</a></li>
                             <li class="module-sidebar-frames"><a href="../modules/frames.html">frames</a></li>
+                            <li class="module-sidebar-frames-deprecated"><a href="../modules/frames-deprecated.html">frames-deprecated</a></li>
                             <li class="module-sidebar-mixins"><a href="../modules/mixins.html">mixins</a></li>
                             <li class="module-sidebar-randomizers"><a href="../modules/randomizers.html">randomizers</a></li>
                         </ul>
@@ -59,7 +57,10 @@
                             <li><a href="../classes/Exp-lookit-mood-questionnaire.html">Exp-lookit-mood-questionnaire</a></li>
                             <li><a href="../classes/Exp-lookit-observation.html">Exp-lookit-observation</a></li>
                             <li><a href="../classes/Exp-lookit-preferential-looking.html">Exp-lookit-preferential-looking</a></li>
+                            <li><a href="../classes/Exp-lookit-preview-explanation.html">Exp-lookit-preview-explanation</a></li>
+                            <li><a href="../classes/Exp-lookit-start-recording.html">Exp-lookit-start-recording</a></li>
                             <li><a href="../classes/Exp-lookit-stimuli-preview.html">Exp-lookit-stimuli-preview</a></li>
+                            <li><a href="../classes/Exp-lookit-stop-recording.html">Exp-lookit-stop-recording</a></li>
                             <li><a href="../classes/Exp-lookit-story-page.html">Exp-lookit-story-page</a></li>
                             <li><a href="../classes/Exp-lookit-survey.html">Exp-lookit-survey</a></li>
                             <li><a href="../classes/Exp-lookit-text.html">Exp-lookit-text</a></li>
@@ -168,6 +169,8 @@
 Trial consists of four phases, each of which is optional.</p>
 <p>This is a composite trial very similar to exp-lookit-composite-video-trial except that
 it allows specifying either video stimuli or static images.</p>
+<p>In general it may be simpler to use a combination of exp-lookit-calibration,
+exp-lookit-video, and exp-lookit-images-audio frames.</p>
 <ol>
 <li>
 <p>Announcement: The audio in announcementAudio is played while the announcementVideo
@@ -317,14 +320,6 @@ without a user event.)</p>
                             </li>
                             <li class="index-item method inherited">
                                 <a href="#method_onSessionRecordingStarted">onSessionRecordingStarted</a>
-
-                            </li>
-                            <li class="index-item method inherited">
-                                <a href="#method_pauseRecorder">pauseRecorder</a>
-
-                            </li>
-                            <li class="index-item method inherited">
-                                <a href="#method_resumeRecorder">resumeRecorder</a>
 
                             </li>
                             <li class="index-item method inherited">
@@ -599,6 +594,9 @@ without a user event.)</p>
                                 <a href="#attr_eventTimings">eventTimings</a>
                             </li>
                             <li class="index-item attr inherited">
+                                <a href="#attr_frameDuration">frameDuration</a>
+                            </li>
+                            <li class="index-item attr inherited">
                                 <a href="#attr_frameType">frameType</a>
                             </li>
                             <li class="index-item attr inherited">
@@ -696,7 +694,7 @@ without a user event.)</p>
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Video-record.html#method_destroyRecorder">Video-record</a>:
-        <a href="../files/app_mixins_video-record.js.html#l331"><code>app&#x2F;mixins&#x2F;video-record.js:331</code></a>
+        <a href="../files/app_mixins_video-record.js.html#l292"><code>app&#x2F;mixins&#x2F;video-record.js:292</code></a>
         </p>
 
 
@@ -726,7 +724,7 @@ without a user event.)</p>
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Session-record.html#method_destroySessionRecorder">Session-record</a>:
-        <a href="../files/app_mixins_session-record.js.html#l217"><code>app&#x2F;mixins&#x2F;session-record.js:217</code></a>
+        <a href="../files/app_mixins_session-record.js.html#l211"><code>app&#x2F;mixins&#x2F;session-record.js:211</code></a>
         </p>
 
 
@@ -789,7 +787,7 @@ without a user event.)</p>
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Video-record.html#method_hideRecorder">Video-record</a>:
-        <a href="../files/app_mixins_video-record.js.html#l406"><code>app&#x2F;mixins&#x2F;video-record.js:406</code></a>
+        <a href="../files/app_mixins_video-record.js.html#l373"><code>app&#x2F;mixins&#x2F;video-record.js:373</code></a>
         </p>
 
 
@@ -835,7 +833,7 @@ without a user event.)</p>
                 Video-record
             </a>
             but overwritten in
-        <a href="../files/app_components_exp-frame-base_component.js.html#l498"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:498</code></a>
+        <a href="../files/app_components_exp-frame-base_component.js.html#l501"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:501</code></a>
         </p>
 
 
@@ -904,7 +902,7 @@ event sent by a particular frame</p>
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Video-record.html#method_onRecordingStarted">Video-record</a>:
-        <a href="../files/app_mixins_video-record.js.html#l381"><code>app&#x2F;mixins&#x2F;video-record.js:381</code></a>
+        <a href="../files/app_mixins_video-record.js.html#l348"><code>app&#x2F;mixins&#x2F;video-record.js:348</code></a>
         </p>
 
 
@@ -935,7 +933,7 @@ frame-specific actions at this point (e.g., beginning a test trial).
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Session-record.html#method_onSessionRecordingStarted">Session-record</a>:
-        <a href="../files/app_mixins_session-record.js.html#l267"><code>app&#x2F;mixins&#x2F;session-record.js:267</code></a>
+        <a href="../files/app_mixins_session-record.js.html#l262"><code>app&#x2F;mixins&#x2F;session-record.js:262</code></a>
         </p>
 
 
@@ -945,97 +943,6 @@ frame-specific actions at this point (e.g., beginning a test trial).
     <div class="description">
         Function called when session recording is started automatically. Override to do
 frame-specific actions at this point (e.g., beginning a test trial).
-    </div>
-
-
-
-
-</div>
-<div id="method_pauseRecorder" class="method item inherited">
-    <h3 class="name"><code>pauseRecorder</code></h3>
-
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-                <li class="arg">
-                        <code class="optional">[skipIfMissing=false]</code>
-                </li>
-            </ul><span class="paren">)</span>
-        </div>
-
-
-
-
-
-
-
-
-    <div class="meta">
-                <p>Inherited from
-                <a href="../classes/Video-record.html#method_pauseRecorder">Video-record</a>:
-        <a href="../files/app_mixins_video-record.js.html#l255"><code>app&#x2F;mixins&#x2F;video-record.js:255</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        Pause the recorder (and capture timing events). For webRTC recorder, this is
-just a placeholder and doesn't actually pause the recording. If webRTC used,
-includes extra data actuallyPaused: false. This is for backwards compatibility
-with frames that pause/resume recording, and should not be used going forward -
-instead stop/start and make separate clips if needed.
-    </div>
-
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-                <li class="param">
-                        <code class="param-name optional">[skipIfMissing=false]</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-
-
-                    <div class="param-description">
-                        If provided (and true), don't raise an error if recording isn't ready yet. Not actually used for WebRTC.
-                    </div>
-
-                </li>
-            </ul>
-        </div>
-
-
-
-</div>
-<div id="method_resumeRecorder" class="method item inherited">
-    <h3 class="name"><code>resumeRecorder</code></h3>
-
-        <span class="paren">()</span>
-
-
-
-
-
-
-
-
-    <div class="meta">
-                <p>Inherited from
-                <a href="../classes/Video-record.html#method_resumeRecorder">Video-record</a>:
-        <a href="../files/app_mixins_video-record.js.html#l275"><code>app&#x2F;mixins&#x2F;video-record.js:275</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        Resume a paused recording. For webRTC recorder, this is just a placeholder and
-doesn't actually pause the recording. If webRTC used, includes extra data
-wasActuallyPaused: false. This is for backwards compatibility
-with frames that pause/resume recording, and should not be used going forward -
-instead stop/start and make separate clips if needed.
     </div>
 
 
@@ -1066,7 +973,7 @@ instead stop/start and make separate clips if needed.
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Exp-frame-base.html#method_serializeContent">Exp-frame-base</a>:
-        <a href="../files/app_components_exp-frame-base_component.js.html#l480"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:480</code></a>
+        <a href="../files/app_components_exp-frame-base_component.js.html#l478"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:478</code></a>
         </p>
 
 
@@ -1134,7 +1041,7 @@ Individual frames may define additional properties that are sent.</p>
                 Session-record
             </a>
             but overwritten in
-        <a href="../files/app_mixins_video-record.js.html#l217"><code>app&#x2F;mixins&#x2F;video-record.js:217</code></a>
+        <a href="../files/app_mixins_video-record.js.html#l216"><code>app&#x2F;mixins&#x2F;video-record.js:216</code></a>
         </p>
 
 
@@ -1221,7 +1128,7 @@ Individual frames may define additional properties that are sent.</p>
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Video-record.html#method_showRecorder">Video-record</a>:
-        <a href="../files/app_mixins_video-record.js.html#l415"><code>app&#x2F;mixins&#x2F;video-record.js:415</code></a>
+        <a href="../files/app_mixins_video-record.js.html#l382"><code>app&#x2F;mixins&#x2F;video-record.js:382</code></a>
         </p>
 
 
@@ -1255,7 +1162,7 @@ Individual frames may define additional properties that are sent.</p>
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Video-record.html#method_startRecorder">Video-record</a>:
-        <a href="../files/app_mixins_video-record.js.html#l293"><code>app&#x2F;mixins&#x2F;video-record.js:293</code></a>
+        <a href="../files/app_mixins_video-record.js.html#l254"><code>app&#x2F;mixins&#x2F;video-record.js:254</code></a>
         </p>
 
 
@@ -1298,7 +1205,7 @@ Individual frames may define additional properties that are sent.</p>
                 Session-record
             </a>
             but overwritten in
-        <a href="../files/app_mixins_session-record.js.html#l183"><code>app&#x2F;mixins&#x2F;session-record.js:183</code></a>
+        <a href="../files/app_mixins_session-record.js.html#l177"><code>app&#x2F;mixins&#x2F;session-record.js:177</code></a>
         </p>
 
 
@@ -1338,7 +1245,7 @@ Individual frames may define additional properties that are sent.</p>
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Video-record.html#method_stopRecorder">Video-record</a>:
-        <a href="../files/app_mixins_video-record.js.html#l316"><code>app&#x2F;mixins&#x2F;video-record.js:316</code></a>
+        <a href="../files/app_mixins_video-record.js.html#l277"><code>app&#x2F;mixins&#x2F;video-record.js:277</code></a>
         </p>
 
 
@@ -1375,7 +1282,7 @@ Individual frames may define additional properties that are sent.</p>
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Video-record.html#method_whenPossibleToRecordObserver">Video-record</a>:
-        <a href="../files/app_mixins_video-record.js.html#l390"><code>app&#x2F;mixins&#x2F;video-record.js:390</code></a>
+        <a href="../files/app_mixins_video-record.js.html#l357"><code>app&#x2F;mixins&#x2F;video-record.js:357</code></a>
         </p>
 
 
@@ -1405,7 +1312,7 @@ Individual frames may define additional properties that are sent.</p>
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Session-record.html#method_whenPossibleToRecordSessionObserver">Session-record</a>:
-        <a href="../files/app_mixins_session-record.js.html#l276"><code>app&#x2F;mixins&#x2F;session-record.js:276</code></a>
+        <a href="../files/app_mixins_session-record.js.html#l271"><code>app&#x2F;mixins&#x2F;session-record.js:271</code></a>
         </p>
 
 
@@ -1436,7 +1343,7 @@ Individual frames may define additional properties that are sent.</p>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l396"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:396</code></a>
+        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l399"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:399</code></a>
         </p>
 
 
@@ -1464,7 +1371,7 @@ beginning upon unpausing (with alternate sources).</p>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l216"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:216</code></a>
+        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l219"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:219</code></a>
         </p>
 
 
@@ -1512,7 +1419,7 @@ beginning upon unpausing (with alternate sources).</p>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l266"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:266</code></a>
+        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l269"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:269</code></a>
         </p>
 
 
@@ -1561,7 +1468,7 @@ Example: <code>[{'src': 'http://.../audio1.mp3', 'type': 'audio/mp3'}, {'src': '
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l255"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:255</code></a>
+        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l258"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:258</code></a>
         </p>
 
 
@@ -1587,7 +1494,7 @@ Example: <code>[{'src': 'http://.../audio1.mp3', 'type': 'audio/mp3'}, {'src': '
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l243"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:243</code></a>
+        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l246"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:246</code></a>
         </p>
 
 
@@ -1660,7 +1567,7 @@ Example: <code>[{'src': 'http://.../audio1.mp3', 'type': 'audio/mp3'}, {'src': '
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Video-record.html#property_audioOnly">Video-record </a> (click for formatted description):
-        <a href="../files/app_mixins_video-record.js.html#l157"><code>app&#x2F;mixins&#x2F;video-record.js:157</code></a>
+        <a href="../files/app_mixins_video-record.js.html#l156"><code>app&#x2F;mixins&#x2F;video-record.js:156</code></a>
         </p>
 
 
@@ -1727,7 +1634,7 @@ expanded out to
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Video-record.html#property_autosave">Video-record </a> (click for formatted description):
-        <a href="../files/app_mixins_video-record.js.html#l148"><code>app&#x2F;mixins&#x2F;video-record.js:148</code></a>
+        <a href="../files/app_mixins_video-record.js.html#l147"><code>app&#x2F;mixins&#x2F;video-record.js:147</code></a>
         </p>
 
 
@@ -1787,7 +1694,7 @@ does not end in a slash, one will be added.
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l472"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:472</code></a>
+        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l475"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:475</code></a>
         </p>
 
 
@@ -1815,7 +1722,7 @@ Ignored if calibrationLength is 0.</p>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l444"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:444</code></a>
+        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l447"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:447</code></a>
         </p>
 
 
@@ -1841,7 +1748,7 @@ Ignored if calibrationLength is 0.</p>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l456"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:456</code></a>
+        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l459"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:459</code></a>
         </p>
 
 
@@ -1868,7 +1775,7 @@ Ignored if calibrationLength is 0.</p>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l485"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:485</code></a>
+        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l488"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:488</code></a>
         </p>
 
 
@@ -1896,7 +1803,7 @@ Ignored if calibrationLength is 0.</p>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l358"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:358</code></a>
+        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l361"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:361</code></a>
         </p>
 
 
@@ -1923,7 +1830,7 @@ baseDir).</p>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l346"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:346</code></a>
+        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l349"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:349</code></a>
         </p>
 
 
@@ -2009,7 +1916,7 @@ a survey between test trials in fullscreen mode.)
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l434"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:434</code></a>
+        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l437"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:437</code></a>
         </p>
 
 
@@ -2035,7 +1942,7 @@ a survey between test trials in fullscreen mode.)
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Video-record.html#property_doUseCamera">Video-record </a> (click for formatted description):
-        <a href="../files/app_mixins_video-record.js.html#l164"><code>app&#x2F;mixins&#x2F;video-record.js:164</code></a>
+        <a href="../files/app_mixins_video-record.js.html#l163"><code>app&#x2F;mixins&#x2F;video-record.js:163</code></a>
         </p>
 
 
@@ -2061,7 +1968,7 @@ to override if needed.
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Session-record.html#property_endSessionRecording">Session-record </a> (click for formatted description):
-        <a href="../files/app_mixins_session-record.js.html#l104"><code>app&#x2F;mixins&#x2F;session-record.js:104</code></a>
+        <a href="../files/app_mixins_session-record.js.html#l98"><code>app&#x2F;mixins&#x2F;session-record.js:98</code></a>
         </p>
 
 
@@ -2142,7 +2049,7 @@ to override if needed.
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Exp-frame-base.html#property_generateProperties">Exp-frame-base </a> (click for formatted description):
-        <a href="../files/app_components_exp-frame-base_component.js.html#l85"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:85</code></a>
+        <a href="../files/app_components_exp-frame-base_component.js.html#l76"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:76</code></a>
         </p>
 
 
@@ -2227,7 +2134,7 @@ to be on one line.)</p>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l229"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:229</code></a>
+        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l232"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:232</code></a>
         </p>
 
 
@@ -2276,7 +2183,7 @@ If empty, intro segment will be skipped.</p>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l280"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:280</code></a>
+        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l283"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:283</code></a>
         </p>
 
 
@@ -2303,7 +2210,7 @@ baseDir).</p>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l320"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:320</code></a>
+        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l323"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:323</code></a>
         </p>
 
 
@@ -2330,7 +2237,7 @@ by any actual value provided for leftImage. Index must be in range
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l385"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:385</code></a>
+        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l388"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:388</code></a>
         </p>
 
 
@@ -2356,7 +2263,7 @@ by any actual value provided for leftImage. Index must be in range
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Video-record.html#property_maxRecordingLength">Video-record </a> (click for formatted description):
-        <a href="../files/app_mixins_video-record.js.html#l132"><code>app&#x2F;mixins&#x2F;video-record.js:132</code></a>
+        <a href="../files/app_mixins_video-record.js.html#l131"><code>app&#x2F;mixins&#x2F;video-record.js:131</code></a>
         </p>
 
 
@@ -2381,7 +2288,7 @@ by any actual value provided for leftImage. Index must be in range
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Video-record.html#property_maxUploadSeconds">Video-record </a> (click for formatted description):
-        <a href="../files/app_mixins_video-record.js.html#l139"><code>app&#x2F;mixins&#x2F;video-record.js:139</code></a>
+        <a href="../files/app_mixins_video-record.js.html#l138"><code>app&#x2F;mixins&#x2F;video-record.js:138</code></a>
         </p>
 
 
@@ -2408,7 +2315,7 @@ losing data.
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Exp-frame-base.html#property_parameters">Exp-frame-base </a> (click for formatted description):
-        <a href="../files/app_components_exp-frame-base_component.js.html#l232"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:232</code></a>
+        <a href="../files/app_components_exp-frame-base_component.js.html#l223"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:223</code></a>
         </p>
 
 
@@ -2477,7 +2384,7 @@ generated for this randomizer.</li>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l498"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:498</code></a>
+        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l501"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:501</code></a>
         </p>
 
 
@@ -2504,7 +2411,7 @@ audio played upon pausing study</p>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l525"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:525</code></a>
+        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l528"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:528</code></a>
         </p>
 
 
@@ -2531,7 +2438,7 @@ Default: (You'll have a moment to turn around again.)</p>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l303"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:303</code></a>
+        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l306"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:306</code></a>
         </p>
 
 
@@ -2560,7 +2467,7 @@ are provided, they indicate the index of the item in this list.</p>
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Video-record.html#property_recorder">Video-record </a> (click for formatted description):
-        <a href="../files/app_mixins_video-record.js.html#l91"><code>app&#x2F;mixins&#x2F;video-record.js:91</code></a>
+        <a href="../files/app_mixins_video-record.js.html#l90"><code>app&#x2F;mixins&#x2F;video-record.js:90</code></a>
         </p>
 
 
@@ -2586,7 +2493,7 @@ recorder.nWebcams, recorder.hasCamAccess, recorder.micChecked, recorder.connecte
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Video-record.html#property_recorderElement">Video-record </a> (click for formatted description):
-        <a href="../files/app_mixins_video-record.js.html#l116"><code>app&#x2F;mixins&#x2F;video-record.js:116</code></a>
+        <a href="../files/app_mixins_video-record.js.html#l115"><code>app&#x2F;mixins&#x2F;video-record.js:115</code></a>
         </p>
 
 
@@ -2612,7 +2519,7 @@ recorder.nWebcams, recorder.hasCamAccess, recorder.micChecked, recorder.connecte
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Video-record.html#property_recorderReady">Video-record </a> (click for formatted description):
-        <a href="../files/app_mixins_video-record.js.html#l124"><code>app&#x2F;mixins&#x2F;video-record.js:124</code></a>
+        <a href="../files/app_mixins_video-record.js.html#l123"><code>app&#x2F;mixins&#x2F;video-record.js:123</code></a>
         </p>
 
 
@@ -2637,7 +2544,7 @@ Accessible to consuming frame.
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l291"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:291</code></a>
+        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l294"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:294</code></a>
         </p>
 
 
@@ -2664,7 +2571,7 @@ baseDir).</p>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l333"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:333</code></a>
+        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l336"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:336</code></a>
         </p>
 
 
@@ -2691,7 +2598,7 @@ by any actual value provided for rightImage. Index must be in range
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Exp-frame-base.html#property_selectNextFrame">Exp-frame-base </a> (click for formatted description):
-        <a href="../files/app_components_exp-frame-base_component.js.html#l169"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:169</code></a>
+        <a href="../files/app_components_exp-frame-base_component.js.html#l160"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:160</code></a>
         </p>
 
 
@@ -2758,7 +2665,7 @@ just used for attempts to leave the study early</li>
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Session-record.html#property_sessionAudioOnly">Session-record </a> (click for formatted description):
-        <a href="../files/app_mixins_session-record.js.html#l114"><code>app&#x2F;mixins&#x2F;session-record.js:114</code></a>
+        <a href="../files/app_mixins_session-record.js.html#l108"><code>app&#x2F;mixins&#x2F;session-record.js:108</code></a>
         </p>
 
 
@@ -2783,7 +2690,7 @@ just used for attempts to leave the study early</li>
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Session-record.html#property_sessionMaxUploadSeconds">Session-record </a> (click for formatted description):
-        <a href="../files/app_mixins_session-record.js.html#l95"><code>app&#x2F;mixins&#x2F;session-record.js:95</code></a>
+        <a href="../files/app_mixins_session-record.js.html#l89"><code>app&#x2F;mixins&#x2F;session-record.js:89</code></a>
         </p>
 
 
@@ -2810,7 +2717,7 @@ losing data.
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Video-record.html#property_startRecordingAutomatically">Video-record </a> (click for formatted description):
-        <a href="../files/app_mixins_video-record.js.html#l172"><code>app&#x2F;mixins&#x2F;video-record.js:172</code></a>
+        <a href="../files/app_mixins_video-record.js.html#l171"><code>app&#x2F;mixins&#x2F;video-record.js:171</code></a>
         </p>
 
 
@@ -2836,7 +2743,7 @@ should set to override if needed.
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Session-record.html#property_startSessionRecording">Session-record </a> (click for formatted description):
-        <a href="../files/app_mixins_session-record.js.html#l88"><code>app&#x2F;mixins&#x2F;session-record.js:88</code></a>
+        <a href="../files/app_mixins_session-record.js.html#l82"><code>app&#x2F;mixins&#x2F;session-record.js:82</code></a>
         </p>
 
 
@@ -2862,7 +2769,7 @@ should set to override if needed.
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Video-record.html#property_stoppedRecording">Video-record </a> (click for formatted description):
-        <a href="../files/app_mixins_video-record.js.html#l107"><code>app&#x2F;mixins&#x2F;video-record.js:107</code></a>
+        <a href="../files/app_mixins_video-record.js.html#l106"><code>app&#x2F;mixins&#x2F;video-record.js:106</code></a>
         </p>
 
 
@@ -2888,7 +2795,7 @@ stopped.
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l370"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:370</code></a>
+        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l373"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:373</code></a>
         </p>
 
 
@@ -2946,7 +2853,7 @@ If empty, no additional test audio is played besides any audio in testVideo.</p>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l421"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:421</code></a>
+        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l424"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:424</code></a>
         </p>
 
 
@@ -2973,7 +2880,7 @@ testLength is set to a finite value.</p>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l409"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:409</code></a>
+        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l412"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:412</code></a>
         </p>
 
 
@@ -2999,7 +2906,7 @@ testLength is set to a finite value.</p>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l199"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:199</code></a>
+        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l202"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:202</code></a>
         </p>
 
 
@@ -3049,7 +2956,7 @@ testLength is set to a finite value.</p>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l510"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:510</code></a>
+        <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l513"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:513</code></a>
         </p>
 
 
@@ -3080,7 +2987,7 @@ set to false)</p>
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Video-record.html#property_videoId">Video-record </a> (click for formatted description):
-        <a href="../files/app_mixins_video-record.js.html#l180"><code>app&#x2F;mixins&#x2F;video-record.js:180</code></a>
+        <a href="../files/app_mixins_video-record.js.html#l179"><code>app&#x2F;mixins&#x2F;video-record.js:179</code></a>
         </p>
 
 
@@ -3107,7 +3014,7 @@ where RRR are random numeric digits.
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Video-record.html#property_videoList">Video-record </a> (click for formatted description):
-        <a href="../files/app_mixins_video-record.js.html#l99"><code>app&#x2F;mixins&#x2F;video-record.js:99</code></a>
+        <a href="../files/app_mixins_video-record.js.html#l98"><code>app&#x2F;mixins&#x2F;video-record.js:98</code></a>
         </p>
 
 
@@ -3185,7 +3092,7 @@ expanded out to
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l592"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:592</code></a>
+                            <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l593"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:593</code></a>
                             </p>
                     
                     
@@ -3214,7 +3121,7 @@ expanded out to
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l571"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:571</code></a>
+                            <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l572"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:572</code></a>
                             </p>
                     
                     
@@ -3243,7 +3150,7 @@ expanded out to
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Exp-frame-base.html#attr_eventTimings">Exp-frame-base</a>:
-                            <a href="../files/app_components_exp-frame-base_component.js.html#l472"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:472</code></a>
+                            <a href="../files/app_components_exp-frame-base_component.js.html#l470"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:470</code></a>
                             </p>
                     
                     
@@ -3254,6 +3161,35 @@ expanded out to
                     represented as an object with at least the properties
                     <code>{'eventType': EVENTNAME, 'timestamp': TIMESTAMP}</code>.
                     See Events tab for details of events that might be captured.</p>
+                    
+                        </div>
+                    
+                    
+                    
+                    </div>
+                    <div id="attr_frameDuration" class="attr item inherited">
+                        <a name="config_frameDuration"></a> 
+                        <h3 class="name"><code>frameDuration</code></h3>
+                        <span class="type"></span>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>Inherited from
+                                    <a href="../classes/Exp-frame-base.html#attr_frameDuration">Exp-frame-base</a>:
+                            <a href="../files/app_components_exp-frame-base_component.js.html#l459"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:459</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Duration between frame being inserted and call to <code>next</code></p>
                     
                         </div>
                     
@@ -3275,7 +3211,7 @@ expanded out to
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Exp-frame-base.html#attr_frameType">Exp-frame-base</a>:
-                            <a href="../files/app_components_exp-frame-base_component.js.html#l466"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:466</code></a>
+                            <a href="../files/app_components_exp-frame-base_component.js.html#l464"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:464</code></a>
                             </p>
                     
                     
@@ -3305,7 +3241,7 @@ expanded out to
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Exp-frame-base.html#attr_generatedProperties">Exp-frame-base</a>:
-                            <a href="../files/app_components_exp-frame-base_component.js.html#l460"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:460</code></a>
+                            <a href="../files/app_components_exp-frame-base_component.js.html#l453"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:453</code></a>
                             </p>
                     
                     
@@ -3335,7 +3271,7 @@ expanded out to
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l564"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:564</code></a>
+                            <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l565"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:565</code></a>
                             </p>
                     
                     
@@ -3364,7 +3300,7 @@ expanded out to
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l557"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:557</code></a>
+                            <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l558"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:558</code></a>
                             </p>
                     
                     
@@ -3393,7 +3329,7 @@ expanded out to
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l585"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:585</code></a>
+                            <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l586"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:586</code></a>
                             </p>
                     
                     
@@ -3422,7 +3358,7 @@ expanded out to
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l578"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:578</code></a>
+                            <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l579"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:579</code></a>
                             </p>
                     
                     
@@ -3451,7 +3387,7 @@ expanded out to
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l546"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:546</code></a>
+                            <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l547"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:547</code></a>
                             </p>
                     
                     
@@ -3511,7 +3447,7 @@ expanded out to
                                     Session-record
                                 </a>
                                 but overwritten in
-                            <a href="../files/app_mixins_video-record.js.html#l56"><code>app&#x2F;mixins&#x2F;video-record.js:56</code></a>
+                            <a href="../files/app_mixins_video-record.js.html#l55"><code>app&#x2F;mixins&#x2F;video-record.js:55</code></a>
                             </p>
                     
                     
@@ -3578,7 +3514,7 @@ expanded out to
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Exp-frame-base.html#event_nextFrame">Exp-frame-base</a>:
-                            <a href="../files/app_components_exp-frame-base_component.js.html#l543"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:543</code></a>
+                            <a href="../files/app_components_exp-frame-base_component.js.html#l546"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:546</code></a>
                             </p>
                     
                     
@@ -3603,7 +3539,7 @@ expanded out to
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Video-record.html#event_pauseVideo">Video-record</a>:
-                            <a href="../files/app_mixins_video-record.js.html#l71"><code>app&#x2F;mixins&#x2F;video-record.js:71</code></a>
+                            <a href="../files/app_mixins_video-record.js.html#l70"><code>app&#x2F;mixins&#x2F;video-record.js:70</code></a>
                             </p>
                     
                     
@@ -3627,7 +3563,7 @@ expanded out to
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Exp-frame-base.html#event_previousFrame">Exp-frame-base</a>:
-                            <a href="../files/app_components_exp-frame-base_component.js.html#l598"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:598</code></a>
+                            <a href="../files/app_components_exp-frame-base_component.js.html#l606"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:606</code></a>
                             </p>
                     
                     
@@ -3652,7 +3588,7 @@ expanded out to
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Video-record.html#event_recorderReady">Video-record</a>:
-                            <a href="../files/app_mixins_video-record.js.html#l368"><code>app&#x2F;mixins&#x2F;video-record.js:368</code></a>
+                            <a href="../files/app_mixins_video-record.js.html#l335"><code>app&#x2F;mixins&#x2F;video-record.js:335</code></a>
                             </p>
                     
                     
@@ -3676,7 +3612,7 @@ expanded out to
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Session-record.html#event_sessionRecorderReady">Session-record</a>:
-                            <a href="../files/app_mixins_session-record.js.html#l236"><code>app&#x2F;mixins&#x2F;session-record.js:236</code></a>
+                            <a href="../files/app_mixins_session-record.js.html#l230"><code>app&#x2F;mixins&#x2F;session-record.js:230</code></a>
                             </p>
                     
                     
@@ -3700,7 +3636,7 @@ expanded out to
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l815"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:815</code></a>
+                            <a href="../files/app_components_exp-lookit-preferential-looking_component.js.html#l816"><code>app&#x2F;components&#x2F;exp-lookit-preferential-looking&#x2F;component.js:816</code></a>
                             </p>
                     
                     
@@ -3745,7 +3681,7 @@ expanded out to
                                     Session-record
                                 </a>
                                 but overwritten in
-                            <a href="../files/app_mixins_video-record.js.html#l83"><code>app&#x2F;mixins&#x2F;video-record.js:83</code></a>
+                            <a href="../files/app_mixins_video-record.js.html#l82"><code>app&#x2F;mixins&#x2F;video-record.js:82</code></a>
                             </p>
                     
                     
@@ -3769,7 +3705,7 @@ expanded out to
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Video-record.html#event_unpauseVideo">Video-record</a>:
-                            <a href="../files/app_mixins_video-record.js.html#l77"><code>app&#x2F;mixins&#x2F;video-record.js:77</code></a>
+                            <a href="../files/app_mixins_video-record.js.html#l76"><code>app&#x2F;mixins&#x2F;video-record.js:76</code></a>
                             </p>
                     
                     
@@ -3796,7 +3732,7 @@ expanded out to
                                     Session-record
                                 </a>
                                 but overwritten in
-                            <a href="../files/app_mixins_video-record.js.html#l63"><code>app&#x2F;mixins&#x2F;video-record.js:63</code></a>
+                            <a href="../files/app_mixins_video-record.js.html#l62"><code>app&#x2F;mixins&#x2F;video-record.js:62</code></a>
                             </p>
                     
                     
