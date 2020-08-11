@@ -27,7 +27,7 @@
                     <select name="select_version" onchange="location = this.value;">
                         <option value="">--Select different version--</option>
                         {{#each other_versions}}
-                            <option value="./releases/{{this}}/index.html">{{this}}</option>
+                            <option value="{{../projectRoot}}releases/{{this}}/index.html">{{this}}</option>
                         {{/each}}
                     </select>
                 {{/if}}
