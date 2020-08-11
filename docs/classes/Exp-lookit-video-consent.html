@@ -19,10 +19,11 @@
                 <img style="float:right; vertical-align:middle;" src="../assets/css/logo.png" height="70">
                 <span>Lookit<br> component<br> docs</span>
 
-                    <p>Version: latest <br>(v1.2.0)</p>
+                    <p>Version: latest <br>(v1.3.0)</p>
                     <select name="select_version" onchange="location = this.value;">
                         <option value="">--Select different version--</option>
-                            <option value="releases/v1.2.0/index.html">v1.2.0</option>
+                            <option value="./releases/v1.2.0/index.html">v1.2.0</option>
+                            <option value="./releases/v1.3.0/index.html">v1.3.0</option>
                     </select>
               </div>
               </h2>
@@ -165,10 +166,18 @@
     <p>Video consent frame for Lookit studies, with consent document displayed at left and instructions to start recording, read a statement out loud, and send. A standard consent
 document is displayed, with additional study-specific information provided by the researcher, in accordance with the Lookit terms of use.</p>
 <p>Researchers can select from the following named templates:</p>
-<p><code>consent_001</code>: Original Lookit consent document (2019)
-<code>consent_002</code>: Added optional GDPR section and research subject rights statement
-<code>consent_003</code>: Same as consent_002 except that the 'Payment' section is renamed 'Benefits, risks, and payment' for institutions that prefer that</p>
-<p>To look up the exact text of each consent template for your IRB protocol, please see <a href="https://github.com/lookit/research-resources/tree/master/Legal">https://github.com/lookit/research-resources/tree/master/Legal</a></p>
+<ul>
+<li>
+<p><code>consent_001</code>: Original Lookit consent document (2019)</p>
+</li>
+<li>
+<p><code>consent_002</code>: Added optional GDPR section and research subject rights statement</p>
+</li>
+<li>
+<p><code>consent_003</code>: Same as consent_002 except that the 'Payment' section is renamed 'Benefits, risks, and payment' for institutions that prefer that</p>
+</li>
+</ul>
+<p>Important: To look up the exact text of each consent template for your IRB protocol, and to understand the context for each piece of text to be inserted, please see <a href="https://github.com/lookit/research-resources/tree/master/Legal">https://github.com/lookit/research-resources/tree/master/Legal</a></p>
 <p>The consent document can be downloaded as PDF document by participant.</p>
 <pre class="code prettyprint"><code class="language-json">"frames": {
     "video-consent": {
@@ -288,6 +297,10 @@ document is displayed, with additional study-specific information provided by th
                     <h3>Properties</h3>
 
                     <ul class="index-list properties extends">
+                            <li class="index-item property">
+                                <a href="#property_additional_segments">additional_segments</a>
+
+                            </li>
                             <li class="index-item property inherited">
                                 <a href="#property_audioOnly">audioOnly</a>
 
@@ -390,10 +403,6 @@ document is displayed, with additional study-specific information provided by th
                             </li>
                             <li class="index-item property private inherited">
                                 <a href="#property_recorderReady">recorderReady</a>
-
-                            </li>
-                            <li class="index-item property">
-                                <a href="#property_research_rights_statement">research_rights_statement</a>
 
                             </li>
                             <li class="index-item property">
@@ -671,7 +680,7 @@ document is displayed, with additional study-specific information provided by th
                 Video-record
             </a>
             but overwritten in
-        <a href="../files/app_components_exp-frame-base_component.js.html#l501"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:501</code></a>
+        <a href="../files/app_components_exp-frame-base_component.js.html#l508"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:508</code></a>
         </p>
 
 
@@ -811,7 +820,7 @@ frame-specific actions at this point (e.g., beginning a test trial).
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Exp-frame-base.html#method_serializeContent">Exp-frame-base</a>:
-        <a href="../files/app_components_exp-frame-base_component.js.html#l478"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:478</code></a>
+        <a href="../files/app_components_exp-frame-base_component.js.html#l485"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:485</code></a>
         </p>
 
 
@@ -1167,6 +1176,32 @@ Individual frames may define additional properties that are sent.</p>
             <div id="properties" class="api-class-tabpanel">
                 <h2 class="off-left">Properties</h2>
 
+<div id="property_additional_segments" class="property item">
+    <h3 class="name"><code>additional_segments</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+
+
+
+
+
+    <div class="meta">
+                <p> Specific to this element.
+                Defined in
+        <a href="../files/app_components_exp-lookit-video-consent_component.js.html#l320"><code>app&#x2F;components&#x2F;exp-lookit-video-consent&#x2F;component.js:320</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>List of additional custom sections of the consent form, e.g. US Patriot Act Disclosure. These are subject to Lookit approval and in general can only add information that was true anyway but that your IRB needs included; please contact us before submitting your study to check.</p>
+
+    </div>
+
+        <p><strong>Default:</strong> []</p>
+
+
+</div>
 <div id="property_audioOnly" class="property item inherited">
     <h3 class="name"><code>audioOnly</code></h3>
     <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
@@ -1230,7 +1265,7 @@ TODO: eventually use this to set up non-recording option for previewing
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-video-consent_component.js.html#l270"><code>app&#x2F;components&#x2F;exp-lookit-video-consent&#x2F;component.js:270</code></a>
+        <a href="../files/app_components_exp-lookit-video-consent_component.js.html#l272"><code>app&#x2F;components&#x2F;exp-lookit-video-consent&#x2F;component.js:272</code></a>
         </p>
 
 
@@ -1410,7 +1445,7 @@ to override if needed.
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-video-consent_component.js.html#l280"><code>app&#x2F;components&#x2F;exp-lookit-video-consent&#x2F;component.js:280</code></a>
+        <a href="../files/app_components_exp-lookit-video-consent_component.js.html#l282"><code>app&#x2F;components&#x2F;exp-lookit-video-consent&#x2F;component.js:282</code></a>
         </p>
 
 
@@ -1436,7 +1471,7 @@ to override if needed.
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-video-consent_component.js.html#l291"><code>app&#x2F;components&#x2F;exp-lookit-video-consent&#x2F;component.js:291</code></a>
+        <a href="../files/app_components_exp-lookit-video-consent_component.js.html#l293"><code>app&#x2F;components&#x2F;exp-lookit-video-consent&#x2F;component.js:293</code></a>
         </p>
 
 
@@ -1461,7 +1496,7 @@ to override if needed.
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-video-consent_component.js.html#l300"><code>app&#x2F;components&#x2F;exp-lookit-video-consent&#x2F;component.js:300</code></a>
+        <a href="../files/app_components_exp-lookit-video-consent_component.js.html#l302"><code>app&#x2F;components&#x2F;exp-lookit-video-consent&#x2F;component.js:302</code></a>
         </p>
 
 
@@ -1515,10 +1550,15 @@ to access:</p>
 <li><code>ageAtBirth</code>: String; child's gestational age at birth in weeks. Possible values are
 "24" through "39", "na" (not sure or prefer not to answer),
 "&lt;24" (under 24 weeks), and "40&gt;" (40 or more weeks).</li>
-<li><code>birthday</code>: timestamp in format "Mon Apr 10 2017 20:00:00 GMT-0400 (Eastern Daylight Time)"</li>
+<li><code>birthday</code>: Date object</li>
 <li><code>gender</code>: "f" (female), "m" (male), "o" (other), or "na" (prefer not to answer)</li>
 <li><code>givenName</code>: String, child's given name/nickname</li>
 <li><code>id</code>: String, child UUID</li>
+<li><code>languageList</code>: String, space-separated list of languages child is exposed to
+(2-letter codes)</li>
+<li><code>conditionList</code>: String, space-separated list of conditions/characteristics</li>
+<li>of child from registration form, as used in criteria expression, e.g.
+"autism_spectrum_disorder deaf multiple_birth"</li>
 </ul>
 <p><code>pastSessions</code> is a list of previous response objects for this child and this study,
 ordered starting from most recent (at index 0 is this session!). Each has properties
@@ -1527,11 +1567,13 @@ ordered starting from most recent (at index 0 is this session!). Each has proper
 <li><code>completed</code>: Boolean, whether they submitted an exit survey</li>
 <li><code>completedConsentFrame</code>: Boolean, whether they got through at least a consent frame</li>
 <li><code>conditions</code>: Object representing any conditions assigned by randomizer frames</li>
-<li><code>createdOn</code>: timestamp in format "Thu Apr 18 2019 12:33:26 GMT-0400 (Eastern Daylight Time)"</li>
+<li><code>createdOn</code>: Date object</li>
 <li><code>expData</code>: Object consisting of frameId: frameData pairs</li>
 <li><code>globalEventTimings</code>: list of any events stored outside of individual frames - currently
 just used for attempts to leave the study early</li>
 <li><code>sequence</code>: ordered list of frameIds, corresponding to keys in expData</li>
+<li><code>isPreview</code>: Boolean, whether this is from a preview session (possible in the event
+this is an experimenter's account)</li>
 </ul>
 <p>Example:</p>
 <pre class="code prettyprint"><code>function(expData, sequence, child, pastSessions, conditions) {
@@ -1571,7 +1613,7 @@ to be on one line.)</p>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-video-consent_component.js.html#l214"><code>app&#x2F;components&#x2F;exp-lookit-video-consent&#x2F;component.js:214</code></a>
+        <a href="../files/app_components_exp-lookit-video-consent_component.js.html#l216"><code>app&#x2F;components&#x2F;exp-lookit-video-consent&#x2F;component.js:216</code></a>
         </p>
 
 
@@ -1648,7 +1690,7 @@ losing data.
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Exp-frame-base.html#property_parameters">Exp-frame-base </a> (click for formatted description):
-        <a href="../files/app_components_exp-frame-base_component.js.html#l223"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:223</code></a>
+        <a href="../files/app_components_exp-frame-base_component.js.html#l230"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:230</code></a>
         </p>
 
 
@@ -1717,7 +1759,7 @@ generated for this randomizer.</li>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-video-consent_component.js.html#l261"><code>app&#x2F;components&#x2F;exp-lookit-video-consent&#x2F;component.js:261</code></a>
+        <a href="../files/app_components_exp-lookit-video-consent_component.js.html#l263"><code>app&#x2F;components&#x2F;exp-lookit-video-consent&#x2F;component.js:263</code></a>
         </p>
 
 
@@ -1742,7 +1784,7 @@ generated for this randomizer.</li>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-video-consent_component.js.html#l223"><code>app&#x2F;components&#x2F;exp-lookit-video-consent&#x2F;component.js:223</code></a>
+        <a href="../files/app_components_exp-lookit-video-consent_component.js.html#l225"><code>app&#x2F;components&#x2F;exp-lookit-video-consent&#x2F;component.js:225</code></a>
         </p>
 
 
@@ -1767,7 +1809,7 @@ generated for this randomizer.</li>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-video-consent_component.js.html#l205"><code>app&#x2F;components&#x2F;exp-lookit-video-consent&#x2F;component.js:205</code></a>
+        <a href="../files/app_components_exp-lookit-video-consent_component.js.html#l207"><code>app&#x2F;components&#x2F;exp-lookit-video-consent&#x2F;component.js:207</code></a>
         </p>
 
 
@@ -1792,7 +1834,7 @@ generated for this randomizer.</li>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-video-consent_component.js.html#l241"><code>app&#x2F;components&#x2F;exp-lookit-video-consent&#x2F;component.js:241</code></a>
+        <a href="../files/app_components_exp-lookit-video-consent_component.js.html#l243"><code>app&#x2F;components&#x2F;exp-lookit-video-consent&#x2F;component.js:243</code></a>
         </p>
 
 
@@ -1808,7 +1850,7 @@ generated for this randomizer.</li>
 </div>
 <div id="property_prompt_all_adults" class="property item">
     <h3 class="name"><code>prompt_all_adults</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
 
 
 
@@ -1817,7 +1859,7 @@ generated for this randomizer.</li>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-video-consent_component.js.html#l250"><code>app&#x2F;components&#x2F;exp-lookit-video-consent&#x2F;component.js:250</code></a>
+        <a href="../files/app_components_exp-lookit-video-consent_component.js.html#l252"><code>app&#x2F;components&#x2F;exp-lookit-video-consent&#x2F;component.js:252</code></a>
         </p>
 
 
@@ -1843,7 +1885,7 @@ generated for this randomizer.</li>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-video-consent_component.js.html#l232"><code>app&#x2F;components&#x2F;exp-lookit-video-consent&#x2F;component.js:232</code></a>
+        <a href="../files/app_components_exp-lookit-video-consent_component.js.html#l234"><code>app&#x2F;components&#x2F;exp-lookit-video-consent&#x2F;component.js:234</code></a>
         </p>
 
 
@@ -1946,32 +1988,7 @@ Accessible to consuming frame.
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-video-consent_component.js.html#l318"><code>app&#x2F;components&#x2F;exp-lookit-video-consent&#x2F;component.js:318</code></a>
-        </p>
-
-
-    </div>
-
-    <div class="description">
-        <p>List of additional custom sections of the consent form, e.g. US Patriot Act Disclosure. These are subject to Lookit approval and in general can only add information that was true anyway but that your IRB needs included; please contact us before submitting your study to check.</p>
-
-    </div>
-
-
-
-</div>
-<div id="property_research_rights_statement" class="property item">
-    <h3 class="name"><code>research_rights_statement</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-
-
-
-
-    <div class="meta">
-                <p> Specific to this element.
-                Defined in
-        <a href="../files/app_components_exp-lookit-video-consent_component.js.html#l309"><code>app&#x2F;components&#x2F;exp-lookit-video-consent&#x2F;component.js:309</code></a>
+        <a href="../files/app_components_exp-lookit-video-consent_component.js.html#l311"><code>app&#x2F;components&#x2F;exp-lookit-video-consent&#x2F;component.js:311</code></a>
         </p>
 
 
@@ -1996,7 +2013,7 @@ Accessible to consuming frame.
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Exp-frame-base.html#property_selectNextFrame">Exp-frame-base </a> (click for formatted description):
-        <a href="../files/app_components_exp-frame-base_component.js.html#l160"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:160</code></a>
+        <a href="../files/app_components_exp-frame-base_component.js.html#l167"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:167</code></a>
         </p>
 
 
@@ -2193,7 +2210,7 @@ stopped.
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-video-consent_component.js.html#l340"><code>app&#x2F;components&#x2F;exp-lookit-video-consent&#x2F;component.js:340</code></a>
+        <a href="../files/app_components_exp-lookit-video-consent_component.js.html#l343"><code>app&#x2F;components&#x2F;exp-lookit-video-consent&#x2F;component.js:343</code></a>
         </p>
 
 
@@ -2285,7 +2302,7 @@ Accessible to consuming frame.
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/app_components_exp-lookit-video-consent_component.js.html#l366"><code>app&#x2F;components&#x2F;exp-lookit-video-consent&#x2F;component.js:366</code></a>
+                            <a href="../files/app_components_exp-lookit-video-consent_component.js.html#l369"><code>app&#x2F;components&#x2F;exp-lookit-video-consent&#x2F;component.js:369</code></a>
                             </p>
                     
                     
@@ -2314,7 +2331,7 @@ Accessible to consuming frame.
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Exp-frame-base.html#attr_eventTimings">Exp-frame-base</a>:
-                            <a href="../files/app_components_exp-frame-base_component.js.html#l470"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:470</code></a>
+                            <a href="../files/app_components_exp-frame-base_component.js.html#l477"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:477</code></a>
                             </p>
                     
                     
@@ -2346,7 +2363,7 @@ Accessible to consuming frame.
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Exp-frame-base.html#attr_frameDuration">Exp-frame-base</a>:
-                            <a href="../files/app_components_exp-frame-base_component.js.html#l459"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:459</code></a>
+                            <a href="../files/app_components_exp-frame-base_component.js.html#l466"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:466</code></a>
                             </p>
                     
                     
@@ -2375,7 +2392,7 @@ Accessible to consuming frame.
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Exp-frame-base.html#attr_frameType">Exp-frame-base</a>:
-                            <a href="../files/app_components_exp-frame-base_component.js.html#l464"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:464</code></a>
+                            <a href="../files/app_components_exp-frame-base_component.js.html#l471"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:471</code></a>
                             </p>
                     
                     
@@ -2405,7 +2422,7 @@ Accessible to consuming frame.
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Exp-frame-base.html#attr_generatedProperties">Exp-frame-base</a>:
-                            <a href="../files/app_components_exp-frame-base_component.js.html#l453"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:453</code></a>
+                            <a href="../files/app_components_exp-frame-base_component.js.html#l460"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:460</code></a>
                             </p>
                     
                     
@@ -2436,7 +2453,7 @@ Accessible to consuming frame.
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/app_components_exp-lookit-video-consent_component.js.html#l195"><code>app&#x2F;components&#x2F;exp-lookit-video-consent&#x2F;component.js:195</code></a>
+                            <a href="../files/app_components_exp-lookit-video-consent_component.js.html#l197"><code>app&#x2F;components&#x2F;exp-lookit-video-consent&#x2F;component.js:197</code></a>
                             </p>
                     
                     
@@ -2552,7 +2569,7 @@ Accessible to consuming frame.
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Exp-frame-base.html#event_nextFrame">Exp-frame-base</a>:
-                            <a href="../files/app_components_exp-frame-base_component.js.html#l546"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:546</code></a>
+                            <a href="../files/app_components_exp-frame-base_component.js.html#l553"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:553</code></a>
                             </p>
                     
                     
@@ -2601,7 +2618,7 @@ Accessible to consuming frame.
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Exp-frame-base.html#event_previousFrame">Exp-frame-base</a>:
-                            <a href="../files/app_components_exp-frame-base_component.js.html#l606"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:606</code></a>
+                            <a href="../files/app_components_exp-frame-base_component.js.html#l613"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:613</code></a>
                             </p>
                     
                     

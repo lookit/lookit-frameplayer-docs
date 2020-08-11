@@ -19,10 +19,11 @@
                 <img style="float:right; vertical-align:middle;" src="../assets/css/logo.png" height="70">
                 <span>Lookit<br> component<br> docs</span>
 
-                    <p>Version: latest <br>(v1.2.0)</p>
+                    <p>Version: latest <br>(v1.3.0)</p>
                     <select name="select_version" onchange="location = this.value;">
                         <option value="">--Select different version--</option>
-                            <option value="releases/v1.2.0/index.html">v1.2.0</option>
+                            <option value="./releases/v1.2.0/index.html">v1.2.0</option>
+                            <option value="./releases/v1.3.0/index.html">v1.3.0</option>
                     </select>
               </div>
               </h2>
@@ -226,10 +227,15 @@ export default Ember.Component.extend(FullScreen, SessionRecord, {
      * - &#x60;ageAtBirth&#x60;: String; child&#x27;s gestational age at birth in weeks. Possible values are
      *   &quot;24&quot; through &quot;39&quot;, &quot;na&quot; (not sure or prefer not to answer),
      * &quot;&lt;24&quot; (under 24 weeks), and &quot;40&gt;&quot; (40 or more weeks).
-     * - &#x60;birthday&#x60;: timestamp in format &quot;Mon Apr 10 2017 20:00:00 GMT-0400 (Eastern Daylight Time)&quot;
+     * - &#x60;birthday&#x60;: Date object
      * - &#x60;gender&#x60;: &quot;f&quot; (female), &quot;m&quot; (male), &quot;o&quot; (other), or &quot;na&quot; (prefer not to answer)
      * - &#x60;givenName&#x60;: String, child&#x27;s given name/nickname
      * - &#x60;id&#x60;: String, child UUID
+     * - &#x60;languageList&#x60;: String, space-separated list of languages child is exposed to
+     * (2-letter codes)
+     * - &#x60;conditionList&#x60;: String, space-separated list of conditions/characteristics
+     * - of child from registration form, as used in criteria expression, e.g.
+     * &quot;autism_spectrum_disorder deaf multiple_birth&quot;
      *
      *
      * &#x60;pastSessions&#x60; is a list of previous response objects for this child and this study,
@@ -238,11 +244,13 @@ export default Ember.Component.extend(FullScreen, SessionRecord, {
      * - &#x60;completed&#x60;: Boolean, whether they submitted an exit survey
      * - &#x60;completedConsentFrame&#x60;: Boolean, whether they got through at least a consent frame
      * - &#x60;conditions&#x60;: Object representing any conditions assigned by randomizer frames
-     * - &#x60;createdOn&#x60;: timestamp in format &quot;Thu Apr 18 2019 12:33:26 GMT-0400 (Eastern Daylight Time)&quot;
+     * - &#x60;createdOn&#x60;: Date object
      * - &#x60;expData&#x60;: Object consisting of frameId: frameData pairs
      * - &#x60;globalEventTimings&#x60;: list of any events stored outside of individual frames - currently
      *   just used for attempts to leave the study early
      * - &#x60;sequence&#x60;: ordered list of frameIds, corresponding to keys in expData
+     * - &#x60;isPreview&#x60;: Boolean, whether this is from a preview session (possible in the event
+     *   this is an experimenter&#x27;s account)
      *
      *
      * Example:

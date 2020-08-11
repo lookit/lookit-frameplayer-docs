@@ -19,10 +19,11 @@
                 <img style="float:right; vertical-align:middle;" src="../assets/css/logo.png" height="70">
                 <span>Lookit<br> component<br> docs</span>
 
-                    <p>Version: latest <br>(v1.2.0)</p>
+                    <p>Version: latest <br>(v1.3.0)</p>
                     <select name="select_version" onchange="location = this.value;">
                         <option value="">--Select different version--</option>
-                            <option value="releases/v1.2.0/index.html">v1.2.0</option>
+                            <option value="./releases/v1.2.0/index.html">v1.2.0</option>
+                            <option value="./releases/v1.3.0/index.html">v1.3.0</option>
                     </select>
               </div>
               </h2>
@@ -119,7 +120,6 @@
             Uses
             <ul class="inline commas">
                     <li><a href="Full-screen.html">Full-screen</a></li>
-                    <li><a href="Media-reload.html">Media-reload</a></li>
                     <li><a href="Video-record.html">Video-record</a></li>
                     <li><a href="Expand-assets.html">Expand-assets</a></li>
             </ul>
@@ -774,7 +774,7 @@ In general you would probably only want one or the other!)</p>
                 Video-record
             </a>
             but overwritten in
-        <a href="../files/app_components_exp-frame-base_component.js.html#l501"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:501</code></a>
+        <a href="../files/app_components_exp-frame-base_component.js.html#l508"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:508</code></a>
         </p>
 
 
@@ -914,7 +914,7 @@ frame-specific actions at this point (e.g., beginning a test trial).
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Exp-frame-base.html#method_serializeContent">Exp-frame-base</a>:
-        <a href="../files/app_components_exp-frame-base_component.js.html#l478"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:478</code></a>
+        <a href="../files/app_components_exp-frame-base_component.js.html#l485"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:485</code></a>
         </p>
 
 
@@ -1309,7 +1309,7 @@ Individual frames may define additional properties that are sent.</p>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-video_component.js.html#l196"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:196</code></a>
+        <a href="../files/app_components_exp-lookit-video_component.js.html#l195"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:195</code></a>
         </p>
 
 
@@ -1429,7 +1429,7 @@ expanded out to
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-video_component.js.html#l222"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:222</code></a>
+        <a href="../files/app_components_exp-lookit-video_component.js.html#l221"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:221</code></a>
         </p>
 
 
@@ -1489,7 +1489,7 @@ TODO: eventually use this to set up non-recording option for previewing
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-video_component.js.html#l241"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:241</code></a>
+        <a href="../files/app_components_exp-lookit-video_component.js.html#l240"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:240</code></a>
         </p>
 
 
@@ -1611,7 +1611,7 @@ a survey between test trials in fullscreen mode.)
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-video_component.js.html#l339"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:339</code></a>
+        <a href="../files/app_components_exp-lookit-video_component.js.html#l338"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:338</code></a>
         </p>
 
 
@@ -1773,10 +1773,15 @@ to access:</p>
 <li><code>ageAtBirth</code>: String; child's gestational age at birth in weeks. Possible values are
 "24" through "39", "na" (not sure or prefer not to answer),
 "&lt;24" (under 24 weeks), and "40&gt;" (40 or more weeks).</li>
-<li><code>birthday</code>: timestamp in format "Mon Apr 10 2017 20:00:00 GMT-0400 (Eastern Daylight Time)"</li>
+<li><code>birthday</code>: Date object</li>
 <li><code>gender</code>: "f" (female), "m" (male), "o" (other), or "na" (prefer not to answer)</li>
 <li><code>givenName</code>: String, child's given name/nickname</li>
 <li><code>id</code>: String, child UUID</li>
+<li><code>languageList</code>: String, space-separated list of languages child is exposed to
+(2-letter codes)</li>
+<li><code>conditionList</code>: String, space-separated list of conditions/characteristics</li>
+<li>of child from registration form, as used in criteria expression, e.g.
+"autism_spectrum_disorder deaf multiple_birth"</li>
 </ul>
 <p><code>pastSessions</code> is a list of previous response objects for this child and this study,
 ordered starting from most recent (at index 0 is this session!). Each has properties
@@ -1785,11 +1790,13 @@ ordered starting from most recent (at index 0 is this session!). Each has proper
 <li><code>completed</code>: Boolean, whether they submitted an exit survey</li>
 <li><code>completedConsentFrame</code>: Boolean, whether they got through at least a consent frame</li>
 <li><code>conditions</code>: Object representing any conditions assigned by randomizer frames</li>
-<li><code>createdOn</code>: timestamp in format "Thu Apr 18 2019 12:33:26 GMT-0400 (Eastern Daylight Time)"</li>
+<li><code>createdOn</code>: Date object</li>
 <li><code>expData</code>: Object consisting of frameId: frameData pairs</li>
 <li><code>globalEventTimings</code>: list of any events stored outside of individual frames - currently
 just used for attempts to leave the study early</li>
 <li><code>sequence</code>: ordered list of frameIds, corresponding to keys in expData</li>
+<li><code>isPreview</code>: Boolean, whether this is from a preview session (possible in the event
+this is an experimenter's account)</li>
 </ul>
 <p>Example:</p>
 <pre class="code prettyprint"><code>function(expData, sequence, child, pastSessions, conditions) {
@@ -1881,7 +1888,7 @@ losing data.
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Exp-frame-base.html#property_parameters">Exp-frame-base </a> (click for formatted description):
-        <a href="../files/app_components_exp-frame-base_component.js.html#l223"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:223</code></a>
+        <a href="../files/app_components_exp-frame-base_component.js.html#l230"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:230</code></a>
         </p>
 
 
@@ -1950,7 +1957,7 @@ generated for this randomizer.</li>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-video_component.js.html#l385"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:385</code></a>
+        <a href="../files/app_components_exp-lookit-video_component.js.html#l384"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:384</code></a>
         </p>
 
 
@@ -2011,7 +2018,7 @@ to apply to this section, and their values - e.g.
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-video_component.js.html#l349"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:349</code></a>
+        <a href="../files/app_components_exp-lookit-video_component.js.html#l348"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:348</code></a>
         </p>
 
 
@@ -2038,7 +2045,7 @@ audio played upon pausing study</p>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-video_component.js.html#l269"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:269</code></a>
+        <a href="../files/app_components_exp-lookit-video_component.js.html#l268"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:268</code></a>
         </p>
 
 
@@ -2065,7 +2072,7 @@ audio played upon pausing study</p>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-video_component.js.html#l281"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:281</code></a>
+        <a href="../files/app_components_exp-lookit-video_component.js.html#l280"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:280</code></a>
         </p>
 
 
@@ -2092,7 +2099,7 @@ audio played upon pausing study</p>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-video_component.js.html#l373"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:373</code></a>
+        <a href="../files/app_components_exp-lookit-video_component.js.html#l372"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:372</code></a>
         </p>
 
 
@@ -2119,7 +2126,7 @@ Default: (You'll have a moment to turn around again.)</p>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-video_component.js.html#l256"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:256</code></a>
+        <a href="../files/app_components_exp-lookit-video_component.js.html#l255"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:255</code></a>
         </p>
 
 
@@ -2245,7 +2252,7 @@ Accessible to consuming frame.
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-video_component.js.html#l328"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:328</code></a>
+        <a href="../files/app_components_exp-lookit-video_component.js.html#l327"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:327</code></a>
         </p>
 
 
@@ -2271,7 +2278,7 @@ Accessible to consuming frame.
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-video_component.js.html#l305"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:305</code></a>
+        <a href="../files/app_components_exp-lookit-video_component.js.html#l304"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:304</code></a>
         </p>
 
 
@@ -2297,7 +2304,7 @@ Accessible to consuming frame.
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-video_component.js.html#l317"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:317</code></a>
+        <a href="../files/app_components_exp-lookit-video_component.js.html#l316"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:316</code></a>
         </p>
 
 
@@ -2323,7 +2330,7 @@ Accessible to consuming frame.
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-video_component.js.html#l294"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:294</code></a>
+        <a href="../files/app_components_exp-lookit-video_component.js.html#l293"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:293</code></a>
         </p>
 
 
@@ -2349,7 +2356,7 @@ Accessible to consuming frame.
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Exp-frame-base.html#property_selectNextFrame">Exp-frame-base </a> (click for formatted description):
-        <a href="../files/app_components_exp-frame-base_component.js.html#l160"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:160</code></a>
+        <a href="../files/app_components_exp-frame-base_component.js.html#l167"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:167</code></a>
         </p>
 
 
@@ -2546,7 +2553,7 @@ stopped.
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-video_component.js.html#l361"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:361</code></a>
+        <a href="../files/app_components_exp-lookit-video_component.js.html#l360"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:360</code></a>
         </p>
 
 
@@ -2573,7 +2580,7 @@ audio played upon unpausing study</p>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-video_component.js.html#l146"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:146</code></a>
+        <a href="../files/app_components_exp-lookit-video_component.js.html#l145"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:145</code></a>
         </p>
 
 
@@ -2789,7 +2796,7 @@ expanded out to
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Exp-frame-base.html#attr_eventTimings">Exp-frame-base</a>:
-                            <a href="../files/app_components_exp-frame-base_component.js.html#l470"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:470</code></a>
+                            <a href="../files/app_components_exp-frame-base_component.js.html#l477"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:477</code></a>
                             </p>
                     
                     
@@ -2821,7 +2828,7 @@ expanded out to
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Exp-frame-base.html#attr_frameDuration">Exp-frame-base</a>:
-                            <a href="../files/app_components_exp-frame-base_component.js.html#l459"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:459</code></a>
+                            <a href="../files/app_components_exp-frame-base_component.js.html#l466"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:466</code></a>
                             </p>
                     
                     
@@ -2850,7 +2857,7 @@ expanded out to
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Exp-frame-base.html#attr_frameType">Exp-frame-base</a>:
-                            <a href="../files/app_components_exp-frame-base_component.js.html#l464"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:464</code></a>
+                            <a href="../files/app_components_exp-frame-base_component.js.html#l471"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:471</code></a>
                             </p>
                     
                     
@@ -2880,7 +2887,7 @@ expanded out to
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Exp-frame-base.html#attr_generatedProperties">Exp-frame-base</a>:
-                            <a href="../files/app_components_exp-frame-base_component.js.html#l453"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:453</code></a>
+                            <a href="../files/app_components_exp-frame-base_component.js.html#l460"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:460</code></a>
                             </p>
                     
                     
@@ -2910,7 +2917,7 @@ expanded out to
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/app_components_exp-lookit-video_component.js.html#l429"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:429</code></a>
+                            <a href="../files/app_components_exp-lookit-video_component.js.html#l428"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:428</code></a>
                             </p>
                     
                     
@@ -2939,7 +2946,7 @@ expanded out to
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/app_components_exp-lookit-video_component.js.html#l417"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:417</code></a>
+                            <a href="../files/app_components_exp-lookit-video_component.js.html#l416"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:416</code></a>
                             </p>
                     
                     
@@ -2969,7 +2976,7 @@ expanded out to
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/app_components_exp-lookit-video_component.js.html#l512"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:512</code></a>
+                            <a href="../files/app_components_exp-lookit-video_component.js.html#l511"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:511</code></a>
                             </p>
                     
                     
@@ -2994,7 +3001,7 @@ expanded out to
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/app_components_exp-lookit-video_component.js.html#l525"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:525</code></a>
+                            <a href="../files/app_components_exp-lookit-video_component.js.html#l523"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:523</code></a>
                             </p>
                     
                     
@@ -3116,7 +3123,7 @@ expanded out to
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/app_components_exp-lookit-video_component.js.html#l604"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:604</code></a>
+                            <a href="../files/app_components_exp-lookit-video_component.js.html#l603"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:603</code></a>
                             </p>
                     
                     
@@ -3142,7 +3149,7 @@ expanded out to
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Exp-frame-base.html#event_nextFrame">Exp-frame-base</a>:
-                            <a href="../files/app_components_exp-frame-base_component.js.html#l546"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:546</code></a>
+                            <a href="../files/app_components_exp-frame-base_component.js.html#l553"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:553</code></a>
                             </p>
                     
                     
@@ -3167,7 +3174,7 @@ expanded out to
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/app_components_exp-lookit-video_component.js.html#l652"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:652</code></a>
+                            <a href="../files/app_components_exp-lookit-video_component.js.html#l651"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:651</code></a>
                             </p>
                     
                     
@@ -3216,7 +3223,7 @@ expanded out to
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Exp-frame-base.html#event_previousFrame">Exp-frame-base</a>:
-                            <a href="../files/app_components_exp-frame-base_component.js.html#l606"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:606</code></a>
+                            <a href="../files/app_components_exp-frame-base_component.js.html#l613"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:613</code></a>
                             </p>
                     
                     
@@ -3316,7 +3323,7 @@ expanded out to
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/app_components_exp-lookit-video_component.js.html#l550"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:550</code></a>
+                            <a href="../files/app_components_exp-lookit-video_component.js.html#l549"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:549</code></a>
                             </p>
                     
                     
@@ -3341,7 +3348,7 @@ expanded out to
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/app_components_exp-lookit-video_component.js.html#l577"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:577</code></a>
+                            <a href="../files/app_components_exp-lookit-video_component.js.html#l576"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:576</code></a>
                             </p>
                     
                     
@@ -3390,7 +3397,7 @@ expanded out to
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/app_components_exp-lookit-video_component.js.html#l456"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:456</code></a>
+                            <a href="../files/app_components_exp-lookit-video_component.js.html#l455"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:455</code></a>
                             </p>
                     
                     
@@ -3415,7 +3422,7 @@ expanded out to
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/app_components_exp-lookit-video_component.js.html#l492"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:492</code></a>
+                            <a href="../files/app_components_exp-lookit-video_component.js.html#l490"><code>app&#x2F;components&#x2F;exp-lookit-video&#x2F;component.js:490</code></a>
                             </p>
                     
                     

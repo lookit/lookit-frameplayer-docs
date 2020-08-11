@@ -19,10 +19,11 @@
                 <img style="float:right; vertical-align:middle;" src="../assets/css/logo.png" height="70">
                 <span>Lookit<br> component<br> docs</span>
 
-                    <p>Version: latest <br>(v1.2.0)</p>
+                    <p>Version: latest <br>(v1.3.0)</p>
                     <select name="select_version" onchange="location = this.value;">
                         <option value="">--Select different version--</option>
-                            <option value="releases/v1.2.0/index.html">v1.2.0</option>
+                            <option value="./releases/v1.2.0/index.html">v1.2.0</option>
+                            <option value="./releases/v1.3.0/index.html">v1.3.0</option>
                     </select>
               </div>
               </h2>
@@ -801,7 +802,7 @@ organized as expected under baseDir/MEDIATYPE/filename.MEDIATYPE.</p>
                 Video-record
             </a>
             but overwritten in
-        <a href="../files/app_components_exp-frame-base_component.js.html#l501"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:501</code></a>
+        <a href="../files/app_components_exp-frame-base_component.js.html#l508"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:508</code></a>
         </p>
 
 
@@ -949,7 +950,7 @@ event sent by a particular frame</p>
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Exp-frame-base.html#method_serializeContent">Exp-frame-base</a>:
-        <a href="../files/app_components_exp-frame-base_component.js.html#l478"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:478</code></a>
+        <a href="../files/app_components_exp-frame-base_component.js.html#l485"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:485</code></a>
         </p>
 
 
@@ -1934,10 +1935,15 @@ to access:</p>
 <li><code>ageAtBirth</code>: String; child's gestational age at birth in weeks. Possible values are
 "24" through "39", "na" (not sure or prefer not to answer),
 "&lt;24" (under 24 weeks), and "40&gt;" (40 or more weeks).</li>
-<li><code>birthday</code>: timestamp in format "Mon Apr 10 2017 20:00:00 GMT-0400 (Eastern Daylight Time)"</li>
+<li><code>birthday</code>: Date object</li>
 <li><code>gender</code>: "f" (female), "m" (male), "o" (other), or "na" (prefer not to answer)</li>
 <li><code>givenName</code>: String, child's given name/nickname</li>
 <li><code>id</code>: String, child UUID</li>
+<li><code>languageList</code>: String, space-separated list of languages child is exposed to
+(2-letter codes)</li>
+<li><code>conditionList</code>: String, space-separated list of conditions/characteristics</li>
+<li>of child from registration form, as used in criteria expression, e.g.
+"autism_spectrum_disorder deaf multiple_birth"</li>
 </ul>
 <p><code>pastSessions</code> is a list of previous response objects for this child and this study,
 ordered starting from most recent (at index 0 is this session!). Each has properties
@@ -1946,11 +1952,13 @@ ordered starting from most recent (at index 0 is this session!). Each has proper
 <li><code>completed</code>: Boolean, whether they submitted an exit survey</li>
 <li><code>completedConsentFrame</code>: Boolean, whether they got through at least a consent frame</li>
 <li><code>conditions</code>: Object representing any conditions assigned by randomizer frames</li>
-<li><code>createdOn</code>: timestamp in format "Thu Apr 18 2019 12:33:26 GMT-0400 (Eastern Daylight Time)"</li>
+<li><code>createdOn</code>: Date object</li>
 <li><code>expData</code>: Object consisting of frameId: frameData pairs</li>
 <li><code>globalEventTimings</code>: list of any events stored outside of individual frames - currently
 just used for attempts to leave the study early</li>
 <li><code>sequence</code>: ordered list of frameIds, corresponding to keys in expData</li>
+<li><code>isPreview</code>: Boolean, whether this is from a preview session (possible in the event
+this is an experimenter's account)</li>
 </ul>
 <p>Example:</p>
 <pre class="code prettyprint"><code>function(expData, sequence, child, pastSessions, conditions) {
@@ -2122,7 +2130,7 @@ music during trial</p>
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Exp-frame-base.html#property_parameters">Exp-frame-base </a> (click for formatted description):
-        <a href="../files/app_components_exp-frame-base_component.js.html#l223"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:223</code></a>
+        <a href="../files/app_components_exp-frame-base_component.js.html#l230"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:230</code></a>
         </p>
 
 
@@ -2389,7 +2397,7 @@ paths starting from <code>baseDir</code>.</p>
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Exp-frame-base.html#property_selectNextFrame">Exp-frame-base </a> (click for formatted description):
-        <a href="../files/app_components_exp-frame-base_component.js.html#l160"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:160</code></a>
+        <a href="../files/app_components_exp-frame-base_component.js.html#l167"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:167</code></a>
         </p>
 
 
@@ -2800,7 +2808,7 @@ expanded out to
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Exp-frame-base.html#attr_eventTimings">Exp-frame-base</a>:
-                            <a href="../files/app_components_exp-frame-base_component.js.html#l470"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:470</code></a>
+                            <a href="../files/app_components_exp-frame-base_component.js.html#l477"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:477</code></a>
                             </p>
                     
                     
@@ -2832,7 +2840,7 @@ expanded out to
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Exp-frame-base.html#attr_frameDuration">Exp-frame-base</a>:
-                            <a href="../files/app_components_exp-frame-base_component.js.html#l459"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:459</code></a>
+                            <a href="../files/app_components_exp-frame-base_component.js.html#l466"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:466</code></a>
                             </p>
                     
                     
@@ -2861,7 +2869,7 @@ expanded out to
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Exp-frame-base.html#attr_frameType">Exp-frame-base</a>:
-                            <a href="../files/app_components_exp-frame-base_component.js.html#l464"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:464</code></a>
+                            <a href="../files/app_components_exp-frame-base_component.js.html#l471"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:471</code></a>
                             </p>
                     
                     
@@ -2891,7 +2899,7 @@ expanded out to
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Exp-frame-base.html#attr_generatedProperties">Exp-frame-base</a>:
-                            <a href="../files/app_components_exp-frame-base_component.js.html#l453"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:453</code></a>
+                            <a href="../files/app_components_exp-frame-base_component.js.html#l460"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:460</code></a>
                             </p>
                     
                     
@@ -3131,7 +3139,7 @@ expanded out to
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Exp-frame-base.html#event_nextFrame">Exp-frame-base</a>:
-                            <a href="../files/app_components_exp-frame-base_component.js.html#l546"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:546</code></a>
+                            <a href="../files/app_components_exp-frame-base_component.js.html#l553"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:553</code></a>
                             </p>
                     
                     
@@ -3233,7 +3241,7 @@ expanded out to
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Exp-frame-base.html#event_previousFrame">Exp-frame-base</a>:
-                            <a href="../files/app_components_exp-frame-base_component.js.html#l606"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:606</code></a>
+                            <a href="../files/app_components_exp-frame-base_component.js.html#l613"><code>app&#x2F;components&#x2F;exp-frame-base&#x2F;component.js:613</code></a>
                             </p>
                     
                     

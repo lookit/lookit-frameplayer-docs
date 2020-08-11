@@ -19,10 +19,11 @@
                 <img style="float:right; vertical-align:middle;" src="../assets/css/logo.png" height="70">
                 <span>Lookit<br> component<br> docs</span>
 
-                    <p>Version: latest <br>(v1.2.0)</p>
+                    <p>Version: latest <br>(v1.3.0)</p>
                     <select name="select_version" onchange="location = this.value;">
                         <option value="">--Select different version--</option>
-                            <option value="releases/v1.2.0/index.html">v1.2.0</option>
+                            <option value="./releases/v1.2.0/index.html">v1.2.0</option>
+                            <option value="./releases/v1.3.0/index.html">v1.3.0</option>
                     </select>
               </div>
               </h2>
@@ -265,10 +266,18 @@ export default Ember.Component.extend(FullScreen, {
         this._super(...arguments);
         this._registerHandlers();
 
+        var structure = this.get(&#x27;experiment.structure&#x27;);
+        if (typeof(structure) === &#x27;string&#x27;) {
+            structure = structure.replace(/(\r\n|\n|\r)/gm,&#x27;&#x27;);
+            structure = JSON.parse(structure);
+        }
+
         var parser = new ExperimentParser({
-            structure: this.get(&#x27;experiment.structure&#x27;),
+            structure: structure,
             pastSessions: this.get(&#x27;pastSessions&#x27;).toArray(),
-            child: this.get(&#x27;session.child&#x27;)
+            child: this.get(&#x27;session.child&#x27;),
+            useGenerator: this.get(&#x27;experiment.useGenerator&#x27;),
+            generator: this.get(&#x27;experiment.generator&#x27;)
         });
         var [frameConfigs, conditions] = parser.parse();
         this.set(&#x27;frames&#x27;, frameConfigs); // When player loads, convert structure to list of frames
