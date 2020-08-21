@@ -852,7 +852,7 @@
             "namespace": "",
             "file": "app/components/exp-lookit-stimuli-preview/component.js",
             "line": 16,
-            "description": "A frame that to explain any blinding procedures to parents, and offer them the option to preview stimuli before the study. Two buttons allow the user to move forward: one goes to the next frame (if the parent wants to preview stimuli), and one skips the next frame and goes to the one after that (if the parent declins). Therefore, this frame should be followed by an {{#crossLink \"Exp-video-preview\"}}{{/crossLink}} frame.\n\n```json\n\"frames\": {\n   \"my-video-preview-explanation\": {\n       \"kind\": \"exp-lookit-stimuli-preview\",\n       \"skipButtonText\": \"Skip preview\",\n       \"previewButtonText\": \"I'd like to preview the videos\",\n       \"blocks\": [\n           {\n                \"text\": \"During the videos, we'll ask that you hold your child over your shoulder like this, so that you're facing face away from the screen.\"\n           },\n           {\n               \"image\": {\n                   \"alt\": \"Father holding child looking over his shoulder\",\n                   \"src\": \"https://raw.githubusercontent.com/kimberscott/placeholder-stimuli/master/img/OverShoulder.jpg\"\n               }\n           },\n           {\n               \"text\": \"This is because your child is learning from you all the time, and may pick up on even very small cues about what you think. But if you can't see the stimuli, we're definitely only measuring your child's own beliefs.\"\n           },\n           {\n               \"text\": \"If you'd like to see the videos your child will be shown, you can take a look ahead of time now. It's important that you preview the videos without your child, so that the videos will still be new to them.\"\n           }\n       ],\n       \"showPreviousButton\": true,\n       \"baseDir\": \"https://raw.githubusercontent.com/kimberscott/placeholder-stimuli/master/\",\n       \"videoTypes\": [\"webm\", \"mp4\"],\n       \"audioTypes\": [\"mp3\", \"ogg\"],\n       \"stimuli\": [\n          {\n            \"caption\": \"At the start of each section, we will play a video like this that shows a common household object, like a book or an apple.\",\n            \"video\": \"cropped_book\"\n          },\n          {\n            \"caption\": \"Your child will be looking at images like this, and we'll ask him or her to describe each one.\",\n            \"image\": \"square.png\"\n          },\n          {\n            \"caption\": \"Between sections, we will play audio like this so you know where you are in the study.\",\n            \"audio\": \"sample_1\"\n          }\n        ]\n   }\n}\n\n```",
+            "description": "A frame that to explain any blinding procedures to parents, and offer them the option to preview stimuli before the study. Two buttons allow the user to move forward: one goes to the next frame (if the parent wants to preview stimuli), and one skips the next frame and goes to the one after that (if the parent declins). Therefore, this frame should be followed by an {{#crossLink \"Exp-video-preview\"}}{{/crossLink}} frame.\n\n```json\n\"frames\": {\n   \"my-video-preview-explanation\": {\n       \"kind\": \"exp-lookit-stimuli-preview\",\n       \"doRecording\": true,\n       \"skipButtonText\": \"Skip preview\",\n       \"previewButtonText\": \"I'd like to preview the videos\",\n       \"blocks\": [\n           {\n                \"text\": \"During the videos, we'll ask that you hold your child over your shoulder like this, so that you're facing face away from the screen.\"\n           },\n           {\n               \"image\": {\n                   \"alt\": \"Father holding child looking over his shoulder\",\n                   \"src\": \"https://raw.githubusercontent.com/kimberscott/placeholder-stimuli/master/img/OverShoulder.jpg\"\n               }\n           },\n           {\n               \"text\": \"This is because your child is learning from you all the time, and may pick up on even very small cues about what you think. But if you can't see the stimuli, we're definitely only measuring your child's own beliefs.\"\n           },\n           {\n               \"text\": \"If you'd like to see the videos your child will be shown, you can take a look ahead of time now. It's important that you preview the videos without your child, so that the videos will still be new to them.\"\n           }\n       ],\n       \"showPreviousButton\": true,\n       \"baseDir\": \"https://raw.githubusercontent.com/kimberscott/placeholder-stimuli/master/\",\n       \"videoTypes\": [\"webm\", \"mp4\"],\n       \"audioTypes\": [\"mp3\", \"ogg\"],\n       \"stimuli\": [\n          {\n            \"caption\": \"At the start of each section, we will play a video like this that shows a common household object, like a book or an apple.\",\n            \"video\": \"cropped_book\"\n          },\n          {\n            \"caption\": \"Your child will be looking at images like this, and we'll ask him or her to describe each one.\",\n            \"image\": \"square.png\"\n          },\n          {\n            \"caption\": \"Between sections, we will play audio like this so you know where you are in the study.\",\n            \"audio\": \"sample_1\"\n          }\n        ]\n   }\n}\n\n```",
             "extends": "Exp-frame-base",
             "uses": [
                 "Expand-assets",
@@ -969,11 +969,12 @@
             "submodule": "frames",
             "namespace": "",
             "file": "app/components/exp-lookit-video-assent/component.js",
-            "line": 20,
+            "line": 19,
             "description": "Video assent frame for Lookit studies for older children to agree to participation,\nseparately from parental consent.\n\nA series of assent form \"pages\" is displayed, each one displaying some combination of\n(a) an image or the participant's webcam view or a video, (b) audio, and (c) text. You can\noptionally record webcam video during the whole assent procedure or on the last page.\n\nOnce the family has viewed all pages, the\nchild can answer a question about whether to participate. If they choose yes, they proceed;\nif they choose no, they are sent to the exit URL.\n\nYou can either simply have children click on \"Yes\" or \"No,\" or you can add audio/video on\nthe last page that instructs them to answer verbally, and do webcam recording on that page.\nFor instance, you might show a video of yourself asking \"Do you want to participate in this study?\nYou can say \"yes\" or \"no.\" Parents, once your child has answered, please click on their answer\nto the right.\"\n\nIn general it is expected that only one of webcam view, video, and image will be provided per\npage, although it is ok to have only text or only text plus audio. If audio or video is provided for a page,\nthe participant must finish it to proceed. (If both audio and video are provided they will\nbe played simultaneously and both must finish for the participant to proceed.) They only\nneed to complete the audio/video for a given page once, in case they navigate using the\nprevious/next buttons.\n\nThis frame can optionally be shown only when the child is at least N years old, in case\nsome participants will need to give assent and others will rely only on parent consent.\n\nSpecifying media locations:\n\nFor `imgSrc` parameters within `pages`, you can either specify complete URLs or partial URLs\nrelative to a base directory `baseDir` for the frame. Images are expected to be in an\n`img` directory within the `baseDir`. For instance, in the example below,\nthe first page's image is at `https://s3.amazonaws.com/lookitcontents/cats/img/jane_smith.jpg`.\n\nFor any parameters that expect a list of audio/video sources, you can EITHER provide\na list of src/type pairs with full paths like this:\n```json\n    [\n        {\n            'src': 'http://.../video1.mp4',\n            'type': 'video/mp4'\n        },\n        {\n            'src': 'http://.../video1.webm',\n            'type': 'video/webm'\n        }\n    ]\n```\nOR you can provide a single string 'stub', which will be expanded\nbased on the parameter baseDir and the media types expected - either audioTypes or\nvideoTypes as appropriate. For example, if you provide the audio source `intro`\nand baseDir is https://mystimuli.org/mystudy/, with audioTypes ['mp3', 'ogg'], then this\nwill be expanded to:\n```json\n                 [\n                        {\n                            src: 'https://mystimuli.org/mystudy/mp3/intro.mp3',\n                            type: 'audio/mp3'\n                        },\n                        {\n                            src: 'https://mystimuli.org/mystudy/ogg/intro.ogg',\n                            type: 'audio/ogg'\n                        }\n                ]\n```\nThis allows you to simplify your JSON document a bit and also easily switch to a\nnew version of your stimuli without changing every URL. You can mix source objects with\nfull URLs and those using stubs within the same directory. However, any stimuli\nspecified using stubs MUST be organized as expected under baseDir/MEDIATYPE/filename.MEDIATYPE.\n\nExample usage:\n\n```json\n\"frames\": {\n    \"video-assent\": {\n        \"kind\": \"exp-lookit-video-assent\",\n            \"pages\": [\n                {\n                    \"imgSrc\": \"jane_smith.png\",\n                    \"altText\": \"Jane Smith\",\n                    \"textBlocks\": [\n                        {\n                            \"text\": \"My name is Jane Smith. I am a scientist who studies why children love cats.\"\n                        }\n                    ],\n                    \"audio\": \"narration_1\"\n                },\n                {\n                    \"imgSrc\": \"cats_game.png\",\n                    \"altText\": \"picture of sample game\",\n                    \"textBlocks\": [\n                        {\n                            \"text\": \"In this study, you will play a game about cats.\"\n                        }\n                    ]\n                },\n                {\n                    \"showWebcam\": true,\n                    \"textBlocks\": [\n                        {\n                            \"text\": \"During the study, your webcam will record a video of you. We will watch this video later to see how much you love cats.\"\n                        }\n                    ]\n                }\n            ],\n            \"baseDir\": \"https://s3.amazonaws.com/lookitcontents/cats/\",\n            \"videoTypes\": [\n                \"webm\",\n                \"mp4\"\n            ],\n            \"participationQuestion\": \"Do you want to participate in this study?\",\n            \"minimumYearsToAssent\": 7\n        }\n    }\n}\n```",
             "extends": "Exp-frame-base",
             "uses": [
-                "Video-record"
+                "Video-record",
+                "Expand-assets"
             ]
         },
         "Exp-lookit-video-consent": {
@@ -1063,7 +1064,8 @@
                 "Exp-lookit-stimuli-preview",
                 "Exp-lookit-stop-recording",
                 "Exp-lookit-story-page",
-                "Exp-lookit-video"
+                "Exp-lookit-video",
+                "Exp-lookit-video-assent"
             ],
             "module": "exp-player",
             "submodule": "mixins",
@@ -4679,7 +4681,7 @@
         },
         {
             "file": "app/components/exp-lookit-stimuli-preview/component.js",
-            "line": 103,
+            "line": 107,
             "description": "Whether to show a 'previous' button",
             "itemtype": "property",
             "name": "showPreviousButton",
@@ -4691,7 +4693,7 @@
         },
         {
             "file": "app/components/exp-lookit-stimuli-preview/component.js",
-            "line": 113,
+            "line": 117,
             "description": "Array of text blocks to display as an introduction to the preview. Should be a list\nof objects that can be passed to exp-text-block; each can have any of the\nproperties below.",
             "itemtype": "property",
             "name": "blocks",
@@ -4739,7 +4741,7 @@
         },
         {
             "file": "app/components/exp-lookit-stimuli-preview/component.js",
-            "line": 163,
+            "line": 167,
             "description": "Text on the preview button user clicks to proceed to stimuli/images",
             "itemtype": "property",
             "name": "previewButtonText",
@@ -4751,7 +4753,7 @@
         },
         {
             "file": "app/components/exp-lookit-stimuli-preview/component.js",
-            "line": 173,
+            "line": 177,
             "description": "Text to display on the button to skip the next frame",
             "itemtype": "property",
             "name": "skipButtonText",
@@ -4763,7 +4765,7 @@
         },
         {
             "file": "app/components/exp-lookit-stimuli-preview/component.js",
-            "line": 183,
+            "line": 187,
             "description": "A series of preview stimuli to display within a single frame, defined as an array of objects.\nGenerally each item of the list will include ONE of image, video, or audio\n(depending on the stimulus type), plus a caption.",
             "itemtype": "property",
             "name": "stimuli",
@@ -4796,7 +4798,7 @@
         },
         {
             "file": "app/components/exp-lookit-stimuli-preview/component.js",
-            "line": 218,
+            "line": 222,
             "description": "Text on the button to proceed to the next example video/image",
             "itemtype": "property",
             "name": "nextStimulusText",
@@ -4807,7 +4809,7 @@
         },
         {
             "file": "app/components/exp-lookit-stimuli-preview/component.js",
-            "line": 228,
+            "line": 232,
             "description": "Text on the button to proceed to the previous example video/image",
             "itemtype": "property",
             "name": "previousStimulusText",
@@ -4818,7 +4820,19 @@
         },
         {
             "file": "app/components/exp-lookit-stimuli-preview/component.js",
-            "line": 255,
+            "line": 242,
+            "description": "Whether to make a webcam video recording during stimulus preview (begins only if user chooses to preview stimuli). Default true.",
+            "itemtype": "property",
+            "name": "doRecording",
+            "type": "Boolean",
+            "default": "true",
+            "class": "Exp-lookit-stimuli-preview",
+            "module": "exp-player",
+            "submodule": "frames"
+        },
+        {
+            "file": "app/components/exp-lookit-stimuli-preview/component.js",
+            "line": 269,
             "description": "User clicks on start preview button",
             "itemtype": "event",
             "name": "startPreview",
@@ -4828,7 +4842,7 @@
         },
         {
             "file": "app/components/exp-lookit-stimuli-preview/component.js",
-            "line": 269,
+            "line": 283,
             "description": "User clicks to move to next stimulus",
             "itemtype": "event",
             "name": "nextStimulus",
@@ -4838,7 +4852,7 @@
         },
         {
             "file": "app/components/exp-lookit-stimuli-preview/component.js",
-            "line": 278,
+            "line": 292,
             "description": "User clicks to move to previous stimulus",
             "itemtype": "event",
             "name": "previousStimulus",
@@ -5548,7 +5562,7 @@
         },
         {
             "file": "app/components/exp-lookit-video-assent/component.js",
-            "line": 224,
+            "line": 225,
             "description": "Participant proceeded to next assent page",
             "itemtype": "event",
             "name": "nextAssentPage",
@@ -5565,7 +5579,7 @@
         },
         {
             "file": "app/components/exp-lookit-video-assent/component.js",
-            "line": 237,
+            "line": 238,
             "description": "Participant returned to previous assent page",
             "itemtype": "event",
             "name": "previousAssentPage",
@@ -5582,7 +5596,7 @@
         },
         {
             "file": "app/components/exp-lookit-video-assent/component.js",
-            "line": 258,
+            "line": 259,
             "description": "Participant submitted assent question answer",
             "itemtype": "event",
             "name": "assentQuestionSubmit",
@@ -5599,7 +5613,7 @@
         },
         {
             "file": "app/components/exp-lookit-video-assent/component.js",
-            "line": 346,
+            "line": 347,
             "description": "When participant downloads consent form",
             "itemtype": "event",
             "name": "downloadConsentForm",
@@ -5609,7 +5623,7 @@
         },
         {
             "file": "app/components/exp-lookit-video-assent/component.js",
-            "line": 356,
+            "line": 357,
             "description": "A list of pages of assent form text/pictures/video for the participant to read through",
             "itemtype": "property",
             "name": "pages",
@@ -5652,7 +5666,7 @@
         },
         {
             "file": "app/components/exp-lookit-video-assent/component.js",
-            "line": 402,
+            "line": 403,
             "description": "Text on the button to proceed to the next example video/image",
             "itemtype": "property",
             "name": "nextStimulusText",
@@ -5663,7 +5677,7 @@
         },
         {
             "file": "app/components/exp-lookit-video-assent/component.js",
-            "line": 412,
+            "line": 413,
             "description": "Whether to record webcam video on the last page",
             "itemtype": "property",
             "name": "recordLastPage",
@@ -5674,7 +5688,7 @@
         },
         {
             "file": "app/components/exp-lookit-video-assent/component.js",
-            "line": 422,
+            "line": 423,
             "description": "Whether to record webcam video during the entire assent frame (if true, overrides recordLastPage)",
             "itemtype": "property",
             "name": "recordWholeProcedure",
@@ -5685,7 +5699,7 @@
         },
         {
             "file": "app/components/exp-lookit-video-assent/component.js",
-            "line": 432,
+            "line": 433,
             "description": "Text on the button to proceed to the previous example video/image",
             "itemtype": "property",
             "name": "previousStimulusText",
@@ -5696,7 +5710,7 @@
         },
         {
             "file": "app/components/exp-lookit-video-assent/component.js",
-            "line": 442,
+            "line": 443,
             "description": "Text of the question to ask about whether to participate. Answer options are Yes/No; No means study will stop, Yes means it will proceed.",
             "itemtype": "property",
             "name": "participationQuestion",
@@ -5707,7 +5721,7 @@
         },
         {
             "file": "app/components/exp-lookit-video-assent/component.js",
-            "line": 452,
+            "line": 453,
             "description": "How many years old the child has to be for this page to be shown. If child\nis younger, the page is skipped. Leave at 0 to always show. This is an\nage in 'calendar years' - it will line up with the child's birthday,\nregardless of leap years etc.",
             "itemtype": "property",
             "name": "minimumYearsToAssent",
@@ -5718,7 +5732,7 @@
         },
         {
             "file": "app/components/exp-lookit-video-assent/component.js",
-            "line": 477,
+            "line": 478,
             "description": "the exact text shown in the assent document during this frame",
             "itemtype": "attribute",
             "name": "assentFormText",
@@ -5728,7 +5742,7 @@
         },
         {
             "file": "app/components/exp-lookit-video-assent/component.js",
-            "line": 484,
+            "line": 485,
             "description": "The child's response to the assent question - Yes or No",
             "itemtype": "attribute",
             "name": "childResponse",
@@ -5738,7 +5752,7 @@
         },
         {
             "file": "app/components/exp-lookit-video-assent/component.js",
-            "line": 530,
+            "line": 531,
             "description": "Skip the assent form because the participant is too young to give assent",
             "itemtype": "event",
             "name": "skipAssentDueToParticipantAge",

@@ -19,7 +19,7 @@
                 <img style="float:right; vertical-align:middle;" src="../assets/css/logo.png" height="70">
                 <span>Lookit<br> component<br> docs</span>
 
-                    <p>Version: latest <br>(v1.3.0)</p>
+                    <p>Version: latest <br>(v1.3.x)</p>
                     <select name="select_version" onchange="location = this.value;">
                         <option value="">--Select different version--</option>
                             <option value="../releases/v1.2.0/index.html">v1.2.0</option>
@@ -140,6 +140,7 @@ import { videoAssetOptions, imageAssetOptions, audioAssetOptions } from &#x27;..
  &quot;frames&quot;: {
     &quot;my-video-preview-explanation&quot;: {
         &quot;kind&quot;: &quot;exp-lookit-stimuli-preview&quot;,
+        &quot;doRecording&quot;: true,
         &quot;skipButtonText&quot;: &quot;Skip preview&quot;,
         &quot;previewButtonText&quot;: &quot;I&#x27;d like to preview the videos&quot;,
         &quot;blocks&quot;: [
@@ -209,8 +210,8 @@ export default ExpFrameBaseComponent.extend(MediaReload, VideoRecord, ExpandAsse
         return this.get(&#x27;stimuli&#x27;)[this.get(&#x27;videoIndex&#x27;)];
     }),
 
-    disableRecord: Ember.computed(&#x27;recorder.hasCamAccess&#x27;, &#x27;recorderReady&#x27;, function() {
-        return !(this.get(&#x27;recorder.hasCamAccess&#x27;) &amp;&amp; this.get(&#x27;recorderReady&#x27;));
+    recorderSettingUp: Ember.computed(&#x27;recorder.hasCamAccess&#x27;, &#x27;recorderReady&#x27;, function() {
+        return (this.get(&#x27;doRecording&#x27;) &amp;&amp; !(this.get(&#x27;recorder.hasCamAccess&#x27;) &amp;&amp; this.get(&#x27;recorderReady&#x27;)));
     }),
 
     assetsToExpand: {
@@ -218,6 +219,9 @@ export default ExpFrameBaseComponent.extend(MediaReload, VideoRecord, ExpandAsse
         &#x27;video&#x27;: [&#x27;stimuli/video&#x27;],
         &#x27;image&#x27;: [&#x27;stimuli/image&#x27;]
     },
+
+    // Override setting in VideoRecord mixin - only use camera if doing recording
+    doUseCamera: Ember.computed.alias(&#x27;doRecording&#x27;),
 
     frameSchemaProperties: {
         /**
@@ -354,6 +358,16 @@ export default ExpFrameBaseComponent.extend(MediaReload, VideoRecord, ExpandAsse
             type: &#x27;string&#x27;,
             description: &#x27;Text on the button to proceed to the previous example video/image&#x27;,
             default: &#x27;Previous&#x27;
+        },
+        /**
+         Whether to make a webcam video recording during stimulus preview (begins only if user chooses to preview stimuli). Default true.
+         @property {Boolean} doRecording
+         @default true
+         */
+        doRecording: {
+            type: &#x27;boolean&#x27;,
+            description: &#x27;Whether to do video recording during stimulus preview&#x27;,
+            default: true
         }
     },
     meta: {
@@ -379,7 +393,7 @@ export default ExpFrameBaseComponent.extend(MediaReload, VideoRecord, ExpandAsse
              */
             this.send(&#x27;setTimeEvent&#x27;, &#x27;startPreview&#x27;);
             this.set(&#x27;prompt&#x27;, false);
-            if (this.get(&#x27;experiment&#x27;) &amp;&amp; this.get(&#x27;id&#x27;) &amp;&amp; this.get(&#x27;session&#x27;) &amp;&amp; !this.get(&#x27;isLast&#x27;)) {
+            if (this.get(&#x27;experiment&#x27;) &amp;&amp; this.get(&#x27;id&#x27;) &amp;&amp; this.get(&#x27;session&#x27;) &amp;&amp; this.get(&#x27;doRecording&#x27;)) {
                 this.startRecorder().then(() =&gt; {
                     this.set(&#x27;recordingStarted&#x27;, true);
                 });
@@ -404,14 +418,18 @@ export default ExpFrameBaseComponent.extend(MediaReload, VideoRecord, ExpandAsse
             this.set(&#x27;videoIndex&#x27;, this.get(&#x27;videoIndex&#x27;) - 1);
         },
         finish() {
-            if (!this.get(&#x27;recordingStopped&#x27;)) {
-                this.set(&#x27;recordingStopped&#x27;, true);
-                var _this = this;
-                this.stopRecorder().then(() =&gt; {
-                    _this.send(&#x27;next&#x27;);
-                }, () =&gt; {
-                    _this.send(&#x27;next&#x27;);
-                });
+            if (this.get(&#x27;doRecording&#x27;)) {
+                if (!this.get(&#x27;recordingStopped&#x27;)) {
+                    this.set(&#x27;recordingStopped&#x27;, true);
+                    var _this = this;
+                    this.stopRecorder().then(() =&gt; {
+                        _this.send(&#x27;next&#x27;);
+                    }, () =&gt; {
+                        _this.send(&#x27;next&#x27;);
+                    });
+                } else {
+                    this.send(&#x27;next&#x27;);
+                }
             } else {
                 this.send(&#x27;next&#x27;);
             }

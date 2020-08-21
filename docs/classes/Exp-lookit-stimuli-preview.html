@@ -19,7 +19,7 @@
                 <img style="float:right; vertical-align:middle;" src="../assets/css/logo.png" height="70">
                 <span>Lookit<br> component<br> docs</span>
 
-                    <p>Version: latest <br>(v1.3.0)</p>
+                    <p>Version: latest <br>(v1.3.x)</p>
                     <select name="select_version" onchange="location = this.value;">
                         <option value="">--Select different version--</option>
                             <option value="../releases/v1.2.0/index.html">v1.2.0</option>
@@ -169,6 +169,7 @@
 <pre class="code prettyprint"><code class="language-json">"frames": {
    "my-video-preview-explanation": {
        "kind": "exp-lookit-stimuli-preview",
+       "doRecording": true,
        "skipButtonText": "Skip preview",
        "previewButtonText": "I'd like to preview the videos",
        "blocks": [
@@ -336,6 +337,10 @@
                             </li>
                             <li class="index-item property inherited">
                                 <a href="#property_displayFullscreenOverride">displayFullscreenOverride</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_doRecording">doRecording</a>
 
                             </li>
                             <li class="index-item property inherited">
@@ -1341,7 +1346,7 @@ does not end in a slash, one will be added.
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-stimuli-preview_component.js.html#l113"><code>app&#x2F;components&#x2F;exp-lookit-stimuli-preview&#x2F;component.js:113</code></a>
+        <a href="../files/app_components_exp-lookit-stimuli-preview_component.js.html#l117"><code>app&#x2F;components&#x2F;exp-lookit-stimuli-preview&#x2F;component.js:117</code></a>
         </p>
 
 
@@ -1482,6 +1487,32 @@ a survey between test trials in fullscreen mode.)
     </div>
 
         <p><strong>Default:</strong> false</p>
+
+
+</div>
+<div id="property_doRecording" class="property item">
+    <h3 class="name"><code>doRecording</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+
+
+
+
+
+    <div class="meta">
+                <p> Specific to this element.
+                Defined in
+        <a href="../files/app_components_exp-lookit-stimuli-preview_component.js.html#l242"><code>app&#x2F;components&#x2F;exp-lookit-stimuli-preview&#x2F;component.js:242</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Whether to make a webcam video recording during stimulus preview (begins only if user chooses to preview stimuli). Default true.</p>
+
+    </div>
+
+        <p><strong>Default:</strong> true</p>
 
 
 </div>
@@ -1741,7 +1772,7 @@ losing data.
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-stimuli-preview_component.js.html#l218"><code>app&#x2F;components&#x2F;exp-lookit-stimuli-preview&#x2F;component.js:218</code></a>
+        <a href="../files/app_components_exp-lookit-stimuli-preview_component.js.html#l222"><code>app&#x2F;components&#x2F;exp-lookit-stimuli-preview&#x2F;component.js:222</code></a>
         </p>
 
 
@@ -1835,7 +1866,7 @@ generated for this randomizer.</li>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-stimuli-preview_component.js.html#l163"><code>app&#x2F;components&#x2F;exp-lookit-stimuli-preview&#x2F;component.js:163</code></a>
+        <a href="../files/app_components_exp-lookit-stimuli-preview_component.js.html#l167"><code>app&#x2F;components&#x2F;exp-lookit-stimuli-preview&#x2F;component.js:167</code></a>
         </p>
 
 
@@ -1861,7 +1892,7 @@ generated for this randomizer.</li>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-stimuli-preview_component.js.html#l228"><code>app&#x2F;components&#x2F;exp-lookit-stimuli-preview&#x2F;component.js:228</code></a>
+        <a href="../files/app_components_exp-lookit-stimuli-preview_component.js.html#l232"><code>app&#x2F;components&#x2F;exp-lookit-stimuli-preview&#x2F;component.js:232</code></a>
         </p>
 
 
@@ -2083,7 +2114,7 @@ losing data.
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-stimuli-preview_component.js.html#l103"><code>app&#x2F;components&#x2F;exp-lookit-stimuli-preview&#x2F;component.js:103</code></a>
+        <a href="../files/app_components_exp-lookit-stimuli-preview_component.js.html#l107"><code>app&#x2F;components&#x2F;exp-lookit-stimuli-preview&#x2F;component.js:107</code></a>
         </p>
 
 
@@ -2109,7 +2140,7 @@ losing data.
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-stimuli-preview_component.js.html#l173"><code>app&#x2F;components&#x2F;exp-lookit-stimuli-preview&#x2F;component.js:173</code></a>
+        <a href="../files/app_components_exp-lookit-stimuli-preview_component.js.html#l177"><code>app&#x2F;components&#x2F;exp-lookit-stimuli-preview&#x2F;component.js:177</code></a>
         </p>
 
 
@@ -2186,7 +2217,7 @@ should set to override if needed.
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-stimuli-preview_component.js.html#l183"><code>app&#x2F;components&#x2F;exp-lookit-stimuli-preview&#x2F;component.js:183</code></a>
+        <a href="../files/app_components_exp-lookit-stimuli-preview_component.js.html#l187"><code>app&#x2F;components&#x2F;exp-lookit-stimuli-preview&#x2F;component.js:187</code></a>
         </p>
 
 
@@ -2628,7 +2659,7 @@ expanded out to
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/app_components_exp-lookit-stimuli-preview_component.js.html#l269"><code>app&#x2F;components&#x2F;exp-lookit-stimuli-preview&#x2F;component.js:269</code></a>
+                            <a href="../files/app_components_exp-lookit-stimuli-preview_component.js.html#l283"><code>app&#x2F;components&#x2F;exp-lookit-stimuli-preview&#x2F;component.js:283</code></a>
                             </p>
                     
                     
@@ -2702,7 +2733,7 @@ expanded out to
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/app_components_exp-lookit-stimuli-preview_component.js.html#l278"><code>app&#x2F;components&#x2F;exp-lookit-stimuli-preview&#x2F;component.js:278</code></a>
+                            <a href="../files/app_components_exp-lookit-stimuli-preview_component.js.html#l292"><code>app&#x2F;components&#x2F;exp-lookit-stimuli-preview&#x2F;component.js:292</code></a>
                             </p>
                     
                     
@@ -2775,7 +2806,7 @@ expanded out to
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/app_components_exp-lookit-stimuli-preview_component.js.html#l255"><code>app&#x2F;components&#x2F;exp-lookit-stimuli-preview&#x2F;component.js:255</code></a>
+                            <a href="../files/app_components_exp-lookit-stimuli-preview_component.js.html#l269"><code>app&#x2F;components&#x2F;exp-lookit-stimuli-preview&#x2F;component.js:269</code></a>
                             </p>
                     
                     

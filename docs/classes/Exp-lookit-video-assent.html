@@ -19,7 +19,7 @@
                 <img style="float:right; vertical-align:middle;" src="../assets/css/logo.png" height="70">
                 <span>Lookit<br> component<br> docs</span>
 
-                    <p>Version: latest <br>(v1.3.0)</p>
+                    <p>Version: latest <br>(v1.3.x)</p>
                     <select name="select_version" onchange="location = this.value;">
                         <option value="">--Select different version--</option>
                             <option value="../releases/v1.2.0/index.html">v1.2.0</option>
@@ -120,6 +120,7 @@
             Uses
             <ul class="inline commas">
                     <li><a href="Video-record.html">Video-record</a></li>
+                    <li><a href="Expand-assets.html">Expand-assets</a></li>
             </ul>
         </div>
 
@@ -128,7 +129,7 @@
         </div>
 
         <div class="foundat">
-            Defined in: <a href="../files/app_components_exp-lookit-video-assent_component.js.html#l20"><code>app&#x2F;components&#x2F;exp-lookit-video-assent&#x2F;component.js:20</code></a>
+            Defined in: <a href="../files/app_components_exp-lookit-video-assent_component.js.html#l19"><code>app&#x2F;components&#x2F;exp-lookit-video-assent&#x2F;component.js:19</code></a>
         </div>
 
             Collection: <a href="../modules/frames.html">frames</a><br>
@@ -362,12 +363,24 @@ specified using stubs MUST be organized as expected under baseDir/MEDIATYPE/file
                     <h3>Properties</h3>
 
                     <ul class="index-list properties extends">
+                            <li class="index-item property private inherited">
+                                <a href="#property_assetsToExpand">assetsToExpand</a>
+
+                            </li>
                             <li class="index-item property inherited">
                                 <a href="#property_audioOnly">audioOnly</a>
 
                             </li>
+                            <li class="index-item property inherited">
+                                <a href="#property_audioTypes">audioTypes</a>
+
+                            </li>
                             <li class="index-item property private inherited">
                                 <a href="#property_autosave">autosave</a>
+
+                            </li>
+                            <li class="index-item property inherited">
+                                <a href="#property_baseDir">baseDir</a>
 
                             </li>
                             <li class="index-item property private inherited">
@@ -480,6 +493,10 @@ specified using stubs MUST be organized as expected under baseDir/MEDIATYPE/file
                             </li>
                             <li class="index-item property private inherited">
                                 <a href="#property_videoList">videoList</a>
+
+                            </li>
+                            <li class="index-item property inherited">
+                                <a href="#property_videoTypes">videoTypes</a>
 
                             </li>
                     </ul>
@@ -1232,6 +1249,31 @@ Individual frames may define additional properties that are sent.</p>
             <div id="properties" class="api-class-tabpanel">
                 <h2 class="off-left">Properties</h2>
 
+<div id="property_assetsToExpand" class="property item private inherited">
+    <h3 class="name"><code>assetsToExpand</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+
+        <span class="flag private">private</span>
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/Expand-assets.html#property_assetsToExpand">Expand-assets </a> (click for formatted description):
+        <a href="../files/app_mixins_expand-assets.js.html#l95"><code>app&#x2F;mixins&#x2F;expand-assets.js:95</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        Object describing which properties may need expansion
+    </div>
+
+
+
+</div>
 <div id="property_audioOnly" class="property item inherited">
     <h3 class="name"><code>audioOnly</code></h3>
     <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
@@ -1254,6 +1296,47 @@ Individual frames may define additional properties that are sent.</p>
     </div>
 
         <p><strong>Default:</strong> 0</p>
+
+
+</div>
+<div id="property_audioTypes" class="property item inherited">
+    <h3 class="name"><code>audioTypes</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String[]</a></span>
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/Expand-assets.html#property_audioTypes">Expand-assets </a> (click for formatted description):
+        <a href="../files/app_mixins_expand-assets.js.html#l123"><code>app&#x2F;mixins&#x2F;expand-assets.js:123</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        List of audio types to expect for any audio specified just
+with a string rather than with a list of src/type objects.
+If audioTypes is <code>[&#x27;typeA&#x27;, &#x27;typeB&#x27;]</code> and an audio source
+is given as <code>intro</code>, the audio source will be
+expanded out to
+
+
+    [
+        {
+            src: 'baseDir' + 'typeA/intro.typeA',
+            type: 'audio/typeA'
+        },
+        {
+            src: 'baseDir' + 'typeB/intro.typeB',
+            type: 'audio/typeB'
+        }
+    ]
+    </div>
+
+        <p><strong>Default:</strong> [&#x27;mp3&#x27;, &#x27;ogg&#x27;]</p>
 
 
 </div>
@@ -1281,6 +1364,40 @@ TODO: eventually use this to set up non-recording option for previewing
     </div>
 
         <p><strong>Default:</strong> 1</p>
+
+
+</div>
+<div id="property_baseDir" class="property item inherited">
+    <h3 class="name"><code>baseDir</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/Expand-assets.html#property_baseDir">Expand-assets </a> (click for formatted description):
+        <a href="../files/app_mixins_expand-assets.js.html#l103"><code>app&#x2F;mixins&#x2F;expand-assets.js:103</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        Base directory for where to find stimuli. Any image src
+values that are not full paths will be expanded by prefixing
+with <code>baseDir</code> + <code>img&#x2F;</code>. Any audio/video src values provided as
+strings rather than objects with <code>src</code> and <code>type</code> will be
+expanded out to <code>baseDir&#x2F;avtype&#x2F;[stub].avtype</code>, where the potential
+avtypes are given by <code>audioTypes</code> and <code>videoTypes</code>.
+
+baseDir should include a trailing slash
+(e.g., <code>http:&#x2F;&#x2F;stimuli.org&#x2F;myexperiment&#x2F;</code>); if a value is provided that
+does not end in a slash, one will be added.
+    </div>
+
+        <p><strong>Default:</strong> &#x27;&#x27;</p>
 
 
 </div>
@@ -1593,7 +1710,7 @@ losing data.
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-video-assent_component.js.html#l452"><code>app&#x2F;components&#x2F;exp-lookit-video-assent&#x2F;component.js:452</code></a>
+        <a href="../files/app_components_exp-lookit-video-assent_component.js.html#l453"><code>app&#x2F;components&#x2F;exp-lookit-video-assent&#x2F;component.js:453</code></a>
         </p>
 
 
@@ -1621,7 +1738,7 @@ regardless of leap years etc.</p>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-video-assent_component.js.html#l402"><code>app&#x2F;components&#x2F;exp-lookit-video-assent&#x2F;component.js:402</code></a>
+        <a href="../files/app_components_exp-lookit-video-assent_component.js.html#l403"><code>app&#x2F;components&#x2F;exp-lookit-video-assent&#x2F;component.js:403</code></a>
         </p>
 
 
@@ -1646,7 +1763,7 @@ regardless of leap years etc.</p>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-video-assent_component.js.html#l356"><code>app&#x2F;components&#x2F;exp-lookit-video-assent&#x2F;component.js:356</code></a>
+        <a href="../files/app_components_exp-lookit-video-assent_component.js.html#l357"><code>app&#x2F;components&#x2F;exp-lookit-video-assent&#x2F;component.js:357</code></a>
         </p>
 
 
@@ -1804,7 +1921,7 @@ generated for this randomizer.</li>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-video-assent_component.js.html#l442"><code>app&#x2F;components&#x2F;exp-lookit-video-assent&#x2F;component.js:442</code></a>
+        <a href="../files/app_components_exp-lookit-video-assent_component.js.html#l443"><code>app&#x2F;components&#x2F;exp-lookit-video-assent&#x2F;component.js:443</code></a>
         </p>
 
 
@@ -1829,7 +1946,7 @@ generated for this randomizer.</li>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-video-assent_component.js.html#l432"><code>app&#x2F;components&#x2F;exp-lookit-video-assent&#x2F;component.js:432</code></a>
+        <a href="../files/app_components_exp-lookit-video-assent_component.js.html#l433"><code>app&#x2F;components&#x2F;exp-lookit-video-assent&#x2F;component.js:433</code></a>
         </p>
 
 
@@ -1932,7 +2049,7 @@ Accessible to consuming frame.
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-video-assent_component.js.html#l412"><code>app&#x2F;components&#x2F;exp-lookit-video-assent&#x2F;component.js:412</code></a>
+        <a href="../files/app_components_exp-lookit-video-assent_component.js.html#l413"><code>app&#x2F;components&#x2F;exp-lookit-video-assent&#x2F;component.js:413</code></a>
         </p>
 
 
@@ -1957,7 +2074,7 @@ Accessible to consuming frame.
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_components_exp-lookit-video-assent_component.js.html#l422"><code>app&#x2F;components&#x2F;exp-lookit-video-assent&#x2F;component.js:422</code></a>
+        <a href="../files/app_components_exp-lookit-video-assent_component.js.html#l423"><code>app&#x2F;components&#x2F;exp-lookit-video-assent&#x2F;component.js:423</code></a>
         </p>
 
 
@@ -2221,6 +2338,47 @@ Accessible to consuming frame.
 
 
 </div>
+<div id="property_videoTypes" class="property item inherited">
+    <h3 class="name"><code>videoTypes</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String[]</a></span>
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/Expand-assets.html#property_videoTypes">Expand-assets </a> (click for formatted description):
+        <a href="../files/app_mixins_expand-assets.js.html#l151"><code>app&#x2F;mixins&#x2F;expand-assets.js:151</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        List of video types to expect for any audio specified just
+with a string rather than with a list of src/type objects.
+If videoTypes is <code>[&#x27;typeA&#x27;, &#x27;typeB&#x27;]</code> and a video source
+is given as <code>intro</code>, the video source will be
+expanded out to
+
+
+    [
+        {
+            src: 'baseDir' + 'typeA/intro.typeA',
+            type: 'video/typeA'
+        },
+        {
+            src: 'baseDir' + 'typeB/intro.typeB',
+            type: 'video/typeB'
+        }
+    ]
+    </div>
+
+        <p><strong>Default:</strong> [&#x27;mp4&#x27;, &#x27;webm&#x27;]</p>
+
+
+</div>
             </div>
 
             <div id="attrs" class="api-class-tabpanel">
@@ -2244,7 +2402,7 @@ Accessible to consuming frame.
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/app_components_exp-lookit-video-assent_component.js.html#l477"><code>app&#x2F;components&#x2F;exp-lookit-video-assent&#x2F;component.js:477</code></a>
+                            <a href="../files/app_components_exp-lookit-video-assent_component.js.html#l478"><code>app&#x2F;components&#x2F;exp-lookit-video-assent&#x2F;component.js:478</code></a>
                             </p>
                     
                     
@@ -2273,7 +2431,7 @@ Accessible to consuming frame.
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/app_components_exp-lookit-video-assent_component.js.html#l484"><code>app&#x2F;components&#x2F;exp-lookit-video-assent&#x2F;component.js:484</code></a>
+                            <a href="../files/app_components_exp-lookit-video-assent_component.js.html#l485"><code>app&#x2F;components&#x2F;exp-lookit-video-assent&#x2F;component.js:485</code></a>
                             </p>
                     
                     
@@ -2424,7 +2582,7 @@ Accessible to consuming frame.
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/app_components_exp-lookit-video-assent_component.js.html#l258"><code>app&#x2F;components&#x2F;exp-lookit-video-assent&#x2F;component.js:258</code></a>
+                            <a href="../files/app_components_exp-lookit-video-assent_component.js.html#l259"><code>app&#x2F;components&#x2F;exp-lookit-video-assent&#x2F;component.js:259</code></a>
                             </p>
                     
                     
@@ -2466,7 +2624,7 @@ Accessible to consuming frame.
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/app_components_exp-lookit-video-assent_component.js.html#l346"><code>app&#x2F;components&#x2F;exp-lookit-video-assent&#x2F;component.js:346</code></a>
+                            <a href="../files/app_components_exp-lookit-video-assent_component.js.html#l347"><code>app&#x2F;components&#x2F;exp-lookit-video-assent&#x2F;component.js:347</code></a>
                             </p>
                     
                     
@@ -2582,7 +2740,7 @@ Accessible to consuming frame.
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/app_components_exp-lookit-video-assent_component.js.html#l224"><code>app&#x2F;components&#x2F;exp-lookit-video-assent&#x2F;component.js:224</code></a>
+                            <a href="../files/app_components_exp-lookit-video-assent_component.js.html#l225"><code>app&#x2F;components&#x2F;exp-lookit-video-assent&#x2F;component.js:225</code></a>
                             </p>
                     
                     
@@ -2673,7 +2831,7 @@ Accessible to consuming frame.
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/app_components_exp-lookit-video-assent_component.js.html#l237"><code>app&#x2F;components&#x2F;exp-lookit-video-assent&#x2F;component.js:237</code></a>
+                            <a href="../files/app_components_exp-lookit-video-assent_component.js.html#l238"><code>app&#x2F;components&#x2F;exp-lookit-video-assent&#x2F;component.js:238</code></a>
                             </p>
                     
                     
@@ -2788,7 +2946,7 @@ Accessible to consuming frame.
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/app_components_exp-lookit-video-assent_component.js.html#l530"><code>app&#x2F;components&#x2F;exp-lookit-video-assent&#x2F;component.js:530</code></a>
+                            <a href="../files/app_components_exp-lookit-video-assent_component.js.html#l531"><code>app&#x2F;components&#x2F;exp-lookit-video-assent&#x2F;component.js:531</code></a>
                             </p>
                     
                     
