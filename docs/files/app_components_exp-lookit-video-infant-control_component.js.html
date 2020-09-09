@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>app/randomizers/select.js - ember-lookit-frameplayer</title>
+    <title>app/components/exp-lookit-video-infant-control/component.js - ember-lookit-frameplayer</title>
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
     <link rel="stylesheet" href="https://yui-s.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
@@ -117,143 +117,176 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1 class="file-heading">File: app/randomizers/select.js</h1>
+<h1 class="file-heading">File: app/components/exp-lookit-video-infant-control/component.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
-/**
-* @module exp-player
-* @submodule randomizers
-*/
+import ExpLookitVideo from &#x27;../exp-lookit-video/component&#x27;;
+import InfantControlledTiming from &#x27;../../mixins/infant-controlled-timing&#x27;;
 
 /**
-* Randomizer to allow selection of one (or arbitrary sequence) of defined frames.
-* This is intended to be used either within a {{#crossLink &quot;Random-parameter-set&quot;}}{{/crossLink}} randomizer with
-* different &#x60;parameterSets&#x60; picking out different values for &#x60;whichFrames&#x60;) or indirectly
-* via the {{#crossLink &quot;Exp-frame-select&quot;}}{{/crossLink}} frame (which allows setting &#x60;whichFrames&#x60; using a custom
-* &#x60;generateProperties&#x60; function). Note that you cannot add a &#x60;generateProperties&#x60; function
-* directly to a randomizer!
-*
-* To use, define a frame with &quot;kind&quot;: &quot;choice&quot; and &quot;sampler&quot;: &quot;select&quot;,
-* as shown below, in addition to the parameters described under &#x27;properties&#x27;.
-*
-&#x60;&#x60;&#x60;json
-&quot;frames&quot;: {
-    &quot;select-randomizer-test&quot;: {
-        &quot;sampler&quot;: &quot;select&quot;,
-        &quot;kind&quot;: &quot;choice&quot;,
-        &quot;whichFrames&quot;: 0,
-        &quot;commonFrameProperties&quot;: {
-            &quot;kind&quot;: &quot;exp-lookit-text&quot;
-        },
-        &quot;frameOptions&quot;: [
-            {
-                &quot;blocks&quot;: [
-                    {
-                        &quot;emph&quot;: true,
-                        &quot;text&quot;: &quot;Let&#x27;s think about hippos!&quot;,
-                        &quot;title&quot;: &quot;FRAME 1&quot;
-                    },
-                    {
-                        &quot;text&quot;: &quot;Some more about hippos...&quot;
-                    }
-                ]
-            },
-            {
-                &quot;blocks&quot;: [
-                    {
-                        &quot;emph&quot;: false,
-                        &quot;text&quot;: &quot;Let&#x27;s think about dolphins!&quot;,
-                        &quot;title&quot;: &quot;FRAME 2&quot;
-                    }
-                ]
-            }
-        ]
-    }
+ * @module exp-player
+ * @submodule frames
+ */
+
+/**
+ * Infant-controlled version of the {{#crossLink &quot;Exp-lookit-video&quot;}}{{/crossLink}} frame. This works the same way as
+ * exp-lookit-video except that you can enable the parent to:
+ *
+ * - end the trial by pressing the &#x60;endTrialKey&#x60; key
+ * - hold down the &#x60;lookawayKey&#x60; (or the mouse button) to indicate that the child is not looking; the trial will automatically end
+ *   after the lookaway criterion is met.
+ *
+ * You can disable either of these behaviors by setting the key to &#x60;&#x27;&#x27;&#x60;.
+ *
+ * The frame will still end when it would have anyway if neither of these things happen! For instance, if you would have
+ * looped the video for 30 seconds, then after 30 seconds the frame will move on, serving as a &quot;ceiling&quot; on looking time.
+ *
+ * Lookaway criterion: You have two options for how to determine when the child has looked away long enough to proceed.
+ * Set the &#x60;lookawayType&#x60; to &#x60;&quot;total&quot;&#x60; to accumulate lookaway time until the child has looked away for a total of
+ * &#x60;lookawayThreshold&#x60; seconds. (For instance, if the &#x60;lookawayThreshold&#x60; is 2, then the trial will end after the child
+ * looks away for 0.5s, then 1s, then 0.5s.) Set the &#x60;lookawayType&#x60; to &#x60;&quot;continuous&quot;&#x60; to require that the child look
+ * away for a continuous &#x60;lookawayThreshold&#x60;-second interval. (For instance, if the &#x60;lookawayThreshold&#x60; is 2, then the
+ * child might look away for 1s, 1.5s, and 1s but the trial would continue until she looked away for 2s.)
+ *
+ * The looking time measurement begins only when the video starts, not while a video connection is established.
+ *
+ * If a &#x60;lookawayKey&#x60; is defined, lookaways are recorded the entire time the frame is running. However, the looking
+ * time measurement only starts once video begins playing (e.g., not during webcam connection). Lookaways at the very
+ * start of the video don&#x27;t count! If the child is not looking as the video begins, the measurement begins once they look
+ * for the first time.
+ *
+ * If the trial is paused, parent control of the trial is also paused; the looking time measurement begins fresh when
+ * restarting.
+ *
+ * Two pieces of data are recorded for convenience when coding or if implementing a live habituation procedure:
+ * &#x60;totalLookingTime&#x60; and &#x60;reasonTrialEnded&#x60;.
+ *
+ * Example usage:
+ *
+ &#x60;&#x60;&#x60;json
+ &quot;play-video-twice&quot;: {
+    &quot;kind&quot;: &quot;exp-lookit-video-infant-control&quot;,
+    &quot;lookawayKey&quot;: &quot;p&quot;,
+    &quot;lookawayType&quot;: &quot;total&quot;,
+    &quot;lookawayThreshold&quot;: 2,
+    &quot;endTrialKey&quot;: &quot;q&quot;,
+
+    &quot;audio&quot;: {
+        &quot;loop&quot;: false,
+        &quot;source&quot;: &quot;peekaboo&quot;
+    },
+    &quot;video&quot;: {
+        &quot;top&quot;: 10,
+        &quot;left&quot;: 25,
+        &quot;loop&quot;: true,
+        &quot;width&quot;: 50,
+        &quot;source&quot;: &quot;cropped_apple&quot;
+    },
+    &quot;backgroundColor&quot;: &quot;white&quot;,
+    &quot;autoProceed&quot;: true,
+    &quot;parentTextBlock&quot;: {
+        &quot;text&quot;: &quot;If your child needs a break, just press X to pause!&quot;
+    },
+    &quot;requiredDuration&quot;: 0,
+    &quot;requireAudioCount&quot;: 0,
+    &quot;requireVideoCount&quot;: 2,
+    &quot;restartAfterPause&quot;: true,
+    &quot;pauseKey&quot;: &quot;x&quot;,
+    &quot;pauseKeyDescription&quot;: &quot;X&quot;,
+    &quot;pauseAudio&quot;: &quot;pause&quot;,
+    &quot;pauseVideo&quot;: &quot;attentiongrabber&quot;,
+    &quot;pauseText&quot;: &quot;(You&#x27;ll have a moment to turn around again.)&quot;,
+    &quot;unpauseAudio&quot;: &quot;return_after_pause&quot;,
+    &quot;doRecording&quot;: true,
+    &quot;baseDir&quot;: &quot;https://www.mit.edu/~kimscott/placeholderstimuli/&quot;,
+    &quot;audioTypes&quot;: [
+        &quot;ogg&quot;,
+        &quot;mp3&quot;
+    ],
+    &quot;videoTypes&quot;: [
+        &quot;webm&quot;,
+        &quot;mp4&quot;
+    ]
 }
-*
-* &#x60;&#x60;&#x60;
-* @class Select
-*/
 
-var randomizer = function(frameId, frameConfig, pastSessions, resolveFrame) {
+ * &#x60;&#x60;&#x60;
+ * @class Exp-lookit-video-infant-control
+ * @extends Exp-lookit-video
+ * @uses Infant-controlled-timing
+ */
 
-    // Data provided to randomizer (properties of frameConfig):
+export default ExpLookitVideo.extend(InfantControlledTiming, {
 
-    /**
-     * List of frames that can be created by this randomizer. Each frame is an
-     * object with any necessary frame-specific properties specified. The
-     * &#x27;kind&#x27; of frame can be specified either here (per frame) or in
-     * commonFrameProperties. If a property is defined for a given frame both
-     * in this frame list and in commonFrameProperties, the value in the frame
-     * list will take precedence.
-     *
-     * (E.g., you could include &#x27;kind&#x27;: &#x27;normal-frame&#x27; in
-     * commmonFrameProperties, but for a single frame in frameOptions, include
-     * &#x27;kind&#x27;: &#x27;special-frame&#x27;.)
-     *
-     * @property {Object[]} frameOptions
-     */
-
-    /**
-     * Object describing common parameters to use in EVERY frame created
-     * by this randomizer. Parameter names and values are as described in
-     * the documentation for the frameType used.
-     *
-     * @property {Object} commonFrameProperties
-     */
-
-    /**
-     * Index or indices (0-indexed) within frameOptions to actually use. This can be either a number
-     * (e.g., 0 or 1 to use the first or second option respectively) or an array providing
-     * an ordered list of indices to use (e.g., [0, 1] or [1, 0] to use the first then
-     * second or second then first options, respectively). All indices must be integers
-     * in [0, frameOptions.length).
-     *
-     * If not provided or -1, the entire frameOptions list is used in order. (If empty
-     * list is provided, however, that is respected and no frames are inserted by this
-     * randomizer.)
-     *
-     * @property {Number} whichFrames
-     */
-
-    var thisFrame = {};
-    var frames = [];
-
-    // If a single frame index is provided, convert to a single-element list
-    if ((typeof frameConfig.whichFrames) === &#x27;number&#x27; &amp;&amp; frameConfig.whichFrames != -1) {
-        frameConfig.whichFrames = [frameConfig.whichFrames];
-    } else if (!frameConfig.hasOwnProperty(&#x27;whichFrames&#x27;) || frameConfig.whichFrames == -1 || !frameConfig.whichFrames) {
-        frameConfig.whichFrames = [...frameConfig.frameOptions.keys()];
-    }
-
-    for (var iFrame = 0; iFrame &lt; frameConfig.whichFrames.length; iFrame++) {
-        if (frameConfig.whichFrames[iFrame] &lt; 0 || frameConfig.whichFrames[iFrame] &gt;= frameConfig.frameOptions.length) {
-            throw &#x60;Frame index in whichFrames out of range in select randomizer. All frame indices must be between 0 and frameOptions.length - 1.&#x60;;
+    meta: {
+        data: {
+            type: &#x27;object&#x27;,
+            properties: {
+                videoShown: {
+                    type: &#x27;string&#x27;,
+                    default: &#x27;&#x27;
+                },
+                videoId: {
+                    type: &#x27;string&#x27;
+                },
+                hasBeenPaused: {
+                    type: &#x27;boolean&#x27;
+                },
+                totalLookingTime: {
+                    type: &#x27;number&#x27;
+                },
+                trialEndReason: {
+                    type: &#x27;string&#x27;
+                }
+            }
         }
+    },
 
-        // Assign parameters common to all frames made by this randomizer
-        thisFrame = {};
-        Object.assign(thisFrame, frameConfig.commonFrameProperties);
+    actions: {
 
-        // Assign parameters specific to this frame (allow to override
-        // common parameters assigned above)
-        Object.assign(thisFrame, frameConfig.frameOptions[frameConfig.whichFrames[iFrame]]);
+        videoStarted() {
+            if (this.get(&#x27;testVideoTimesPlayed&#x27;) === 0) {
+                this.startParentControl();
+            }
+            this._super(...arguments);
+        },
 
-        thisFrame = resolveFrame(frameId + &#x27;-&#x27; + iFrame, thisFrame)[0];
-        frames.push(...thisFrame);
+        unpauseStudy() {
+            this.startParentControl();
+            this._super(...arguments);
+        },
+
+        finish() {
+            if (!this.get(&#x27;_finishing&#x27;)) {
+                this.endParentControl();
+            }
+            this._super(...arguments);
+        },
+
+    },
+
+    togglePauseStudy(pause) {
+        if (pause || !this.get(&#x27;isPaused&#x27;)) { // Not currently paused: pause
+            this.endParentControl();
+        }
+        this._super(...arguments);
+    },
+
+    isReadyToFinish() {
+        let ready = this._super(...arguments);
+        if (ready) {
+            this.set(&#x27;trialEndReason&#x27;, &#x27;ceiling&#x27;);
+            this.setTrialEndTime();
+        }
+        return ready;
+    },
+
+
+    onLookawayCriterion() {
+        this.readyToFinish();
     }
 
-    /**
-     * Parameters captured and sent to the server
-     *
-     * @attribute conditions
-     * @param {Object[]} whichFrames the index/indices of the frame(s) used
-     */
-    return [frames, {&#x27;whichFrames&#x27;: frameConfig.whichFrames}];
-};
-export default randomizer;
-
+});
     </pre>
 </div>
                     </div>

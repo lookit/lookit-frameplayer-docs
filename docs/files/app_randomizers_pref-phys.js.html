@@ -19,7 +19,7 @@
                 <img style="float:right; vertical-align:middle;" src="../assets/css/logo.png" height="70">
                 <span>Lookit<br> component<br> docs</span>
 
-                    <p>Version: latest <br>(v1.3.x)</p>
+                    <p>Version: latest <br>(v1.3.x - develop)</p>
                     <select name="select_version" onchange="location = this.value;">
                         <option value="">--Select different version--</option>
                             <option value="../releases/v1.2.0/index.html">v1.2.0</option>
@@ -54,6 +54,7 @@
                             <li><a href="../classes/Exp-lookit-geometry-alternation.html">Exp-lookit-geometry-alternation</a></li>
                             <li><a href="../classes/Exp-lookit-geometry-alternation-open.html">Exp-lookit-geometry-alternation-open</a></li>
                             <li><a href="../classes/Exp-lookit-images-audio.html">Exp-lookit-images-audio</a></li>
+                            <li><a href="../classes/Exp-lookit-images-audio-infant-control.html">Exp-lookit-images-audio-infant-control</a></li>
                             <li><a href="../classes/Exp-lookit-instructions.html">Exp-lookit-instructions</a></li>
                             <li><a href="../classes/Exp-lookit-mood-questionnaire.html">Exp-lookit-mood-questionnaire</a></li>
                             <li><a href="../classes/Exp-lookit-observation.html">Exp-lookit-observation</a></li>
@@ -68,11 +69,13 @@
                             <li><a href="../classes/Exp-lookit-video.html">Exp-lookit-video</a></li>
                             <li><a href="../classes/Exp-lookit-video-assent.html">Exp-lookit-video-assent</a></li>
                             <li><a href="../classes/Exp-lookit-video-consent.html">Exp-lookit-video-consent</a></li>
+                            <li><a href="../classes/Exp-lookit-video-infant-control.html">Exp-lookit-video-infant-control</a></li>
                             <li><a href="../classes/Exp-lookit-webcam-display.html">Exp-lookit-webcam-display</a></li>
                             <li><a href="../classes/Exp-video-config.html">Exp-video-config</a></li>
                             <li><a href="../classes/Exp-video-config-quality.html">Exp-video-config-quality</a></li>
                             <li><a href="../classes/Expand-assets.html">Expand-assets</a></li>
                             <li><a href="../classes/Full-screen.html">Full-screen</a></li>
+                            <li><a href="../classes/Infant-controlled-timing.html">Infant-controlled-timing</a></li>
                             <li><a href="../classes/Media-reload.html">Media-reload</a></li>
                             <li><a href="../classes/Permute.html">Permute</a></li>
                             <li><a href="../classes/Random-parameter-set.html">Random-parameter-set</a></li>
@@ -1671,7 +1674,7 @@ function toFrames(frameId, eventVideos, BASE_DIR) {
     return eventVideos.map((e) =&gt; {
         if (e.index === nVideos) { // last frame
             return {
-                kind: &#x27;exp-lookit-video&#x27;,
+                kind: &#x27;exp-lookit-composite-video-trial&#x27;,
                 id: &#x60;${frameId}&#x60;,
                 audioSources: audioSourceObjs(
                     BASE_DIR + &#x27;audio/&#x27;,
@@ -1691,7 +1694,7 @@ function toFrames(frameId, eventVideos, BASE_DIR) {
         var musicName = allMusic[Math.floor(Math.random() * allMusic.length)];
 
         return { // all non-last frames
-            kind: &#x27;exp-lookit-video&#x27;,
+            kind: &#x27;exp-lookit-composite-video-trial&#x27;,
             id: &#x60;${frameId}&#x60;,
             audioSources: audioSourceObjs(
                 BASE_DIR + &#x27;audio/&#x27;,

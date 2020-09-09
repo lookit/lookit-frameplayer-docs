@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Infant-controlled-timing - ember-lookit-frameplayer</title>
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="https://yui-s.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="https://yui-s.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+<div id="doc">
+    <div id="bd" class="yui3-g">
+        <div class="yui3-u-1-5">
+            <div id="docs-sidebar" class="sidebar apidocs">
+              <h2 style="display:inline;">
+              <div>
+                <img style="float:right; vertical-align:middle;" src="../assets/css/logo.png" height="70">
+                <span>Lookit<br> component<br> docs</span>
+
+                    <p>Version: latest <br>(v1.3.x - develop)</p>
+                    <select name="select_version" onchange="location = this.value;">
+                        <option value="">--Select different version--</option>
+                            <option value="../releases/v1.2.0/index.html">v1.2.0</option>
+                            <option value="../releases/v1.3.0/index.html">v1.3.0</option>
+                    </select>
+              </div>
+              </h2>
+              <div id="api-list">
+                  <div id="api-tabview">
+              
+                    <div id="api-tabview-panel">
+                        <h2 class="off-left">Collections</h2>
+                        <ul id="api-modules" class="apis modules">
+                            <li class="module-sidebar-exp-player"><a href="../modules/exp-player.html">exp-player</a></li>
+                            <li class="module-sidebar-frames"><a href="../modules/frames.html">frames</a></li>
+                            <li class="module-sidebar-frames-deprecated"><a href="../modules/frames-deprecated.html">frames-deprecated</a></li>
+                            <li class="module-sidebar-mixins"><a href="../modules/mixins.html">mixins</a></li>
+                            <li class="module-sidebar-randomizers"><a href="../modules/randomizers.html">randomizers</a></li>
+                        </ul>
+                        <h2 class="off-left">All elements</h2>
+                              <div id="api-tabview-filter">
+                      <input type="search" id="api-filter" placeholder="Type to filter">
+                    </div>
+                        <ul id="api-classes" class="apis classes">
+                            <li><a href="../classes/Exp-frame-base.html">Exp-frame-base</a></li>
+                            <li><a href="../classes/Exp-frame-select.html">Exp-frame-select</a></li>
+                            <li><a href="../classes/Exp-lookit-calibration.html">Exp-lookit-calibration</a></li>
+                            <li><a href="../classes/Exp-lookit-change-detection.html">Exp-lookit-change-detection</a></li>
+                            <li><a href="../classes/Exp-lookit-composite-video-trial.html">Exp-lookit-composite-video-trial</a></li>
+                            <li><a href="../classes/Exp-lookit-dialogue-page.html">Exp-lookit-dialogue-page</a></li>
+                            <li><a href="../classes/Exp-lookit-exit-survey.html">Exp-lookit-exit-survey</a></li>
+                            <li><a href="../classes/Exp-lookit-geometry-alternation.html">Exp-lookit-geometry-alternation</a></li>
+                            <li><a href="../classes/Exp-lookit-geometry-alternation-open.html">Exp-lookit-geometry-alternation-open</a></li>
+                            <li><a href="../classes/Exp-lookit-images-audio.html">Exp-lookit-images-audio</a></li>
+                            <li><a href="../classes/Exp-lookit-images-audio-infant-control.html">Exp-lookit-images-audio-infant-control</a></li>
+                            <li><a href="../classes/Exp-lookit-instructions.html">Exp-lookit-instructions</a></li>
+                            <li><a href="../classes/Exp-lookit-mood-questionnaire.html">Exp-lookit-mood-questionnaire</a></li>
+                            <li><a href="../classes/Exp-lookit-observation.html">Exp-lookit-observation</a></li>
+                            <li><a href="../classes/Exp-lookit-preferential-looking.html">Exp-lookit-preferential-looking</a></li>
+                            <li><a href="../classes/Exp-lookit-preview-explanation.html">Exp-lookit-preview-explanation</a></li>
+                            <li><a href="../classes/Exp-lookit-start-recording.html">Exp-lookit-start-recording</a></li>
+                            <li><a href="../classes/Exp-lookit-stimuli-preview.html">Exp-lookit-stimuli-preview</a></li>
+                            <li><a href="../classes/Exp-lookit-stop-recording.html">Exp-lookit-stop-recording</a></li>
+                            <li><a href="../classes/Exp-lookit-story-page.html">Exp-lookit-story-page</a></li>
+                            <li><a href="../classes/Exp-lookit-survey.html">Exp-lookit-survey</a></li>
+                            <li><a href="../classes/Exp-lookit-text.html">Exp-lookit-text</a></li>
+                            <li><a href="../classes/Exp-lookit-video.html">Exp-lookit-video</a></li>
+                            <li><a href="../classes/Exp-lookit-video-assent.html">Exp-lookit-video-assent</a></li>
+                            <li><a href="../classes/Exp-lookit-video-consent.html">Exp-lookit-video-consent</a></li>
+                            <li><a href="../classes/Exp-lookit-video-infant-control.html">Exp-lookit-video-infant-control</a></li>
+                            <li><a href="../classes/Exp-lookit-webcam-display.html">Exp-lookit-webcam-display</a></li>
+                            <li><a href="../classes/Exp-video-config.html">Exp-video-config</a></li>
+                            <li><a href="../classes/Exp-video-config-quality.html">Exp-video-config-quality</a></li>
+                            <li><a href="../classes/Expand-assets.html">Expand-assets</a></li>
+                            <li><a href="../classes/Full-screen.html">Full-screen</a></li>
+                            <li><a href="../classes/Infant-controlled-timing.html">Infant-controlled-timing</a></li>
+                            <li><a href="../classes/Media-reload.html">Media-reload</a></li>
+                            <li><a href="../classes/Permute.html">Permute</a></li>
+                            <li><a href="../classes/Random-parameter-set.html">Random-parameter-set</a></li>
+                            <li><a href="../classes/Select.html">Select</a></li>
+                            <li><a href="../classes/Session-record.html">Session-record</a></li>
+                            <li><a href="../classes/Video-record.html">Video-record</a></li>
+                            <li><a href="../classes/video-recorder.html">video-recorder</a></li>
+                        </ul>
+                    </div>
+              
+                  </div>
+              </div>
+            </div>
+        </div>
+        <div class="yui3-u-4-5">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1>Infant-controlled-timing Class</h1>
+<div class="box meta">
+
+
+        <div class="foundat">
+            Defined in: <a href="../files/app_mixins_infant-controlled-timing.js.html#l12"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:12</code></a>
+        </div>
+
+            Collection: <a href="../modules/mixins.html">mixins</a><br>
+
+</div>
+
+
+
+
+
+
+<div class="box intro">
+    <p>Reference for DEVELOPERS of new frames only!
+Mixin to allow parent to control frame progression by holding down a key when the child is not looking.
+Enables "infant-controlled" study designs via parent live-coding of infant looking behavior.
+To add this behavior to an existing frame:</p>
+<ol>
+<li>Call <code>this.startParentControl()</code> at the point you want looking time to start being measured.
+The parent will only be able to end the trial using the endTrialKey during the parent control period. Lookaway
+time will only accumulate and lookaways will only be able to end the trial during the parent control period.
+However, lookaways will be recorded as events throughout the frame. If the child is already looking away before
+the parent control period begins, lookaway time will begin accumulating only after the first look.</li>
+<li>Call <code>this.endParentControl()</code> at the point you want the parent not to be able to control frame progression anymore.
+For instance, if hiding stimuli and stopping recording after completing the frame, or if pausing the frame.</li>
+<li>If you need to be able to pause and re-start the frame, call <code>this.endParentControl()</code> when pausing and
+<code>this.startParentControl()</code> when re-starting. Note that startParentControl will start a "fresh" looking time
+measurement: looking and lookaway time will both be 0, the child will not be assumed to have already looked, etc.</li>
+<li>Define a function <code>onLookawayCriterion</code> that says what should happen when the parent presses the endTrialKey or the
+child reaches the lookaway criterion. E.g., this might typically move to the next frame. If needed you can access
+<code>this.get('trialEndReason')</code> (either 'parentEnded' or 'lookaway') to distinguish between these two possibilities.</li>
+<li>If it is possible for the frame to end by other mechanisms than the trialEndKey or reaching the lookaway criterion,
+then when that happens: set the <code>trialEndReason</code> accordingly (e.g., <code>this.set('trialEndReason', 'ceiling')</code>) and
+call <code>this.setTrialEndTime()</code> to calculate a total looking time based on the</li>
+<li>So that your frame will capture information about looking time and the reason the trial ended, and make that
+available to the researcher, add the following to your frame's <code>meta.data.properties</code>:<pre class="code prettyprint"><code>  totalLookingTime: {
+      type: 'number'
+  },
+  trialEndReason: {
+      type: 'string'
+  }
+</code></pre>
+</li>
+</ol>
+
+</div>
+
+<div>
+</div>
+
+
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
+
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
+            <li class="api-class-tab attrs"><a href="#attrs">Data collected</a></li>
+            <li class="api-class-tab events"><a href="#events">Events</a></li>
+    </ul>
+
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
+
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods">
+                            <li class="index-item method">
+                                <a href="#method_endParentControl">endParentControl</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_onSessionRecordingStarted">onSessionRecordingStarted</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_startParentControl">startParentControl</a>
+
+                            </li>
+                    </ul>
+                </div>
+
+                <div class="index-section properties">
+                    <h3>Properties</h3>
+
+                    <ul class="index-list properties">
+                            <li class="index-item property">
+                                <a href="#property_lookawayThreshold">lookawayThreshold</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_lookawayType">lookawayType</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_pauseKey">pauseKey</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_pauseKey">pauseKey</a>
+
+                            </li>
+                    </ul>
+                </div>
+
+                <div class="index-section attrs">
+                    <h3>Data collected</h3>
+
+                    <ul class="index-list attrs">
+                            <li class="index-item attr">
+                                <a href="#attr_totalLookingTime">totalLookingTime</a>
+                            </li>
+                            <li class="index-item attr">
+                                <a href="#attr_trialEndReason">trialEndReason</a>
+                            </li>
+                    </ul>
+                </div>
+
+                <div class="index-section events">
+                    <h3>Events</h3>
+
+                    <ul class="index-list events">
+                            <li class="index-item event">
+                                <a href="#event_lookawayEnd">lookawayEnd</a>
+
+                            </li>
+                            <li class="index-item event">
+                                <a href="#event_lookawayEndedTrial">lookawayEndedTrial</a>
+
+                            </li>
+                            <li class="index-item event">
+                                <a href="#event_lookawayStart">lookawayStart</a>
+
+                            </li>
+                            <li class="index-item event">
+                                <a href="#event_parentControlPeriodEnd">parentControlPeriodEnd</a>
+
+                            </li>
+                            <li class="index-item event">
+                                <a href="#event_parentControlPeriodStart">parentControlPeriodStart</a>
+
+                            </li>
+                            <li class="index-item event">
+                                <a href="#event_parentEndedTrial">parentEndedTrial</a>
+
+                            </li>
+                    </ul>
+                </div>
+        </div>
+
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+
+<div id="method_endParentControl" class="method item">
+    <h3 class="name"><code>endParentControl</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/app_mixins_infant-controlled-timing.js.html#l278"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:278</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>End period of parent control of trial progression, for instance because trial is paused. Looks to/away will
+still be logged as events but trial will not end based on parent input.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_onSessionRecordingStarted" class="method item">
+    <h3 class="name"><code>onSessionRecordingStarted</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/app_mixins_infant-controlled-timing.js.html#l226"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:226</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Hook called when session recording is started automatically. Override to do
+frame-specific actions at this point (e.g., beginning a test trial).</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_startParentControl" class="method item">
+    <h3 class="name"><code>startParentControl</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/app_mixins_infant-controlled-timing.js.html#l236"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:236</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Begin period of parent control of trial progression. After calling startParentControl(), we wait for the first
+infant look to the screen (this may be immediate because infant is already looking. After that, whenever infant
+look-away time reaches criterion (either due to long enough continuous lookaway, or due to cumulative time
+looking away) we will call onLookawayCriterion().</p>
+<p>If startParentControl is called multiple times, each time it's called it starts a "fresh" interval of parent
+control - i.e. no stored lookaway time, and no assumption the child has previously looked.</p>
+
+    </div>
+
+
+
+
+</div>
+            </div>
+
+            <div id="properties" class="api-class-tabpanel">
+                <h2 class="off-left">Properties</h2>
+
+<div id="property_lookawayThreshold" class="property item">
+    <h3 class="name"><code>lookawayThreshold</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+
+
+
+
+    <div class="meta">
+                <p> Specific to this element.
+                Defined in
+        <a href="../files/app_mixins_infant-controlled-timing.js.html#l77"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:77</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Lookaway threshold in seconds. How long does the child need to look away before the trial ends? Depending on
+the lookawayType, this will refer either to the total amount of time the child has looked away since their
+first look to the screen, or to the length of a single continuous lookaway.</p>
+
+    </div>
+
+        <p><strong>Default:</strong> 2</p>
+
+
+</div>
+<div id="property_lookawayType" class="property item">
+    <h3 class="name"><code>lookawayType</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+
+
+
+
+    <div class="meta">
+                <p> Specific to this element.
+                Defined in
+        <a href="../files/app_mixins_infant-controlled-timing.js.html#l62"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:62</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Type of lookaway criterion. Must be either
+'total' (to count total lookaway time) or 'continuous' (to count only continuous lookaway time).
+Whichever criterion type is used, only lookaways after the first look to the screen are considered.</p>
+
+    </div>
+
+        <p><strong>Default:</strong> &#x27;total&#x27;</p>
+
+
+</div>
+<div id="property_pauseKey" class="property item">
+    <h3 class="name"><code>pauseKey</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+
+
+
+
+    <div class="meta">
+                <p> Specific to this element.
+                Defined in
+        <a href="../files/app_mixins_infant-controlled-timing.js.html#l91"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:91</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Key parent should press to indicate the child is looking away. If a key is provided, then the trial will
+end if the child looks away looks long enough per the lookawayType and lookawayThreshold. You can also use
+'mouse' to indicate that mouse down/up should be used in place of key down/up events. Use an empty string,
+'', to not record any lookaways for this trial. You can look up the names of keys at <a href="https://keycode.info">https://keycode.info</a>.
+Default is 'w'.</p>
+
+    </div>
+
+        <p><strong>Default:</strong> &#x27;w&#x27;</p>
+
+
+</div>
+<div id="property_pauseKey" class="property item">
+    <h3 class="name"><code>pauseKey</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+
+
+
+
+    <div class="meta">
+                <p> Specific to this element.
+                Defined in
+        <a href="../files/app_mixins_infant-controlled-timing.js.html#l105"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:105</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Key parent should press to manually move on to next trial. This allows you to have parents control the study
+by giving instructions like "press q when the child looks away for at least a few seconds" instead of "hold down
+w whenever the child isn't looking."  Use an empty string, '', to not allow this function
+for this trial. You can look up the names of keys at <a href="https://keycode.info">https://keycode.info</a>. Default is 'q'.</p>
+
+    </div>
+
+        <p><strong>Default:</strong> &#x27;q&#x27;</p>
+
+
+</div>
+            </div>
+
+            <div id="attrs" class="api-class-tabpanel">
+                <h2 class="off-left">Data keys collected</h2>
+                These are the fields that will be captured by this frame and sent back to the Lookit server.
+                Each of these fields will correspond to one row of the CSV frame data for a given response - the
+                row will have <code>key</code> set to the data key name, and <code>value</code> set to the value for this response.
+                Equivalently, this data will be available in the <code>exp_data</code> field of the response JSON data.
+                    <div id="attr_totalLookingTime" class="attr item">
+                        <a name="config_totalLookingTime"></a> 
+                        <h3 class="name"><code>totalLookingTime</code></h3>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/app_mixins_infant-controlled-timing.js.html#l119"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:119</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Total looking time during this frame, in seconds.
+                    Looking time is calculated as the total time spent looking between:
+                    (1) The start of the parent control period, or the first look during that period if the child is not looking initially
+                    and
+                    (2) The end of the trial due to the parent pushing the end trial key, the child reaching the lookaway criterion,
+                    or the frame being completed without either of these happening (e.g., a video is played N times or an image is
+                    shown for N seconds).
+                    All time spent looking away, per parent coding, is excluded, regardless of the duration of the lookaway.</p>
+                    <p>This value will be null if the trial is not completed by any of the above mechanisms, for instance because
+                    the parent ends the study early during this frame.</p>
+                    
+                        </div>
+                    
+                    
+                    
+                    </div>
+                    <div id="attr_trialEndReason" class="attr item">
+                        <a name="config_trialEndReason"></a> 
+                        <h3 class="name"><code>trialEndReason</code></h3>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/app_mixins_infant-controlled-timing.js.html#l136"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:136</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>What caused the trial to end: 'lookaway' (the child reached the lookaway threshold), 'parentEnded' (the parent
+                    pressed the endTrialKey), or 'ceiling' (the frame ended without either of those happening).</p>
+                    <p>This value will be null if the trial is not completed by any of the above mechanisms, for instance because
+                    the parent ends the study early during this frame.</p>
+                    
+                        </div>
+                    
+                    
+                    
+                    </div>
+            </div>
+
+            <div id="events" class="api-class-tabpanel">
+                <h2 class="off-left">Events</h2>
+
+                    <div id="event_lookawayEnd" class="events item">
+                        <h3 class="name"><code>lookawayEnd</code></h3>
+                        <span class="type"></span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/app_mixins_infant-controlled-timing.js.html#l193"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:193</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>When parent records a lookaway ending. This will NOT be triggered at the start of this frame if the parent
+                    is not holding down the lookawayKey, only when the key is actually released. Lookaways
+                    are recorded regardless of whether the parent control period has started.</p>
+                    
+                        </div>
+                    
+                    
+                    
+                    </div>
+                    <div id="event_lookawayEndedTrial" class="events item">
+                        <h3 class="name"><code>lookawayEndedTrial</code></h3>
+                        <span class="type"></span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/app_mixins_infant-controlled-timing.js.html#l177"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:177</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>When trial ends due to lookaway criterion being reached.</p>
+                    
+                        </div>
+                    
+                    
+                    
+                    </div>
+                    <div id="event_lookawayStart" class="events item">
+                        <h3 class="name"><code>lookawayStart</code></h3>
+                        <span class="type"></span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/app_mixins_infant-controlled-timing.js.html#l162"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:162</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>When parent records a lookaway starting. This will be triggered at the start of this frame if the parent
+                    is already holding down the lookawayKey, and otherwise only when the key is newly pressed down. Lookaways
+                    are recorded regardless of whether the parent control period has started.</p>
+                    
+                        </div>
+                    
+                    
+                    
+                    </div>
+                    <div id="event_parentControlPeriodEnd" class="events item">
+                        <h3 class="name"><code>parentControlPeriodEnd</code></h3>
+                        <span class="type"></span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/app_mixins_infant-controlled-timing.js.html#l286"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:286</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>When interval of parent control of trial ends - i.e., lookaways cannot lead to ending trial, parent cannot
+                    press key to end trial.</p>
+                    
+                        </div>
+                    
+                    
+                    
+                    </div>
+                    <div id="event_parentControlPeriodStart" class="events item">
+                        <h3 class="name"><code>parentControlPeriodStart</code></h3>
+                        <span class="type"></span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/app_mixins_infant-controlled-timing.js.html#l252"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:252</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>When interval of parent control of trial begins - i.e., lookaways begin counting up to threshold.
+                    Lookaway events are recorded throughout, but do not count towards ending trial until parent control period
+                    begins.</p>
+                    
+                        </div>
+                    
+                    
+                    
+                    </div>
+                    <div id="event_parentEndedTrial" class="events item">
+                        <h3 class="name"><code>parentEndedTrial</code></h3>
+                        <span class="type"></span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/app_mixins_infant-controlled-timing.js.html#l264"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:264</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>When trial ends due to parent pressing key to end trial</p>
+                    
+                        </div>
+                    
+                    
+                    
+                    </div>
+            </div>
+    </div>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

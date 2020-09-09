@@ -101,6 +101,15 @@
             "fors": {},
             "namespaces": {}
         },
+        "app/components/exp-lookit-images-audio-infant-control/component.js": {
+            "name": "app/components/exp-lookit-images-audio-infant-control/component.js",
+            "modules": {},
+            "classes": {
+                "Exp-lookit-images-audio-infant-control": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "app/components/exp-lookit-instructions/component.js": {
             "name": "app/components/exp-lookit-instructions/component.js",
             "modules": {},
@@ -227,6 +236,15 @@
             "fors": {},
             "namespaces": {}
         },
+        "app/components/exp-lookit-video-infant-control/component.js": {
+            "name": "app/components/exp-lookit-video-infant-control/component.js",
+            "modules": {},
+            "classes": {
+                "Exp-lookit-video-infant-control": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "app/components/exp-lookit-webcam-display/component.js": {
             "name": "app/components/exp-lookit-webcam-display/component.js",
             "modules": {},
@@ -277,6 +295,15 @@
             "modules": {},
             "classes": {
                 "Full-screen": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "app/mixins/infant-controlled-timing.js": {
+            "name": "app/mixins/infant-controlled-timing.js",
+            "modules": {},
+            "classes": {
+                "Infant-controlled-timing": 1
             },
             "fors": {},
             "namespaces": {}
@@ -384,6 +411,7 @@
                 "Exp-lookit-geometry-alternation": 1,
                 "Exp-lookit-geometry-alternation-open": 1,
                 "Exp-lookit-images-audio": 1,
+                "Exp-lookit-images-audio-infant-control": 1,
                 "Exp-lookit-instructions": 1,
                 "Exp-lookit-mood-questionnaire": 1,
                 "Exp-lookit-observation": 1,
@@ -398,11 +426,13 @@
                 "Exp-lookit-video": 1,
                 "Exp-lookit-video-assent": 1,
                 "Exp-lookit-video-consent": 1,
+                "Exp-lookit-video-infant-control": 1,
                 "Exp-lookit-webcam-display": 1,
                 "Exp-video-config": 1,
                 "Exp-video-config-quality": 1,
                 "Expand-assets": 1,
                 "Full-screen": 1,
+                "Infant-controlled-timing": 1,
                 "Media-reload": 1,
                 "Session-record": 1,
                 "Video-record": 1,
@@ -431,6 +461,7 @@
                 "Exp-lookit-composite-video-trial": 1,
                 "Exp-lookit-exit-survey": 1,
                 "Exp-lookit-images-audio": 1,
+                "Exp-lookit-images-audio-infant-control": 1,
                 "Exp-lookit-instructions": 1,
                 "Exp-lookit-mood-questionnaire": 1,
                 "Exp-lookit-observation": 1,
@@ -443,6 +474,7 @@
                 "Exp-lookit-video": 1,
                 "Exp-lookit-video-assent": 1,
                 "Exp-lookit-video-consent": 1,
+                "Exp-lookit-video-infant-control": 1,
                 "Exp-lookit-webcam-display": 1,
                 "Exp-video-config": 1,
                 "Exp-video-config-quality": 1
@@ -487,6 +519,7 @@
             "classes": {
                 "Expand-assets": 1,
                 "Full-screen": 1,
+                "Infant-controlled-timing": 1,
                 "Media-reload": 1,
                 "Session-record": 1,
                 "Video-record": 1
@@ -729,6 +762,25 @@
                 "Full-screen",
                 "Video-record",
                 "Expand-assets"
+            ]
+        },
+        "Exp-lookit-images-audio-infant-control": {
+            "name": "Exp-lookit-images-audio-infant-control",
+            "shortname": "Exp-lookit-images-audio-infant-control",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "exp-player",
+            "submodule": "frames",
+            "namespace": "",
+            "file": "app/components/exp-lookit-images-audio-infant-control/component.js",
+            "line": 9,
+            "description": "Infant-controlled version of the {{#crossLink \"Exp-lookit-images-audio\"}}{{/crossLink}} frame. This works the same way as\nexp-lookit-images-audio except that you can enable the parent to:\n\n- end the trial by pressing the `endTrialKey` key\n- hold down the `lookawayKey` (or the mouse button) to indicate that the child is not looking; the trial will automatically end\n  after the lookaway criterion is met.\n\nYou can disable either of these behaviors by setting the key to `''`.\n\nThe frame will still end when it would have anyway if neither of these things happen! For instance, if you would have\ndisplayed an image for 30 seconds, then after 30 seconds the frame will move on, serving as a \"ceiling\" on looking time.\n\nLookaway criterion: You have two options for how to determine when the child has looked away long enough to proceed.\nSet the `lookawayType` to `\"total\"` to accumulate lookaway time until the child has looked away for a total of\n`lookawayThreshold` seconds. (For instance, if the `lookawayThreshold` is 2, then the trial will end after the child\nlooks away for 0.5s, then 1s, then 0.5s.) Set the `lookawayType` to `\"continuous\"` to require that the child look\naway for a continuous `lookawayThreshold`-second interval. (For instance, if the `lookawayThreshold` is 2, then the\nchild might look away for 1s, 1.5s, and 1s but the trial would continue until she looked away for 2s.)\n\nThe looking time measurement begins only when the video starts, not while a video connection is established.\n\nIf a `lookawayKey` is defined, lookaways are recorded the entire time the frame is running. However, the looking\ntime measurement only starts once images are displayed (or the \"delay\" timer starts counting down, for images\nshown at a delay - but e.g., not during webcam connection). Lookaways at the very\nstart don't count! If the child is not looking at the start, the measurement begins once they look\nfor the first time.\n\nTwo pieces of data are recorded for convenience when coding or if implementing a live habituation procedure:\n`totalLookingTime` and `reasonTrialEnded`.\n\nExample usage:\n\n```json\n\"play-video-twice\": {\n   \"kind\": \"exp-lookit-video-infant-control\",\n   \"lookawayKey\": \"p\",\n   \"lookawayType\": \"total\",\n   \"lookawayThreshold\": 2,\n   \"endTrialKey\": \"q\",\n\n   \"audio\": {\n       \"loop\": false,\n       \"source\": \"peekaboo\"\n   },\n   \"video\": {\n       \"top\": 10,\n       \"left\": 25,\n       \"loop\": true,\n       \"width\": 50,\n       \"source\": \"cropped_apple\"\n   },\n   \"backgroundColor\": \"white\",\n   \"autoProceed\": true,\n   \"parentTextBlock\": {\n       \"text\": \"If your child needs a break, just press X to pause!\"\n   },\n   \"requiredDuration\": 0,\n   \"requireAudioCount\": 0,\n   \"requireVideoCount\": 2,\n   \"restartAfterPause\": true,\n   \"pauseKey\": \"x\",\n   \"pauseKeyDescription\": \"X\",\n   \"pauseAudio\": \"pause\",\n   \"pauseVideo\": \"attentiongrabber\",\n   \"pauseText\": \"(You'll have a moment to turn around again.)\",\n   \"unpauseAudio\": \"return_after_pause\",\n   \"doRecording\": true,\n   \"baseDir\": \"https://www.mit.edu/~kimscott/placeholderstimuli/\",\n   \"audioTypes\": [\n       \"ogg\",\n       \"mp3\"\n   ],\n   \"videoTypes\": [\n       \"webm\",\n       \"mp4\"\n   ]\n}\n\n```",
+            "extends": "Exp-lookit-images-audio",
+            "uses": [
+                "Infant-controlled-timing"
             ]
         },
         "Exp-lookit-instructions": {
@@ -996,6 +1048,25 @@
                 "Video-record"
             ]
         },
+        "Exp-lookit-video-infant-control": {
+            "name": "Exp-lookit-video-infant-control",
+            "shortname": "Exp-lookit-video-infant-control",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "exp-player",
+            "submodule": "frames",
+            "namespace": "",
+            "file": "app/components/exp-lookit-video-infant-control/component.js",
+            "line": 9,
+            "description": "Infant-controlled version of the {{#crossLink \"Exp-lookit-video\"}}{{/crossLink}} frame. This works the same way as\nexp-lookit-video except that you can enable the parent to:\n\n- end the trial by pressing the `endTrialKey` key\n- hold down the `lookawayKey` (or the mouse button) to indicate that the child is not looking; the trial will automatically end\n  after the lookaway criterion is met.\n\nYou can disable either of these behaviors by setting the key to `''`.\n\nThe frame will still end when it would have anyway if neither of these things happen! For instance, if you would have\nlooped the video for 30 seconds, then after 30 seconds the frame will move on, serving as a \"ceiling\" on looking time.\n\nLookaway criterion: You have two options for how to determine when the child has looked away long enough to proceed.\nSet the `lookawayType` to `\"total\"` to accumulate lookaway time until the child has looked away for a total of\n`lookawayThreshold` seconds. (For instance, if the `lookawayThreshold` is 2, then the trial will end after the child\nlooks away for 0.5s, then 1s, then 0.5s.) Set the `lookawayType` to `\"continuous\"` to require that the child look\naway for a continuous `lookawayThreshold`-second interval. (For instance, if the `lookawayThreshold` is 2, then the\nchild might look away for 1s, 1.5s, and 1s but the trial would continue until she looked away for 2s.)\n\nThe looking time measurement begins only when the video starts, not while a video connection is established.\n\nIf a `lookawayKey` is defined, lookaways are recorded the entire time the frame is running. However, the looking\ntime measurement only starts once video begins playing (e.g., not during webcam connection). Lookaways at the very\nstart of the video don't count! If the child is not looking as the video begins, the measurement begins once they look\nfor the first time.\n\nIf the trial is paused, parent control of the trial is also paused; the looking time measurement begins fresh when\nrestarting.\n\nTwo pieces of data are recorded for convenience when coding or if implementing a live habituation procedure:\n`totalLookingTime` and `reasonTrialEnded`.\n\nExample usage:\n\n```json\n\"play-video-twice\": {\n   \"kind\": \"exp-lookit-video-infant-control\",\n   \"lookawayKey\": \"p\",\n   \"lookawayType\": \"total\",\n   \"lookawayThreshold\": 2,\n   \"endTrialKey\": \"q\",\n\n   \"audio\": {\n       \"loop\": false,\n       \"source\": \"peekaboo\"\n   },\n   \"video\": {\n       \"top\": 10,\n       \"left\": 25,\n       \"loop\": true,\n       \"width\": 50,\n       \"source\": \"cropped_apple\"\n   },\n   \"backgroundColor\": \"white\",\n   \"autoProceed\": true,\n   \"parentTextBlock\": {\n       \"text\": \"If your child needs a break, just press X to pause!\"\n   },\n   \"requiredDuration\": 0,\n   \"requireAudioCount\": 0,\n   \"requireVideoCount\": 2,\n   \"restartAfterPause\": true,\n   \"pauseKey\": \"x\",\n   \"pauseKeyDescription\": \"X\",\n   \"pauseAudio\": \"pause\",\n   \"pauseVideo\": \"attentiongrabber\",\n   \"pauseText\": \"(You'll have a moment to turn around again.)\",\n   \"unpauseAudio\": \"return_after_pause\",\n   \"doRecording\": true,\n   \"baseDir\": \"https://www.mit.edu/~kimscott/placeholderstimuli/\",\n   \"audioTypes\": [\n       \"ogg\",\n       \"mp3\"\n   ],\n   \"videoTypes\": [\n       \"webm\",\n       \"mp4\"\n   ]\n}\n\n```",
+            "extends": "Exp-lookit-video",
+            "uses": [
+                "Infant-controlled-timing"
+            ]
+        },
         "Exp-lookit-webcam-display": {
             "name": "Exp-lookit-webcam-display",
             "shortname": "Exp-lookit-webcam-display",
@@ -1103,6 +1174,24 @@
             "file": "app/mixins/full-screen.js",
             "line": 12,
             "description": "Reference for DEVELOPERS of new frames only!\nAllow components to specify fullscreen capabilities based on minimal configuration options"
+        },
+        "Infant-controlled-timing": {
+            "name": "Infant-controlled-timing",
+            "shortname": "Infant-controlled-timing",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [
+                "Exp-lookit-images-audio-infant-control",
+                "Exp-lookit-video-infant-control"
+            ],
+            "module": "exp-player",
+            "submodule": "mixins",
+            "namespace": "",
+            "file": "app/mixins/infant-controlled-timing.js",
+            "line": 12,
+            "description": "Reference for DEVELOPERS of new frames only!\nMixin to allow parent to control frame progression by holding down a key when the child is not looking.\n Enables \"infant-controlled\" study designs via parent live-coding of infant looking behavior.\nTo add this behavior to an existing frame:\n1) Call `this.startParentControl()` at the point you want looking time to start being measured.\n    The parent will only be able to end the trial using the endTrialKey during the parent control period. Lookaway\n    time will only accumulate and lookaways will only be able to end the trial during the parent control period.\n    However, lookaways will be recorded as events throughout the frame. If the child is already looking away before\n    the parent control period begins, lookaway time will begin accumulating only after the first look.\n2) Call `this.endParentControl()` at the point you want the parent not to be able to control frame progression anymore.\n    For instance, if hiding stimuli and stopping recording after completing the frame, or if pausing the frame.\n3) If you need to be able to pause and re-start the frame, call `this.endParentControl()` when pausing and\n    `this.startParentControl()` when re-starting. Note that startParentControl will start a \"fresh\" looking time\n    measurement: looking and lookaway time will both be 0, the child will not be assumed to have already looked, etc.\n4) Define a function `onLookawayCriterion` that says what should happen when the parent presses the endTrialKey or the\n    child reaches the lookaway criterion. E.g., this might typically move to the next frame. If needed you can access\n    `this.get('trialEndReason')` (either 'parentEnded' or 'lookaway') to distinguish between these two possibilities.\n5) If it is possible for the frame to end by other mechanisms than the trialEndKey or reaching the lookaway criterion,\n    then when that happens: set the `trialEndReason` accordingly (e.g., `this.set('trialEndReason', 'ceiling')`) and\n    call `this.setTrialEndTime()` to calculate a total looking time based on the\n6) So that your frame will capture information about looking time and the reason the trial ended, and make that\n    available to the researcher, add the following to your frame's `meta.data.properties`:\n    ```\n      totalLookingTime: {\n          type: 'number'\n      },\n      trialEndReason: {\n          type: 'string'\n      }\n      ```"
         },
         "Media-reload": {
             "name": "Media-reload",
@@ -3267,7 +3356,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 380,
+            "line": 381,
             "description": "Whether to do webcam recording (will wait for webcam\nconnection before starting audio or showing images if so)",
             "itemtype": "property",
             "name": "doRecording",
@@ -3278,7 +3367,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 391,
+            "line": 392,
             "description": "Whether to proceed automatically when all conditions are met, vs. enabling\nnext button at that point. If true: the next, previous, and replay buttons are\nhidden, and the frame auto-advances after ALL of the following happen\n(a) the audio segment (if any) completes\n(b) the durationSeconds (if any) is achieved\n(c) a choice is made (if required)\n(d) that choice is correct (if required)\n(e) the choice audio (if any) completes\n(f) the choice text (if any) is dismissed\nIf false: the next, previous, and replay buttons (as applicable) are displayed.\nIt becomes possible to press 'next' only once the conditions above are met.",
             "itemtype": "property",
             "name": "autoProceed",
@@ -3290,7 +3379,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 413,
+            "line": 414,
             "description": "Minimum duration of frame in seconds. If set, then it will only\nbe possible to proceed to the next frame after both the audio completes AND\nthis duration is acheived.",
             "itemtype": "property",
             "name": "durationSeconds",
@@ -3302,7 +3391,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 428,
+            "line": 429,
             "description": "[Only used if durationSeconds set] Whether to\nshow a progress bar based on durationSeconds in the parent text area.",
             "itemtype": "property",
             "name": "showProgressBar",
@@ -3314,7 +3403,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 441,
+            "line": 442,
             "description": "[Only used if not autoProceed] Whether to\nshow a previous button to allow the participant to go to the previous frame",
             "itemtype": "property",
             "name": "showPreviousButton",
@@ -3326,7 +3415,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 454,
+            "line": 455,
             "description": "[Only used if not autoProceed AND if there is audio] Whether to\nshow a replay button to allow the participant to replay the audio",
             "itemtype": "property",
             "name": "showReplayButton",
@@ -3338,7 +3427,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 467,
+            "line": 468,
             "description": "Whether to have the image display area take up the whole screen if possible.\nThis will only apply if (a) there is no parent text and (b) there are no\ncontrol buttons (next, previous, replay) because the frame auto-proceeds.",
             "itemtype": "property",
             "name": "maximizeDisplay",
@@ -3350,7 +3439,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 481,
+            "line": 482,
             "description": "Audio file to play at the start of this frame.\nThis can either be an array of {src: 'url', type: 'MIMEtype'} objects, e.g.\nlisting equivalent .mp3 and .ogg files, or can be a single string `filename`\nwhich will be expanded based on `baseDir` and `audioTypes` values (see `audioTypes`).",
             "itemtype": "property",
             "name": "audio",
@@ -3362,7 +3451,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 496,
+            "line": 497,
             "description": "Text block to display to parent.  (Each field is optional)",
             "itemtype": "property",
             "name": "parentTextBlock",
@@ -3390,7 +3479,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 522,
+            "line": 523,
             "description": "Array of images to display and information about their placement. For each\nimage, you need to specify `src` (image name/URL) and placement (either by\nproviding left/width/top values, or by using a `position` preset).\n\nEverything else is optional! This is where you would say that an image should\nbe shown at a delay",
             "itemtype": "property",
             "name": "images",
@@ -3463,7 +3552,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 614,
+            "line": 615,
             "description": "Color of background. See https://developer.mozilla.org/en-US/docs/Web/CSS/color_value\nfor acceptable syntax: can use color names ('blue', 'red', 'green', etc.), or\nrgb hex values (e.g. '#800080' - include the '#')",
             "itemtype": "property",
             "name": "backgroundColor",
@@ -3475,7 +3564,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 627,
+            "line": 628,
             "description": "Color of area where images are shown, if different from overall background.\nDefaults to backgroundColor if one is provided. See\nhttps://developer.mozilla.org/en-US/docs/Web/CSS/color_value\nfor acceptable syntax: can use color names ('blue', 'red', 'green', etc.), or\nrgb hex values (e.g. '#800080' - include the '#')",
             "itemtype": "property",
             "name": "pageColor",
@@ -3487,7 +3576,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 642,
+            "line": 643,
             "description": "Whether this is a frame where the user needs to click to select one of the\nimages before proceeding.",
             "itemtype": "property",
             "name": "choiceRequired",
@@ -3499,7 +3588,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 654,
+            "line": 655,
             "description": "[Only used if `choiceRequired` is true] Whether the participant has to select\none of the *correct* images before proceeding.",
             "itemtype": "property",
             "name": "correctChoiceRequired",
@@ -3511,7 +3600,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 666,
+            "line": 667,
             "description": "Whether the participant can make a choice before audio finishes. (Only relevant\nif `choiceRequired` is true.)",
             "itemtype": "property",
             "name": "canMakeChoiceBeforeAudioFinished",
@@ -3523,7 +3612,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 678,
+            "line": 679,
             "description": "Array representing times when particular images should be highlighted. Each\nelement of the array should be of the form {'range': [3.64, 7.83], 'imageId': 'myImageId'}.\nThe two `range` values are the start and end times of the highlight in seconds,\nrelative to the audio played. The `imageId` corresponds to the `id` of an\nelement of `images`.\n\nHighlights can overlap in time. Any that go longer than the audio will just\nbe ignored/cut off.\n\nOne strategy for generating a bunch of highlights for a longer story is to\nannotate using Audacity and export the labels to get the range values.",
             "itemtype": "property",
             "name": "highlights",
@@ -3546,7 +3635,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 726,
+            "line": 727,
             "description": "Array of images used in this frame [same as passed to this frame, but\nmay reflect random assignment for this particular participant]",
             "itemtype": "attribute",
             "name": "images",
@@ -3556,7 +3645,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 734,
+            "line": 735,
             "description": "ID of image selected at time of proceeding",
             "itemtype": "attribute",
             "name": "selectedImage",
@@ -3566,7 +3655,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 741,
+            "line": 742,
             "description": "Whether image selected at time of proceeding is marked as correct",
             "itemtype": "attribute",
             "name": "correctImageSelected",
@@ -3576,7 +3665,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 808,
+            "line": 809,
             "description": "When main audio segment is replayed",
             "itemtype": "event",
             "name": "replayAudio",
@@ -3586,7 +3675,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 822,
+            "line": 825,
             "description": "Trial is complete and attempting to move to next frame; may wait for recording\nto catch up before proceeding.",
             "itemtype": "event",
             "name": "trialComplete",
@@ -3596,7 +3685,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 849,
+            "line": 852,
             "description": "When main audio segment finishes playing",
             "itemtype": "event",
             "name": "finishAudio",
@@ -3606,7 +3695,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 878,
+            "line": 886,
             "description": "Timer for set-duration trial begins",
             "itemtype": "event",
             "name": "startTimer",
@@ -3616,7 +3705,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 885,
+            "line": 893,
             "description": "Timer for set-duration trial ends",
             "itemtype": "event",
             "name": "endTimer",
@@ -3626,7 +3715,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 916,
+            "line": 924,
             "description": "When main audio segment starts playing",
             "itemtype": "event",
             "name": "startAudio",
@@ -3636,7 +3725,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 923,
+            "line": 931,
             "description": "When main audio cannot be started. In this case we treat it as if\nthe audio was completed (for purposes of allowing participant to\nproceed)",
             "itemtype": "event",
             "name": "failedToStartAudio",
@@ -3646,7 +3735,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 939,
+            "line": 947,
             "description": "When images are displayed to participant (for images without any delay added)",
             "itemtype": "event",
             "name": "displayAllImages",
@@ -3656,7 +3745,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 949,
+            "line": 957,
             "description": "When a specific image is shown at a delay.",
             "itemtype": "event",
             "name": "displayImage",
@@ -3673,7 +3762,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 975,
+            "line": 983,
             "description": "When one of the image options is clicked during a choice frame",
             "itemtype": "event",
             "name": "clickImage",
@@ -3695,7 +3784,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 1010,
+            "line": 1018,
             "description": "When image/feedback audio is started",
             "itemtype": "event",
             "name": "startImageAudio",
@@ -3712,7 +3801,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 1020,
+            "line": 1028,
             "description": "When image/feedback audio cannot be started. In this case we treat it as if\nthe audio was completed (for purposes of allowing participant to\nproceed)",
             "itemtype": "event",
             "name": "failedToStartImageAudio",
@@ -3729,7 +3818,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 1090,
+            "line": 1098,
             "description": "When the participant dismisses a feedback dialogue",
             "itemtype": "event",
             "name": "dismissFeedback",
@@ -5192,7 +5281,7 @@
         },
         {
             "file": "app/components/exp-lookit-video/component.js",
-            "line": 145,
+            "line": 146,
             "description": "Object describing the video to show.",
             "itemtype": "property",
             "name": "video",
@@ -5240,7 +5329,7 @@
         },
         {
             "file": "app/components/exp-lookit-video/component.js",
-            "line": 195,
+            "line": 196,
             "description": "Object describing the audio file to play along with video (optional)",
             "itemtype": "property",
             "name": "audio",
@@ -5264,7 +5353,7 @@
         },
         {
             "file": "app/components/exp-lookit-video/component.js",
-            "line": 221,
+            "line": 222,
             "description": "Whether to proceed automatically when video is complete / requiredDuration is\nachieved, vs. enabling a next button at that point.\nIf true, the frame auto-advances after ALL of the following happen\n(a) the requiredDuration (if any) is achieved, counting from the video starting\n(b) the video is played requireVideoCount times\n(c) the audio is played requireAudioCount times\nIf false: a next button is displayed. It becomes possible to press 'next'\nonly once the conditions above are met.",
             "itemtype": "property",
             "name": "autoProceed",
@@ -5276,7 +5365,7 @@
         },
         {
             "file": "app/components/exp-lookit-video/component.js",
-            "line": 240,
+            "line": 241,
             "description": "Color of background. See https://developer.mozilla.org/en-US/docs/Web/CSS/color_value\nfor acceptable syntax: can use color names ('blue', 'red', 'green', etc.), or\nrgb hex values (e.g. '#800080' - include the '#'). We recommend a light background if you need to\nsee children's eyes.",
             "itemtype": "property",
             "name": "backgroundColor",
@@ -5288,7 +5377,7 @@
         },
         {
             "file": "app/components/exp-lookit-video/component.js",
-            "line": 255,
+            "line": 256,
             "description": "Array of objects specifying attention-grabber video src and type, as for sources. The attention-grabber video is shown (looping) during the announcement phase and when the study is paused.",
             "itemtype": "property",
             "name": "pauseVideo",
@@ -5312,7 +5401,7 @@
         },
         {
             "file": "app/components/exp-lookit-video/component.js",
-            "line": 268,
+            "line": 269,
             "description": "Key to pause the trial. Use an empty string, '', to not allow pausing using the keyboard. You can look up the names of keys at\nhttps://keycode.info. Default is the space bar (' ').",
             "itemtype": "property",
             "name": "pauseKey",
@@ -5324,7 +5413,7 @@
         },
         {
             "file": "app/components/exp-lookit-video/component.js",
-            "line": 280,
+            "line": 281,
             "description": "Parent-facing description of the key to pause the study. This is just used to display text\n\"Press {pauseKeyDescription} to resume\" when the study is paused.",
             "itemtype": "property",
             "name": "pauseKeyDescription",
@@ -5336,7 +5425,7 @@
         },
         {
             "file": "app/components/exp-lookit-video/component.js",
-            "line": 293,
+            "line": 294,
             "description": "Whether to restart this frame upon unpausing, vs moving on to the next frame",
             "itemtype": "property",
             "name": "restartAfterPause",
@@ -5348,7 +5437,7 @@
         },
         {
             "file": "app/components/exp-lookit-video/component.js",
-            "line": 304,
+            "line": 305,
             "description": "Duration to require before proceeding, if any. Set if you want a time-based limit. E.g., setting requiredDuration to 20 means that the first 20 seconds of the video will be played, with shorter videos looping until they get to 20s. Leave out or set to 0 to play the video through to the end a set number of times instead.",
             "itemtype": "property",
             "name": "requiredDuration",
@@ -5360,7 +5449,7 @@
         },
         {
             "file": "app/components/exp-lookit-video/component.js",
-            "line": 316,
+            "line": 317,
             "description": "Number of times to play test video before moving on.",
             "itemtype": "property",
             "name": "requireVideoCount",
@@ -5372,7 +5461,7 @@
         },
         {
             "file": "app/components/exp-lookit-video/component.js",
-            "line": 327,
+            "line": 328,
             "description": "Number of times to play test audio before moving on.",
             "itemtype": "property",
             "name": "requireAudioCount",
@@ -5384,7 +5473,7 @@
         },
         {
             "file": "app/components/exp-lookit-video/component.js",
-            "line": 338,
+            "line": 339,
             "description": "Whether to do any video recording during this frame. Default true. Set to false for e.g. last frame where just doing an announcement.",
             "itemtype": "property",
             "name": "doRecording",
@@ -5396,7 +5485,7 @@
         },
         {
             "file": "app/components/exp-lookit-video/component.js",
-            "line": 348,
+            "line": 349,
             "description": "Sources Array of {src: 'url', type: 'MIMEtype'} objects for\naudio played upon pausing study",
             "itemtype": "property",
             "name": "pauseAudio",
@@ -5408,7 +5497,7 @@
         },
         {
             "file": "app/components/exp-lookit-video/component.js",
-            "line": 360,
+            "line": 361,
             "description": "Sources Array of {src: 'url', type: 'MIMEtype'} objects for\naudio played upon unpausing study",
             "itemtype": "property",
             "name": "unpauseAudio",
@@ -5420,7 +5509,7 @@
         },
         {
             "file": "app/components/exp-lookit-video/component.js",
-            "line": 372,
+            "line": 373,
             "description": "Text to show under \"Study paused / Press space to resume\" when study is paused.\nDefault: (You'll have a moment to turn around again.)",
             "itemtype": "property",
             "name": "pauseText",
@@ -5432,7 +5521,7 @@
         },
         {
             "file": "app/components/exp-lookit-video/component.js",
-            "line": 384,
+            "line": 385,
             "description": "Text block to display to parent.  (Each field is optional)",
             "itemtype": "property",
             "name": "parentTextBlock",
@@ -5460,7 +5549,7 @@
         },
         {
             "file": "app/components/exp-lookit-video/component.js",
-            "line": 416,
+            "line": 417,
             "description": "Source of video  shown during this trial. Just stores first URL if multiple formats are offered.",
             "itemtype": "attribute",
             "name": "videoShown",
@@ -5471,7 +5560,7 @@
         },
         {
             "file": "app/components/exp-lookit-video/component.js",
-            "line": 428,
+            "line": 429,
             "description": "Whether the video was paused at any point during the trial",
             "itemtype": "attribute",
             "name": "hasBeenPaused",
@@ -5482,7 +5571,7 @@
         },
         {
             "file": "app/components/exp-lookit-video/component.js",
-            "line": 455,
+            "line": 456,
             "description": "When video begins playing (recorded each time video starts if played through more than once)",
             "itemtype": "event",
             "name": "videoStarted",
@@ -5492,7 +5581,7 @@
         },
         {
             "file": "app/components/exp-lookit-video/component.js",
-            "line": 490,
+            "line": 491,
             "description": "When video completes playback (recorded each time if played more than once)",
             "itemtype": "event",
             "name": "videoStopped",
@@ -5502,7 +5591,7 @@
         },
         {
             "file": "app/components/exp-lookit-video/component.js",
-            "line": 511,
+            "line": 512,
             "description": "When audio begins playing (recorded each time video starts if played through more than once)",
             "itemtype": "event",
             "name": "audioStarted",
@@ -5512,7 +5601,7 @@
         },
         {
             "file": "app/components/exp-lookit-video/component.js",
-            "line": 523,
+            "line": 524,
             "description": "When audio completes playback (recorded each time if played more than once)",
             "itemtype": "event",
             "name": "audioStopped",
@@ -5522,7 +5611,7 @@
         },
         {
             "file": "app/components/exp-lookit-video/component.js",
-            "line": 549,
+            "line": 550,
             "description": "When trial is complete and begins cleanup (may then wait for video upload)",
             "itemtype": "event",
             "name": "trialCompleted",
@@ -5532,7 +5621,7 @@
         },
         {
             "file": "app/components/exp-lookit-video/component.js",
-            "line": 576,
+            "line": 580,
             "description": "When trial is unpaused (actually proceeding to beginning or next frame)",
             "itemtype": "event",
             "name": "unpauseTrial",
@@ -5542,7 +5631,7 @@
         },
         {
             "file": "app/components/exp-lookit-video/component.js",
-            "line": 603,
+            "line": 607,
             "description": "When all requirements for this frame are completed and next button is enabled (only recorded if\nautoProceed is false)",
             "itemtype": "event",
             "name": "nextButtonEnabled",
@@ -5552,7 +5641,7 @@
         },
         {
             "file": "app/components/exp-lookit-video/component.js",
-            "line": 651,
+            "line": 656,
             "description": "When trial is paused",
             "itemtype": "event",
             "name": "pauseTrial",
@@ -6299,6 +6388,166 @@
             "type": "String",
             "default": "false",
             "class": "Full-screen",
+            "module": "exp-player",
+            "submodule": "mixins"
+        },
+        {
+            "file": "app/mixins/infant-controlled-timing.js",
+            "line": 62,
+            "description": "Type of lookaway criterion. Must be either\n'total' (to count total lookaway time) or 'continuous' (to count only continuous lookaway time).\nWhichever criterion type is used, only lookaways after the first look to the screen are considered.",
+            "itemtype": "property",
+            "name": "lookawayType",
+            "type": "String",
+            "default": "'total'",
+            "class": "Infant-controlled-timing",
+            "module": "exp-player",
+            "submodule": "mixins"
+        },
+        {
+            "file": "app/mixins/infant-controlled-timing.js",
+            "line": 77,
+            "description": "Lookaway threshold in seconds. How long does the child need to look away before the trial ends? Depending on\nthe lookawayType, this will refer either to the total amount of time the child has looked away since their\nfirst look to the screen, or to the length of a single continuous lookaway.",
+            "itemtype": "property",
+            "name": "lookawayThreshold",
+            "type": "String",
+            "default": "2",
+            "class": "Infant-controlled-timing",
+            "module": "exp-player",
+            "submodule": "mixins"
+        },
+        {
+            "file": "app/mixins/infant-controlled-timing.js",
+            "line": 91,
+            "description": "Key parent should press to indicate the child is looking away. If a key is provided, then the trial will\nend if the child looks away looks long enough per the lookawayType and lookawayThreshold. You can also use\n'mouse' to indicate that mouse down/up should be used in place of key down/up events. Use an empty string,\n'', to not record any lookaways for this trial. You can look up the names of keys at https://keycode.info.\nDefault is 'w'.",
+            "itemtype": "property",
+            "name": "pauseKey",
+            "type": "String",
+            "default": "'w'",
+            "class": "Infant-controlled-timing",
+            "module": "exp-player",
+            "submodule": "mixins"
+        },
+        {
+            "file": "app/mixins/infant-controlled-timing.js",
+            "line": 105,
+            "description": "Key parent should press to manually move on to next trial. This allows you to have parents control the study\nby giving instructions like \"press q when the child looks away for at least a few seconds\" instead of \"hold down\nw whenever the child isn't looking.\"  Use an empty string, '', to not allow this function\nfor this trial. You can look up the names of keys at https://keycode.info. Default is 'q'.",
+            "itemtype": "property",
+            "name": "pauseKey",
+            "type": "String",
+            "default": "'q'",
+            "class": "Infant-controlled-timing",
+            "module": "exp-player",
+            "submodule": "mixins"
+        },
+        {
+            "file": "app/mixins/infant-controlled-timing.js",
+            "line": 119,
+            "description": "Total looking time during this frame, in seconds.\nLooking time is calculated as the total time spent looking between:\n(1) The start of the parent control period, or the first look during that period if the child is not looking initially\nand\n(2) The end of the trial due to the parent pushing the end trial key, the child reaching the lookaway criterion,\nor the frame being completed without either of these happening (e.g., a video is played N times or an image is\nshown for N seconds).\nAll time spent looking away, per parent coding, is excluded, regardless of the duration of the lookaway.\n\nThis value will be null if the trial is not completed by any of the above mechanisms, for instance because\nthe parent ends the study early during this frame.",
+            "itemtype": "attribute",
+            "name": "totalLookingTime",
+            "type": "number",
+            "class": "Infant-controlled-timing",
+            "module": "exp-player",
+            "submodule": "mixins"
+        },
+        {
+            "file": "app/mixins/infant-controlled-timing.js",
+            "line": 136,
+            "description": "What caused the trial to end: 'lookaway' (the child reached the lookaway threshold), 'parentEnded' (the parent\npressed the endTrialKey), or 'ceiling' (the frame ended without either of those happening).\n\nThis value will be null if the trial is not completed by any of the above mechanisms, for instance because\nthe parent ends the study early during this frame.",
+            "itemtype": "attribute",
+            "name": "trialEndReason",
+            "type": "string",
+            "class": "Infant-controlled-timing",
+            "module": "exp-player",
+            "submodule": "mixins"
+        },
+        {
+            "file": "app/mixins/infant-controlled-timing.js",
+            "line": 162,
+            "description": "When parent records a lookaway starting. This will be triggered at the start of this frame if the parent\nis already holding down the lookawayKey, and otherwise only when the key is newly pressed down. Lookaways\nare recorded regardless of whether the parent control period has started.",
+            "itemtype": "event",
+            "name": "lookawayStart",
+            "class": "Infant-controlled-timing",
+            "module": "exp-player",
+            "submodule": "mixins"
+        },
+        {
+            "file": "app/mixins/infant-controlled-timing.js",
+            "line": 177,
+            "description": "When trial ends due to lookaway criterion being reached.",
+            "itemtype": "event",
+            "name": "lookawayEndedTrial",
+            "class": "Infant-controlled-timing",
+            "module": "exp-player",
+            "submodule": "mixins"
+        },
+        {
+            "file": "app/mixins/infant-controlled-timing.js",
+            "line": 193,
+            "description": "When parent records a lookaway ending. This will NOT be triggered at the start of this frame if the parent\nis not holding down the lookawayKey, only when the key is actually released. Lookaways\nare recorded regardless of whether the parent control period has started.",
+            "itemtype": "event",
+            "name": "lookawayEnd",
+            "class": "Infant-controlled-timing",
+            "module": "exp-player",
+            "submodule": "mixins"
+        },
+        {
+            "file": "app/mixins/infant-controlled-timing.js",
+            "line": 226,
+            "description": "Hook called when session recording is started automatically. Override to do\nframe-specific actions at this point (e.g., beginning a test trial).",
+            "itemtype": "method",
+            "name": "onSessionRecordingStarted",
+            "class": "Infant-controlled-timing",
+            "module": "exp-player",
+            "submodule": "mixins"
+        },
+        {
+            "file": "app/mixins/infant-controlled-timing.js",
+            "line": 236,
+            "description": "Begin period of parent control of trial progression. After calling startParentControl(), we wait for the first\ninfant look to the screen (this may be immediate because infant is already looking. After that, whenever infant\nlook-away time reaches criterion (either due to long enough continuous lookaway, or due to cumulative time\nlooking away) we will call onLookawayCriterion().\n\nIf startParentControl is called multiple times, each time it's called it starts a \"fresh\" interval of parent\ncontrol - i.e. no stored lookaway time, and no assumption the child has previously looked.",
+            "itemtype": "method",
+            "name": "startParentControl",
+            "class": "Infant-controlled-timing",
+            "module": "exp-player",
+            "submodule": "mixins"
+        },
+        {
+            "file": "app/mixins/infant-controlled-timing.js",
+            "line": 252,
+            "description": "When interval of parent control of trial begins - i.e., lookaways begin counting up to threshold.\nLookaway events are recorded throughout, but do not count towards ending trial until parent control period\nbegins.",
+            "itemtype": "event",
+            "name": "parentControlPeriodStart",
+            "class": "Infant-controlled-timing",
+            "module": "exp-player",
+            "submodule": "mixins"
+        },
+        {
+            "file": "app/mixins/infant-controlled-timing.js",
+            "line": 264,
+            "description": "When trial ends due to parent pressing key to end trial",
+            "itemtype": "event",
+            "name": "parentEndedTrial",
+            "class": "Infant-controlled-timing",
+            "module": "exp-player",
+            "submodule": "mixins"
+        },
+        {
+            "file": "app/mixins/infant-controlled-timing.js",
+            "line": 278,
+            "description": "End period of parent control of trial progression, for instance because trial is paused. Looks to/away will\nstill be logged as events but trial will not end based on parent input.",
+            "itemtype": "method",
+            "name": "endParentControl",
+            "class": "Infant-controlled-timing",
+            "module": "exp-player",
+            "submodule": "mixins"
+        },
+        {
+            "file": "app/mixins/infant-controlled-timing.js",
+            "line": 286,
+            "description": "When interval of parent control of trial ends - i.e., lookaways cannot lead to ending trial, parent cannot\npress key to end trial.",
+            "itemtype": "event",
+            "name": "parentControlPeriodEnd",
+            "class": "Infant-controlled-timing",
             "module": "exp-player",
             "submodule": "mixins"
         },
