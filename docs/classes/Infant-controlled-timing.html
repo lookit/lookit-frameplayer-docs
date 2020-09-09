@@ -211,19 +211,19 @@ available to the researcher, add the following to your frame's <code>meta.data.p
 
                     <ul class="index-list properties">
                             <li class="index-item property">
+                                <a href="#property_endTrialKey">endTrialKey</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_lookawayKey">lookawayKey</a>
+
+                            </li>
+                            <li class="index-item property">
                                 <a href="#property_lookawayThreshold">lookawayThreshold</a>
 
                             </li>
                             <li class="index-item property">
                                 <a href="#property_lookawayType">lookawayType</a>
-
-                            </li>
-                            <li class="index-item property">
-                                <a href="#property_pauseKey">pauseKey</a>
-
-                            </li>
-                            <li class="index-item property">
-                                <a href="#property_pauseKey">pauseKey</a>
 
                             </li>
                     </ul>
@@ -382,6 +382,65 @@ control - i.e. no stored lookaway time, and no assumption the child has previous
             <div id="properties" class="api-class-tabpanel">
                 <h2 class="off-left">Properties</h2>
 
+<div id="property_endTrialKey" class="property item">
+    <h3 class="name"><code>endTrialKey</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+
+
+
+
+    <div class="meta">
+                <p> Specific to this element.
+                Defined in
+        <a href="../files/app_mixins_infant-controlled-timing.js.html#l105"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:105</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Key parent should press to manually move on to next trial. This allows you to have parents control the study
+by giving instructions like "press q when the child looks away for at least a few seconds" instead of "hold down
+w whenever the child isn't looking."  Use an empty string, '', to not allow this function
+for this trial. You can look up the names of keys at <a href="https://keycode.info">https://keycode.info</a>. Default is 'q'.</p>
+
+    </div>
+
+        <p><strong>Default:</strong> &#x27;q&#x27;</p>
+
+
+</div>
+<div id="property_lookawayKey" class="property item">
+    <h3 class="name"><code>lookawayKey</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+
+
+
+
+    <div class="meta">
+                <p> Specific to this element.
+                Defined in
+        <a href="../files/app_mixins_infant-controlled-timing.js.html#l91"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:91</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Key parent should press to indicate the child is looking away. If a key is provided, then the trial will
+end if the child looks away looks long enough per the lookawayType and lookawayThreshold. You can also use
+'mouse' to indicate that mouse down/up should be used in place of key down/up events. Use an empty string,
+'', to not record any lookaways for this trial. You can look up the names of keys at <a href="https://keycode.info">https://keycode.info</a>.
+Default is 'w'.</p>
+
+    </div>
+
+        <p><strong>Default:</strong> &#x27;w&#x27;</p>
+
+
+</div>
 <div id="property_lookawayThreshold" class="property item">
     <h3 class="name"><code>lookawayThreshold</code></h3>
     <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
@@ -435,65 +494,6 @@ Whichever criterion type is used, only lookaways after the first look to the scr
     </div>
 
         <p><strong>Default:</strong> &#x27;total&#x27;</p>
-
-
-</div>
-<div id="property_pauseKey" class="property item">
-    <h3 class="name"><code>pauseKey</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-
-
-
-
-    <div class="meta">
-                <p> Specific to this element.
-                Defined in
-        <a href="../files/app_mixins_infant-controlled-timing.js.html#l91"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:91</code></a>
-        </p>
-
-
-    </div>
-
-    <div class="description">
-        <p>Key parent should press to indicate the child is looking away. If a key is provided, then the trial will
-end if the child looks away looks long enough per the lookawayType and lookawayThreshold. You can also use
-'mouse' to indicate that mouse down/up should be used in place of key down/up events. Use an empty string,
-'', to not record any lookaways for this trial. You can look up the names of keys at <a href="https://keycode.info">https://keycode.info</a>.
-Default is 'w'.</p>
-
-    </div>
-
-        <p><strong>Default:</strong> &#x27;w&#x27;</p>
-
-
-</div>
-<div id="property_pauseKey" class="property item">
-    <h3 class="name"><code>pauseKey</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-
-
-
-
-    <div class="meta">
-                <p> Specific to this element.
-                Defined in
-        <a href="../files/app_mixins_infant-controlled-timing.js.html#l105"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:105</code></a>
-        </p>
-
-
-    </div>
-
-    <div class="description">
-        <p>Key parent should press to manually move on to next trial. This allows you to have parents control the study
-by giving instructions like "press q when the child looks away for at least a few seconds" instead of "hold down
-w whenever the child isn't looking."  Use an empty string, '', to not allow this function
-for this trial. You can look up the names of keys at <a href="https://keycode.info">https://keycode.info</a>. Default is 'q'.</p>
-
-    </div>
-
-        <p><strong>Default:</strong> &#x27;q&#x27;</p>
 
 
 </div>

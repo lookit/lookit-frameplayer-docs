@@ -409,6 +409,10 @@ for the first time.</p>
                                 <a href="#property_endSessionRecording">endSessionRecording</a>
 
                             </li>
+                            <li class="index-item property inherited">
+                                <a href="#property_endTrialKey">endTrialKey</a>
+
+                            </li>
                             <li class="index-item property private inherited inherited">
                                 <a href="#property_fsButtonID">fsButtonID</a>
 
@@ -427,6 +431,10 @@ for the first time.</p>
                             </li>
                             <li class="index-item property inherited">
                                 <a href="#property_images">images</a>
+
+                            </li>
+                            <li class="index-item property inherited">
+                                <a href="#property_lookawayKey">lookawayKey</a>
 
                             </li>
                             <li class="index-item property inherited">
@@ -459,10 +467,6 @@ for the first time.</p>
                             </li>
                             <li class="index-item property inherited">
                                 <a href="#property_parentTextBlock">parentTextBlock</a>
-
-                            </li>
-                            <li class="index-item property inherited inherited">
-                                <a href="#property_pauseKey">pauseKey</a>
 
                             </li>
                             <li class="index-item property private inherited">
@@ -1906,6 +1910,34 @@ this duration is acheived.</p>
 
 
 </div>
+<div id="property_endTrialKey" class="property item inherited">
+    <h3 class="name"><code>endTrialKey</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/Infant-controlled-timing.html#property_endTrialKey">Infant-controlled-timing </a> (click for formatted description):
+        <a href="../files/app_mixins_infant-controlled-timing.js.html#l105"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:105</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        Key parent should press to manually move on to next trial. This allows you to have parents control the study
+by giving instructions like "press q when the child looks away for at least a few seconds" instead of "hold down
+w whenever the child isn't looking."  Use an empty string, '', to not allow this function
+for this trial. You can look up the names of keys at https://keycode.info. Default is 'q'.
+    </div>
+
+        <p><strong>Default:</strong> &#x27;q&#x27;</p>
+
+
+</div>
 <div id="property_fsButtonID" class="property item private inherited">
     <h3 class="name"><code>fsButtonID</code></h3>
     <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
@@ -2285,6 +2317,35 @@ to display in a dialogue window upon clicking the image.</p>
             </li>
         </ul>
 </div>
+<div id="property_lookawayKey" class="property item inherited">
+    <h3 class="name"><code>lookawayKey</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/Infant-controlled-timing.html#property_lookawayKey">Infant-controlled-timing </a> (click for formatted description):
+        <a href="../files/app_mixins_infant-controlled-timing.js.html#l91"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:91</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        Key parent should press to indicate the child is looking away. If a key is provided, then the trial will
+end if the child looks away looks long enough per the lookawayType and lookawayThreshold. You can also use
+'mouse' to indicate that mouse down/up should be used in place of key down/up events. Use an empty string,
+'', to not record any lookaways for this trial. You can look up the names of keys at https://keycode.info.
+Default is 'w'.
+    </div>
+
+        <p><strong>Default:</strong> &#x27;w&#x27;</p>
+
+
+</div>
 <div id="property_lookawayThreshold" class="property item inherited">
     <h3 class="name"><code>lookawayThreshold</code></h3>
     <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
@@ -2578,38 +2639,6 @@ to apply to this section, and their values - e.g.
 
             </li>
         </ul>
-</div>
-<div id="property_pauseKey" class="property item inherited">
-    <h3 class="name"><code>pauseKey</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-
-
-
-
-    <div class="meta">
-            <p>Inherited from
-            <a href="../classes/Infant-controlled-timing.html#property_pauseKey">
-                Infant-controlled-timing
-            </a>
-            but overwritten in
-        <a href="../files/app_mixins_infant-controlled-timing.js.html#l91"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:91</code></a>
-        </p>
-
-
-    </div>
-
-    <div class="description">
-        Key parent should press to indicate the child is looking away. If a key is provided, then the trial will
-end if the child looks away looks long enough per the lookawayType and lookawayThreshold. You can also use
-'mouse' to indicate that mouse down/up should be used in place of key down/up events. Use an empty string,
-'', to not record any lookaways for this trial. You can look up the names of keys at https://keycode.info.
-Default is 'w'.
-    </div>
-
-        <p><strong>Default:</strong> &#x27;w&#x27;</p>
-
-
 </div>
 <div id="property_recorder" class="property item private inherited">
     <h3 class="name"><code>recorder</code></h3>

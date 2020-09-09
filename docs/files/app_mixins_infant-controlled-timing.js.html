@@ -217,7 +217,7 @@ var infantControlledTimingMixin = Ember.Mixin.create({
          &#x27;mouse&#x27; to indicate that mouse down/up should be used in place of key down/up events. Use an empty string,
          &#x27;&#x27;, to not record any lookaways for this trial. You can look up the names of keys at https://keycode.info.
          Default is &#x27;w&#x27;.
-         @property {string} pauseKey
+         @property {string} lookawayKey
          @default &#x27;w&#x27;
          */
         lookawayKey: {
@@ -230,7 +230,7 @@ var infantControlledTimingMixin = Ember.Mixin.create({
          by giving instructions like &quot;press q when the child looks away for at least a few seconds&quot; instead of &quot;hold down
          w whenever the child isn&#x27;t looking.&quot;  Use an empty string, &#x27;&#x27;, to not allow this function
          for this trial. You can look up the names of keys at https://keycode.info. Default is &#x27;q&#x27;.
-         @property {string} pauseKey
+         @property {string} endTrialKey
          @default &#x27;q&#x27;
          */
         endTrialKey: {
