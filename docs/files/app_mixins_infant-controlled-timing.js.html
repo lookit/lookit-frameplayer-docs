@@ -236,6 +236,31 @@ var infantControlledTimingMixin = Ember.Mixin.create({
         endTrialKey: {
             type: &#x27;string&#x27;,
             default: &#x27;q&#x27;
+        },
+
+        /**
+         Type of audio to play during parent-coded lookaways - &#x27;tone&#x27; (A 220), &#x27;noise&#x27; (pink noise), or &#x27;none&#x27;. These
+         tones are available at https://www.mit.edu/~kimscott/placeholderstimuli/ if you want to use them in
+         instructions.
+         @property {string} lookawayTone
+         @default &#x27;noise&#x27;
+         */
+        lookawayTone: {
+            type: &#x27;string&#x27;,
+            enum: [&#x27;tone&#x27;, &#x27;noise&#x27;, &#x27;none&#x27;],
+            default: &#x27;noise&#x27;,
+            description: &#x27;Type of audio to play during parent-coded lookaways&#x27;
+        },
+
+        /**
+         Volume of lookaway tone
+         @property {string} lookawayToneVolume
+         @default 0.25
+         */
+        lookawayToneVolume: {
+            type: &#x27;number&#x27;,
+            default: .25,
+            description: &#x27;Volume of lookaway tone, as fraction of full volume (1 = full volume, 0 = silent)&#x27;
         }
     },
 
@@ -308,6 +333,10 @@ var infantControlledTimingMixin = Ember.Mixin.create({
                 _this.onLookawayCriterion();
             }, delay));
         }
+        let $lookawayTone = $(&#x27;audio#lookawayTone&#x27;);
+        if ($lookawayTone.length) {
+            $lookawayTone[0].play();
+        }
     },
 
     _recordLookawayEnd() {
@@ -330,6 +359,10 @@ var infantControlledTimingMixin = Ember.Mixin.create({
                 this.set(&#x27;_trialStartTime&#x27;, new Date());
                 this.set(&#x27;_anyLookDuringControlPeriod&#x27;, true);
             }
+        }
+        let $lookawayTone = $(&#x27;audio#lookawayTone&#x27;);
+        if ($lookawayTone.length) {
+            $lookawayTone[0].pause();
         }
     },
 
@@ -438,6 +471,21 @@ var infantControlledTimingMixin = Ember.Mixin.create({
                 }
             }
         });
+
+        try {
+            let useLookawayTone = this.get(&#x27;lookawayTone&#x27;) !== &#x27;none&#x27;;
+            if (useLookawayTone) {
+                const baseDir = &#x27;https://www.mit.edu/~kimscott/placeholderstimuli/&#x27;;
+                let audioElement = $(&#x27;&lt;audio id=&quot;lookawayTone&quot; loop&gt;&lt;/audio&gt;&#x27;);
+                $(&#x60;&lt;source src=&#x27;${baseDir}mp3/${this.get(&#x27;lookawayTone&#x27;)}.mp3&#x27; type=&#x27;audio/mp3&#x27;&gt;&#x60;).appendTo(audioElement);
+                $(&#x60;&lt;source src=&#x27;${baseDir}ogg/${this.get(&#x27;lookawayTone&#x27;)}.ogg&#x27; type=&#x27;audio/ogg&#x27;&gt;&#x60;).appendTo(audioElement);
+                $(&#x27;#experiment-player &gt; div &gt; div&#x27;).append(audioElement);
+                $(&#x27;audio#lookawayTone&#x27;)[0].volume = this.get(&#x27;lookawayToneVolume&#x27;);
+            }
+        } catch (e) {
+            console.error(&#x60;Error setting lookaway tone: ${e}&#x60;);
+        }
+
         this._super(...arguments);
     },
 

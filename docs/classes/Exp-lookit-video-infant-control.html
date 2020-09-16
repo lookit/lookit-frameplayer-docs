@@ -171,7 +171,8 @@ exp-lookit-video except that you can enable the parent to:</p>
 <ul>
 <li>end the trial by pressing the <code>endTrialKey</code> key</li>
 <li>hold down the <code>lookawayKey</code> (or the mouse button) to indicate that the child is not looking; the trial will automatically end
-after the lookaway criterion is met.</li>
+after the lookaway criterion is met. If the 'lookawayTone' is not 'none' a noise is played while the child is looking
+away to help the parent know the looking coding is working.</li>
 </ul>
 <p>You can disable either of these behaviors by setting the key to <code>''</code>.</p>
 <p>The frame will still end when it would have anyway if neither of these things happen! For instance, if you would have
@@ -198,6 +199,8 @@ restarting.</p>
    "lookawayType": "total",
    "lookawayThreshold": 2,
    "endTrialKey": "q",
+   "lookawayTone": "noise",
+   "lookawayToneVolume": 0.25,
 
    "audio": {
        "loop": false,
@@ -416,6 +419,14 @@ restarting.</p>
                             </li>
                             <li class="index-item property inherited">
                                 <a href="#property_lookawayThreshold">lookawayThreshold</a>
+
+                            </li>
+                            <li class="index-item property inherited">
+                                <a href="#property_lookawayTone">lookawayTone</a>
+
+                            </li>
+                            <li class="index-item property inherited">
+                                <a href="#property_lookawayToneVolume">lookawayToneVolume</a>
 
                             </li>
                             <li class="index-item property inherited">
@@ -750,7 +761,7 @@ restarting.</p>
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Infant-controlled-timing.html#method_endParentControl">Infant-controlled-timing</a>:
-        <a href="../files/app_mixins_infant-controlled-timing.js.html#l278"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:278</code></a>
+        <a href="../files/app_mixins_infant-controlled-timing.js.html#l311"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:311</code></a>
         </p>
 
 
@@ -963,7 +974,7 @@ frame-specific actions at this point (e.g., beginning a test trial).
                 Session-record
             </a>
             but overwritten in
-        <a href="../files/app_mixins_infant-controlled-timing.js.html#l226"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:226</code></a>
+        <a href="../files/app_mixins_infant-controlled-timing.js.html#l259"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:259</code></a>
         </p>
 
 
@@ -1189,7 +1200,7 @@ Individual frames may define additional properties that are sent.</p>
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Infant-controlled-timing.html#method_startParentControl">Infant-controlled-timing</a>:
-        <a href="../files/app_mixins_infant-controlled-timing.js.html#l236"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:236</code></a>
+        <a href="../files/app_mixins_infant-controlled-timing.js.html#l269"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:269</code></a>
         </p>
 
 
@@ -2031,6 +2042,58 @@ first look to the screen, or to the length of a single continuous lookaway.
     </div>
 
         <p><strong>Default:</strong> 2</p>
+
+
+</div>
+<div id="property_lookawayTone" class="property item inherited">
+    <h3 class="name"><code>lookawayTone</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/Infant-controlled-timing.html#property_lookawayTone">Infant-controlled-timing </a> (click for formatted description):
+        <a href="../files/app_mixins_infant-controlled-timing.js.html#l118"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:118</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        Type of audio to play during parent-coded lookaways - 'tone' (A 220), 'noise' (pink noise), or 'none'. These
+tones are available at https://www.mit.edu/~kimscott/placeholderstimuli/ if you want to use them in
+instructions.
+    </div>
+
+        <p><strong>Default:</strong> &#x27;noise&#x27;</p>
+
+
+</div>
+<div id="property_lookawayToneVolume" class="property item inherited">
+    <h3 class="name"><code>lookawayToneVolume</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/Infant-controlled-timing.html#property_lookawayToneVolume">Infant-controlled-timing </a> (click for formatted description):
+        <a href="../files/app_mixins_infant-controlled-timing.js.html#l132"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:132</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        Volume of lookaway tone
+    </div>
+
+        <p><strong>Default:</strong> 0.25</p>
 
 
 </div>
@@ -3182,7 +3245,7 @@ expanded out to
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Infant-controlled-timing.html#attr_totalLookingTime">Infant-controlled-timing</a>:
-                            <a href="../files/app_mixins_infant-controlled-timing.js.html#l119"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:119</code></a>
+                            <a href="../files/app_mixins_infant-controlled-timing.js.html#l144"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:144</code></a>
                             </p>
                     
                     
@@ -3220,7 +3283,7 @@ expanded out to
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Infant-controlled-timing.html#attr_trialEndReason">Infant-controlled-timing</a>:
-                            <a href="../files/app_mixins_infant-controlled-timing.js.html#l136"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:136</code></a>
+                            <a href="../files/app_mixins_infant-controlled-timing.js.html#l161"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:161</code></a>
                             </p>
                     
                     
@@ -3429,7 +3492,7 @@ expanded out to
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Infant-controlled-timing.html#event_lookawayEnd">Infant-controlled-timing</a>:
-                            <a href="../files/app_mixins_infant-controlled-timing.js.html#l193"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:193</code></a>
+                            <a href="../files/app_mixins_infant-controlled-timing.js.html#l222"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:222</code></a>
                             </p>
                     
                     
@@ -3455,7 +3518,7 @@ expanded out to
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Infant-controlled-timing.html#event_lookawayEndedTrial">Infant-controlled-timing</a>:
-                            <a href="../files/app_mixins_infant-controlled-timing.js.html#l177"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:177</code></a>
+                            <a href="../files/app_mixins_infant-controlled-timing.js.html#l202"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:202</code></a>
                             </p>
                     
                     
@@ -3479,7 +3542,7 @@ expanded out to
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Infant-controlled-timing.html#event_lookawayStart">Infant-controlled-timing</a>:
-                            <a href="../files/app_mixins_infant-controlled-timing.js.html#l162"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:162</code></a>
+                            <a href="../files/app_mixins_infant-controlled-timing.js.html#l187"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:187</code></a>
                             </p>
                     
                     
@@ -3556,7 +3619,7 @@ expanded out to
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Infant-controlled-timing.html#event_parentControlPeriodEnd">Infant-controlled-timing</a>:
-                            <a href="../files/app_mixins_infant-controlled-timing.js.html#l286"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:286</code></a>
+                            <a href="../files/app_mixins_infant-controlled-timing.js.html#l319"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:319</code></a>
                             </p>
                     
                     
@@ -3581,7 +3644,7 @@ expanded out to
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Infant-controlled-timing.html#event_parentControlPeriodStart">Infant-controlled-timing</a>:
-                            <a href="../files/app_mixins_infant-controlled-timing.js.html#l252"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:252</code></a>
+                            <a href="../files/app_mixins_infant-controlled-timing.js.html#l285"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:285</code></a>
                             </p>
                     
                     
@@ -3607,7 +3670,7 @@ expanded out to
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Infant-controlled-timing.html#event_parentEndedTrial">Infant-controlled-timing</a>:
-                            <a href="../files/app_mixins_infant-controlled-timing.js.html#l264"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:264</code></a>
+                            <a href="../files/app_mixins_infant-controlled-timing.js.html#l297"><code>app&#x2F;mixins&#x2F;infant-controlled-timing.js:297</code></a>
                             </p>
                     
                     

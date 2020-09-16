@@ -777,7 +777,7 @@
             "namespace": "",
             "file": "app/components/exp-lookit-images-audio-infant-control/component.js",
             "line": 9,
-            "description": "Infant-controlled version of the {{#crossLink \"Exp-lookit-images-audio\"}}{{/crossLink}} frame. This works the same way as\nexp-lookit-images-audio except that you can enable the parent to:\n\n- end the trial by pressing the `endTrialKey` key\n- hold down the `lookawayKey` (or the mouse button) to indicate that the child is not looking; the trial will automatically end\n  after the lookaway criterion is met.\n\nYou can disable either of these behaviors by setting the key to `''`.\n\nThe frame will still end when it would have anyway if neither of these things happen! For instance, if you would have\ndisplayed an image for 30 seconds, then after 30 seconds the frame will move on, serving as a \"ceiling\" on looking time.\n\nLookaway criterion: You have two options for how to determine when the child has looked away long enough to proceed.\nSet the `lookawayType` to `\"total\"` to accumulate lookaway time until the child has looked away for a total of\n`lookawayThreshold` seconds. (For instance, if the `lookawayThreshold` is 2, then the trial will end after the child\nlooks away for 0.5s, then 1s, then 0.5s.) Set the `lookawayType` to `\"continuous\"` to require that the child look\naway for a continuous `lookawayThreshold`-second interval. (For instance, if the `lookawayThreshold` is 2, then the\nchild might look away for 1s, 1.5s, and 1s but the trial would continue until she looked away for 2s.)\n\nThe looking time measurement begins only when the video starts, not while a video connection is established.\n\nIf a `lookawayKey` is defined, lookaways are recorded the entire time the frame is running. However, the looking\ntime measurement only starts once images are displayed (or the \"delay\" timer starts counting down, for images\nshown at a delay - but e.g., not during webcam connection). Lookaways at the very\nstart don't count! If the child is not looking at the start, the measurement begins once they look\nfor the first time.\n\nTwo pieces of data are recorded for convenience when coding or if implementing a live habituation procedure:\n`totalLookingTime` and `reasonTrialEnded`.\n\nExample usage:\n\n```json\n\"play-video-twice\": {\n   \"kind\": \"exp-lookit-video-infant-control\",\n   \"lookawayKey\": \"p\",\n   \"lookawayType\": \"total\",\n   \"lookawayThreshold\": 2,\n   \"endTrialKey\": \"q\",\n\n   \"audio\": {\n       \"loop\": false,\n       \"source\": \"peekaboo\"\n   },\n   \"video\": {\n       \"top\": 10,\n       \"left\": 25,\n       \"loop\": true,\n       \"width\": 50,\n       \"source\": \"cropped_apple\"\n   },\n   \"backgroundColor\": \"white\",\n   \"autoProceed\": true,\n   \"parentTextBlock\": {\n       \"text\": \"If your child needs a break, just press X to pause!\"\n   },\n   \"requiredDuration\": 0,\n   \"requireAudioCount\": 0,\n   \"requireVideoCount\": 2,\n   \"restartAfterPause\": true,\n   \"pauseKey\": \"x\",\n   \"pauseKeyDescription\": \"X\",\n   \"pauseAudio\": \"pause\",\n   \"pauseVideo\": \"attentiongrabber\",\n   \"pauseText\": \"(You'll have a moment to turn around again.)\",\n   \"unpauseAudio\": \"return_after_pause\",\n   \"doRecording\": true,\n   \"baseDir\": \"https://www.mit.edu/~kimscott/placeholderstimuli/\",\n   \"audioTypes\": [\n       \"ogg\",\n       \"mp3\"\n   ],\n   \"videoTypes\": [\n       \"webm\",\n       \"mp4\"\n   ]\n}\n\n```",
+            "description": "Infant-controlled version of the {{#crossLink \"Exp-lookit-images-audio\"}}{{/crossLink}} frame. This works the same way as\nexp-lookit-images-audio except that you can enable the parent to:\n\n- end the trial by pressing the `endTrialKey` key\n- hold down the `lookawayKey` (or the mouse button) to indicate that the child is not looking; the trial will automatically end\n  after the lookaway criterion is met. If the 'lookawayTone' is not 'none' a noise is played while the child is looking\n  away to help the parent know the looking coding is working.\n\nYou can disable either of these behaviors by setting the key to `''`.\n\nThe frame will still end when it would have anyway if neither of these things happen! For instance, if you would have\ndisplayed an image for 30 seconds, then after 30 seconds the frame will move on, serving as a \"ceiling\" on looking time.\n\nLookaway criterion: You have two options for how to determine when the child has looked away long enough to proceed.\nSet the `lookawayType` to `\"total\"` to accumulate lookaway time until the child has looked away for a total of\n`lookawayThreshold` seconds. (For instance, if the `lookawayThreshold` is 2, then the trial will end after the child\nlooks away for 0.5s, then 1s, then 0.5s.) Set the `lookawayType` to `\"continuous\"` to require that the child look\naway for a continuous `lookawayThreshold`-second interval. (For instance, if the `lookawayThreshold` is 2, then the\nchild might look away for 1s, 1.5s, and 1s but the trial would continue until she looked away for 2s.)\n\nThe looking time measurement begins only when the video starts, not while a video connection is established.\n\nIf a `lookawayKey` is defined, lookaways are recorded the entire time the frame is running. However, the looking\ntime measurement only starts once images are displayed (or the \"delay\" timer starts counting down, for images\nshown at a delay - but e.g., not during webcam connection). Lookaways at the very\nstart don't count! If the child is not looking at the start, the measurement begins once they look\nfor the first time.\n\nTwo pieces of data are recorded for convenience when coding or if implementing a live habituation procedure:\n`totalLookingTime` and `reasonTrialEnded`.\n\nExample usage:\n\n```json\n\"play-video-twice\": {\n   \"kind\": \"exp-lookit-video-infant-control\",\n   \"lookawayKey\": \"p\",\n   \"lookawayType\": \"total\",\n   \"lookawayThreshold\": 2,\n   \"endTrialKey\": \"q\",\n   \"lookawayTone\": \"noise\",\n   \"lookawayToneVolume\": 0.25,\n\n   \"audio\": {\n       \"loop\": false,\n       \"source\": \"peekaboo\"\n   },\n   \"video\": {\n       \"top\": 10,\n       \"left\": 25,\n       \"loop\": true,\n       \"width\": 50,\n       \"source\": \"cropped_apple\"\n   },\n   \"backgroundColor\": \"white\",\n   \"autoProceed\": true,\n   \"parentTextBlock\": {\n       \"text\": \"If your child needs a break, just press X to pause!\"\n   },\n   \"requiredDuration\": 0,\n   \"requireAudioCount\": 0,\n   \"requireVideoCount\": 2,\n   \"restartAfterPause\": true,\n   \"pauseKey\": \"x\",\n   \"pauseKeyDescription\": \"X\",\n   \"pauseAudio\": \"pause\",\n   \"pauseVideo\": \"attentiongrabber\",\n   \"pauseText\": \"(You'll have a moment to turn around again.)\",\n   \"unpauseAudio\": \"return_after_pause\",\n   \"doRecording\": true,\n   \"baseDir\": \"https://www.mit.edu/~kimscott/placeholderstimuli/\",\n   \"audioTypes\": [\n       \"ogg\",\n       \"mp3\"\n   ],\n   \"videoTypes\": [\n       \"webm\",\n       \"mp4\"\n   ]\n}\n\n```",
             "extends": "Exp-lookit-images-audio",
             "uses": [
                 "Infant-controlled-timing"
@@ -1061,7 +1061,7 @@
             "namespace": "",
             "file": "app/components/exp-lookit-video-infant-control/component.js",
             "line": 9,
-            "description": "Infant-controlled version of the {{#crossLink \"Exp-lookit-video\"}}{{/crossLink}} frame. This works the same way as\nexp-lookit-video except that you can enable the parent to:\n\n- end the trial by pressing the `endTrialKey` key\n- hold down the `lookawayKey` (or the mouse button) to indicate that the child is not looking; the trial will automatically end\n  after the lookaway criterion is met.\n\nYou can disable either of these behaviors by setting the key to `''`.\n\nThe frame will still end when it would have anyway if neither of these things happen! For instance, if you would have\nlooped the video for 30 seconds, then after 30 seconds the frame will move on, serving as a \"ceiling\" on looking time.\n\nLookaway criterion: You have two options for how to determine when the child has looked away long enough to proceed.\nSet the `lookawayType` to `\"total\"` to accumulate lookaway time until the child has looked away for a total of\n`lookawayThreshold` seconds. (For instance, if the `lookawayThreshold` is 2, then the trial will end after the child\nlooks away for 0.5s, then 1s, then 0.5s.) Set the `lookawayType` to `\"continuous\"` to require that the child look\naway for a continuous `lookawayThreshold`-second interval. (For instance, if the `lookawayThreshold` is 2, then the\nchild might look away for 1s, 1.5s, and 1s but the trial would continue until she looked away for 2s.)\n\nThe looking time measurement begins only when the video starts, not while a video connection is established.\n\nIf a `lookawayKey` is defined, lookaways are recorded the entire time the frame is running. However, the looking\ntime measurement only starts once video begins playing (e.g., not during webcam connection). Lookaways at the very\nstart of the video don't count! If the child is not looking as the video begins, the measurement begins once they look\nfor the first time.\n\nIf the trial is paused, parent control of the trial is also paused; the looking time measurement begins fresh when\nrestarting.\n\nTwo pieces of data are recorded for convenience when coding or if implementing a live habituation procedure:\n`totalLookingTime` and `reasonTrialEnded`.\n\nExample usage:\n\n```json\n\"play-video-twice\": {\n   \"kind\": \"exp-lookit-video-infant-control\",\n   \"lookawayKey\": \"p\",\n   \"lookawayType\": \"total\",\n   \"lookawayThreshold\": 2,\n   \"endTrialKey\": \"q\",\n\n   \"audio\": {\n       \"loop\": false,\n       \"source\": \"peekaboo\"\n   },\n   \"video\": {\n       \"top\": 10,\n       \"left\": 25,\n       \"loop\": true,\n       \"width\": 50,\n       \"source\": \"cropped_apple\"\n   },\n   \"backgroundColor\": \"white\",\n   \"autoProceed\": true,\n   \"parentTextBlock\": {\n       \"text\": \"If your child needs a break, just press X to pause!\"\n   },\n   \"requiredDuration\": 0,\n   \"requireAudioCount\": 0,\n   \"requireVideoCount\": 2,\n   \"restartAfterPause\": true,\n   \"pauseKey\": \"x\",\n   \"pauseKeyDescription\": \"X\",\n   \"pauseAudio\": \"pause\",\n   \"pauseVideo\": \"attentiongrabber\",\n   \"pauseText\": \"(You'll have a moment to turn around again.)\",\n   \"unpauseAudio\": \"return_after_pause\",\n   \"doRecording\": true,\n   \"baseDir\": \"https://www.mit.edu/~kimscott/placeholderstimuli/\",\n   \"audioTypes\": [\n       \"ogg\",\n       \"mp3\"\n   ],\n   \"videoTypes\": [\n       \"webm\",\n       \"mp4\"\n   ]\n}\n\n```",
+            "description": "Infant-controlled version of the {{#crossLink \"Exp-lookit-video\"}}{{/crossLink}} frame. This works the same way as\nexp-lookit-video except that you can enable the parent to:\n\n- end the trial by pressing the `endTrialKey` key\n- hold down the `lookawayKey` (or the mouse button) to indicate that the child is not looking; the trial will automatically end\n  after the lookaway criterion is met. If the 'lookawayTone' is not 'none' a noise is played while the child is looking\n  away to help the parent know the looking coding is working.\n\nYou can disable either of these behaviors by setting the key to `''`.\n\nThe frame will still end when it would have anyway if neither of these things happen! For instance, if you would have\nlooped the video for 30 seconds, then after 30 seconds the frame will move on, serving as a \"ceiling\" on looking time.\n\nLookaway criterion: You have two options for how to determine when the child has looked away long enough to proceed.\nSet the `lookawayType` to `\"total\"` to accumulate lookaway time until the child has looked away for a total of\n`lookawayThreshold` seconds. (For instance, if the `lookawayThreshold` is 2, then the trial will end after the child\nlooks away for 0.5s, then 1s, then 0.5s.) Set the `lookawayType` to `\"continuous\"` to require that the child look\naway for a continuous `lookawayThreshold`-second interval. (For instance, if the `lookawayThreshold` is 2, then the\nchild might look away for 1s, 1.5s, and 1s but the trial would continue until she looked away for 2s.)\n\nThe looking time measurement begins only when the video starts, not while a video connection is established.\n\nIf a `lookawayKey` is defined, lookaways are recorded the entire time the frame is running. However, the looking\ntime measurement only starts once video begins playing (e.g., not during webcam connection). Lookaways at the very\nstart of the video don't count! If the child is not looking as the video begins, the measurement begins once they look\nfor the first time.\n\nIf the trial is paused, parent control of the trial is also paused; the looking time measurement begins fresh when\nrestarting.\n\nTwo pieces of data are recorded for convenience when coding or if implementing a live habituation procedure:\n`totalLookingTime` and `reasonTrialEnded`.\n\nExample usage:\n\n```json\n\"play-video-twice\": {\n   \"kind\": \"exp-lookit-video-infant-control\",\n   \"lookawayKey\": \"p\",\n   \"lookawayType\": \"total\",\n   \"lookawayThreshold\": 2,\n   \"endTrialKey\": \"q\",\n   \"lookawayTone\": \"noise\",\n   \"lookawayToneVolume\": 0.25,\n\n   \"audio\": {\n       \"loop\": false,\n       \"source\": \"peekaboo\"\n   },\n   \"video\": {\n       \"top\": 10,\n       \"left\": 25,\n       \"loop\": true,\n       \"width\": 50,\n       \"source\": \"cropped_apple\"\n   },\n   \"backgroundColor\": \"white\",\n   \"autoProceed\": true,\n   \"parentTextBlock\": {\n       \"text\": \"If your child needs a break, just press X to pause!\"\n   },\n   \"requiredDuration\": 0,\n   \"requireAudioCount\": 0,\n   \"requireVideoCount\": 2,\n   \"restartAfterPause\": true,\n   \"pauseKey\": \"x\",\n   \"pauseKeyDescription\": \"X\",\n   \"pauseAudio\": \"pause\",\n   \"pauseVideo\": \"attentiongrabber\",\n   \"pauseText\": \"(You'll have a moment to turn around again.)\",\n   \"unpauseAudio\": \"return_after_pause\",\n   \"doRecording\": true,\n   \"baseDir\": \"https://www.mit.edu/~kimscott/placeholderstimuli/\",\n   \"audioTypes\": [\n       \"ogg\",\n       \"mp3\"\n   ],\n   \"videoTypes\": [\n       \"webm\",\n       \"mp4\"\n   ]\n}\n\n```",
             "extends": "Exp-lookit-video",
             "uses": [
                 "Infant-controlled-timing"
@@ -6441,7 +6441,31 @@
         },
         {
             "file": "app/mixins/infant-controlled-timing.js",
-            "line": 119,
+            "line": 118,
+            "description": "Type of audio to play during parent-coded lookaways - 'tone' (A 220), 'noise' (pink noise), or 'none'. These\ntones are available at https://www.mit.edu/~kimscott/placeholderstimuli/ if you want to use them in\ninstructions.",
+            "itemtype": "property",
+            "name": "lookawayTone",
+            "type": "String",
+            "default": "'noise'",
+            "class": "Infant-controlled-timing",
+            "module": "exp-player",
+            "submodule": "mixins"
+        },
+        {
+            "file": "app/mixins/infant-controlled-timing.js",
+            "line": 132,
+            "description": "Volume of lookaway tone",
+            "itemtype": "property",
+            "name": "lookawayToneVolume",
+            "type": "String",
+            "default": "0.25",
+            "class": "Infant-controlled-timing",
+            "module": "exp-player",
+            "submodule": "mixins"
+        },
+        {
+            "file": "app/mixins/infant-controlled-timing.js",
+            "line": 144,
             "description": "Total looking time during this frame, in seconds.\nLooking time is calculated as the total time spent looking between:\n(1) The start of the parent control period, or the first look during that period if the child is not looking initially\nand\n(2) The end of the trial due to the parent pushing the end trial key, the child reaching the lookaway criterion,\nor the frame being completed without either of these happening (e.g., a video is played N times or an image is\nshown for N seconds).\nAll time spent looking away, per parent coding, is excluded, regardless of the duration of the lookaway.\n\nThis value will be null if the trial is not completed by any of the above mechanisms, for instance because\nthe parent ends the study early during this frame.",
             "itemtype": "attribute",
             "name": "totalLookingTime",
@@ -6452,7 +6476,7 @@
         },
         {
             "file": "app/mixins/infant-controlled-timing.js",
-            "line": 136,
+            "line": 161,
             "description": "What caused the trial to end: 'lookaway' (the child reached the lookaway threshold), 'parentEnded' (the parent\npressed the endTrialKey), or 'ceiling' (the frame ended without either of those happening).\n\nThis value will be null if the trial is not completed by any of the above mechanisms, for instance because\nthe parent ends the study early during this frame.",
             "itemtype": "attribute",
             "name": "trialEndReason",
@@ -6463,7 +6487,7 @@
         },
         {
             "file": "app/mixins/infant-controlled-timing.js",
-            "line": 162,
+            "line": 187,
             "description": "When parent records a lookaway starting. This will be triggered at the start of this frame if the parent\nis already holding down the lookawayKey, and otherwise only when the key is newly pressed down. Lookaways\nare recorded regardless of whether the parent control period has started.",
             "itemtype": "event",
             "name": "lookawayStart",
@@ -6473,7 +6497,7 @@
         },
         {
             "file": "app/mixins/infant-controlled-timing.js",
-            "line": 177,
+            "line": 202,
             "description": "When trial ends due to lookaway criterion being reached.",
             "itemtype": "event",
             "name": "lookawayEndedTrial",
@@ -6483,7 +6507,7 @@
         },
         {
             "file": "app/mixins/infant-controlled-timing.js",
-            "line": 193,
+            "line": 222,
             "description": "When parent records a lookaway ending. This will NOT be triggered at the start of this frame if the parent\nis not holding down the lookawayKey, only when the key is actually released. Lookaways\nare recorded regardless of whether the parent control period has started.",
             "itemtype": "event",
             "name": "lookawayEnd",
@@ -6493,7 +6517,7 @@
         },
         {
             "file": "app/mixins/infant-controlled-timing.js",
-            "line": 226,
+            "line": 259,
             "description": "Hook called when session recording is started automatically. Override to do\nframe-specific actions at this point (e.g., beginning a test trial).",
             "itemtype": "method",
             "name": "onSessionRecordingStarted",
@@ -6503,7 +6527,7 @@
         },
         {
             "file": "app/mixins/infant-controlled-timing.js",
-            "line": 236,
+            "line": 269,
             "description": "Begin period of parent control of trial progression. After calling startParentControl(), we wait for the first\ninfant look to the screen (this may be immediate because infant is already looking. After that, whenever infant\nlook-away time reaches criterion (either due to long enough continuous lookaway, or due to cumulative time\nlooking away) we will call onLookawayCriterion().\n\nIf startParentControl is called multiple times, each time it's called it starts a \"fresh\" interval of parent\ncontrol - i.e. no stored lookaway time, and no assumption the child has previously looked.",
             "itemtype": "method",
             "name": "startParentControl",
@@ -6513,7 +6537,7 @@
         },
         {
             "file": "app/mixins/infant-controlled-timing.js",
-            "line": 252,
+            "line": 285,
             "description": "When interval of parent control of trial begins - i.e., lookaways begin counting up to threshold.\nLookaway events are recorded throughout, but do not count towards ending trial until parent control period\nbegins.",
             "itemtype": "event",
             "name": "parentControlPeriodStart",
@@ -6523,7 +6547,7 @@
         },
         {
             "file": "app/mixins/infant-controlled-timing.js",
-            "line": 264,
+            "line": 297,
             "description": "When trial ends due to parent pressing key to end trial",
             "itemtype": "event",
             "name": "parentEndedTrial",
@@ -6533,7 +6557,7 @@
         },
         {
             "file": "app/mixins/infant-controlled-timing.js",
-            "line": 278,
+            "line": 311,
             "description": "End period of parent control of trial progression, for instance because trial is paused. Looks to/away will\nstill be logged as events but trial will not end based on parent input.",
             "itemtype": "method",
             "name": "endParentControl",
@@ -6543,7 +6567,7 @@
         },
         {
             "file": "app/mixins/infant-controlled-timing.js",
-            "line": 286,
+            "line": 319,
             "description": "When interval of parent control of trial ends - i.e., lookaways cannot lead to ending trial, parent cannot\npress key to end trial.",
             "itemtype": "event",
             "name": "parentControlPeriodEnd",
