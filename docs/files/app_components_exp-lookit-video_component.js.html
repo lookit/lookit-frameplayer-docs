@@ -546,6 +546,15 @@ export default ExpFrameBaseComponent.extend(FullScreen, VideoRecord, ExpandAsset
                     type: &#x27;string&#x27;,
                     default: &#x27;&#x27;
                 },
+                /**
+                * Source of audio played during this trial. Just stores first URL if multiple formats are offered.
+                * @attribute audioPlayed
+                * @type string
+                */
+                audioPlayed: {
+                    type: &#x27;string&#x27;,
+                    default: &#x27;&#x27;
+                },
                 videoId: {
                     type: &#x27;string&#x27;
                 },
@@ -806,10 +815,18 @@ export default ExpFrameBaseComponent.extend(FullScreen, VideoRecord, ExpandAsset
 
         // Store which video actually gets played for convenience when analyzing data
         let video = this.get(&#x27;video_parsed&#x27;, {});
-        if (video.source.length) {
+        if (video.source &amp;&amp; video.source.length) {
             this.set(&#x27;videoShown&#x27;, video.source[0].src);
         } else {
             this.set(&#x27;videoShown&#x27;, &#x27;&#x27;);
+        }
+
+        // Store which audio actually gets played for convenience when analyzing data
+        let audio = this.get(&#x27;audio_parsed&#x27;, {});
+        if (audio.source &amp;&amp; audio.source.length) {
+            this.set(&#x27;audioPlayed&#x27;, audio.source[0].src);
+        } else {
+            this.set(&#x27;audioPlayed&#x27;, &#x27;&#x27;);
         }
 
         // Apply user-provided CSS to parent text block

@@ -5560,7 +5560,18 @@
         },
         {
             "file": "app/components/exp-lookit-video/component.js",
-            "line": 429,
+            "line": 426,
+            "description": "Source of audio played during this trial. Just stores first URL if multiple formats are offered.",
+            "itemtype": "attribute",
+            "name": "audioPlayed",
+            "type": "string",
+            "class": "Exp-lookit-video",
+            "module": "exp-player",
+            "submodule": "frames"
+        },
+        {
+            "file": "app/components/exp-lookit-video/component.js",
+            "line": 438,
             "description": "Whether the video was paused at any point during the trial",
             "itemtype": "attribute",
             "name": "hasBeenPaused",
@@ -5571,7 +5582,7 @@
         },
         {
             "file": "app/components/exp-lookit-video/component.js",
-            "line": 456,
+            "line": 465,
             "description": "When video begins playing (recorded each time video starts if played through more than once)",
             "itemtype": "event",
             "name": "videoStarted",
@@ -5581,7 +5592,7 @@
         },
         {
             "file": "app/components/exp-lookit-video/component.js",
-            "line": 491,
+            "line": 500,
             "description": "When video completes playback (recorded each time if played more than once)",
             "itemtype": "event",
             "name": "videoStopped",
@@ -5591,7 +5602,7 @@
         },
         {
             "file": "app/components/exp-lookit-video/component.js",
-            "line": 512,
+            "line": 521,
             "description": "When audio begins playing (recorded each time video starts if played through more than once)",
             "itemtype": "event",
             "name": "audioStarted",
@@ -5601,7 +5612,7 @@
         },
         {
             "file": "app/components/exp-lookit-video/component.js",
-            "line": 524,
+            "line": 533,
             "description": "When audio completes playback (recorded each time if played more than once)",
             "itemtype": "event",
             "name": "audioStopped",
@@ -5611,7 +5622,7 @@
         },
         {
             "file": "app/components/exp-lookit-video/component.js",
-            "line": 550,
+            "line": 559,
             "description": "When trial is complete and begins cleanup (may then wait for video upload)",
             "itemtype": "event",
             "name": "trialCompleted",
@@ -5621,7 +5632,7 @@
         },
         {
             "file": "app/components/exp-lookit-video/component.js",
-            "line": 580,
+            "line": 589,
             "description": "When trial is unpaused (actually proceeding to beginning or next frame)",
             "itemtype": "event",
             "name": "unpauseTrial",
@@ -5631,7 +5642,7 @@
         },
         {
             "file": "app/components/exp-lookit-video/component.js",
-            "line": 607,
+            "line": 616,
             "description": "When all requirements for this frame are completed and next button is enabled (only recorded if\nautoProceed is false)",
             "itemtype": "event",
             "name": "nextButtonEnabled",
@@ -5641,7 +5652,7 @@
         },
         {
             "file": "app/components/exp-lookit-video/component.js",
-            "line": 656,
+            "line": 665,
             "description": "When trial is paused",
             "itemtype": "event",
             "name": "pauseTrial",

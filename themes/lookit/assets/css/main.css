@@ -26,7 +26,7 @@ html {
 
 body {
     /*font: 13px/1.4 'Lucida Grande', 'Lucida Sans Unicode', 'DejaVu Sans', 'Bitstream Vera Sans', 'Helvetica', 'Arial', sans-serif;*/
-    font: 13px/1.4 'Helvetica', 'Arial', sans-serif;
+    font: 15px 'Helvetica', 'Arial', sans-serif;
     margin: 0;
     padding: 0;
 }
@@ -510,7 +510,6 @@ kbd .cmd { font-family: Monaco, Helvetica; }
 .apidocs .index h3 {
     border-bottom: 1px solid #efefef;
     color: #333;
-    font-size: 13px;
     margin: 2em 0 0.6em;
     padding-bottom: 2px;
 }
@@ -519,7 +518,6 @@ kbd .cmd { font-family: Monaco, Helvetica; }
 
 .apidocs .index-list {
     border-color: #efefef;
-    font-size: 12px;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -598,7 +596,6 @@ kbd .cmd { font-family: Monaco, Helvetica; }
 
 .apidocs .item .name {
     display: inline;
-    font-size: 14px;
 }
 
 .apidocs .item .type,
@@ -609,7 +606,6 @@ kbd .cmd { font-family: Monaco, Helvetica; }
 
 .apidocs .item .type,
 .apidocs .returns-inline {
-    font-size: 11px;
     margin: 0 0 0 0;
 }
 
@@ -724,7 +720,6 @@ kbd .cmd { font-family: Monaco, Helvetica; }
 
 /* -- API options ----------------------------------------------------------- */
 #api-options {
-    font-size: 11px;
     margin-top: 2.2em;
     position: absolute;
     right: 1.5em;
@@ -739,7 +734,6 @@ kbd .cmd { font-family: Monaco, Helvetica; }
 }
 
 .apis {
-    font-size: 12px;
     line-height: 1.4;
     list-style: none;
     margin: 0;
@@ -817,4 +811,9 @@ li.module-sidebar-exp-player {
   max-height: 100%;
   max-width: 100%;
 
+}
+
+
+.box.intro, #classdocs {
+    max-width: 60em;
 }
