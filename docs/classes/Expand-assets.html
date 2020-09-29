@@ -138,6 +138,8 @@
     <p>Reference for DEVELOPERS of new frames only!
 Mixin to allow users to provide audio/video and image source values as either relative paths
 within a base directory or as full paths.
+If using along with other mixins, this should be listed LAST to enable those mixins to add to the set
+of assets that need to be expanded if needed.
 When adding this mixin to a frame, you will need to define a property of the frame
 <code>assetsToExpand</code>, which indicates which parameters might be source objects that need
 expansion. <code>assetsToExpand</code> should be an object with keys <code>image</code>, <code>video</code>, and <code>audio</code>,
@@ -266,7 +268,7 @@ values and not updated.</li>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_mixins_expand-assets.js.html#l95"><code>app&#x2F;mixins&#x2F;expand-assets.js:95</code></a>
+        <a href="../files/app_mixins_expand-assets.js.html#l98"><code>app&#x2F;mixins&#x2F;expand-assets.js:98</code></a>
         </p>
 
 
@@ -291,7 +293,7 @@ values and not updated.</li>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_mixins_expand-assets.js.html#l123"><code>app&#x2F;mixins&#x2F;expand-assets.js:123</code></a>
+        <a href="../files/app_mixins_expand-assets.js.html#l126"><code>app&#x2F;mixins&#x2F;expand-assets.js:126</code></a>
         </p>
 
 
@@ -331,7 +333,7 @@ expanded out to</p>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_mixins_expand-assets.js.html#l103"><code>app&#x2F;mixins&#x2F;expand-assets.js:103</code></a>
+        <a href="../files/app_mixins_expand-assets.js.html#l106"><code>app&#x2F;mixins&#x2F;expand-assets.js:106</code></a>
         </p>
 
 
@@ -365,7 +367,7 @@ does not end in a slash, one will be added.</p>
     <div class="meta">
                 <p> Specific to this element.
                 Defined in
-        <a href="../files/app_mixins_expand-assets.js.html#l151"><code>app&#x2F;mixins&#x2F;expand-assets.js:151</code></a>
+        <a href="../files/app_mixins_expand-assets.js.html#l154"><code>app&#x2F;mixins&#x2F;expand-assets.js:154</code></a>
         </p>
 
 

@@ -19,8 +19,12 @@
                 <img style="float:right; vertical-align:middle;" src="../assets/css/logo.png" height="70">
                 <span>Lookit<br> component<br> docs</span>
 
-                    <p>Version: v1.2.0</p>
-                    <a href="../index.html">(switch to latest)</a>
+                    <p>Version: latest <br>(v1.3.x - develop)</p>
+                    <select name="select_version" onchange="location = this.value;">
+                        <option value="">--Select different version--</option>
+                            <option value="../releases/v1.2.0/index.html">v1.2.0</option>
+                            <option value="../releases/v1.3.0/index.html">v1.3.0</option>
+                    </select>
               </div>
               </h2>
               <div id="api-list">
@@ -50,6 +54,7 @@
                             <li><a href="../classes/Exp-lookit-geometry-alternation.html">Exp-lookit-geometry-alternation</a></li>
                             <li><a href="../classes/Exp-lookit-geometry-alternation-open.html">Exp-lookit-geometry-alternation-open</a></li>
                             <li><a href="../classes/Exp-lookit-images-audio.html">Exp-lookit-images-audio</a></li>
+                            <li><a href="../classes/Exp-lookit-images-audio-infant-control.html">Exp-lookit-images-audio-infant-control</a></li>
                             <li><a href="../classes/Exp-lookit-instructions.html">Exp-lookit-instructions</a></li>
                             <li><a href="../classes/Exp-lookit-mood-questionnaire.html">Exp-lookit-mood-questionnaire</a></li>
                             <li><a href="../classes/Exp-lookit-observation.html">Exp-lookit-observation</a></li>
@@ -64,11 +69,13 @@
                             <li><a href="../classes/Exp-lookit-video.html">Exp-lookit-video</a></li>
                             <li><a href="../classes/Exp-lookit-video-assent.html">Exp-lookit-video-assent</a></li>
                             <li><a href="../classes/Exp-lookit-video-consent.html">Exp-lookit-video-consent</a></li>
+                            <li><a href="../classes/Exp-lookit-video-infant-control.html">Exp-lookit-video-infant-control</a></li>
                             <li><a href="../classes/Exp-lookit-webcam-display.html">Exp-lookit-webcam-display</a></li>
                             <li><a href="../classes/Exp-video-config.html">Exp-video-config</a></li>
                             <li><a href="../classes/Exp-video-config-quality.html">Exp-video-config-quality</a></li>
                             <li><a href="../classes/Expand-assets.html">Expand-assets</a></li>
                             <li><a href="../classes/Full-screen.html">Full-screen</a></li>
+                            <li><a href="../classes/Infant-controlled-timing.html">Infant-controlled-timing</a></li>
                             <li><a href="../classes/Media-reload.html">Media-reload</a></li>
                             <li><a href="../classes/Permute.html">Permute</a></li>
                             <li><a href="../classes/Random-parameter-set.html">Random-parameter-set</a></li>
@@ -172,8 +179,28 @@ Consent document can be downloaded as PDF document by participant.
 export default ExpLookitVideoConsent.extend(VideoRecord, {
     layout,
 
+    /**
+     * @property {Boolean} startRecordingAutomatically
+     * @private
+     */
+
+    /**
+     * @property {Boolean} showWaitForRecordingMessage
+     * @private
+     */
+
+    /**
+     * @property {Boolean} waitForRecordingMessage
+     * @private
+     */
+
+    /**
+     * @property {Boolean} waitForRecordingMessageColor
+     * @private
+     */
+
     frameSchemaProperties: {
-        /**
+        /*
         Title of the consent document
         @property {String} title
         @default &#x27;Consent to participate in behavioral research: &lt;br&gt; Inference and induction study&#x27;
@@ -183,7 +210,7 @@ export default ExpLookitVideoConsent.extend(VideoRecord, {
             default: &#x27;Consent to participate in behavioral research: &lt;br&gt; Inference and induction study&#x27;
         },
 
-        /**
+        /*
         Array of paragraphs of the consent document, each with title and text.
         @property {Array} blocks
             @param {String} title
@@ -206,7 +233,7 @@ export default ExpLookitVideoConsent.extend(VideoRecord, {
             default: []
         },
 
-        /**
+        /*
         Text the user is asked to read aloud to consent
         @property {String} prompt
         @default &#x27;I consent to participate in this study&#x27;

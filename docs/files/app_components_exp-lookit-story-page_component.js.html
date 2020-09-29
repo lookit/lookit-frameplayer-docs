@@ -435,7 +435,6 @@ export default ExpFrameBaseComponent.extend(FullScreen, VideoRecord, ExpandAsset
     onRecordingStarted() {
         this.set(&#x27;currentAudioIndex&#x27;, -1);
         this.send(&#x27;playNextAudioSegment&#x27;);
-        $(&#x27;#waitForVideo&#x27;).hide();
         $(&#x27;.story-image-container&#x27;).show();
     },
 

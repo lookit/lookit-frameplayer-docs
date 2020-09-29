@@ -135,6 +135,9 @@ import Ember from &#x27;ember&#x27;;
  * Mixin to allow users to provide audio/video and image source values as either relative paths
  * within a base directory or as full paths.
  *
+ * If using along with other mixins, this should be listed LAST to enable those mixins to add to the set
+ * of assets that need to be expanded if needed.
+ *
  * When adding this mixin to a frame, you will need to define a property of the frame
  * &#x60;assetsToExpand&#x60;, which indicates which parameters might be source objects that need
  * expansion. &#x60;assetsToExpand&#x60; should be an object with keys &#x60;image&#x60;, &#x60;video&#x60;, and &#x60;audio&#x60;,

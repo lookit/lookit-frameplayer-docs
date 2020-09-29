@@ -124,6 +124,8 @@
 import Ember from &#x27;ember&#x27;;
 import { observer } from &#x27;@ember/object&#x27;;
 import VideoRecorder from &#x27;../services/video-recorder&#x27;;
+import { colorSpecToRgbaArray, isColor } from &#x27;../utils/is-color&#x27;;
+import { expFormat } from &#x27;../helpers/exp-format&#x27;;
 
 let {
     $
@@ -309,6 +311,82 @@ export default Ember.Mixin.create({
      */
     videoId: &#x27;&#x27;,
 
+    /**
+     * Whether to initially show a message saying to wait until recording starts, covering the entire frame.
+     * This prevents participants from seeing any stimuli before recording begins. Only used if recording is being
+     * started immediately.
+     * @property {Boolean} showWaitForRecordingMessage
+     * @default true
+     */
+    showWaitForRecordingMessage: true,
+
+    /**
+     * [Only used if showWaitForRecordingMessage is true] Text to display while waiting for recording to begin.
+     * @property {Boolean} waitForRecordingMessage
+     * @default &#x27;Please wait... &lt;br&gt;&lt;br&gt; starting webcam recording&#x27;
+     */
+    waitForRecordingMessage: &#x27;Please wait... &lt;br&gt;&lt;br&gt; starting webcam recording&#x27;,
+
+    /**
+     * [Only used if showWaitForRecordingMessage is true] Background color of screen while waiting for recording to
+     * begin. See https://developer.mozilla.org/en-US/docs/Web/CSS/color_value
+     * for acceptable syntax: can use either color names (&#x27;blue&#x27;, &#x27;red&#x27;, &#x27;green&#x27;, etc.), or
+     * rgb hex values (e.g. &#x27;#800080&#x27; - include the &#x27;#&#x27;). The text on top of this will be either black or white
+     * depending on which will have higher contrast.
+     * @property {Boolean} waitForRecordingMessageColor
+     * @default &#x27;white&#x27;
+     */
+    waitForRecordingMessageColor: &#x27;white&#x27;,
+
+    /**
+     * Whether to stop media and hide stimuli with a message saying to wait for video upload when stopping recording.
+     * Do NOT set this to true if end of recording does not correspond to end of the frame (e.g. during consent or
+     * observation frames) since it will hide everything upon stopping the recording!
+     * @property {Boolean} showWaitForUploadMessage
+     * @default true
+     */
+    showWaitForUploadMessage: false,
+
+    /**
+     * [Only used if showWaitForUploadMessage is true] Text to display while waiting for recording to begin.
+     * @property {Boolean} waitForUploadMessage
+     * @default &#x27;Please wait... &lt;br&gt;&lt;br&gt; uploading video&#x27;
+     */
+    waitForUploadMessage: &#x27;Please wait... &lt;br&gt;&lt;br&gt; uploading video&#x27;,
+
+    /**
+     * [Only used if showWaitForUploadMessage is true] Background color of screen while waiting for recording to
+     * upload. See https://developer.mozilla.org/en-US/docs/Web/CSS/color_value
+     * for acceptable syntax: can use either color names (&#x27;blue&#x27;, &#x27;red&#x27;, &#x27;green&#x27;, etc.), or
+     * rgb hex values (e.g. &#x27;#800080&#x27; - include the &#x27;#&#x27;). The text on top of this will be either black or white
+     * depending on which will have higher contrast.
+     * @property {String} waitForUploadMessageColor
+     * @default &#x27;white&#x27;
+     */
+    waitForUploadMessageColor: &#x27;white&#x27;,
+
+    /**
+     * [Only used if showWaitForUploadMessage and/or showWaitForRecordingMessage are true] Image to display along with
+     * any wait-for-recording or wait-for-upload message. Either waitForWebcamImage or waitForWebcamVideo can be
+     * specified. This can be either a full URL (&#x27;https://...&#x27;) or just a filename, which will be assumed to be
+     * inside &#x60;&#x60;baseDir/img/&#x60;&#x60; if this frame otherwise supports use of &#x60;&#x60;baseDir&#x60;&#x60;.
+     * @property {String} waitForWebcamImage
+     * @default &#x27;&#x27;
+     */
+    waitForWebcamImage: &#x27;&#x27;,
+
+    /**
+     * [Only used if showWaitForUploadMessage and/or showWaitForRecordingMessage are true] Video to display along with
+     * any wait-for-recording or wait-for-upload message (looping). Either waitForWebcamImage or waitForWebcamVideo can be
+     * specified. This can be either an array of &#x60;&#x60;{&#x27;src&#x27;: &#x27;https://...&#x27;, &#x27;type&#x27;: &#x27;...&#x27;}&#x60;&#x60; objects (e.g. providing both
+     * webm and mp4 versions at specified URLS) or a single string relative to &#x60;&#x60;baseDir/&lt;EXT&gt;/&#x60;&#x60; if this frame otherwise
+     * supports use of &#x60;&#x60;baseDir&#x60;&#x60;.
+     * @property {String} waitForWebcamVideo
+     * @default &#x27;&#x27;
+     */
+    waitForWebcamVideo: &#x27;&#x27;,
+
+
     _generateVideoId() {
         return [
             &#x27;videoStream&#x27;,
@@ -406,6 +484,24 @@ export default Ember.Mixin.create({
         const recorder = this.get(&#x27;recorder&#x27;);
         if (recorder &amp;&amp; recorder.get(&#x27;recording&#x27;)) {
             this.send(&#x27;setTimeEvent&#x27;, &#x27;stoppingCapture&#x27;);
+            if (this.get(&#x27;showWaitForUploadMessage&#x27;)) {
+                // TODO: consider adding progress bar
+                $( &quot;video audio&quot; ).each(function() {
+                    this.pause();
+                });
+
+                let colorSpec = this.get(&#x27;waitForUploadMessageColor&#x27;);
+                if (!isColor(colorSpec)) {
+                    console.warn(&#x60;Invalid background color waitForRecordingUploadColor (${colorSpec}) provided; using default instead.&#x60;);
+                    colorSpec = &#x27;white&#x27;;
+                }
+                let colorSpecRGBA = colorSpecToRgbaArray(colorSpec);
+                $(&#x27;.video-record-mixin-wait-for-video&#x27;).css(&#x27;background-color&#x27;, colorSpec);
+                $(&#x27;.video-record-mixin-wait-for-video-text&#x27;).css(&#x27;color&#x27;, (colorSpecRGBA[0] + colorSpecRGBA[1] + colorSpecRGBA[2] &gt; 128 * 3) ? &#x27;black&#x27; : &#x27;white&#x27;);
+                $(&#x27;.video-record-mixin-wait-for-video-text&#x27;).html(&#x60;${expFormat(this.get(&#x27;waitForUploadMessage&#x27;))}&#x60;);
+                $(&#x27;.video-record-mixin-wait-for-video&#x27;).show();
+
+            }
             return recorder.stop(this.get(&#x27;maxUploadSeconds&#x27;) * 1000);
         } else {
             return Ember.RSVP.reject(1);
@@ -428,7 +524,6 @@ export default Ember.Mixin.create({
 
     willDestroyElement() {
         var _this = this;
-
         if (_this.get(&#x27;recorder&#x27;)) {
             window.clearTimeout(_this.get(&#x27;recorder&#x27;).get(&#x27;uploadTimeout&#x27;));
             if (_this.get(&#x27;stoppedRecording&#x27;, true)) {
@@ -445,6 +540,26 @@ export default Ember.Mixin.create({
         _this._super(...arguments);
     },
 
+    didReceiveAttrs() {
+        let assets = this.get(&#x27;assetsToExpand&#x27;);
+        if (assets) {
+            if (assets.image) {
+                assets.image.push(&#x27;waitForUploadImage&#x27;);
+            } else {
+                assets.image = [&#x27;waitForUploadImage&#x27;];
+            }
+            if (assets.video) {
+                assets.video.push(&#x27;waitForUploadVideo&#x27;);
+            } else {
+                assets.video = [&#x27;waitForUploadVideo&#x27;];
+            }
+        } else {
+            this.set(&#x27;assetsToExpand&#x27;, {&#x27;image&#x27;: [&#x27;waitForUploadImage&#x27;], &#x27;video&#x27;: [&#x27;waitForUploadVideo&#x27;]})
+        }
+        console.log(this.get(&#x27;assetsToExpand&#x27;));
+        this._super(...arguments);
+    },
+
     didInsertElement() {
         // Give any active session recorder precedence over individual-frame recording
         if (this.get(&#x27;sessionRecorder&#x27;) &amp;&amp; this.get(&#x27;session&#x27;).get(&#x27;recordingInProgress&#x27;)) {
@@ -453,6 +568,52 @@ export default Ember.Mixin.create({
         }
 
         if (this.get(&#x27;doUseCamera&#x27;)) {
+
+            // If showing a wait-for-recording or wait-for-upload message, set it up now.
+            if ((this.get(&#x27;showWaitForRecordingMessage&#x27;) &amp;&amp; this.get(&#x27;startRecordingAutomatically&#x27;)) || this.get(&#x27;showWaitForUploadMessage&#x27;)) {
+                let $waitForVideoCover = $(&#x27;&lt;div&gt;&lt;/div&gt;&#x27;);
+                $waitForVideoCover.addClass(&#x27;video-record-mixin-wait-for-video&#x27;); // for easily referencing later to show/hide
+
+                // Set the background color of the cover
+                let colorSpec = this.get(&#x27;waitForRecordingMessageColor&#x27;);
+                if (!isColor(colorSpec)) {
+                    console.warn(&#x60;Invalid background color waitForRecordingMessageColor (${colorSpec}) provided; using default instead.&#x60;);
+                    colorSpec = &#x27;white&#x27;;
+                }
+                let colorSpecRGBA = colorSpecToRgbaArray(colorSpec);
+                $waitForVideoCover.css(&#x27;background-color&#x27;, colorSpec);
+
+                // Add the image, if any
+                if (this.get(&#x27;waitForUploadImage&#x27;)) {
+                    let imageSource = this.get(&#x27;waitForUploadImage_parsed&#x27;) ? this.get(&#x27;waitForUploadImage_parsed&#x27;) : this.get(&#x27;waitForUploadImage&#x27;);
+                    $waitForVideoCover.append($(&#x60;&lt;img src=&#x27;${imageSource}&#x27; class=&#x27;video-record-mixin-image&#x27;&gt;&#x60;));
+                }
+
+                // Add the video, if any
+                if (this.get(&#x27;waitForUploadVideo&#x27;)) {
+                    let $videoElement = $(&#x27;&lt;video loop autoplay=&quot;autoplay&quot; class=&quot;video-record-mixin-image&quot;&gt;&lt;/video&gt;&#x27;);
+                    let videoSources = this.get(&#x27;waitForUploadVideo_parsed&#x27;) ? this.get(&#x27;waitForUploadVideo_parsed&#x27;) : this.get(&#x27;waitForUploadVideo&#x27;);
+                    console.log(videoSources);
+                    console.log(this);
+                    $.each(videoSources, function (idx, source) {
+                        $videoElement.append(&#x60;&lt;source src=${source.src} type=${source.type}&gt;&#x60;);
+                    });
+                    $waitForVideoCover.append($videoElement);
+                }
+
+                // Add the text and set its color so it&#x27;ll be visible against the background
+                let $waitForVideoText = $(&#x60;&lt;div&gt;${expFormat(this.get(&#x27;waitForRecordingMessage&#x27;))}&lt;/div&gt;&#x60;);
+                $waitForVideoText.addClass(&#x27;video-record-mixin-wait-for-video-text&#x27;);
+                $waitForVideoText.css(&#x27;color&#x27;, (colorSpecRGBA[0] + colorSpecRGBA[1] + colorSpecRGBA[2] &gt; 128 * 3) ? &#x27;black&#x27; : &#x27;white&#x27;);
+                $waitForVideoCover.append($waitForVideoText);
+
+                $(&#x27;div.lookit-frame&#x27;).append($waitForVideoCover);
+
+                if (this.get(&#x27;showWaitForRecordingMessage&#x27;) &amp;&amp; this.get(&#x27;startRecordingAutomatically&#x27;)) {
+                    $waitForVideoCover.css(&#x27;display&#x27;, &#x27;block&#x27;);
+                }
+            }
+
             var _this = this;
             this.setupRecorder(this.$(this.get(&#x27;recorderElement&#x27;))).then(() =&gt; {
                 /**
@@ -487,6 +648,7 @@ export default Ember.Mixin.create({
             if (this.get(&#x27;recorder.hasCamAccess&#x27;) &amp;&amp; this.get(&#x27;recorderReady&#x27;)) {
                 this.startRecorder().then(() =&gt; {
                     _this.set(&#x27;recorderReady&#x27;, false);
+                    $(&#x27;.video-record-mixin-wait-for-video&#x27;).hide();
                     _this.onRecordingStarted();
                 });
             }
