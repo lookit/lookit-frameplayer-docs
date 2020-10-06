@@ -55,6 +55,7 @@
                             <li><a href="../classes/Exp-lookit-geometry-alternation-open.html">Exp-lookit-geometry-alternation-open</a></li>
                             <li><a href="../classes/Exp-lookit-images-audio.html">Exp-lookit-images-audio</a></li>
                             <li><a href="../classes/Exp-lookit-images-audio-infant-control.html">Exp-lookit-images-audio-infant-control</a></li>
+                            <li><a href="../classes/Exp-lookit-instruction-video.html">Exp-lookit-instruction-video</a></li>
                             <li><a href="../classes/Exp-lookit-instructions.html">Exp-lookit-instructions</a></li>
                             <li><a href="../classes/Exp-lookit-mood-questionnaire.html">Exp-lookit-mood-questionnaire</a></li>
                             <li><a href="../classes/Exp-lookit-observation.html">Exp-lookit-observation</a></li>
@@ -307,6 +308,11 @@ export default Ember.Mixin.create({
         if (sessionRecorder) {
             var _this = this;
             return sessionRecorder.record().then(() =&gt; {
+                /**
+                 * When session video recorder has begun recording
+                 *
+                 * @event startSessionRecording
+                 */
                 _this.send(&#x27;setTimeEvent&#x27;, &#x27;startSessionRecording&#x27;, {
                     sessionPipeId: sessionRecorder.get(&#x27;pipeVideoName&#x27;)
                 });
@@ -318,13 +324,18 @@ export default Ember.Mixin.create({
 
     /**
      * Stop recording
-     * @method startSessionRecorder
-     * @return Promise Resolves when recording has started
+     * @method stopSessionRecorder
+     * @return Promise Resolves when recording has been uploaded or timed out
      */
     stopSessionRecorder() {
         const sessionRecorder = this.get(&#x27;sessionRecorder&#x27;);
         if (sessionRecorder) {
-            this.send(&#x27;setTimeEvent&#x27;, &#x27;stoppingCapture&#x27;);
+            /**
+             * When session video recorder is stopped (upload may continue afterwards)
+             *
+             * @event stopSessionRecording
+             */
+            this.send(&#x27;setTimeEvent&#x27;, &#x27;stopSessionRecording&#x27;);
             return sessionRecorder.stop(this.get(&#x27;sessionMaxUploadSeconds&#x27;) * 1000);
         } else {
             return Ember.RSVP.reject();

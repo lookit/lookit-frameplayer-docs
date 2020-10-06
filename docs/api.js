@@ -12,6 +12,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "Exp-lookit-geometry-alternation-open",
         "Exp-lookit-images-audio",
         "Exp-lookit-images-audio-infant-control",
+        "Exp-lookit-instruction-video",
         "Exp-lookit-instructions",
         "Exp-lookit-mood-questionnaire",
         "Exp-lookit-observation",

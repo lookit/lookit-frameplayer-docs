@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>app/components/exp-lookit-instructions/component.js - ember-lookit-frameplayer</title>
+    <title>app/components/exp-lookit-instruction-video/component.js - ember-lookit-frameplayer</title>
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
     <link rel="stylesheet" href="https://yui-s.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
@@ -118,7 +118,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1 class="file-heading">File: app/components/exp-lookit-instructions/component.js</h1>
+<h1 class="file-heading">File: app/components/exp-lookit-instruction-video/component.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -126,7 +126,7 @@ import Em from &#x27;ember&#x27;;
 
 import layout from &#x27;./template&#x27;;
 import ExpFrameBaseComponent from &#x27;../exp-frame-base/component&#x27;;
-import VideoRecord from &#x27;../../mixins/video-record&#x27;;
+import ExpandAssets, {videoAssetOptions} from &#x27;../../mixins/expand-assets&#x27;;
 
 let {
     $
@@ -138,257 +138,172 @@ let {
  */
 
 /**
- * A frame to display instructions to the user. The user&#x27;s webcam may optionally be
- * displayed, and audio and video clips may be included in the instructions (and may be
- * required to be played before moving on).
+ * A frame to display video instructions to the user.
  *
- * Each element of the &#x27;blocks&#x27; parameter is rendered using {{#crossLink &quot;Exp-text-block&quot;}}{{/crossLink}}.
+ * A video is displayed to the left, and a transcript or summary in a scrolling box to the right. (The transcript can
+ * be omitted if desired, but in that case you must provide complete captioning for the video!)
+ *
+ * The participant is required to either scroll to the bottom of the transcript or watch the video to proceed.
+ *
+ * Each element of the &#x27;transcriptBlocks&#x27; parameter is rendered using {{#crossLink &quot;Exp-text-block&quot;}}{{/crossLink}}.
 
 &#x60;&#x60;&#x60;json
  &quot;frames&quot;: {
-        &quot;instructions&quot;: {
-            &quot;kind&quot;: &quot;exp-lookit-instructions&quot;,
-            &quot;blocks&quot;: [
-                {
-                    &quot;title&quot;: &quot;Parent&#x27;s role&quot;,
-                    &quot;listblocks&quot;: [
-                        {
-                            &quot;text&quot;: &quot;Follow instructions&quot;
-                        },
-                        {
-                            &quot;text&quot;: &quot;Only do each joke once&quot;
-                        }
-                    ]
-                },
-                {
-                    &quot;text&quot;: &quot;It&#x27;s important that we can see you&quot;,
-                    &quot;image&quot;: {
-                        &quot;alt&quot;: &quot;Father holding child looking over his shoulder&quot;,
-                        &quot;src&quot;: &quot;https://s3.amazonaws.com/lookitcontents/exp-physics/OverShoulder.jpg&quot;
+     &quot;intro-video&quot;: {
+        &quot;kind&quot;: &quot;exp-lookit-instruction-video&quot;,
+        &quot;instructionsVideo&quot;: [
+            {
+                &quot;src&quot;: &quot;https://raw.github.com/UCDOakeslab/Baby_MR_Lookit/master/Lookit Introduction Part 1_Edited.mp4&quot;,
+                &quot;type&quot;: &quot;video/mp4&quot;
+            }
+        ],
+        &quot;introText&quot;: &quot;Welcome to the study! Please watch this video to get started. \n(Or you can read the summary to the right if you prefer.)&quot;,
+        &quot;transcriptTitle&quot;: &quot;Video summary&quot;,
+        &quot;transcriptBlocks&quot;: [
+            {
+                &quot;title&quot;: &quot;Background information about the study&quot;,
+                &quot;listblocks&quot;: [
+                    {
+                        &quot;text&quot;: &quot;Your baby does not need to be with you at this point in the study. We will let you know when it is time to get your baby.&quot;
                     },
-                    &quot;title&quot;: &quot;Camera position&quot;
-                },
-                {
-                    &quot;text&quot;: &quot;Here&#x27;s some audio you have to play&quot;,
-                    &quot;title&quot;: &quot;Test&quot;,
-                    &quot;mediaBlock&quot;: {
-                        &quot;text&quot;: &quot;You should hear &#x27;Ready to go?&#x27;&quot;,
-                        &quot;isVideo&quot;: false,
-                        &quot;sources&quot;: [
-                            {
-                                &quot;src&quot;: &quot;https://s3.amazonaws.com/lookitcontents/exp-physics-final/audio/ready.mp3&quot;,
-                                &quot;type&quot;: &quot;audio/mp3&quot;
-                            },
-                            {
-                                &quot;src&quot;: &quot;https://s3.amazonaws.com/lookitcontents/exp-physics-final/audio/ready.ogg&quot;,
-                                &quot;type&quot;: &quot;audio/ogg&quot;
-                            }
-                        ],
-                        &quot;mustPlay&quot;: true,
-                        &quot;warningText&quot;: &quot;Please try playing the sample audio.&quot;
+                    {
+                        &quot;text&quot;: &quot;Mental rotation, or the ability to manipulate internal representations of objects, is an important spatial ability. Spatial abilities are important for understanding objects, reading maps, mathematical reasoning, and navigating the world. Thus, the development of mental rotation is an important milestone. In the current study, we are interested in examining whether babies in general can mentally rotate simple objects.&quot;
                     }
-                },
-                {
-                    &quot;text&quot;: &quot;Here&#x27;s a video you don&#x27;t have to play!&quot;,
-                    &quot;title&quot;: &quot;Test&quot;,
-                    &quot;mediaBlock&quot;: {
-                        &quot;text&quot;: &quot;Look at that.&quot;,
-                        &quot;isVideo&quot;: true,
-                        &quot;sources&quot;: [
-                            {
-                                &quot;src&quot;: &quot;https://s3.amazonaws.com/lookitcontents/exp-physics-final/examples/7_control_same.mp4&quot;,
-                                &quot;type&quot;: &quot;video/mp4&quot;
-                            },
-                            {
-                                &quot;src&quot;: &quot;https://s3.amazonaws.com/lookitcontents/exp-physics-final/examples/7_control_same.webm&quot;,
-                                &quot;type&quot;: &quot;video/webm&quot;
-                            }
-                        ],
-                        &quot;mustPlay&quot;: false
+                ]
+            },
+            {
+                &quot;title&quot;: &quot;Preview of what your baby will see&quot;
+            },
+            {
+                &quot;listblocks&quot;: [
+                    {
+                        &quot;text&quot;: &quot;Your baby will be shown two identical Tetris shapes on the screen; one on the left and one on the right. The shapes appear and disappear, changing their orientation each time they reappear. On one side, the rotation will always be possible. Sometimes, on the other side, a mirror image of the shape will be presented. If babies can mentally rotate objects, they should spend different amounts of time watching these two kinds of stimuli.&quot;
                     }
-                }
-            ],
-            &quot;showWebcam&quot;: true,
-            &quot;webcamBlocks&quot;: [
-                {
-                    &quot;title&quot;: &quot;Some webcam instructions&quot;,
-                    &quot;listblocks&quot;: [
-                        {
-                            &quot;text&quot;: &quot;Like this!&quot;
-                        },
-                        {
-                            &quot;text&quot;: &quot;Be careful your webcam does not have tape over it&quot;
-                        }
-                    ]
-                }
-            ],
-            &quot;nextButtonText&quot;: &quot;Next&quot;
-        }
+                ]
+            },
+            {
+                &quot;title&quot;: &quot;What&#x27;s next?&quot;,
+                &quot;listblocks&quot;: [
+                    {
+                        &quot;text&quot;: &quot;Because this is an online study, we will check to make sure that your webcam is set up and working properly on the next page, so we can record your baby’s looking behavior during the study.&quot;
+                    },
+                    {
+                        &quot;text&quot;: &quot;Following that page, you will be given an opportunity to review the consent information and we will ask that you record a short video of yourself giving consent to participate in this study.&quot;
+                    },
+                    {
+                        &quot;text&quot;: &quot;We will then ask you questions about your baby&#x27;s motor abilities.&quot;
+                    },
+                    {
+                        &quot;text&quot;: &quot;After you are finished with the consent page and questions, you will be provided with more detailed information about what to do during the study and how to get started.&quot;
+                    }
+                ]
+            }
+        ],
+        &quot;warningText&quot;: &quot;Please watch the video or read the transcript before proceeding.&quot;,
+        &quot;nextButtonText&quot;: &quot;Next&quot;,
+        &quot;title&quot;: &quot;Study instructions&quot;,
+        &quot;showPreviousButton&quot;: false
+    }
  }
 
  * &#x60;&#x60;&#x60;
- * @class Exp-lookit-instructions
+ * @class Exp-lookit-instruction-video
  * @extends Exp-frame-base
- * @extends Video-record
+ * @extends Expand-assets
  */
 
-export default ExpFrameBaseComponent.extend(VideoRecord, {
+export default ExpFrameBaseComponent.extend(ExpandAssets, {
     layout: layout,
-    type: &#x27;exp-lookit-instructions&#x27;,
-    doUseCamera: Em.computed.alias(&#x27;showWebcam&#x27;),
+    type: &#x27;exp-lookit-instruction-video&#x27;,
+    assetsToExpand: {
+        &#x27;audio&#x27;: [
+        ],
+        &#x27;video&#x27;: [
+            &#x27;instructionsVideo&#x27;
+        ],
+        &#x27;image&#x27;: [
+        ]
+    },
     frameSchemaProperties: {
 
-        // Note: don&#x27;t display the following in the docs; they&#x27;re not used because startRecordingAutomatically is
-        // false.
-
         /**
-         * @property {Boolean} showWaitForRecordingMessage
-         * @private
-         */
-
-        /**
-         * @property {Boolean} waitForRecordingMessage
-         * @private
-         */
-
-        /**
-         * @property {Boolean} waitForRecordingMessageColor
-         * @private
-         */
-
-        /**
-         * @property {Boolean} showWaitForUploadMessage
-         * @private
-         */
-
-        /**
-         * @property {Boolean} waitForUploadMessage
-         * @private
-         */
-
-        /**
-         * @property {String} waitForUploadMessageColor
-         * @private
-         */
-
-        /**
-         * @property {String} waitForWebcamImage
-         * @private
-         */
-
-        /**
-         * @property {String} waitForWebcamVideo
-         * @private
-         */
-
-        /**
-         * Whether to display the user&#x27;s webcam
+         * Title to show at top of frame
          *
-         * @property {Boolean} showWebcam
-         * @default false
+         * @property {String} title
+         * @default &#x27;Study instructions&#x27;
          */
-        showWebcam: {
-            type: &#x27;boolean&#x27;,
-            description: &#x27;Whether to display the user\&#x27;s webcam&#x27;,
-            default: false
+        title: {
+            type: &#x27;string&#x27;,
+            description: &#x27;Title for frame&#x27;,
+            default: &#x27;Study instructions&#x27;
         },
 
         /**
-         * Array of blocks for {{#crossLink &quot;Exp-text-block&quot;}}{{/crossLink}}, specifying text/images of instructions to display
+         * Intro text to show at top of frame
          *
-         * @property {Object[]} blocks
-         *   @param {String} title Title of this section
-         *   @param {String} text Paragraph text of this section
-         *   @param {Object[]} listblocks Object specifying bulleted points for this section. Each object is of the form:
-         *   {text: &#x27;text of bullet point&#x27;, image: {src: &#x27;url&#x27;, alt: &#x27;alt-text&#x27;}}. Images are optional.
-         *   @param {Object} mediaBlock Object specifying audio or video clip to include (optional). mediaBlock should be of form:
-         *   {title: &#x27;title text to show above audio&#x27;, text: &#x27;text to show below controls&#x27;, warningText: &#x27;Text to show in red if user tries to proceed but hasn&#x27;t played; only used if mustPlay is true&#x27;, sources: &#x27;sources Array of {src: &#x27;url&#x27;, type: &#x27;MIMEtype&#x27;} objects specifying audio sources&#x27;, isVideo: &#x27;boolean, whether video or audio&#x27;, mustPlay: &#x27;boolean, whether clip has to be played to proceed&#x27;}
-         *
+         * @property {String} introText
+         * @default &#x27;Welcome! Please watch this video to learn how the study will work. \n You can read through the information to the right if you prefer.&#x27;
          */
-        blocks: {
-            type: &#x27;array&#x27;,
-            items: {
-                type: &#x27;object&#x27;,
-                properties: {
-                    title: {
-                        type: &#x27;string&#x27;
-                    },
-                    text: {
-                        type: &#x27;string&#x27;
-                    },
-                    listblocks: {
-                        type: &#x27;array&#x27;,
-                        items: {
-                            type: &#x27;object&#x27;,
-                            properties: {
-                                text: {
-                                    type: &#x27;string&#x27;
-                                },
-                                image: {
-                                    type: &#x27;object&#x27;,
-                                    properties: {
-                                        src: {
-                                            type: &#x27;string&#x27;
-                                        },
-                                        alt: {
-                                            type: &#x27;string&#x27;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    mediaBlock: {
-                        type: &#x27;object&#x27;,
-                        default: {},
-                        properties: {
-                            title: {
-                                type: &#x27;string&#x27;
-                            },
-                            text: {
-                                type: &#x27;string&#x27;
-                            },
-                            warningText: {
-                                type: &#x27;string&#x27;
-                            },
-                            sources: {
-                                type: &#x27;array&#x27;,
-                                items: {
-                                    type: &#x27;object&#x27;,
-                                    properties: {
-                                        src: {
-                                            type: &#x27;string&#x27;
-                                        },
-                                        type: {
-                                            type: &#x27;string&#x27;
-                                        }
-                                    }
-                                }
-                            },
-                            isVideo: {
-                                type: &#x27;boolean&#x27;,
-                                default: false
-                            },
-                            mustPlay: {
-                                type: &#x27;boolean&#x27;,
-                                default: false
-                            }
-                        }
-                    }
-                }
-            },
-            default: []
+        introText: {
+            type: &#x27;string&#x27;,
+            description: &#x27;Intro text to show at top of frame&#x27;,
+            default: &#x27;Welcome! Please watch this video to learn how the study will work. You can read the transcript to the right if you prefer.&#x27;
         },
+
         /**
-         * Array of objects specifying text/images of instructions to display under webcam view (if webcam is shown)
+         * Text to show above Next button if participant has not yet watched video or read transcript
          *
-         * @property {Object[]} blocks
+         * @property {String} warningText
+         * @default &#x27;Please watch the video or read the transcript before proceeding.&#x27;
+         */
+        warningText: {
+            type: &#x27;string&#x27;,
+            description: &#x27;Text to show above Next button if participant has not yet watched video or read transcript&#x27;,
+            default: &#x27;Please watch the video or read the transcript before proceeding.&#x27;
+        },
+
+        /**
+         * The location of the instructions video to play. This can be either
+         *      an array of {&#x27;src&#x27;: &#x27;https://...&#x27;, &#x27;type&#x27;: &#x27;...&#x27;} objects (e.g. providing both
+         *      webm and mp4 versions at specified URLS) or a single string relative to baseDir/&lt;EXT&gt;/.
+         *
+         * @property {Object} instructionsVideo
+         */
+        instructionsVideo: {
+            anyOf: videoAssetOptions,
+            description: &#x27;Object describing the instructions video to show&#x27;
+        },
+
+        /**
+         * Title to show above video transcript/overview. Generally this should be either &quot;Video transcript&quot; or
+         * &quot;Video summary&quot; depending on whether you&#x27;re providing a word-for-word transcript or a condensed summary.
+         * It may
+         *
+         * @property {String} transcriptTitle
+         * @default &#x27;Video transcript&#x27;
+         */
+        transcriptTitle: {
+            type: &#x27;string&#x27;,
+            description: &#x27;Title to show above video transcript/overview&#x27;,
+            default: &#x27;Video transcript&#x27;
+        },
+
+        /**
+         * Array of blocks for {{#crossLink &quot;Exp-text-block&quot;}}{{/crossLink}}, providing a transcript of the video
+         * or an overview of what it said. A transcript can be broken down into bullet points to make it more readable.
+         *
+         * If you&#x27;ve also provided closed captions throughout the video, you can use this space just to provide key
+         * points.
+         *
+         * If this is left blank ([]) no transcript is displayed.
+         *
+         * @property {Object[]} transcriptBlocks
          *   @param {String} title Title of this section
          *   @param {String} text Paragraph text of this section
          *   @param {Object[]} listblocks Object specifying bulleted points for this section. Each object is of the form:
-         *   {text: &#x27;text of bullet point&#x27;, image: {src: &#x27;url&#x27;, alt: &#x27;alt-text&#x27;}}. Images are optional.
+         *   {text: &#x27;text of bullet point&#x27;, image: {src: &#x27;url&#x27;, alt: &#x27;alt-text&#x27;}}. Images are optional.*
          */
-        webcamBlocks: {
+        transcriptBlocks: {
             type: &#x27;array&#x27;,
             items: {
                 type: &#x27;object&#x27;,
@@ -454,15 +369,21 @@ export default ExpFrameBaseComponent.extend(VideoRecord, {
         }
     },
 
+    hasCompletedFrame: Em.computed(&#x27;playedVideo&#x27;, &#x27;readTranscript&#x27;, function() {
+        return (this.get(&#x27;playedVideo&#x27;) || this.get(&#x27;readTranscript&#x27;));
+    }),
+
     showWarning: false,
+    playedVideo: false,
+    readTranscript: false,
 
     actions: {
-        mediaPlayed(e) {
-            $(e.srcElement).attr(&#x27;completed&#x27;, true);
-            $(e.srcElement).parent().attr(&#x27;showWarning&#x27;, false);
+        mediaPlayed() {
+            this.set(&#x27;playedVideo&#x27;, true);
+            this.set(&#x27;showWarning&#x27;, false);
         },
-        checkAudioThenNext() {
-            if (this.shouldPreventNext()) {
+        checkIfDoneThenNext() {
+            if (!this.get(&#x27;hasCompletedFrame&#x27;)) {
                 this.set(&#x27;showWarning&#x27;, true);
             } else {
                 this.send(&#x27;next&#x27;);
@@ -470,27 +391,25 @@ export default ExpFrameBaseComponent.extend(VideoRecord, {
         }
     },
 
-    shouldPreventNext() {
-        var done = true;
-        var blocks = this.get(&#x27;blocks&#x27;);
-        for (var iBlock = 0; iBlock &lt; blocks.length; iBlock++) { // for each block
-            if (blocks[iBlock].hasOwnProperty(&#x27;mediaBlock&#x27;)) {   // if it has a mediaBlock
-                // find the appropriate element
-                var $elem = $(&#x27;#media-&#x27; + iBlock + &#x27; .player-media&#x27;);
-                if (blocks[iBlock].mediaBlock.hasOwnProperty(&#x27;mustPlay&#x27;) &amp;&amp; blocks[iBlock].mediaBlock.mustPlay) { // if the mediaBlock must be played
-                    // if it&#x27;s not completed
-                    if ($elem.attr(&#x27;completed&#x27;) != &#x27;true&#x27;) {
-                        done = false;
-                        $elem.parent().attr(&#x27;showWarning&#x27;, true);
-                    }
-                } else { // does not have to be played
-                    $elem.parent().attr(&#x27;showWarning&#x27;, false); // Set this explicitly
-                    // so the warning isn&#x27;t visible, although :not([showWarning])
-                    // selector should handle in almost all browsers
-                }
+    didInsertElement() {
+        this._super(...arguments);
+        let $transcript = $(&#x27;div.transcript&#x27;);
+        let _frame = this;
+        // See https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollHeight#Determine_if_an_element_has_been_totally_scrolled
+        if ($transcript.length) {
+            // First check if the transcript is already scrolled to end because it doesn&#x27;t need to scroll
+            if ($transcript[0].scrollHeight - $transcript[0].scrollTop === $transcript[0].clientHeight) {
+                _frame.set(&#x27;readTranscript&#x27;, true);
+                _frame.set(&#x27;showWarning&#x27;, false);
             }
+            // And check upon scrolling if we&#x27;ve reached the bottom
+            $transcript.bind(&#x27;scroll&#x27;, function() {
+                if (this.scrollHeight - this.scrollTop === this.clientHeight) {
+                    _frame.set(&#x27;readTranscript&#x27;, true);
+                    _frame.set(&#x27;showWarning&#x27;, false);
+                }
+            });
         }
-        return !done;
     }
 });
 

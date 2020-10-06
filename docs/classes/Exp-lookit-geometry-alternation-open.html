@@ -55,6 +55,7 @@
                             <li><a href="../classes/Exp-lookit-geometry-alternation-open.html">Exp-lookit-geometry-alternation-open</a></li>
                             <li><a href="../classes/Exp-lookit-images-audio.html">Exp-lookit-images-audio</a></li>
                             <li><a href="../classes/Exp-lookit-images-audio-infant-control.html">Exp-lookit-images-audio-infant-control</a></li>
+                            <li><a href="../classes/Exp-lookit-instruction-video.html">Exp-lookit-instruction-video</a></li>
                             <li><a href="../classes/Exp-lookit-instructions.html">Exp-lookit-instructions</a></li>
                             <li><a href="../classes/Exp-lookit-mood-questionnaire.html">Exp-lookit-mood-questionnaire</a></li>
                             <li><a href="../classes/Exp-lookit-observation.html">Exp-lookit-observation</a></li>
@@ -298,12 +299,16 @@ organized as expected under baseDir/MEDIATYPE/filename.MEDIATYPE.</p>
                                 <a href="#method_startRecorder">startRecorder</a>
 
                             </li>
-                            <li class="index-item method inherited inherited">
+                            <li class="index-item method inherited">
                                 <a href="#method_startSessionRecorder">startSessionRecorder</a>
 
                             </li>
                             <li class="index-item method inherited">
                                 <a href="#method_stopRecorder">stopRecorder</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_stopSessionRecorder">stopSessionRecorder</a>
 
                             </li>
                             <li class="index-item method inherited">
@@ -608,12 +613,20 @@ organized as expected under baseDir/MEDIATYPE/filename.MEDIATYPE.</p>
                                 <a href="#event_startIntro">startIntro</a>
 
                             </li>
+                            <li class="index-item event inherited">
+                                <a href="#event_startSessionRecording">startSessionRecording</a>
+
+                            </li>
                             <li class="index-item event">
                                 <a href="#event_startTestTrial">startTestTrial</a>
 
                             </li>
                             <li class="index-item event inherited">
                                 <a href="#event_stoppingCapture">stoppingCapture</a>
+
+                            </li>
+                            <li class="index-item event inherited">
+                                <a href="#event_stopSessionRecording">stopSessionRecording</a>
 
                             </li>
                             <li class="index-item event inherited">
@@ -676,7 +689,7 @@ organized as expected under baseDir/MEDIATYPE/filename.MEDIATYPE.</p>
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Session-record.html#method_destroySessionRecorder">Session-record</a>:
-        <a href="../files/app_mixins_session-record.js.html#l211"><code>app&#x2F;mixins&#x2F;session-record.js:211</code></a>
+        <a href="../files/app_mixins_session-record.js.html#l221"><code>app&#x2F;mixins&#x2F;session-record.js:221</code></a>
         </p>
 
 
@@ -885,7 +898,7 @@ frame-specific actions at this point (e.g., beginning a test trial).
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Session-record.html#method_onSessionRecordingStarted">Session-record</a>:
-        <a href="../files/app_mixins_session-record.js.html#l262"><code>app&#x2F;mixins&#x2F;session-record.js:262</code></a>
+        <a href="../files/app_mixins_session-record.js.html#l272"><code>app&#x2F;mixins&#x2F;session-record.js:272</code></a>
         </p>
 
 
@@ -1152,11 +1165,8 @@ Individual frames may define additional properties that are sent.</p>
 
 
     <div class="meta">
-            <p>Inherited from
-            <a href="../classes/Session-record.html#method_startSessionRecorder">
-                Session-record
-            </a>
-            but overwritten in
+                <p>Inherited from
+                <a href="../classes/Session-record.html#method_startSessionRecorder">Session-record</a>:
         <a href="../files/app_mixins_session-record.js.html#l177"><code>app&#x2F;mixins&#x2F;session-record.js:177</code></a>
         </p>
 
@@ -1219,6 +1229,46 @@ Individual frames may define additional properties that are sent.</p>
 
 
 </div>
+<div id="method_stopSessionRecorder" class="method item inherited">
+    <h3 class="name"><code>stopSessionRecorder</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/Session-record.html#method_stopSessionRecorder">Session-record</a>:
+        <a href="../files/app_mixins_session-record.js.html#l201"><code>app&#x2F;mixins&#x2F;session-record.js:201</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        Stop recording
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                    Promise Resolves when recording has been uploaded or timed out
+            </div>
+        </div>
+
+
+</div>
 <div id="method_whenPossibleToRecordObserver" class="method item inherited">
     <h3 class="name"><code>whenPossibleToRecordObserver</code></h3>
 
@@ -1264,7 +1314,7 @@ Individual frames may define additional properties that are sent.</p>
     <div class="meta">
                 <p>Inherited from
                 <a href="../classes/Session-record.html#method_whenPossibleToRecordSessionObserver">Session-record</a>:
-        <a href="../files/app_mixins_session-record.js.html#l271"><code>app&#x2F;mixins&#x2F;session-record.js:271</code></a>
+        <a href="../files/app_mixins_session-record.js.html#l281"><code>app&#x2F;mixins&#x2F;session-record.js:281</code></a>
         </p>
 
 
@@ -3298,7 +3348,7 @@ supports use of <code>&#x60;baseDir</code>`.
                         <div class="meta">
                                     <p>Inherited from
                                     <a href="../classes/Session-record.html#event_sessionRecorderReady">Session-record</a>:
-                            <a href="../files/app_mixins_session-record.js.html#l230"><code>app&#x2F;mixins&#x2F;session-record.js:230</code></a>
+                            <a href="../files/app_mixins_session-record.js.html#l240"><code>app&#x2F;mixins&#x2F;session-record.js:240</code></a>
                             </p>
                     
                     
@@ -3378,6 +3428,30 @@ supports use of <code>&#x60;baseDir</code>`.
                     
                     
                     </div>
+                    <div id="event_startSessionRecording" class="events item inherited">
+                        <h3 class="name"><code>startSessionRecording</code></h3>
+                        <span class="type"></span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>Inherited from
+                                    <a href="../classes/Session-record.html#event_startSessionRecording">Session-record</a>:
+                            <a href="../files/app_mixins_session-record.js.html#l187"><code>app&#x2F;mixins&#x2F;session-record.js:187</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            When session video recorder has begun recording
+                        </div>
+                    
+                    
+                    
+                    </div>
                     <div id="event_startTestTrial" class="events item">
                         <h3 class="name"><code>startTestTrial</code></h3>
                         <span class="type"></span>
@@ -3426,6 +3500,30 @@ supports use of <code>&#x60;baseDir</code>`.
                         <div class="description">
                             <p>Just before stopping webcam video capture</p>
                     
+                        </div>
+                    
+                    
+                    
+                    </div>
+                    <div id="event_stopSessionRecording" class="events item inherited">
+                        <h3 class="name"><code>stopSessionRecording</code></h3>
+                        <span class="type"></span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>Inherited from
+                                    <a href="../classes/Session-record.html#event_stopSessionRecording">Session-record</a>:
+                            <a href="../files/app_mixins_session-record.js.html#l209"><code>app&#x2F;mixins&#x2F;session-record.js:209</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            When session video recorder is stopped (upload may continue afterwards)
                         </div>
                     
                     

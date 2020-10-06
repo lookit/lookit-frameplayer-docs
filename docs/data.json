@@ -110,6 +110,15 @@
             "fors": {},
             "namespaces": {}
         },
+        "app/components/exp-lookit-instruction-video/component.js": {
+            "name": "app/components/exp-lookit-instruction-video/component.js",
+            "modules": {},
+            "classes": {
+                "Exp-lookit-instruction-video": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "app/components/exp-lookit-instructions/component.js": {
             "name": "app/components/exp-lookit-instructions/component.js",
             "modules": {},
@@ -412,6 +421,7 @@
                 "Exp-lookit-geometry-alternation-open": 1,
                 "Exp-lookit-images-audio": 1,
                 "Exp-lookit-images-audio-infant-control": 1,
+                "Exp-lookit-instruction-video": 1,
                 "Exp-lookit-instructions": 1,
                 "Exp-lookit-mood-questionnaire": 1,
                 "Exp-lookit-observation": 1,
@@ -462,6 +472,7 @@
                 "Exp-lookit-exit-survey": 1,
                 "Exp-lookit-images-audio": 1,
                 "Exp-lookit-images-audio-infant-control": 1,
+                "Exp-lookit-instruction-video": 1,
                 "Exp-lookit-instructions": 1,
                 "Exp-lookit-mood-questionnaire": 1,
                 "Exp-lookit-observation": 1,
@@ -782,6 +793,22 @@
             "uses": [
                 "Infant-controlled-timing"
             ]
+        },
+        "Exp-lookit-instruction-video": {
+            "name": "Exp-lookit-instruction-video",
+            "shortname": "Exp-lookit-instruction-video",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "exp-player",
+            "submodule": "frames",
+            "namespace": "",
+            "file": "app/components/exp-lookit-instruction-video/component.js",
+            "line": 16,
+            "description": "A frame to display video instructions to the user.\n\nA video is displayed to the left, and a transcript or summary in a scrolling box to the right. (The transcript can\nbe omitted if desired, but in that case you must provide complete captioning for the video!)\n\nThe participant is required to either scroll to the bottom of the transcript or watch the video to proceed.\n\nEach element of the 'transcriptBlocks' parameter is rendered using {{#crossLink \"Exp-text-block\"}}{{/crossLink}}.\n\n```json\n\"frames\": {\n    \"intro-video\": {\n       \"kind\": \"exp-lookit-instruction-video\",\n       \"instructionsVideo\": [\n           {\n               \"src\": \"https://raw.github.com/UCDOakeslab/Baby_MR_Lookit/master/Lookit Introduction Part 1_Edited.mp4\",\n               \"type\": \"video/mp4\"\n           }\n       ],\n       \"introText\": \"Welcome to the study! Please watch this video to get started. \\n(Or you can read the summary to the right if you prefer.)\",\n       \"transcriptTitle\": \"Video summary\",\n       \"transcriptBlocks\": [\n           {\n               \"title\": \"Background information about the study\",\n               \"listblocks\": [\n                   {\n                       \"text\": \"Your baby does not need to be with you at this point in the study. We will let you know when it is time to get your baby.\"\n                   },\n                   {\n                       \"text\": \"Mental rotation, or the ability to manipulate internal representations of objects, is an important spatial ability. Spatial abilities are important for understanding objects, reading maps, mathematical reasoning, and navigating the world. Thus, the development of mental rotation is an important milestone. In the current study, we are interested in examining whether babies in general can mentally rotate simple objects.\"\n                   }\n               ]\n           },\n           {\n               \"title\": \"Preview of what your baby will see\"\n           },\n           {\n               \"listblocks\": [\n                   {\n                       \"text\": \"Your baby will be shown two identical Tetris shapes on the screen; one on the left and one on the right. The shapes appear and disappear, changing their orientation each time they reappear. On one side, the rotation will always be possible. Sometimes, on the other side, a mirror image of the shape will be presented. If babies can mentally rotate objects, they should spend different amounts of time watching these two kinds of stimuli.\"\n                   }\n               ]\n           },\n           {\n               \"title\": \"What's next?\",\n               \"listblocks\": [\n                   {\n                       \"text\": \"Because this is an online study, we will check to make sure that your webcam is set up and working properly on the next page, so we can record your baby’s looking behavior during the study.\"\n                   },\n                   {\n                       \"text\": \"Following that page, you will be given an opportunity to review the consent information and we will ask that you record a short video of yourself giving consent to participate in this study.\"\n                   },\n                   {\n                       \"text\": \"We will then ask you questions about your baby's motor abilities.\"\n                   },\n                   {\n                       \"text\": \"After you are finished with the consent page and questions, you will be provided with more detailed information about what to do during the study and how to get started.\"\n                   }\n               ]\n           }\n       ],\n       \"warningText\": \"Please watch the video or read the transcript before proceeding.\",\n       \"nextButtonText\": \"Next\",\n       \"title\": \"Study instructions\",\n       \"showPreviousButton\": false\n   }\n}\n\n```",
+            "extends": "Expand-assets"
         },
         "Exp-lookit-instructions": {
             "name": "Exp-lookit-instructions",
@@ -3830,6 +3857,117 @@
                 }
             ],
             "class": "Exp-lookit-images-audio",
+            "module": "exp-player",
+            "submodule": "frames"
+        },
+        {
+            "file": "app/components/exp-lookit-instruction-video/component.js",
+            "line": 105,
+            "description": "Title to show at top of frame",
+            "itemtype": "property",
+            "name": "title",
+            "type": "String",
+            "default": "'Study instructions'",
+            "class": "Exp-lookit-instruction-video",
+            "module": "exp-player",
+            "submodule": "frames"
+        },
+        {
+            "file": "app/components/exp-lookit-instruction-video/component.js",
+            "line": 117,
+            "description": "Intro text to show at top of frame",
+            "itemtype": "property",
+            "name": "introText",
+            "type": "String",
+            "default": "'Welcome! Please watch this video to learn how the study will work. \\n You can read through the information to the right if you prefer.'",
+            "class": "Exp-lookit-instruction-video",
+            "module": "exp-player",
+            "submodule": "frames"
+        },
+        {
+            "file": "app/components/exp-lookit-instruction-video/component.js",
+            "line": 129,
+            "description": "Text to show above Next button if participant has not yet watched video or read transcript",
+            "itemtype": "property",
+            "name": "warningText",
+            "type": "String",
+            "default": "'Please watch the video or read the transcript before proceeding.'",
+            "class": "Exp-lookit-instruction-video",
+            "module": "exp-player",
+            "submodule": "frames"
+        },
+        {
+            "file": "app/components/exp-lookit-instruction-video/component.js",
+            "line": 141,
+            "description": "The location of the instructions video to play. This can be either\n     an array of {'src': 'https://...', 'type': '...'} objects (e.g. providing both\n     webm and mp4 versions at specified URLS) or a single string relative to baseDir/<EXT>/.",
+            "itemtype": "property",
+            "name": "instructionsVideo",
+            "type": "Object",
+            "class": "Exp-lookit-instruction-video",
+            "module": "exp-player",
+            "submodule": "frames"
+        },
+        {
+            "file": "app/components/exp-lookit-instruction-video/component.js",
+            "line": 153,
+            "description": "Title to show above video transcript/overview. Generally this should be either \"Video transcript\" or\n\"Video summary\" depending on whether you're providing a word-for-word transcript or a condensed summary.\nIt may",
+            "itemtype": "property",
+            "name": "transcriptTitle",
+            "type": "String",
+            "default": "'Video transcript'",
+            "class": "Exp-lookit-instruction-video",
+            "module": "exp-player",
+            "submodule": "frames"
+        },
+        {
+            "file": "app/components/exp-lookit-instruction-video/component.js",
+            "line": 167,
+            "description": "Array of blocks for {{#crossLink \"Exp-text-block\"}}{{/crossLink}}, providing a transcript of the video\nor an overview of what it said. A transcript can be broken down into bullet points to make it more readable.\n\nIf you've also provided closed captions throughout the video, you can use this space just to provide key\npoints.\n\nIf this is left blank ([]) no transcript is displayed.",
+            "itemtype": "property",
+            "name": "transcriptBlocks",
+            "type": "Object[]",
+            "class": "Exp-lookit-instruction-video",
+            "module": "exp-player",
+            "submodule": "frames",
+            "subprops": [
+                {
+                    "name": "title",
+                    "description": "Title of this section",
+                    "type": "String"
+                },
+                {
+                    "name": "text",
+                    "description": "Paragraph text of this section",
+                    "type": "String"
+                },
+                {
+                    "name": "listblocks",
+                    "description": "Object specifying bulleted points for this section. Each object is of the form:\n  {text: 'text of bullet point', image: {src: 'url', alt: 'alt-text'}}. Images are optional.*",
+                    "type": "Object[]"
+                }
+            ]
+        },
+        {
+            "file": "app/components/exp-lookit-instruction-video/component.js",
+            "line": 219,
+            "description": "Whether to show a 'previous' button",
+            "itemtype": "property",
+            "name": "showPreviousButton",
+            "type": "Boolean",
+            "default": "true",
+            "class": "Exp-lookit-instruction-video",
+            "module": "exp-player",
+            "submodule": "frames"
+        },
+        {
+            "file": "app/components/exp-lookit-instruction-video/component.js",
+            "line": 229,
+            "description": "Text to display on the 'next frame' button",
+            "itemtype": "property",
+            "name": "nextButtonText",
+            "type": "String",
+            "default": "'Start the videos! \\n (You\\'ll have a moment to turn around.)'",
+            "class": "Exp-lookit-instruction-video",
             "module": "exp-player",
             "submodule": "frames"
         },
@@ -7350,12 +7488,22 @@
         },
         {
             "file": "app/mixins/session-record.js",
-            "line": 196,
+            "line": 187,
+            "description": "When session video recorder has begun recording",
+            "itemtype": "event",
+            "name": "startSessionRecording",
+            "class": "Session-record",
+            "module": "exp-player",
+            "submodule": "mixins"
+        },
+        {
+            "file": "app/mixins/session-record.js",
+            "line": 201,
             "description": "Stop recording",
             "itemtype": "method",
-            "name": "startSessionRecorder",
+            "name": "stopSessionRecorder",
             "return": {
-                "description": "Promise Resolves when recording has started"
+                "description": "Promise Resolves when recording has been uploaded or timed out"
             },
             "class": "Session-record",
             "module": "exp-player",
@@ -7363,7 +7511,17 @@
         },
         {
             "file": "app/mixins/session-record.js",
-            "line": 211,
+            "line": 209,
+            "description": "When session video recorder is stopped (upload may continue afterwards)",
+            "itemtype": "event",
+            "name": "stopSessionRecording",
+            "class": "Session-record",
+            "module": "exp-player",
+            "submodule": "mixins"
+        },
+        {
+            "file": "app/mixins/session-record.js",
+            "line": 221,
             "description": "Destroy recorder and stop accessing webcam",
             "itemtype": "method",
             "name": "destroySessionRecorder",
@@ -7373,7 +7531,7 @@
         },
         {
             "file": "app/mixins/session-record.js",
-            "line": 230,
+            "line": 240,
             "description": "When session video recorder has been installed",
             "itemtype": "event",
             "name": "sessionRecorderReady",
@@ -7383,7 +7541,7 @@
         },
         {
             "file": "app/mixins/session-record.js",
-            "line": 262,
+            "line": 272,
             "description": "Function called when session recording is started automatically. Override to do\nframe-specific actions at this point (e.g., beginning a test trial).",
             "itemtype": "method",
             "name": "onSessionRecordingStarted",
@@ -7393,7 +7551,7 @@
         },
         {
             "file": "app/mixins/session-record.js",
-            "line": 271,
+            "line": 281,
             "description": "Observer that starts recording once session recorder is ready.",
             "itemtype": "method",
             "name": "whenPossibleToRecordSessionObserver",
