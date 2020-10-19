@@ -3371,7 +3371,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 381,
+            "line": 383,
             "description": "Whether to do webcam recording (will wait for webcam\nconnection before starting audio or showing images if so)",
             "itemtype": "property",
             "name": "doRecording",
@@ -3382,7 +3382,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 392,
+            "line": 394,
             "description": "Whether to proceed automatically when all conditions are met, vs. enabling\nnext button at that point. If true: the next, previous, and replay buttons are\nhidden, and the frame auto-advances after ALL of the following happen\n(a) the audio segment (if any) completes\n(b) the durationSeconds (if any) is achieved\n(c) a choice is made (if required)\n(d) that choice is correct (if required)\n(e) the choice audio (if any) completes\n(f) the choice text (if any) is dismissed\nIf false: the next, previous, and replay buttons (as applicable) are displayed.\nIt becomes possible to press 'next' only once the conditions above are met.",
             "itemtype": "property",
             "name": "autoProceed",
@@ -3394,7 +3394,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 414,
+            "line": 416,
             "description": "Minimum duration of frame in seconds. If set, then it will only\nbe possible to proceed to the next frame after both the audio completes AND\nthis duration is acheived.",
             "itemtype": "property",
             "name": "durationSeconds",
@@ -3406,7 +3406,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 429,
+            "line": 431,
             "description": "[Only used if durationSeconds set] Whether to\nshow a progress bar based on durationSeconds in the parent text area.",
             "itemtype": "property",
             "name": "showProgressBar",
@@ -3418,7 +3418,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 442,
+            "line": 444,
             "description": "[Only used if not autoProceed] Whether to\nshow a previous button to allow the participant to go to the previous frame",
             "itemtype": "property",
             "name": "showPreviousButton",
@@ -3430,7 +3430,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 455,
+            "line": 457,
             "description": "[Only used if not autoProceed AND if there is audio] Whether to\nshow a replay button to allow the participant to replay the audio",
             "itemtype": "property",
             "name": "showReplayButton",
@@ -3442,7 +3442,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 468,
+            "line": 470,
             "description": "Whether to have the image display area take up the whole screen if possible.\nThis will only apply if (a) there is no parent text and (b) there are no\ncontrol buttons (next, previous, replay) because the frame auto-proceeds.",
             "itemtype": "property",
             "name": "maximizeDisplay",
@@ -3454,7 +3454,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 482,
+            "line": 484,
             "description": "Audio file to play at the start of this frame.\nThis can either be an array of {src: 'url', type: 'MIMEtype'} objects, e.g.\nlisting equivalent .mp3 and .ogg files, or can be a single string `filename`\nwhich will be expanded based on `baseDir` and `audioTypes` values (see `audioTypes`).",
             "itemtype": "property",
             "name": "audio",
@@ -3466,7 +3466,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 497,
+            "line": 499,
             "description": "Text block to display to parent.  (Each field is optional)",
             "itemtype": "property",
             "name": "parentTextBlock",
@@ -3494,7 +3494,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 523,
+            "line": 525,
             "description": "Array of images to display and information about their placement. For each\nimage, you need to specify `src` (image name/URL) and placement (either by\nproviding left/width/top values, or by using a `position` preset).\n\nEverything else is optional! This is where you would say that an image should\nbe shown at a delay",
             "itemtype": "property",
             "name": "images",
@@ -3567,7 +3567,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 615,
+            "line": 617,
             "description": "Color of background. See https://developer.mozilla.org/en-US/docs/Web/CSS/color_value\nfor acceptable syntax: can use color names ('blue', 'red', 'green', etc.), or\nrgb hex values (e.g. '#800080' - include the '#')",
             "itemtype": "property",
             "name": "backgroundColor",
@@ -3579,7 +3579,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 628,
+            "line": 630,
             "description": "Color of area where images are shown, if different from overall background.\nDefaults to backgroundColor if one is provided. See\nhttps://developer.mozilla.org/en-US/docs/Web/CSS/color_value\nfor acceptable syntax: can use color names ('blue', 'red', 'green', etc.), or\nrgb hex values (e.g. '#800080' - include the '#')",
             "itemtype": "property",
             "name": "pageColor",
@@ -3591,7 +3591,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 643,
+            "line": 645,
             "description": "Whether this is a frame where the user needs to click to select one of the\nimages before proceeding.",
             "itemtype": "property",
             "name": "choiceRequired",
@@ -3603,7 +3603,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 655,
+            "line": 657,
             "description": "[Only used if `choiceRequired` is true] Whether the participant has to select\none of the *correct* images before proceeding.",
             "itemtype": "property",
             "name": "correctChoiceRequired",
@@ -3615,7 +3615,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 667,
+            "line": 669,
             "description": "Whether the participant can make a choice before audio finishes. (Only relevant\nif `choiceRequired` is true.)",
             "itemtype": "property",
             "name": "canMakeChoiceBeforeAudioFinished",
@@ -3627,7 +3627,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 679,
+            "line": 681,
             "description": "Array representing times when particular images should be highlighted. Each\nelement of the array should be of the form {'range': [3.64, 7.83], 'imageId': 'myImageId'}.\nThe two `range` values are the start and end times of the highlight in seconds,\nrelative to the audio played. The `imageId` corresponds to the `id` of an\nelement of `images`.\n\nHighlights can overlap in time. Any that go longer than the audio will just\nbe ignored/cut off.\n\nOne strategy for generating a bunch of highlights for a longer story is to\nannotate using Audacity and export the labels to get the range values.",
             "itemtype": "property",
             "name": "highlights",
@@ -3650,37 +3650,51 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 727,
+            "line": 729,
             "description": "Array of images used in this frame [same as passed to this frame, but\nmay reflect random assignment for this particular participant]",
             "itemtype": "attribute",
             "name": "images",
+            "type": "Array",
             "class": "Exp-lookit-images-audio",
             "module": "exp-player",
             "submodule": "frames"
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 735,
+            "line": 737,
             "description": "ID of image selected at time of proceeding",
             "itemtype": "attribute",
             "name": "selectedImage",
+            "type": "String",
             "class": "Exp-lookit-images-audio",
             "module": "exp-player",
             "submodule": "frames"
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 742,
+            "line": 744,
             "description": "Whether image selected at time of proceeding is marked as correct",
             "itemtype": "attribute",
             "name": "correctImageSelected",
+            "type": "Boolean",
             "class": "Exp-lookit-images-audio",
             "module": "exp-player",
             "submodule": "frames"
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 808,
+            "line": 751,
+            "description": "Source URL of audio played, if any. If multiple sources provided (e.g.\nmp4 and ogg versions) just the first is stored.",
+            "itemtype": "attribute",
+            "name": "audioPlayed",
+            "type": "String",
+            "class": "Exp-lookit-images-audio",
+            "module": "exp-player",
+            "submodule": "frames"
+        },
+        {
+            "file": "app/components/exp-lookit-images-audio/component.js",
+            "line": 818,
             "description": "When main audio segment is replayed",
             "itemtype": "event",
             "name": "replayAudio",
@@ -3690,7 +3704,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 824,
+            "line": 834,
             "description": "Trial is complete and attempting to move to next frame; may wait for recording\nto catch up before proceeding.",
             "itemtype": "event",
             "name": "trialComplete",
@@ -3700,7 +3714,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 851,
+            "line": 861,
             "description": "When main audio segment finishes playing",
             "itemtype": "event",
             "name": "finishAudio",
@@ -3710,7 +3724,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 885,
+            "line": 895,
             "description": "Timer for set-duration trial begins",
             "itemtype": "event",
             "name": "startTimer",
@@ -3720,7 +3734,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 892,
+            "line": 902,
             "description": "Timer for set-duration trial ends",
             "itemtype": "event",
             "name": "endTimer",
@@ -3730,7 +3744,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 923,
+            "line": 933,
             "description": "When main audio segment starts playing",
             "itemtype": "event",
             "name": "startAudio",
@@ -3740,7 +3754,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 930,
+            "line": 940,
             "description": "When main audio cannot be started. In this case we treat it as if\nthe audio was completed (for purposes of allowing participant to\nproceed)",
             "itemtype": "event",
             "name": "failedToStartAudio",
@@ -3750,7 +3764,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 946,
+            "line": 956,
             "description": "When images are displayed to participant (for images without any delay added)",
             "itemtype": "event",
             "name": "displayAllImages",
@@ -3760,7 +3774,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 956,
+            "line": 966,
             "description": "When a specific image is shown at a delay.",
             "itemtype": "event",
             "name": "displayImage",
@@ -3777,7 +3791,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 982,
+            "line": 992,
             "description": "When one of the image options is clicked during a choice frame",
             "itemtype": "event",
             "name": "clickImage",
@@ -3799,7 +3813,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 1017,
+            "line": 1027,
             "description": "When image/feedback audio is started",
             "itemtype": "event",
             "name": "startImageAudio",
@@ -3816,7 +3830,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 1027,
+            "line": 1037,
             "description": "When image/feedback audio cannot be started. In this case we treat it as if\nthe audio was completed (for purposes of allowing participant to\nproceed)",
             "itemtype": "event",
             "name": "failedToStartImageAudio",
@@ -3833,7 +3847,7 @@
         },
         {
             "file": "app/components/exp-lookit-images-audio/component.js",
-            "line": 1097,
+            "line": 1107,
             "description": "When the participant dismisses a feedback dialogue",
             "itemtype": "event",
             "name": "dismissFeedback",
