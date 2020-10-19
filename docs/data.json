@@ -912,9 +912,6 @@
             "description": "Dedicated frame to start session recording.\n\nThis frame will take a few seconds to get a session-level recording started, then proceed\nimmediately to the next frame. (See https://lookit.readthedocs.io/en/develop/researchers-create-experiment.html?highlight=startSessionRecording#recording-webcam-video\nfor information about session-level vs. individual-frame recording.)\n\n(You could also set startSessionRecording to true on any frame, but then you need to rely\non that individual frame's setup for waiting for recording before getting started.)\n\nIf the following frame is full-screen, make this one full-screen too.\n\nJust like for exp-lookit-calibration, you can display a video or an optionally animated\nimage (see below for examples of each) as a placeholder while getting recording started.\n\nFor details about specifying media locations, please see\nhttps://lookit.readthedocs.io/en/develop/researchers-prep-stimuli.html?highlight=basedir#directory-structure\n\nExample usage:\n\n```json\n\n   \"start-recording-with-image\": {\n       \"kind\": \"exp-lookit-start-recording\",\n       \"baseDir\": \"https://www.mit.edu/~kimscott/placeholderstimuli/\",\n       \"videoTypes\": [\n           \"webm\",\n           \"mp4\"\n       ],\n       \"image\": \"peekaboo_remy.jpg\",\n       \"imageAnimation\": \"spin\"\n       \"displayFullscreen\": true\n   },\n\n   \"start-recording-with-video\": {\n       \"kind\": \"exp-lookit-start-recording\",\n       \"baseDir\": \"https://www.mit.edu/~kimscott/placeholderstimuli/\",\n       \"videoTypes\": [\n           \"webm\",\n           \"mp4\"\n       ],\n       \"video\": \"attentiongrabber\",\n       \"displayFullscreen\": true\n   },\n\n```",
             "extends": "Exp-frame-base",
             "uses": [
-                "Full-screen",
-                "Media-reload",
-                "Video-record",
                 "Expand-assets"
             ]
         },
@@ -955,9 +952,6 @@
             "description": "Dedicated frame to stop session recording.\n\nThis frame will take a few seconds to upload an ongoing session-level recording, then proceed\nimmediately to the next frame. (See https://lookit.readthedocs.io/en/develop/researchers-create-experiment.html?highlight=startSessionRecording#recording-webcam-video\nfor information about session-level vs. individual-frame recording.)\n\nIt will time out after a default of 5 minutes of waiting for the upload to complete, or\nafter 5 seconds of not seeing any progress (i.e. something went wrong with starting the\nupload process). If there is no active session recording, it proceeds immediately.\n\n\n\n(You could also set stopSessionRecording to true on any frame, but you generally wouldn't\nget any specialized functionality for displaying a nice message about upload progress.)\n\nJust like for exp-lookit-calibration, you can display a video or an optionally animated\nimage (see below for examples of each) as a placeholder while getting recording started.\n\nFor details about specifying media locations, please see\nhttps://lookit.readthedocs.io/en/develop/researchers-prep-stimuli.html?highlight=basedir#directory-structure\n\nExample usage:\n\n```json\n\n   \"stop-recording-with-image\": {\n       \"kind\": \"exp-lookit-stop-recording\",\n       \"baseDir\": \"https://www.mit.edu/~kimscott/placeholderstimuli/\",\n       \"videoTypes\": [\n           \"webm\",\n           \"mp4\"\n       ],\n       \"image\": \"peekaboo_remy.jpg\",\n       \"imageAnimation\": \"spin\"\n       \"displayFullscreen\": true\n   },\n\n   \"stop-recording-with-video\": {\n       \"kind\": \"exp-lookit-stop-recording\",\n       \"baseDir\": \"https://www.mit.edu/~kimscott/placeholderstimuli/\",\n       \"videoTypes\": [\n           \"webm\",\n           \"mp4\"\n       ],\n       \"video\": \"attentiongrabber\",\n       \"displayFullscreen\": true\n   },\n\n```",
             "extends": "Exp-frame-base",
             "uses": [
-                "Full-screen",
-                "Media-reload",
-                "Video-record",
                 "Expand-assets"
             ]
         },
@@ -1190,8 +1184,6 @@
                 "Exp-lookit-geometry-alternation-open",
                 "Exp-lookit-images-audio",
                 "Exp-lookit-preferential-looking",
-                "Exp-lookit-start-recording",
-                "Exp-lookit-stop-recording",
                 "Exp-lookit-story-page",
                 "Exp-lookit-video"
             ],
@@ -1230,9 +1222,7 @@
             "extension_for": [
                 "Exp-lookit-calibration",
                 "Exp-lookit-composite-video-trial",
-                "Exp-lookit-start-recording",
-                "Exp-lookit-stimuli-preview",
-                "Exp-lookit-stop-recording"
+                "Exp-lookit-stimuli-preview"
             ],
             "module": "exp-player",
             "submodule": "mixins",
@@ -1274,9 +1264,7 @@
                 "Exp-lookit-geometry-alternation-open",
                 "Exp-lookit-images-audio",
                 "Exp-lookit-preferential-looking",
-                "Exp-lookit-start-recording",
                 "Exp-lookit-stimuli-preview",
-                "Exp-lookit-stop-recording",
                 "Exp-lookit-story-page",
                 "Exp-lookit-video",
                 "Exp-lookit-video-assent",
@@ -4930,7 +4918,7 @@
         },
         {
             "file": "app/components/exp-lookit-start-recording/component.js",
-            "line": 78,
+            "line": 75,
             "itemtype": "property",
             "name": "startSessionRecording",
             "type": "Boolean",
@@ -4943,7 +4931,7 @@
         },
         {
             "file": "app/components/exp-lookit-start-recording/component.js",
-            "line": 86,
+            "line": 83,
             "itemtype": "property",
             "name": "endSessionRecording",
             "type": "Boolean",
@@ -4956,7 +4944,7 @@
         },
         {
             "file": "app/components/exp-lookit-start-recording/component.js",
-            "line": 105,
+            "line": 102,
             "description": "Whether to display this frame in full-screen mode",
             "itemtype": "property",
             "name": "displayFullscreen",
@@ -4968,7 +4956,7 @@
         },
         {
             "file": "app/components/exp-lookit-start-recording/component.js",
-            "line": 116,
+            "line": 113,
             "description": "Color of background. See https://developer.mozilla.org/en-US/docs/Web/CSS/color_value\nfor acceptable syntax: can use color names ('blue', 'red', 'green', etc.), or\nrgb hex values (e.g. '#800080' - include the '#')",
             "itemtype": "property",
             "name": "backgroundColor",
@@ -4980,7 +4968,7 @@
         },
         {
             "file": "app/components/exp-lookit-start-recording/component.js",
-            "line": 129,
+            "line": 126,
             "description": "Video to play (looping) while waiting. Supply\neither a video or image, not both.\n\nThis can be either an array of {src: 'url', type: 'MIMEtype'} objects or\njust a string like `attentiongrabber` to rely on the `baseDir` and `videoTypes`\nto generate full paths.",
             "itemtype": "property",
             "name": "video",
@@ -4992,7 +4980,7 @@
         },
         {
             "file": "app/components/exp-lookit-start-recording/component.js",
-            "line": 145,
+            "line": 142,
             "description": "Image to display while waiting. Supply\neither a video or image, not both.\n\nThis can be either a full URL or just the filename (e.g. \"star.png\") to\nuse the full path based on `baseDir` (e.g. `baseDir/img/star.png`).",
             "itemtype": "property",
             "name": "image",
@@ -5004,7 +4992,7 @@
         },
         {
             "file": "app/components/exp-lookit-start-recording/component.js",
-            "line": 161,
+            "line": 158,
             "description": "Which animation to use for the image. Options are 'bounce', 'spin',\nor '' (empty to not animate).",
             "itemtype": "property",
             "name": "imageAnimation",
@@ -5305,7 +5293,7 @@
         },
         {
             "file": "app/components/exp-lookit-stop-recording/component.js",
-            "line": 101,
+            "line": 98,
             "description": "Whether to display this frame in full-screen mode         *",
             "itemtype": "property",
             "name": "displayFullscreen",
@@ -5317,7 +5305,7 @@
         },
         {
             "file": "app/components/exp-lookit-stop-recording/component.js",
-            "line": 111,
+            "line": 108,
             "description": "Color of background. See https://developer.mozilla.org/en-US/docs/Web/CSS/color_value\nfor acceptable syntax: can use color names ('blue', 'red', 'green', etc.), or\nrgb hex values (e.g. '#800080' - include the '#')",
             "itemtype": "property",
             "name": "backgroundColor",
@@ -5329,7 +5317,7 @@
         },
         {
             "file": "app/components/exp-lookit-stop-recording/component.js",
-            "line": 124,
+            "line": 121,
             "description": "Video to play (looping) while waiting. Supply\neither a video or image, not both.\n\nThis can be either an array of {src: 'url', type: 'MIMEtype'} objects or\njust a string like `attentiongrabber` to rely on the `baseDir` and `videoTypes`\nto generate full paths.",
             "itemtype": "property",
             "name": "video",
@@ -5341,7 +5329,7 @@
         },
         {
             "file": "app/components/exp-lookit-stop-recording/component.js",
-            "line": 140,
+            "line": 137,
             "description": "Image to display while waiting. Supply\neither a video or image, not both.\n\nThis can be either a full URL or just the filename (e.g. \"star.png\") to\nuse the full path based on `baseDir` (e.g. `baseDir/img/star.png`).",
             "itemtype": "property",
             "name": "image",
@@ -5353,7 +5341,7 @@
         },
         {
             "file": "app/components/exp-lookit-stop-recording/component.js",
-            "line": 156,
+            "line": 153,
             "description": "Which animation to use for the image. Options are 'bounce', 'spin',\nor '' (empty to not animate).",
             "itemtype": "property",
             "name": "imageAnimation",
@@ -5365,7 +5353,7 @@
         },
         {
             "file": "app/components/exp-lookit-stop-recording/component.js",
-            "line": 199,
+            "line": 196,
             "description": "If there's no active session recording so this frame is proceeding\nimmediately.",
             "itemtype": "event",
             "name": "warningNoActiveSessionRecording",
@@ -5375,7 +5363,7 @@
         },
         {
             "file": "app/components/exp-lookit-stop-recording/component.js",
-            "line": 230,
+            "line": 227,
             "description": "If no progress update about upload is available within 10s, and\nframe proceeds automatically. Otherwise if the upload has started\n(e.g. we know it is 10% done) it will continue waiting.",
             "itemtype": "event",
             "name": "warningUploadTimeoutError",
