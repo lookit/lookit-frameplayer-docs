@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>app/components/exp-lookit-instruction-video/component.js - ember-lookit-frameplayer</title>
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="https://yui-s.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="https://yui-s.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+<div id="doc">
+    <div id="bd" class="yui3-g">
+        <div class="yui3-u-1-5">
+            <div id="docs-sidebar" class="sidebar apidocs">
+              <h2 style="display:inline;">
+              <div>
+                <img style="float:right; vertical-align:middle;" src="../assets/css/logo.png" height="70">
+                <span>Lookit<br> component<br> docs</span>
+
+                    <p>Version: v1.3.1</p>
+                    <a href="../../../index.html">(switch to latest)</a>
+              </div>
+              </h2>
+              <div id="api-list">
+                  <div id="api-tabview">
+              
+                    <div id="api-tabview-panel">
+                        <h2 class="off-left">Collections</h2>
+                        <ul id="api-modules" class="apis modules">
+                            <li class="module-sidebar-exp-player"><a href="../modules/exp-player.html">exp-player</a></li>
+                            <li class="module-sidebar-frames"><a href="../modules/frames.html">frames</a></li>
+                            <li class="module-sidebar-frames-deprecated"><a href="../modules/frames-deprecated.html">frames-deprecated</a></li>
+                            <li class="module-sidebar-mixins"><a href="../modules/mixins.html">mixins</a></li>
+                            <li class="module-sidebar-randomizers"><a href="../modules/randomizers.html">randomizers</a></li>
+                        </ul>
+                        <h2 class="off-left">All elements</h2>
+                              <div id="api-tabview-filter">
+                      <input type="search" id="api-filter" placeholder="Type to filter">
+                    </div>
+                        <ul id="api-classes" class="apis classes">
+                            <li><a href="../classes/Exp-frame-base.html">Exp-frame-base</a></li>
+                            <li><a href="../classes/Exp-frame-select.html">Exp-frame-select</a></li>
+                            <li><a href="../classes/Exp-lookit-calibration.html">Exp-lookit-calibration</a></li>
+                            <li><a href="../classes/Exp-lookit-change-detection.html">Exp-lookit-change-detection</a></li>
+                            <li><a href="../classes/Exp-lookit-composite-video-trial.html">Exp-lookit-composite-video-trial</a></li>
+                            <li><a href="../classes/Exp-lookit-dialogue-page.html">Exp-lookit-dialogue-page</a></li>
+                            <li><a href="../classes/Exp-lookit-exit-survey.html">Exp-lookit-exit-survey</a></li>
+                            <li><a href="../classes/Exp-lookit-geometry-alternation.html">Exp-lookit-geometry-alternation</a></li>
+                            <li><a href="../classes/Exp-lookit-geometry-alternation-open.html">Exp-lookit-geometry-alternation-open</a></li>
+                            <li><a href="../classes/Exp-lookit-images-audio.html">Exp-lookit-images-audio</a></li>
+                            <li><a href="../classes/Exp-lookit-images-audio-infant-control.html">Exp-lookit-images-audio-infant-control</a></li>
+                            <li><a href="../classes/Exp-lookit-instruction-video.html">Exp-lookit-instruction-video</a></li>
+                            <li><a href="../classes/Exp-lookit-instructions.html">Exp-lookit-instructions</a></li>
+                            <li><a href="../classes/Exp-lookit-mood-questionnaire.html">Exp-lookit-mood-questionnaire</a></li>
+                            <li><a href="../classes/Exp-lookit-observation.html">Exp-lookit-observation</a></li>
+                            <li><a href="../classes/Exp-lookit-preferential-looking.html">Exp-lookit-preferential-looking</a></li>
+                            <li><a href="../classes/Exp-lookit-preview-explanation.html">Exp-lookit-preview-explanation</a></li>
+                            <li><a href="../classes/Exp-lookit-start-recording.html">Exp-lookit-start-recording</a></li>
+                            <li><a href="../classes/Exp-lookit-stimuli-preview.html">Exp-lookit-stimuli-preview</a></li>
+                            <li><a href="../classes/Exp-lookit-stop-recording.html">Exp-lookit-stop-recording</a></li>
+                            <li><a href="../classes/Exp-lookit-story-page.html">Exp-lookit-story-page</a></li>
+                            <li><a href="../classes/Exp-lookit-survey.html">Exp-lookit-survey</a></li>
+                            <li><a href="../classes/Exp-lookit-text.html">Exp-lookit-text</a></li>
+                            <li><a href="../classes/Exp-lookit-video.html">Exp-lookit-video</a></li>
+                            <li><a href="../classes/Exp-lookit-video-assent.html">Exp-lookit-video-assent</a></li>
+                            <li><a href="../classes/Exp-lookit-video-consent.html">Exp-lookit-video-consent</a></li>
+                            <li><a href="../classes/Exp-lookit-video-infant-control.html">Exp-lookit-video-infant-control</a></li>
+                            <li><a href="../classes/Exp-lookit-webcam-display.html">Exp-lookit-webcam-display</a></li>
+                            <li><a href="../classes/Exp-video-config.html">Exp-video-config</a></li>
+                            <li><a href="../classes/Exp-video-config-quality.html">Exp-video-config-quality</a></li>
+                            <li><a href="../classes/Expand-assets.html">Expand-assets</a></li>
+                            <li><a href="../classes/Full-screen.html">Full-screen</a></li>
+                            <li><a href="../classes/Infant-controlled-timing.html">Infant-controlled-timing</a></li>
+                            <li><a href="../classes/Media-reload.html">Media-reload</a></li>
+                            <li><a href="../classes/Permute.html">Permute</a></li>
+                            <li><a href="../classes/Random-parameter-set.html">Random-parameter-set</a></li>
+                            <li><a href="../classes/Select.html">Select</a></li>
+                            <li><a href="../classes/Session-record.html">Session-record</a></li>
+                            <li><a href="../classes/Video-record.html">Video-record</a></li>
+                            <li><a href="../classes/video-recorder.html">video-recorder</a></li>
+                        </ul>
+                    </div>
+              
+                  </div>
+              </div>
+            </div>
+        </div>
+        <div class="yui3-u-4-5">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1 class="file-heading">File: app/components/exp-lookit-instruction-video/component.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+import Em from &#x27;ember&#x27;;
+
+import layout from &#x27;./template&#x27;;
+import ExpFrameBaseComponent from &#x27;../exp-frame-base/component&#x27;;
+import ExpandAssets, {videoAssetOptions} from &#x27;../../mixins/expand-assets&#x27;;
+
+let {
+    $
+} = Em;
+
+/**
+ * @module exp-player
+ * @submodule frames
+ */
+
+/**
+ * A frame to display video instructions to the user.
+ *
+ * A video is displayed to the left, and a transcript or summary in a scrolling box to the right. (The transcript can
+ * be omitted if desired, but in that case you must provide complete captioning for the video!)
+ *
+ * The participant is required to either scroll to the bottom of the transcript or watch the video to proceed.
+ *
+ * Each element of the &#x27;transcriptBlocks&#x27; parameter is rendered using {{#crossLink &quot;Exp-text-block&quot;}}{{/crossLink}}.
+
+&#x60;&#x60;&#x60;json
+ &quot;frames&quot;: {
+     &quot;intro-video&quot;: {
+        &quot;kind&quot;: &quot;exp-lookit-instruction-video&quot;,
+        &quot;instructionsVideo&quot;: [
+            {
+                &quot;src&quot;: &quot;https://raw.github.com/UCDOakeslab/Baby_MR_Lookit/master/Lookit Introduction Part 1_Edited.mp4&quot;,
+                &quot;type&quot;: &quot;video/mp4&quot;
+            }
+        ],
+        &quot;introText&quot;: &quot;Welcome to the study! Please watch this video to get started. \n(Or you can read the summary to the right if you prefer.)&quot;,
+        &quot;transcriptTitle&quot;: &quot;Video summary&quot;,
+        &quot;transcriptBlocks&quot;: [
+            {
+                &quot;title&quot;: &quot;Background information about the study&quot;,
+                &quot;listblocks&quot;: [
+                    {
+                        &quot;text&quot;: &quot;Your baby does not need to be with you at this point in the study. We will let you know when it is time to get your baby.&quot;
+                    },
+                    {
+                        &quot;text&quot;: &quot;Mental rotation, or the ability to manipulate internal representations of objects, is an important spatial ability. Spatial abilities are important for understanding objects, reading maps, mathematical reasoning, and navigating the world. Thus, the development of mental rotation is an important milestone. In the current study, we are interested in examining whether babies in general can mentally rotate simple objects.&quot;
+                    }
+                ]
+            },
+            {
+                &quot;title&quot;: &quot;Preview of what your baby will see&quot;
+            },
+            {
+                &quot;listblocks&quot;: [
+                    {
+                        &quot;text&quot;: &quot;Your baby will be shown two identical Tetris shapes on the screen; one on the left and one on the right. The shapes appear and disappear, changing their orientation each time they reappear. On one side, the rotation will always be possible. Sometimes, on the other side, a mirror image of the shape will be presented. If babies can mentally rotate objects, they should spend different amounts of time watching these two kinds of stimuli.&quot;
+                    }
+                ]
+            },
+            {
+                &quot;title&quot;: &quot;What&#x27;s next?&quot;,
+                &quot;listblocks&quot;: [
+                    {
+                        &quot;text&quot;: &quot;Because this is an online study, we will check to make sure that your webcam is set up and working properly on the next page, so we can record your baby’s looking behavior during the study.&quot;
+                    },
+                    {
+                        &quot;text&quot;: &quot;Following that page, you will be given an opportunity to review the consent information and we will ask that you record a short video of yourself giving consent to participate in this study.&quot;
+                    },
+                    {
+                        &quot;text&quot;: &quot;We will then ask you questions about your baby&#x27;s motor abilities.&quot;
+                    },
+                    {
+                        &quot;text&quot;: &quot;After you are finished with the consent page and questions, you will be provided with more detailed information about what to do during the study and how to get started.&quot;
+                    }
+                ]
+            }
+        ],
+        &quot;warningText&quot;: &quot;Please watch the video or read the transcript before proceeding.&quot;,
+        &quot;nextButtonText&quot;: &quot;Next&quot;,
+        &quot;title&quot;: &quot;Study instructions&quot;,
+        &quot;showPreviousButton&quot;: false
+    }
+ }
+
+ * &#x60;&#x60;&#x60;
+ * @class Exp-lookit-instruction-video
+ * @extends Exp-frame-base
+ * @extends Expand-assets
+ */
+
+export default ExpFrameBaseComponent.extend(ExpandAssets, {
+    layout: layout,
+    type: &#x27;exp-lookit-instruction-video&#x27;,
+    assetsToExpand: {
+        &#x27;audio&#x27;: [
+        ],
+        &#x27;video&#x27;: [
+            &#x27;instructionsVideo&#x27;
+        ],
+        &#x27;image&#x27;: [
+        ]
+    },
+    frameSchemaProperties: {
+
+        /**
+         * Title to show at top of frame
+         *
+         * @property {String} title
+         * @default &#x27;Study instructions&#x27;
+         */
+        title: {
+            type: &#x27;string&#x27;,
+            description: &#x27;Title for frame&#x27;,
+            default: &#x27;Study instructions&#x27;
+        },
+
+        /**
+         * Intro text to show at top of frame
+         *
+         * @property {String} introText
+         * @default &#x27;Welcome! Please watch this video to learn how the study will work. \n You can read through the information to the right if you prefer.&#x27;
+         */
+        introText: {
+            type: &#x27;string&#x27;,
+            description: &#x27;Intro text to show at top of frame&#x27;,
+            default: &#x27;Welcome! Please watch this video to learn how the study will work. You can read the transcript to the right if you prefer.&#x27;
+        },
+
+        /**
+         * Text to show above Next button if participant has not yet watched video or read transcript
+         *
+         * @property {String} warningText
+         * @default &#x27;Please watch the video or read the transcript before proceeding.&#x27;
+         */
+        warningText: {
+            type: &#x27;string&#x27;,
+            description: &#x27;Text to show above Next button if participant has not yet watched video or read transcript&#x27;,
+            default: &#x27;Please watch the video or read the transcript before proceeding.&#x27;
+        },
+
+        /**
+         * The location of the instructions video to play. This can be either
+         *      an array of {&#x27;src&#x27;: &#x27;https://...&#x27;, &#x27;type&#x27;: &#x27;...&#x27;} objects (e.g. providing both
+         *      webm and mp4 versions at specified URLS) or a single string relative to baseDir/&lt;EXT&gt;/.
+         *
+         * @property {Object} instructionsVideo
+         */
+        instructionsVideo: {
+            anyOf: videoAssetOptions,
+            description: &#x27;Object describing the instructions video to show&#x27;
+        },
+
+        /**
+         * Title to show above video transcript/overview. Generally this should be either &quot;Video transcript&quot; or
+         * &quot;Video summary&quot; depending on whether you&#x27;re providing a word-for-word transcript or a condensed summary.
+         * It may
+         *
+         * @property {String} transcriptTitle
+         * @default &#x27;Video transcript&#x27;
+         */
+        transcriptTitle: {
+            type: &#x27;string&#x27;,
+            description: &#x27;Title to show above video transcript/overview&#x27;,
+            default: &#x27;Video transcript&#x27;
+        },
+
+        /**
+         * Array of blocks for {{#crossLink &quot;Exp-text-block&quot;}}{{/crossLink}}, providing a transcript of the video
+         * or an overview of what it said. A transcript can be broken down into bullet points to make it more readable.
+         *
+         * If you&#x27;ve also provided closed captions throughout the video, you can use this space just to provide key
+         * points.
+         *
+         * If this is left blank ([]) no transcript is displayed.
+         *
+         * @property {Object[]} transcriptBlocks
+         *   @param {String} title Title of this section
+         *   @param {String} text Paragraph text of this section
+         *   @param {Object[]} listblocks Object specifying bulleted points for this section. Each object is of the form:
+         *   {text: &#x27;text of bullet point&#x27;, image: {src: &#x27;url&#x27;, alt: &#x27;alt-text&#x27;}}. Images are optional.*
+         */
+        transcriptBlocks: {
+            type: &#x27;array&#x27;,
+            items: {
+                type: &#x27;object&#x27;,
+                properties: {
+                    title: {
+                        type: &#x27;string&#x27;
+                    },
+                    text: {
+                        type: &#x27;string&#x27;
+                    },
+                    listblocks: {
+                        type: &#x27;array&#x27;,
+                        items: {
+                            type: &#x27;object&#x27;,
+                            properties: {
+                                text: {
+                                    type: &#x27;string&#x27;
+                                },
+                                image: {
+                                    type: &#x27;object&#x27;,
+                                    properties: {
+                                        src: {
+                                            type: &#x27;string&#x27;
+                                        },
+                                        alt: {
+                                            type: &#x27;string&#x27;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            default: []
+        },
+        /**
+         * Whether to show a &#x27;previous&#x27; button
+         *
+         * @property {Boolean} showPreviousButton
+         * @default true
+         */
+        showPreviousButton: {
+            type: &#x27;boolean&#x27;,
+            default: true
+        },
+        /**
+         * Text to display on the &#x27;next frame&#x27; button
+         *
+         * @property {String} nextButtonText
+         * @default &#x27;Start the videos! \n (You\&#x27;ll have a moment to turn around.)&#x27;
+         */
+        nextButtonText: {
+            type: &#x27;string&#x27;,
+            default: &#x27;Start the videos! \n (You\&#x27;ll have a moment to turn around.)&#x27;
+        }
+    },
+    meta: {
+        data: {
+            type: &#x27;object&#x27;,
+            properties: {
+            }
+        }
+    },
+
+    hasCompletedFrame: Em.computed(&#x27;playedVideo&#x27;, &#x27;readTranscript&#x27;, function() {
+        return (this.get(&#x27;playedVideo&#x27;) || this.get(&#x27;readTranscript&#x27;));
+    }),
+
+    showWarning: false,
+    playedVideo: false,
+    readTranscript: false,
+
+    actions: {
+        mediaPlayed() {
+            this.set(&#x27;playedVideo&#x27;, true);
+            this.set(&#x27;showWarning&#x27;, false);
+        },
+        checkIfDoneThenNext() {
+            if (!this.get(&#x27;hasCompletedFrame&#x27;)) {
+                this.set(&#x27;showWarning&#x27;, true);
+            } else {
+                this.send(&#x27;next&#x27;);
+            }
+        }
+    },
+
+    didInsertElement() {
+        this._super(...arguments);
+        let $transcript = $(&#x27;div.transcript&#x27;);
+        let _frame = this;
+        // See https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollHeight#Determine_if_an_element_has_been_totally_scrolled
+        if ($transcript.length) {
+            // First check if the transcript is already scrolled to end because it doesn&#x27;t need to scroll. Allow slight
+            // buffer (2px) as Chrome doesn&#x27;t always think we&#x27;ve scrolled to very bottom.
+            if ($transcript[0].scrollHeight - $transcript[0].scrollTop &lt;= $transcript[0].clientHeight + 2) {
+                _frame.set(&#x27;readTranscript&#x27;, true);
+                _frame.set(&#x27;showWarning&#x27;, false);
+            }
+            // And check upon scrolling if we&#x27;ve reached the bottom
+            $transcript.bind(&#x27;scroll&#x27;, function() {
+                if (this.scrollHeight - this.scrollTop &lt;= this.clientHeight + 2) {
+                    _frame.set(&#x27;readTranscript&#x27;, true);
+                    _frame.set(&#x27;showWarning&#x27;, false);
+                }
+            });
+        }
+    }
+});
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

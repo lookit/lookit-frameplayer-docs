@@ -19,11 +19,12 @@
                 <img style="float:right; vertical-align:middle;" src="../assets/css/logo.png" height="70">
                 <span>Lookit<br> component<br> docs</span>
 
-                    <p>Version: latest <br>(v1.3.x - develop)</p>
+                    <p>Version: latest <br>(v1.3.1)</p>
                     <select name="select_version" onchange="location = this.value;">
                         <option value="">--Select different version--</option>
                             <option value="../releases/v1.2.0/index.html">v1.2.0</option>
                             <option value="../releases/v1.3.0/index.html">v1.3.0</option>
+                            <option value="../releases/v1.3.1/index.html">v1.3.1</option>
                     </select>
               </div>
               </h2>
@@ -128,7 +129,7 @@ import ExpFrameBaseComponent from &#x27;../exp-frame-base/component&#x27;;
 import FullScreen from &#x27;../../mixins/full-screen&#x27;;
 import VideoRecord from &#x27;../../mixins/video-record&#x27;;
 import ExpandAssets from &#x27;../../mixins/expand-assets&#x27;;
-import isColor from &#x27;../../utils/is-color&#x27;;
+import isColor, {colorSpecToRgbaArray} from &#x27;../../utils/is-color&#x27;;
 import { audioAssetOptions, videoAssetOptions } from &#x27;../../mixins/expand-assets&#x27;;
 
 let {
@@ -807,7 +808,9 @@ export default ExpFrameBaseComponent.extend(FullScreen, VideoRecord, ExpandAsset
 
         $(document).on(&#x27;keyup.pauser&#x27;, (e) =&gt; {
             if (this.checkFullscreen()) {
-                if (this.get(&#x27;pauseKey&#x27;) &amp;&amp; e.key === this.get(&#x27;pauseKey&#x27;)) { // space: pause/unpause study
+                if (this.get(&#x27;pauseKey&#x27;) &amp;&amp; e.key === this.get(&#x27;pauseKey&#x27;)) {
+                    this.togglePauseStudy();
+                } else if (!this.get(&#x27;pauseKey&#x27;) &amp;&amp; e.key === &#x27; &#x27; &amp;&amp; this.get(&#x27;isPaused&#x27;)) {
                     this.togglePauseStudy();
                 }
             }
@@ -851,10 +854,16 @@ export default ExpFrameBaseComponent.extend(FullScreen, VideoRecord, ExpandAsset
         }
 
         // Apply background color
-        if (isColor(this.get(&#x27;backgroundColor&#x27;))) {
-            $(&#x27;div.exp-lookit-video&#x27;).css(&#x27;background-color&#x27;, this.get(&#x27;backgroundColor&#x27;));
+        let colorSpec = this.get(&#x27;backgroundColor&#x27;);
+        if (isColor(colorSpec)) {
+            $(&#x27;div.story-image-container, div#image-area, div.exp-lookit-video&#x27;).css(&#x27;background-color&#x27;, this.get(&#x27;backgroundColor&#x27;));
+            // Set text color so it&#x27;ll be visible (black or white depending on how dark background is). Use style
+            // so this applies whenever pause text actually appears.
+            let colorSpecRGBA = colorSpecToRgbaArray(colorSpec);
+            let textColor = (colorSpecRGBA[0] + colorSpecRGBA[1] + colorSpecRGBA[2] &gt; 128 * 3) ? &#x27;black&#x27; : &#x27;white&#x27;;
+            $(&#x60;&lt;style&gt;div.exp-lookit-video p#waitForVideo, div.exp-lookit-video p.pause-instructions { color: ${textColor}; }&lt;/style&gt;&#x60;).appendTo(&#x27;div.exp-lookit-video&#x27;);
         } else {
-            console.warn(&#x27;Invalid background color provided; not applying.&#x27;);
+            console.warn(&#x60;Invalid backgroundColor (${colorSpec}) provided; using default instead.&#x60;);
         }
 
         if (!this.get(&#x27;doRecording&#x27;) &amp;&amp; !this.get(&#x27;startSessionRecording&#x27;) &amp;&amp; !this.get(&#x27;isPaused&#x27;)) {

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>app/components/exp-lookit-images-audio-infant-control/component.js - ember-lookit-frameplayer</title>
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="https://yui-s.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="https://yui-s.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+<div id="doc">
+    <div id="bd" class="yui3-g">
+        <div class="yui3-u-1-5">
+            <div id="docs-sidebar" class="sidebar apidocs">
+              <h2 style="display:inline;">
+              <div>
+                <img style="float:right; vertical-align:middle;" src="../assets/css/logo.png" height="70">
+                <span>Lookit<br> component<br> docs</span>
+
+                    <p>Version: v1.3.1</p>
+                    <a href="../../../index.html">(switch to latest)</a>
+              </div>
+              </h2>
+              <div id="api-list">
+                  <div id="api-tabview">
+              
+                    <div id="api-tabview-panel">
+                        <h2 class="off-left">Collections</h2>
+                        <ul id="api-modules" class="apis modules">
+                            <li class="module-sidebar-exp-player"><a href="../modules/exp-player.html">exp-player</a></li>
+                            <li class="module-sidebar-frames"><a href="../modules/frames.html">frames</a></li>
+                            <li class="module-sidebar-frames-deprecated"><a href="../modules/frames-deprecated.html">frames-deprecated</a></li>
+                            <li class="module-sidebar-mixins"><a href="../modules/mixins.html">mixins</a></li>
+                            <li class="module-sidebar-randomizers"><a href="../modules/randomizers.html">randomizers</a></li>
+                        </ul>
+                        <h2 class="off-left">All elements</h2>
+                              <div id="api-tabview-filter">
+                      <input type="search" id="api-filter" placeholder="Type to filter">
+                    </div>
+                        <ul id="api-classes" class="apis classes">
+                            <li><a href="../classes/Exp-frame-base.html">Exp-frame-base</a></li>
+                            <li><a href="../classes/Exp-frame-select.html">Exp-frame-select</a></li>
+                            <li><a href="../classes/Exp-lookit-calibration.html">Exp-lookit-calibration</a></li>
+                            <li><a href="../classes/Exp-lookit-change-detection.html">Exp-lookit-change-detection</a></li>
+                            <li><a href="../classes/Exp-lookit-composite-video-trial.html">Exp-lookit-composite-video-trial</a></li>
+                            <li><a href="../classes/Exp-lookit-dialogue-page.html">Exp-lookit-dialogue-page</a></li>
+                            <li><a href="../classes/Exp-lookit-exit-survey.html">Exp-lookit-exit-survey</a></li>
+                            <li><a href="../classes/Exp-lookit-geometry-alternation.html">Exp-lookit-geometry-alternation</a></li>
+                            <li><a href="../classes/Exp-lookit-geometry-alternation-open.html">Exp-lookit-geometry-alternation-open</a></li>
+                            <li><a href="../classes/Exp-lookit-images-audio.html">Exp-lookit-images-audio</a></li>
+                            <li><a href="../classes/Exp-lookit-images-audio-infant-control.html">Exp-lookit-images-audio-infant-control</a></li>
+                            <li><a href="../classes/Exp-lookit-instruction-video.html">Exp-lookit-instruction-video</a></li>
+                            <li><a href="../classes/Exp-lookit-instructions.html">Exp-lookit-instructions</a></li>
+                            <li><a href="../classes/Exp-lookit-mood-questionnaire.html">Exp-lookit-mood-questionnaire</a></li>
+                            <li><a href="../classes/Exp-lookit-observation.html">Exp-lookit-observation</a></li>
+                            <li><a href="../classes/Exp-lookit-preferential-looking.html">Exp-lookit-preferential-looking</a></li>
+                            <li><a href="../classes/Exp-lookit-preview-explanation.html">Exp-lookit-preview-explanation</a></li>
+                            <li><a href="../classes/Exp-lookit-start-recording.html">Exp-lookit-start-recording</a></li>
+                            <li><a href="../classes/Exp-lookit-stimuli-preview.html">Exp-lookit-stimuli-preview</a></li>
+                            <li><a href="../classes/Exp-lookit-stop-recording.html">Exp-lookit-stop-recording</a></li>
+                            <li><a href="../classes/Exp-lookit-story-page.html">Exp-lookit-story-page</a></li>
+                            <li><a href="../classes/Exp-lookit-survey.html">Exp-lookit-survey</a></li>
+                            <li><a href="../classes/Exp-lookit-text.html">Exp-lookit-text</a></li>
+                            <li><a href="../classes/Exp-lookit-video.html">Exp-lookit-video</a></li>
+                            <li><a href="../classes/Exp-lookit-video-assent.html">Exp-lookit-video-assent</a></li>
+                            <li><a href="../classes/Exp-lookit-video-consent.html">Exp-lookit-video-consent</a></li>
+                            <li><a href="../classes/Exp-lookit-video-infant-control.html">Exp-lookit-video-infant-control</a></li>
+                            <li><a href="../classes/Exp-lookit-webcam-display.html">Exp-lookit-webcam-display</a></li>
+                            <li><a href="../classes/Exp-video-config.html">Exp-video-config</a></li>
+                            <li><a href="../classes/Exp-video-config-quality.html">Exp-video-config-quality</a></li>
+                            <li><a href="../classes/Expand-assets.html">Expand-assets</a></li>
+                            <li><a href="../classes/Full-screen.html">Full-screen</a></li>
+                            <li><a href="../classes/Infant-controlled-timing.html">Infant-controlled-timing</a></li>
+                            <li><a href="../classes/Media-reload.html">Media-reload</a></li>
+                            <li><a href="../classes/Permute.html">Permute</a></li>
+                            <li><a href="../classes/Random-parameter-set.html">Random-parameter-set</a></li>
+                            <li><a href="../classes/Select.html">Select</a></li>
+                            <li><a href="../classes/Session-record.html">Session-record</a></li>
+                            <li><a href="../classes/Video-record.html">Video-record</a></li>
+                            <li><a href="../classes/video-recorder.html">video-recorder</a></li>
+                        </ul>
+                    </div>
+              
+                  </div>
+              </div>
+            </div>
+        </div>
+        <div class="yui3-u-4-5">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1 class="file-heading">File: app/components/exp-lookit-images-audio-infant-control/component.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+import ExpLookitImagesAudio from &#x27;../exp-lookit-images-audio/component&#x27;;
+import InfantControlledTiming from &#x27;../../mixins/infant-controlled-timing&#x27;;
+
+/**
+ * @module exp-player
+ * @submodule frames
+ */
+
+/**
+ * Infant-controlled version of the {{#crossLink &quot;Exp-lookit-images-audio&quot;}}{{/crossLink}} frame. This works the same way as
+ * exp-lookit-images-audio except that you can enable the parent to:
+ *
+ * - end the trial by pressing the &#x60;endTrialKey&#x60; key
+ * - hold down the &#x60;lookawayKey&#x60; (or the mouse button) to indicate that the child is not looking; the trial will automatically end
+ *   after the lookaway criterion is met. If the &#x27;lookawayTone&#x27; is not &#x27;none&#x27; a noise is played while the child is looking
+ *   away to help the parent know the looking coding is working.
+ *
+ * You can disable either of these behaviors by setting the key to &#x60;&#x27;&#x27;&#x60;.
+ *
+ * The frame will still end when it would have anyway if neither of these things happen! For instance, if you would have
+ * displayed an image for 30 seconds, then after 30 seconds the frame will move on, serving as a &quot;ceiling&quot; on looking time.
+ *
+ * Lookaway criterion: You have two options for how to determine when the child has looked away long enough to proceed.
+ * Set the &#x60;lookawayType&#x60; to &#x60;&quot;total&quot;&#x60; to accumulate lookaway time until the child has looked away for a total of
+ * &#x60;lookawayThreshold&#x60; seconds. (For instance, if the &#x60;lookawayThreshold&#x60; is 2, then the trial will end after the child
+ * looks away for 0.5s, then 1s, then 0.5s.) Set the &#x60;lookawayType&#x60; to &#x60;&quot;continuous&quot;&#x60; to require that the child look
+ * away for a continuous &#x60;lookawayThreshold&#x60;-second interval. (For instance, if the &#x60;lookawayThreshold&#x60; is 2, then the
+ * child might look away for 1s, 1.5s, and 1s but the trial would continue until she looked away for 2s.)
+ *
+ * The looking time measurement begins only when the video starts, not while a video connection is established.
+ *
+ * If a &#x60;lookawayKey&#x60; is defined, lookaways are recorded the entire time the frame is running. However, the looking
+ * time measurement only starts once images are displayed (or the &quot;delay&quot; timer starts counting down, for images
+ * shown at a delay - but e.g., not during webcam connection). Lookaways at the very
+ * start don&#x27;t count! If the child is not looking at the start, the measurement begins once they look
+ * for the first time.
+ *
+ * Two pieces of data are recorded for convenience when coding or if implementing a live habituation procedure:
+ * &#x60;totalLookingTime&#x60; and &#x60;reasonTrialEnded&#x60;.
+ *
+ * Example usage:
+ *
+ &#x60;&#x60;&#x60;json
+ &quot;play-video-twice&quot;: {
+    &quot;kind&quot;: &quot;exp-lookit-video-infant-control&quot;,
+    &quot;lookawayKey&quot;: &quot;p&quot;,
+    &quot;lookawayType&quot;: &quot;total&quot;,
+    &quot;lookawayThreshold&quot;: 2,
+    &quot;endTrialKey&quot;: &quot;q&quot;,
+    &quot;lookawayTone&quot;: &quot;noise&quot;,
+    &quot;lookawayToneVolume&quot;: 0.25,
+
+    &quot;audio&quot;: {
+        &quot;loop&quot;: false,
+        &quot;source&quot;: &quot;peekaboo&quot;
+    },
+    &quot;video&quot;: {
+        &quot;top&quot;: 10,
+        &quot;left&quot;: 25,
+        &quot;loop&quot;: true,
+        &quot;width&quot;: 50,
+        &quot;source&quot;: &quot;cropped_apple&quot;
+    },
+    &quot;backgroundColor&quot;: &quot;white&quot;,
+    &quot;autoProceed&quot;: true,
+    &quot;parentTextBlock&quot;: {
+        &quot;text&quot;: &quot;If your child needs a break, just press X to pause!&quot;
+    },
+    &quot;requiredDuration&quot;: 0,
+    &quot;requireAudioCount&quot;: 0,
+    &quot;requireVideoCount&quot;: 2,
+    &quot;restartAfterPause&quot;: true,
+    &quot;pauseKey&quot;: &quot;x&quot;,
+    &quot;pauseKeyDescription&quot;: &quot;X&quot;,
+    &quot;pauseAudio&quot;: &quot;pause&quot;,
+    &quot;pauseVideo&quot;: &quot;attentiongrabber&quot;,
+    &quot;pauseText&quot;: &quot;(You&#x27;ll have a moment to turn around again.)&quot;,
+    &quot;unpauseAudio&quot;: &quot;return_after_pause&quot;,
+    &quot;doRecording&quot;: true,
+    &quot;baseDir&quot;: &quot;https://www.mit.edu/~kimscott/placeholderstimuli/&quot;,
+    &quot;audioTypes&quot;: [
+        &quot;ogg&quot;,
+        &quot;mp3&quot;
+    ],
+    &quot;videoTypes&quot;: [
+        &quot;webm&quot;,
+        &quot;mp4&quot;
+    ]
+}
+
+ * &#x60;&#x60;&#x60;
+ * @class Exp-lookit-images-audio-infant-control
+ * @extends Exp-lookit-images-audio
+ * @uses Infant-controlled-timing
+ */
+
+
+export default ExpLookitImagesAudio.extend(InfantControlledTiming, {
+
+    meta: {
+        data: {
+            type: &#x27;object&#x27;,
+            properties: {
+                videoId: {
+                    type: &#x27;string&#x27;
+                },
+                videoList: {
+                    type: &#x27;list&#x27;
+                },
+                images: {
+                    type: &#x27;array&#x27;
+                },
+                audioPlayed: {
+                    type: &#x27;string&#x27;
+                },
+                selectedImage: {
+                    type: &#x27;string&#x27;
+                },
+                correctImageSelected: {
+                    type: &#x27;string&#x27;
+                },
+                totalLookingTime: {
+                    type: &#x27;number&#x27;
+                },
+                trialEndReason: {
+                    type: &#x27;string&#x27;
+                }
+            },
+        }
+    },
+
+    finish() {
+        this.endParentControl();
+        this._super(...arguments);
+    },
+
+    startTrial() {
+        this._super(...arguments);
+        this.startParentControl();
+    },
+
+    checkAndEnableProceed() {
+        let ready = this._super(...arguments);
+        if (ready) {
+            this.set(&#x27;trialEndReason&#x27;, &#x27;ceiling&#x27;);
+            this.setTrialEndTime();
+        }
+        return ready;
+    },
+
+    onLookawayCriterion() {
+        this.readyToFinish();
+    }
+
+});
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

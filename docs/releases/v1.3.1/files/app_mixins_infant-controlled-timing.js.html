@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>app/mixins/infant-controlled-timing.js - ember-lookit-frameplayer</title>
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="https://yui-s.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="https://yui-s.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+<div id="doc">
+    <div id="bd" class="yui3-g">
+        <div class="yui3-u-1-5">
+            <div id="docs-sidebar" class="sidebar apidocs">
+              <h2 style="display:inline;">
+              <div>
+                <img style="float:right; vertical-align:middle;" src="../assets/css/logo.png" height="70">
+                <span>Lookit<br> component<br> docs</span>
+
+                    <p>Version: v1.3.1</p>
+                    <a href="../../../index.html">(switch to latest)</a>
+              </div>
+              </h2>
+              <div id="api-list">
+                  <div id="api-tabview">
+              
+                    <div id="api-tabview-panel">
+                        <h2 class="off-left">Collections</h2>
+                        <ul id="api-modules" class="apis modules">
+                            <li class="module-sidebar-exp-player"><a href="../modules/exp-player.html">exp-player</a></li>
+                            <li class="module-sidebar-frames"><a href="../modules/frames.html">frames</a></li>
+                            <li class="module-sidebar-frames-deprecated"><a href="../modules/frames-deprecated.html">frames-deprecated</a></li>
+                            <li class="module-sidebar-mixins"><a href="../modules/mixins.html">mixins</a></li>
+                            <li class="module-sidebar-randomizers"><a href="../modules/randomizers.html">randomizers</a></li>
+                        </ul>
+                        <h2 class="off-left">All elements</h2>
+                              <div id="api-tabview-filter">
+                      <input type="search" id="api-filter" placeholder="Type to filter">
+                    </div>
+                        <ul id="api-classes" class="apis classes">
+                            <li><a href="../classes/Exp-frame-base.html">Exp-frame-base</a></li>
+                            <li><a href="../classes/Exp-frame-select.html">Exp-frame-select</a></li>
+                            <li><a href="../classes/Exp-lookit-calibration.html">Exp-lookit-calibration</a></li>
+                            <li><a href="../classes/Exp-lookit-change-detection.html">Exp-lookit-change-detection</a></li>
+                            <li><a href="../classes/Exp-lookit-composite-video-trial.html">Exp-lookit-composite-video-trial</a></li>
+                            <li><a href="../classes/Exp-lookit-dialogue-page.html">Exp-lookit-dialogue-page</a></li>
+                            <li><a href="../classes/Exp-lookit-exit-survey.html">Exp-lookit-exit-survey</a></li>
+                            <li><a href="../classes/Exp-lookit-geometry-alternation.html">Exp-lookit-geometry-alternation</a></li>
+                            <li><a href="../classes/Exp-lookit-geometry-alternation-open.html">Exp-lookit-geometry-alternation-open</a></li>
+                            <li><a href="../classes/Exp-lookit-images-audio.html">Exp-lookit-images-audio</a></li>
+                            <li><a href="../classes/Exp-lookit-images-audio-infant-control.html">Exp-lookit-images-audio-infant-control</a></li>
+                            <li><a href="../classes/Exp-lookit-instruction-video.html">Exp-lookit-instruction-video</a></li>
+                            <li><a href="../classes/Exp-lookit-instructions.html">Exp-lookit-instructions</a></li>
+                            <li><a href="../classes/Exp-lookit-mood-questionnaire.html">Exp-lookit-mood-questionnaire</a></li>
+                            <li><a href="../classes/Exp-lookit-observation.html">Exp-lookit-observation</a></li>
+                            <li><a href="../classes/Exp-lookit-preferential-looking.html">Exp-lookit-preferential-looking</a></li>
+                            <li><a href="../classes/Exp-lookit-preview-explanation.html">Exp-lookit-preview-explanation</a></li>
+                            <li><a href="../classes/Exp-lookit-start-recording.html">Exp-lookit-start-recording</a></li>
+                            <li><a href="../classes/Exp-lookit-stimuli-preview.html">Exp-lookit-stimuli-preview</a></li>
+                            <li><a href="../classes/Exp-lookit-stop-recording.html">Exp-lookit-stop-recording</a></li>
+                            <li><a href="../classes/Exp-lookit-story-page.html">Exp-lookit-story-page</a></li>
+                            <li><a href="../classes/Exp-lookit-survey.html">Exp-lookit-survey</a></li>
+                            <li><a href="../classes/Exp-lookit-text.html">Exp-lookit-text</a></li>
+                            <li><a href="../classes/Exp-lookit-video.html">Exp-lookit-video</a></li>
+                            <li><a href="../classes/Exp-lookit-video-assent.html">Exp-lookit-video-assent</a></li>
+                            <li><a href="../classes/Exp-lookit-video-consent.html">Exp-lookit-video-consent</a></li>
+                            <li><a href="../classes/Exp-lookit-video-infant-control.html">Exp-lookit-video-infant-control</a></li>
+                            <li><a href="../classes/Exp-lookit-webcam-display.html">Exp-lookit-webcam-display</a></li>
+                            <li><a href="../classes/Exp-video-config.html">Exp-video-config</a></li>
+                            <li><a href="../classes/Exp-video-config-quality.html">Exp-video-config-quality</a></li>
+                            <li><a href="../classes/Expand-assets.html">Expand-assets</a></li>
+                            <li><a href="../classes/Full-screen.html">Full-screen</a></li>
+                            <li><a href="../classes/Infant-controlled-timing.html">Infant-controlled-timing</a></li>
+                            <li><a href="../classes/Media-reload.html">Media-reload</a></li>
+                            <li><a href="../classes/Permute.html">Permute</a></li>
+                            <li><a href="../classes/Random-parameter-set.html">Random-parameter-set</a></li>
+                            <li><a href="../classes/Select.html">Select</a></li>
+                            <li><a href="../classes/Session-record.html">Session-record</a></li>
+                            <li><a href="../classes/Video-record.html">Video-record</a></li>
+                            <li><a href="../classes/video-recorder.html">video-recorder</a></li>
+                        </ul>
+                    </div>
+              
+                  </div>
+              </div>
+            </div>
+        </div>
+        <div class="yui3-u-4-5">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1 class="file-heading">File: app/mixins/infant-controlled-timing.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+import Ember from &#x27;ember&#x27;;
+
+let {
+    $
+} = Ember;
+
+/**
+ * @module exp-player
+ * @submodule mixins
+ */
+
+/**
+ *
+ * Reference for DEVELOPERS of new frames only!
+ *
+ * Mixin to allow parent to control frame progression by holding down a key when the child is not looking.
+ * Enables &quot;infant-controlled&quot; study designs via parent live-coding of infant looking behavior.
+ *
+ * To add this behavior to an existing frame:
+ *
+ * 1) Call &#x60;this.startParentControl()&#x60; at the point you want looking time to start being measured.
+ *    The parent will only be able to end the trial using the endTrialKey during the parent control period. Lookaway
+ *    time will only accumulate and lookaways will only be able to end the trial during the parent control period.
+ *    However, lookaways will be recorded as events throughout the frame. If the child is already looking away before
+ *    the parent control period begins, lookaway time will begin accumulating only after the first look.
+ *
+ * 2) Call &#x60;this.endParentControl()&#x60; at the point you want the parent not to be able to control frame progression anymore.
+ *    For instance, if hiding stimuli and stopping recording after completing the frame, or if pausing the frame.
+ *
+ * 3) If you need to be able to pause and re-start the frame, call &#x60;this.endParentControl()&#x60; when pausing and
+ *    &#x60;this.startParentControl()&#x60; when re-starting. Note that startParentControl will start a &quot;fresh&quot; looking time
+ *    measurement: looking and lookaway time will both be 0, the child will not be assumed to have already looked, etc.
+ *
+ * 4) Define a function &#x60;onLookawayCriterion&#x60; that says what should happen when the parent presses the endTrialKey or the
+ *    child reaches the lookaway criterion. E.g., this might typically move to the next frame. If needed you can access
+ *    &#x60;this.get(&#x27;trialEndReason&#x27;)&#x60; (either &#x27;parentEnded&#x27; or &#x27;lookaway&#x27;) to distinguish between these two possibilities.
+ *
+ * 5) If it is possible for the frame to end by other mechanisms than the trialEndKey or reaching the lookaway criterion,
+ *    then when that happens: set the &#x60;trialEndReason&#x60; accordingly (e.g., &#x60;this.set(&#x27;trialEndReason&#x27;, &#x27;ceiling&#x27;)&#x60;) and
+ *    call &#x60;this.setTrialEndTime()&#x60; to calculate a total looking time based on the
+ *
+ * 6) So that your frame will capture information about looking time and the reason the trial ended, and make that
+ *    available to the researcher, add the following to your frame&#x27;s &#x60;meta.data.properties&#x60;:
+ *    &#x60;&#x60;&#x60;
+      totalLookingTime: {
+          type: &#x27;number&#x27;
+      },
+      trialEndReason: {
+          type: &#x27;string&#x27;
+      }
+      &#x60;&#x60;&#x60;
+ *
+ *
+ *
+ * @class Infant-controlled-timing
+ */
+
+
+var infantControlledTimingMixin = Ember.Mixin.create({
+
+    frameSchemaProperties: {
+        /**
+         * Type of lookaway criterion. Must be either
+         * &#x27;total&#x27; (to count total lookaway time) or &#x27;continuous&#x27; (to count only continuous lookaway time).
+         * Whichever criterion type is used, only lookaways after the first look to the screen are considered.
+         *
+         * @property {String} lookawayType
+         * @default &#x27;total&#x27;
+         */
+        lookawayType: {
+            type: &#x27;string&#x27;,
+            enum: [&#x27;total&#x27;, &#x27;continuous&#x27;],
+            default: &#x27;total&#x27;,
+            description: &#x27;Type of lookaway criterion - count total lookaway time or continuous lookaway time&#x27;
+        },
+
+        /**
+         * Lookaway threshold in seconds. How long does the child need to look away before the trial ends? Depending on
+         * the lookawayType, this will refer either to the total amount of time the child has looked away since their
+         * first look to the screen, or to the length of a single continuous lookaway.
+         *
+         * @property {String} lookawayThreshold
+         * @default 2
+         */
+        lookawayThreshold: {
+            type: &#x27;number&#x27;,
+            default: 2,
+            description: &#x27;Number of seconds baby can look away (total or at once, depending on lookawayType) before trial ends&#x27;
+        },
+
+        /**
+         Key parent should press to indicate the child is looking away. If a key is provided, then the trial will
+         end if the child looks away looks long enough per the lookawayType and lookawayThreshold. You can also use
+         &#x27;mouse&#x27; to indicate that mouse down/up should be used in place of key down/up events. Use an empty string,
+         &#x27;&#x27;, to not record any lookaways for this trial. You can look up the names of keys at https://keycode.info.
+         Default is &#x27;w&#x27;.
+         @property {string} lookawayKey
+         @default &#x27;w&#x27;
+         */
+        lookawayKey: {
+            type: &#x27;string&#x27;,
+            default: &#x27;p&#x27;
+        },
+
+        /**
+         Key parent should press to manually move on to next trial. This allows you to have parents control the study
+         by giving instructions like &quot;press q when the child looks away for at least a few seconds&quot; instead of &quot;hold down
+         w whenever the child isn&#x27;t looking.&quot;  Use an empty string, &#x27;&#x27;, to not allow this function
+         for this trial. You can look up the names of keys at https://keycode.info. Default is &#x27;q&#x27;.
+         @property {string} endTrialKey
+         @default &#x27;q&#x27;
+         */
+        endTrialKey: {
+            type: &#x27;string&#x27;,
+            default: &#x27;q&#x27;
+        },
+
+        /**
+         Type of audio to play during parent-coded lookaways - &#x27;tone&#x27; (A 220), &#x27;noise&#x27; (pink noise), or &#x27;none&#x27;. These
+         tones are available at https://www.mit.edu/~kimscott/placeholderstimuli/ if you want to use them in
+         instructions.
+         @property {string} lookawayTone
+         @default &#x27;noise&#x27;
+         */
+        lookawayTone: {
+            type: &#x27;string&#x27;,
+            enum: [&#x27;tone&#x27;, &#x27;noise&#x27;, &#x27;none&#x27;],
+            default: &#x27;noise&#x27;,
+            description: &#x27;Type of audio to play during parent-coded lookaways&#x27;
+        },
+
+        /**
+         Volume of lookaway tone
+         @property {string} lookawayToneVolume
+         @default 0.25
+         */
+        lookawayToneVolume: {
+            type: &#x27;number&#x27;,
+            default: .25,
+            description: &#x27;Volume of lookaway tone, as fraction of full volume (1 = full volume, 0 = silent)&#x27;
+        }
+    },
+
+    /**
+     * Total looking time during this frame, in seconds.
+     * Looking time is calculated as the total time spent looking between:
+     * (1) The start of the parent control period, or the first look during that period if the child is not looking initially
+     * and
+     * (2) The end of the trial due to the parent pushing the end trial key, the child reaching the lookaway criterion,
+     * or the frame being completed without either of these happening (e.g., a video is played N times or an image is
+     * shown for N seconds).
+     * All time spent looking away, per parent coding, is excluded, regardless of the duration of the lookaway.
+     *
+     * This value will be null if the trial is not completed by any of the above mechanisms, for instance because
+     * the parent ends the study early during this frame.
+     *
+     * @attribute totalLookingTime
+     * @type number
+     */
+    totalLookingTime: null,
+    /**
+     * What caused the trial to end: &#x27;lookaway&#x27; (the child reached the lookaway threshold), &#x27;parentEnded&#x27; (the parent
+     * pressed the endTrialKey), or &#x27;ceiling&#x27; (the frame ended without either of those happening).
+     *
+     * This value will be null if the trial is not completed by any of the above mechanisms, for instance because
+     * the parent ends the study early during this frame.
+     *
+     * @attribute trialEndReason
+     * @type string
+     */
+    trialEndReason: null, // Reason trial ended: lookaway, parentEnded, ceiling....
+
+    _trialStartTime: null,
+    _trialEndTime: null,
+
+    _totalLookaway: 0, // Total lookaway time in ms
+    _lastLookawayStart: null,
+    _isLooking: true,
+
+    _endTrialDueToLookawayTimer: null,
+
+    _controlPeriodStarted: false,
+    _anyLookDuringControlPeriod: false,
+
+    _recordLookawayStart() {
+        this.set(&#x27;_lastLookawayStart&#x27;, new Date());
+        /**
+         * When parent records a lookaway starting. This will be triggered at the start of this frame if the parent
+         * is already holding down the lookawayKey, and otherwise only when the key is newly pressed down. Lookaways
+         * are recorded regardless of whether the parent control period has started.
+         *
+         * @event lookawayStart
+         */
+        this.send(&#x27;setTimeEvent&#x27;, &#x27;lookawayStart&#x27;);
+        // If parent control period has started, set trial to end after lookawayThreshold seconds (continuous mode)
+        // or after the remaining lookaway time needed to reach lookawayThreshold seconds (total mode).
+        // This timer will be cancelled when the lookaway ends if it has not been called yet.
+        if (this.get(&#x27;_controlPeriodStarted&#x27;)) {
+            let delay = (this.get(&#x27;lookawayType&#x27;) === &#x27;total&#x27;) ? this.get(&#x27;lookawayThreshold&#x27;) * 1000 - this.get(&#x27;_totalLookaway&#x27;) : this.get(&#x27;lookawayThreshold&#x27;) * 1000;
+            let _this = this;
+            this.set(&#x27;_endTrialDueToLookawayTimer&#x27;, window.setTimeout(() =&gt; {
+                /**
+                 * When trial ends due to lookaway criterion being reached.
+                 *
+                 * @event lookawayEndedTrial
+                 */
+                this.send(&#x27;setTimeEvent&#x27;, &#x27;lookawayEndedTrial&#x27;);
+                this.set(&#x27;trialEndReason&#x27;, &#x27;lookaway&#x27;);
+                this.setTrialEndTime();
+                _this.onLookawayCriterion();
+            }, delay));
+        }
+        let $lookawayTone = $(&#x27;audio#lookawayTone&#x27;);
+        if ($lookawayTone.length) {
+            $lookawayTone[0].play();
+        }
+    },
+
+    _recordLookawayEnd() {
+        // Cancel the timer to end the trial if the lookaway was too long
+        window.clearInterval(this.get(&#x27;_endTrialDueToLookawayTimer&#x27;));
+        /**
+         * When parent records a lookaway ending. This will NOT be triggered at the start of this frame if the parent
+         * is not holding down the lookawayKey, only when the key is actually released. Lookaways
+         * are recorded regardless of whether the parent control period has started.
+         *
+         * @event lookawayEnd
+         */
+        this.send(&#x27;setTimeEvent&#x27;, &#x27;lookawayEnd&#x27;);
+        // If the parent-controlled segment has begun, track lookaway time...
+        if (this.get(&#x27;_controlPeriodStarted&#x27;)) {
+            // Increment the total lookaway time if the child has already looked at least once during the control period
+            if (this.get(&#x27;_anyLookDuringControlPeriod&#x27;)) {
+                this.set(&#x27;_totalLookaway&#x27;, this.get(&#x27;_totalLookaway&#x27;) + (new Date() - this.get(&#x27;_lastLookawayStart&#x27;)));
+            } else { // Otherwise record that the child has looked, and we&#x27;ll be ready the next time a lookaway starts.
+                this.set(&#x27;_trialStartTime&#x27;, new Date());
+                this.set(&#x27;_anyLookDuringControlPeriod&#x27;, true);
+            }
+        }
+        let $lookawayTone = $(&#x27;audio#lookawayTone&#x27;);
+        if ($lookawayTone.length) {
+            $lookawayTone[0].pause();
+        }
+    },
+
+    setTrialEndTime() {
+        let now = new Date();
+        this.set(&#x27;_trialEndTime&#x27;, now);
+        // To get total looking time could also just take last look end - trial start - total lookaway; but actually
+        // updating total lookaway time allows us to use/access totalLookaway more easily in the future
+        if (!this.get(&#x27;_isLooking&#x27;)) {
+            this.set(&#x27;_totalLookaway&#x27;, this.get(&#x27;_totalLookaway&#x27;) + (now - this.get(&#x27;_lastLookawayStart&#x27;)));
+            // Just to avoid double-adding lookaway time in case e.g. recordLookawayEnd is called after this
+            this.set(&#x27;_lastLookawayStart&#x27;, now);
+        }
+        this.set(&#x27;totalLookingTime&#x27;, ((this.get(&#x27;_trialEndTime&#x27;) - this.get(&#x27;_trialStartTime&#x27;)) - this.get(&#x27;_totalLookaway&#x27;)) / 1000);
+    },
+
+    /**
+     Hook called when session recording is started automatically. Override to do
+     frame-specific actions at this point (e.g., beginning a test trial).
+
+     @method onSessionRecordingStarted
+     */
+    onLookawayCriterion() {
+
+    },
+
+    /**
+     * Begin period of parent control of trial progression. After calling startParentControl(), we wait for the first
+     * infant look to the screen (this may be immediate because infant is already looking. After that, whenever infant
+     * look-away time reaches criterion (either due to long enough continuous lookaway, or due to cumulative time
+     * looking away) we will call onLookawayCriterion().
+     *
+     * If startParentControl is called multiple times, each time it&#x27;s called it starts a &quot;fresh&quot; interval of parent
+     * control - i.e. no stored lookaway time, and no assumption the child has previously looked.
+     *
+     * @method startParentControl
+     */
+    startParentControl() {
+        this.set(&#x27;_totalLookaway&#x27;, 0);
+        this.set(&#x27;_anyLookDuringControlPeriod&#x27;, this.get(&#x27;_isLooking&#x27;));
+        this.set(&#x27;_trialStartTime&#x27;, new Date());
+        this.set(&#x27;_controlPeriodStarted&#x27;, true);
+        /**
+         * When interval of parent control of trial begins - i.e., lookaways begin counting up to threshold.
+         * Lookaway events are recorded throughout, but do not count towards ending trial until parent control period
+         * begins.
+         *
+         * @event parentControlPeriodStart
+         */
+        this.send(&#x27;setTimeEvent&#x27;, &#x27;parentControlPeriodStart&#x27;);
+
+        $(document).on(&#x27;keyup.parentEndTrial&#x27;, (e) =&gt; {
+            if (this.checkFullscreen()) {
+                if (this.get(&#x27;endTrialKey&#x27;) &amp;&amp; e.key === this.get(&#x27;endTrialKey&#x27;)) {
+                    /**
+                     * When trial ends due to parent pressing key to end trial
+                     *
+                     * @event parentEndedTrial
+                     */
+                    this.send(&#x27;setTimeEvent&#x27;, &#x27;parentEndedTrial&#x27;);
+                    this.set(&#x27;trialEndReason&#x27;, &#x27;parentEnded&#x27;);
+                    this.setTrialEndTime();
+                    this.onLookawayCriterion();
+                }
+            }
+        });
+    },
+
+    /**
+     * End period of parent control of trial progression, for instance because trial is paused. Looks to/away will
+     * still be logged as events but trial will not end based on parent input.
+     *
+     * @method endParentControl
+     */
+    endParentControl() {
+        this.set(&#x27;_controlPeriodStarted&#x27;, false);
+        /**
+         * When interval of parent control of trial ends - i.e., lookaways cannot lead to ending trial, parent cannot
+         * press key to end trial.
+         *
+         * @event parentControlPeriodEnd
+         */
+        this.send(&#x27;setTimeEvent&#x27;, &#x27;parentControlPeriodEnd&#x27;);
+        $(document).off(&#x27;keyup.parentEndTrial&#x27;);
+    },
+
+    didInsertElement() {
+        this.set(&#x27;_isLooking&#x27;, true); // Default assumption is child is looking; hold down key for lookaway.
+        this.set(&#x27;_totalLookaway&#x27;, 0);
+        this.set(&#x27;_lastLookawayStart&#x27;, new Date()); // Just to make sure there&#x27;s definitely a valid value
+        let lookawayOffEvent = (this.get(&#x27;lookawayKey&#x27;) === &#x27;mouse&#x27;) ? &#x27;mouseup.lookaway&#x27; : &#x27;keyup.lookaway&#x27;;
+        let lookawayOnEvent = (this.get(&#x27;lookawayKey&#x27;) === &#x27;mouse&#x27;) ? &#x27;mousedown.lookaway&#x27; : &#x27;keydown.lookaway&#x27;;
+        $(document).on(lookawayOffEvent, (e) =&gt; {
+            if (this.get(&#x27;lookawayKey&#x27;) === &#x27;mouse&#x27; || (this.get(&#x27;lookawayKey&#x27;) &amp;&amp; e.key === this.get(&#x27;lookawayKey&#x27;))) {
+                if (!this.get(&#x27;_isLooking&#x27;)) {
+                    this.set(&#x27;_isLooking&#x27;, true);
+                    this._recordLookawayEnd();
+                }
+            }
+        });
+        $(document).on(lookawayOnEvent, (e) =&gt; {
+            if (this.get(&#x27;lookawayKey&#x27;) === &#x27;mouse&#x27; || (this.get(&#x27;lookawayKey&#x27;) &amp;&amp; e.key === this.get(&#x27;lookawayKey&#x27;))) {
+                if (this.get(&#x27;_isLooking&#x27;)) { // Holding down key generates a sequence of keydown events
+                    this.set(&#x27;_isLooking&#x27;, false);
+                    this._recordLookawayStart();
+                }
+            }
+        });
+
+        try {
+            let useLookawayTone = this.get(&#x27;lookawayTone&#x27;) !== &#x27;none&#x27;;
+            if (useLookawayTone) {
+                const baseDir = &#x27;https://www.mit.edu/~kimscott/placeholderstimuli/&#x27;;
+                let audioElement = $(&#x27;&lt;audio id=&quot;lookawayTone&quot; loop&gt;&lt;/audio&gt;&#x27;);
+                $(&#x60;&lt;source src=&#x27;${baseDir}mp3/${this.get(&#x27;lookawayTone&#x27;)}.mp3&#x27; type=&#x27;audio/mp3&#x27;&gt;&#x60;).appendTo(audioElement);
+                $(&#x60;&lt;source src=&#x27;${baseDir}ogg/${this.get(&#x27;lookawayTone&#x27;)}.ogg&#x27; type=&#x27;audio/ogg&#x27;&gt;&#x60;).appendTo(audioElement);
+                $(&#x27;#experiment-player &gt; div &gt; div&#x27;).append(audioElement);
+                $(&#x27;audio#lookawayTone&#x27;)[0].volume = this.get(&#x27;lookawayToneVolume&#x27;);
+            }
+        } catch (e) {
+            console.error(&#x60;Error setting lookaway tone: ${e}&#x60;);
+        }
+
+        this._super(...arguments);
+    },
+
+    willDestroyElement() { // remove event handler
+        $(document).off(&#x27;keyup.lookaway&#x27;);
+        $(document).off(&#x27;keydown.lookaway&#x27;);
+        $(document).off(&#x27;mouseup.lookaway&#x27;);
+        $(document).off(&#x27;mousedown.lookaway&#x27;);
+        $(document).off(&#x27;keyup.parentEndTrial&#x27;);
+        window.clearInterval(this.get(&#x27;testTimer&#x27;));
+        this._super(...arguments);
+    },
+
+
+});
+
+export default infantControlledTimingMixin;
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>
