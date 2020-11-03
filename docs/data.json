@@ -475,7 +475,6 @@
                 "Exp-lookit-instructions": 1,
                 "Exp-lookit-mood-questionnaire": 1,
                 "Exp-lookit-observation": 1,
-                "Exp-lookit-preferential-looking": 1,
                 "Exp-lookit-start-recording": 1,
                 "Exp-lookit-stimuli-preview": 1,
                 "Exp-lookit-stop-recording": 1,
@@ -509,6 +508,7 @@
                 "Exp-lookit-dialogue-page": 1,
                 "Exp-lookit-geometry-alternation": 1,
                 "Exp-lookit-geometry-alternation-open": 1,
+                "Exp-lookit-preferential-looking": 1,
                 "Exp-lookit-preview-explanation": 1,
                 "Exp-lookit-story-page": 1
             },
@@ -868,7 +868,7 @@
             "plugin_for": [],
             "extension_for": [],
             "module": "exp-player",
-            "submodule": "frames",
+            "submodule": "frames-deprecated",
             "namespace": "",
             "file": "app/components/exp-lookit-preferential-looking/component.js",
             "line": 18,
@@ -878,7 +878,8 @@
                 "Full-screen",
                 "Video-record",
                 "Expand-assets"
-            ]
+            ],
+            "deprecated": true
         },
         "Exp-lookit-preview-explanation": {
             "name": "Exp-lookit-preview-explanation",
@@ -4453,7 +4454,7 @@
         },
         {
             "file": "app/components/exp-lookit-preferential-looking/component.js",
-            "line": 145,
+            "line": 146,
             "itemtype": "property",
             "name": "startRecordingAutomatically",
             "type": "Boolean",
@@ -4461,11 +4462,11 @@
             "tagname": "",
             "class": "Exp-lookit-preferential-looking",
             "module": "exp-player",
-            "submodule": "frames"
+            "submodule": "frames-deprecated"
         },
         {
             "file": "app/components/exp-lookit-preferential-looking/component.js",
-            "line": 204,
+            "line": 205,
             "description": "Array of objects specifying video src and type for test video (these should be the same video, but multiple sources--e.g. mp4 and webm--are generally needed for cross-browser support). If none provided, skip test phase.\n\nExample value:\n\n```[{'src': 'http://.../video1.mp4', 'type': 'video/mp4'}, {'src': 'http://.../video1.webm', 'type': 'video/webm'}]```",
             "itemtype": "property",
             "name": "testVideo",
@@ -4473,7 +4474,7 @@
             "default": "[]",
             "class": "Exp-lookit-preferential-looking",
             "module": "exp-player",
-            "submodule": "frames",
+            "submodule": "frames-deprecated",
             "subprops": [
                 {
                     "name": "src",
@@ -4489,7 +4490,7 @@
         },
         {
             "file": "app/components/exp-lookit-preferential-looking/component.js",
-            "line": 221,
+            "line": 222,
             "description": "Array of objects specifying video src and type for alternate test video, as for testVideo. Alternate test video will be shown if the first test is paused, after restarting the trial. If alternate test video is also paused, we just move on. If altTestVideo is not provided, defaults to playing same test video again (but still only one pause of test video allowed per trial).",
             "itemtype": "property",
             "name": "altTestVideo",
@@ -4497,7 +4498,7 @@
             "default": "[]",
             "class": "Exp-lookit-preferential-looking",
             "module": "exp-player",
-            "submodule": "frames",
+            "submodule": "frames-deprecated",
             "subprops": [
                 {
                     "name": "src",
@@ -4513,7 +4514,7 @@
         },
         {
             "file": "app/components/exp-lookit-preferential-looking/component.js",
-            "line": 234,
+            "line": 235,
             "description": "Array of objects specifying intro video src and type, as for testVideo.\nIf empty, intro segment will be skipped.",
             "itemtype": "property",
             "name": "introVideo",
@@ -4521,7 +4522,7 @@
             "default": "[]",
             "class": "Exp-lookit-preferential-looking",
             "module": "exp-player",
-            "submodule": "frames",
+            "submodule": "frames-deprecated",
             "subprops": [
                 {
                     "name": "src",
@@ -4537,7 +4538,7 @@
         },
         {
             "file": "app/components/exp-lookit-preferential-looking/component.js",
-            "line": 248,
+            "line": 249,
             "description": "Array of objects specifying attention-grabber video src and type, as for testVideo. The attention-grabber video is shown (looping) during the announcement phase and when the study is paused.",
             "itemtype": "property",
             "name": "announcementVideo",
@@ -4545,7 +4546,7 @@
             "default": "[]",
             "class": "Exp-lookit-preferential-looking",
             "module": "exp-player",
-            "submodule": "frames",
+            "submodule": "frames-deprecated",
             "subprops": [
                 {
                     "name": "src",
@@ -4561,7 +4562,7 @@
         },
         {
             "file": "app/components/exp-lookit-preferential-looking/component.js",
-            "line": 260,
+            "line": 261,
             "description": "minimum amount of time to show attention-getter in seconds. Announcement phase (attention-getter plus audio) will last the minimum of announcementLength and the duration of any announcement audio.",
             "itemtype": "property",
             "name": "announcementLength",
@@ -4569,11 +4570,11 @@
             "default": "2",
             "class": "Exp-lookit-preferential-looking",
             "module": "exp-player",
-            "submodule": "frames"
+            "submodule": "frames-deprecated"
         },
         {
             "file": "app/components/exp-lookit-preferential-looking/component.js",
-            "line": 271,
+            "line": 272,
             "description": "List of objects specifying intro announcement src and type. If empty and minimum announcementLength is 0, announcement is skipped.\nExample: `[{'src': 'http://.../audio1.mp3', 'type': 'audio/mp3'}, {'src': 'http://.../audio1.ogg', 'type': 'audio/ogg'}]`",
             "itemtype": "property",
             "name": "announcementAudio",
@@ -4581,7 +4582,7 @@
             "default": "[]",
             "class": "Exp-lookit-preferential-looking",
             "module": "exp-player",
-            "submodule": "frames",
+            "submodule": "frames-deprecated",
             "subprops": [
                 {
                     "name": "src",
@@ -4597,84 +4598,84 @@
         },
         {
             "file": "app/components/exp-lookit-preferential-looking/component.js",
-            "line": 285,
+            "line": 286,
             "description": "URL of image to show on left, if any. Can be a full URL or a\nstub that will be appended to `baseDir` + `img/` (see\nbaseDir).",
             "itemtype": "property",
             "name": "leftImage",
             "type": "String",
             "class": "Exp-lookit-preferential-looking",
             "module": "exp-player",
-            "submodule": "frames"
+            "submodule": "frames-deprecated"
         },
         {
             "file": "app/components/exp-lookit-preferential-looking/component.js",
-            "line": 296,
+            "line": 297,
             "description": "URL of image to show on right, if any. Can be a full URL or a\nstub that will be appended to `baseDir` + `img/` (see\nbaseDir).",
             "itemtype": "property",
             "name": "rightImage",
             "type": "String",
             "class": "Exp-lookit-preferential-looking",
             "module": "exp-player",
-            "submodule": "frames"
+            "submodule": "frames-deprecated"
         },
         {
             "file": "app/components/exp-lookit-preferential-looking/component.js",
-            "line": 308,
+            "line": 309,
             "description": "List of possible images that may be shown. Can be full URLs or\nstubs that will be appended to `baseDir` + `img/` (see\nbaseDir). If leftImageIndex, rightImageIndex, and/or centerImageIndex\nare provided, they indicate the index of the item in this list.",
             "itemtype": "property",
             "name": "possibleImages",
             "type": "String",
             "class": "Exp-lookit-preferential-looking",
             "module": "exp-player",
-            "submodule": "frames"
+            "submodule": "frames-deprecated"
         },
         {
             "file": "app/components/exp-lookit-preferential-looking/component.js",
-            "line": 325,
+            "line": 326,
             "description": "Index in possibleImages for image to use on left. This will be overridden\nby any actual value provided for leftImage. Index must be in range\n[0, len(possibleImages)]. Omit or -1 not to use.",
             "itemtype": "property",
             "name": "leftImageIndex",
             "type": "String",
             "class": "Exp-lookit-preferential-looking",
             "module": "exp-player",
-            "submodule": "frames"
+            "submodule": "frames-deprecated"
         },
         {
             "file": "app/components/exp-lookit-preferential-looking/component.js",
-            "line": 338,
+            "line": 339,
             "description": "Index in possibleImages for image to use on right. This will be overridden\nby any actual value provided for rightImage. Index must be in range\n[0, len(possibleImages)].  Omit or -1 not to use.",
             "itemtype": "property",
             "name": "rightImageIndex",
             "type": "String",
             "class": "Exp-lookit-preferential-looking",
             "module": "exp-player",
-            "submodule": "frames"
+            "submodule": "frames-deprecated"
         },
         {
             "file": "app/components/exp-lookit-preferential-looking/component.js",
-            "line": 351,
+            "line": 352,
             "description": "Index in possibleImages for center image. This will be overridden\nby any actual value provided for centerImage. Index must be in range\n[0, len(possibleImages)].  Omit or -1 not to use.",
             "itemtype": "property",
             "name": "centerImageIndex",
             "type": "String",
             "class": "Exp-lookit-preferential-looking",
             "module": "exp-player",
-            "submodule": "frames"
+            "submodule": "frames-deprecated"
         },
         {
             "file": "app/components/exp-lookit-preferential-looking/component.js",
-            "line": 363,
+            "line": 364,
             "description": "URL of image to show at center, if any. Can be a full URL or\na stub that will be appended to `baseDir` + `img/` (see\nbaseDir).",
             "itemtype": "property",
             "name": "centerImage",
             "type": "String",
             "class": "Exp-lookit-preferential-looking",
             "module": "exp-player",
-            "submodule": "frames"
+            "submodule": "frames-deprecated"
         },
         {
             "file": "app/components/exp-lookit-preferential-looking/component.js",
-            "line": 375,
+            "line": 376,
             "description": "List of objects specifying test audio src and type, as for announcementAudio.\nIf empty, no additional test audio is played besides any audio in testVideo.",
             "itemtype": "property",
             "name": "testAudio",
@@ -4682,7 +4683,7 @@
             "default": "[]",
             "class": "Exp-lookit-preferential-looking",
             "module": "exp-player",
-            "submodule": "frames",
+            "submodule": "frames-deprecated",
             "subprops": [
                 {
                     "name": "testAudio",
@@ -4702,7 +4703,7 @@
         },
         {
             "file": "app/components/exp-lookit-preferential-looking/component.js",
-            "line": 390,
+            "line": 391,
             "description": "Whether test audio should loop",
             "itemtype": "property",
             "name": "loopTestAudio",
@@ -4710,11 +4711,11 @@
             "default": "true",
             "class": "Exp-lookit-preferential-looking",
             "module": "exp-player",
-            "submodule": "frames"
+            "submodule": "frames-deprecated"
         },
         {
             "file": "app/components/exp-lookit-preferential-looking/component.js",
-            "line": 401,
+            "line": 402,
             "description": "Whether to allow participant to pause study during test. If no, study still\npauses but upon unpausing moves to next trial. If yes, study restarts from\nbeginning upon unpausing (with alternate sources).",
             "itemtype": "property",
             "name": "allowPauseDuringTest",
@@ -4722,11 +4723,11 @@
             "default": "true",
             "class": "Exp-lookit-preferential-looking",
             "module": "exp-player",
-            "submodule": "frames"
+            "submodule": "frames-deprecated"
         },
         {
             "file": "app/components/exp-lookit-preferential-looking/component.js",
-            "line": 414,
+            "line": 415,
             "description": "Length to loop test videos, in seconds. Set if you want a time-based limit. E.g., setting testLength to 20 means that the first 20 seconds of the video will be played, with shorter videos looping until they get to 20s. Leave out or set to Infinity  to play the video through to the end a set number of times instead. If a testLength is set, it overrides any value set in testCount.",
             "itemtype": "property",
             "name": "testLength",
@@ -4734,11 +4735,11 @@
             "default": "Infinity",
             "class": "Exp-lookit-preferential-looking",
             "module": "exp-player",
-            "submodule": "frames"
+            "submodule": "frames-deprecated"
         },
         {
             "file": "app/components/exp-lookit-preferential-looking/component.js",
-            "line": 426,
+            "line": 427,
             "description": "Number of times to play test video before moving on. This is ignored if\ntestLength is set to a finite value.",
             "itemtype": "property",
             "name": "testCount",
@@ -4746,11 +4747,11 @@
             "default": "1",
             "class": "Exp-lookit-preferential-looking",
             "module": "exp-player",
-            "submodule": "frames"
+            "submodule": "frames-deprecated"
         },
         {
             "file": "app/components/exp-lookit-preferential-looking/component.js",
-            "line": 439,
+            "line": 440,
             "description": "Whether to do any video recording during this frame. Default true. Set to false for e.g. last frame where just doing an announcement.",
             "itemtype": "property",
             "name": "doRecording",
@@ -4758,11 +4759,11 @@
             "default": "true",
             "class": "Exp-lookit-preferential-looking",
             "module": "exp-player",
-            "submodule": "frames"
+            "submodule": "frames-deprecated"
         },
         {
             "file": "app/components/exp-lookit-preferential-looking/component.js",
-            "line": 449,
+            "line": 450,
             "description": "length of single calibration segment in ms. 0 to skip calibration.",
             "itemtype": "property",
             "name": "calibrationLength",
@@ -4770,11 +4771,11 @@
             "default": "3000",
             "class": "Exp-lookit-preferential-looking",
             "module": "exp-player",
-            "submodule": "frames"
+            "submodule": "frames-deprecated"
         },
         {
             "file": "app/components/exp-lookit-preferential-looking/component.js",
-            "line": 461,
+            "line": 462,
             "description": "Ordered list of positions to show calibration segment in. Options are\n\"center\", \"left\", \"right\". Ignored if calibrationLength is 0.",
             "itemtype": "property",
             "name": "calibrationPositions",
@@ -4782,11 +4783,11 @@
             "default": "[\"center\", \"left\", \"right\", \"center\"]",
             "class": "Exp-lookit-preferential-looking",
             "module": "exp-player",
-            "submodule": "frames"
+            "submodule": "frames-deprecated"
         },
         {
             "file": "app/components/exp-lookit-preferential-looking/component.js",
-            "line": 477,
+            "line": 478,
             "description": "Sources Array of {src: 'url', type: 'MIMEtype'} objects for\ncalibration audio (played at each calibration position).\nIgnored if calibrationLength is 0.",
             "itemtype": "property",
             "name": "calibrationAudio",
@@ -4794,11 +4795,11 @@
             "default": "[]",
             "class": "Exp-lookit-preferential-looking",
             "module": "exp-player",
-            "submodule": "frames"
+            "submodule": "frames-deprecated"
         },
         {
             "file": "app/components/exp-lookit-preferential-looking/component.js",
-            "line": 490,
+            "line": 491,
             "description": "Sources Array of {src: 'url', type: 'MIMEtype'} objects for\ncalibration video (played from start at each calibration position).\nIgnored if calibrationLength is 0.",
             "itemtype": "property",
             "name": "calibrationVideo",
@@ -4806,11 +4807,11 @@
             "default": "[]",
             "class": "Exp-lookit-preferential-looking",
             "module": "exp-player",
-            "submodule": "frames"
+            "submodule": "frames-deprecated"
         },
         {
             "file": "app/components/exp-lookit-preferential-looking/component.js",
-            "line": 503,
+            "line": 504,
             "description": "Sources Array of {src: 'url', type: 'MIMEtype'} objects for\naudio played upon pausing study",
             "itemtype": "property",
             "name": "pauseAudio",
@@ -4818,11 +4819,11 @@
             "default": "[]",
             "class": "Exp-lookit-preferential-looking",
             "module": "exp-player",
-            "submodule": "frames"
+            "submodule": "frames-deprecated"
         },
         {
             "file": "app/components/exp-lookit-preferential-looking/component.js",
-            "line": 515,
+            "line": 516,
             "description": "Sources Array of {src: 'url', type: 'MIMEtype'} objects for\naudio played upon unpausing study. Unpausing audio will always be played\nbefore proceeding to next trial, even if this trial will not be redone\n(e.g. because it was paused during test and allowPauseDuringTest is\nset to false)",
             "itemtype": "property",
             "name": "unpauseAudio",
@@ -4830,11 +4831,11 @@
             "default": "[]",
             "class": "Exp-lookit-preferential-looking",
             "module": "exp-player",
-            "submodule": "frames"
+            "submodule": "frames-deprecated"
         },
         {
             "file": "app/components/exp-lookit-preferential-looking/component.js",
-            "line": 530,
+            "line": 531,
             "description": "Text to show under \"Study paused / Press space to resume\" when study is paused.\nDefault: (You'll have a moment to turn around again.)",
             "itemtype": "property",
             "name": "pauseText",
@@ -4842,81 +4843,81 @@
             "default": "[]",
             "class": "Exp-lookit-preferential-looking",
             "module": "exp-player",
-            "submodule": "frames"
+            "submodule": "frames-deprecated"
         },
         {
             "file": "app/components/exp-lookit-preferential-looking/component.js",
-            "line": 549,
+            "line": 550,
             "description": "Sources of videos (potentially) shown during this trial: [source of test video, source of alternate test video].",
             "itemtype": "attribute",
             "name": "videosShown",
             "class": "Exp-lookit-preferential-looking",
             "module": "exp-player",
-            "submodule": "frames"
+            "submodule": "frames-deprecated"
         },
         {
             "file": "app/components/exp-lookit-preferential-looking/component.js",
-            "line": 560,
+            "line": 561,
             "description": "URL of image shown on right (given as a property of the frame)",
             "itemtype": "attribute",
             "name": "rightImage",
             "class": "Exp-lookit-preferential-looking",
             "module": "exp-player",
-            "submodule": "frames"
+            "submodule": "frames-deprecated"
         },
         {
             "file": "app/components/exp-lookit-preferential-looking/component.js",
-            "line": 567,
+            "line": 568,
             "description": "URL of image shown on left (given as a property of the frame)",
             "itemtype": "attribute",
             "name": "leftImage",
             "class": "Exp-lookit-preferential-looking",
             "module": "exp-player",
-            "submodule": "frames"
+            "submodule": "frames-deprecated"
         },
         {
             "file": "app/components/exp-lookit-preferential-looking/component.js",
-            "line": 574,
+            "line": 575,
             "description": "URL of image shown at center (given as a property of the frame)",
             "itemtype": "attribute",
             "name": "centerImage",
             "class": "Exp-lookit-preferential-looking",
             "module": "exp-player",
-            "submodule": "frames"
+            "submodule": "frames-deprecated"
         },
         {
             "file": "app/components/exp-lookit-preferential-looking/component.js",
-            "line": 581,
+            "line": 582,
             "description": "seconds to display images/loop videos (given as a property of the frame), if using time-based limit",
             "itemtype": "attribute",
             "name": "testLength",
             "class": "Exp-lookit-preferential-looking",
             "module": "exp-player",
-            "submodule": "frames"
+            "submodule": "frames-deprecated"
         },
         {
             "file": "app/components/exp-lookit-preferential-looking/component.js",
-            "line": 588,
+            "line": 589,
             "description": "test audio file played, if any",
             "itemtype": "attribute",
             "name": "testAudio",
             "class": "Exp-lookit-preferential-looking",
             "module": "exp-player",
-            "submodule": "frames"
+            "submodule": "frames-deprecated"
         },
         {
             "file": "app/components/exp-lookit-preferential-looking/component.js",
-            "line": 595,
+            "line": 596,
             "description": "location of stimuli",
             "itemtype": "attribute",
             "name": "baseDir",
             "class": "Exp-lookit-preferential-looking",
             "module": "exp-player",
-            "submodule": "frames"
+            "submodule": "frames-deprecated"
         },
         {
             "file": "app/components/exp-lookit-preferential-looking/component.js",
-            "line": 822,
+            "line": 823,
             "description": "Start of EACH calibration segment",
             "itemtype": "event",
             "name": "startCalibration",
@@ -4929,7 +4930,7 @@
             ],
             "class": "Exp-lookit-preferential-looking",
             "module": "exp-player",
-            "submodule": "frames"
+            "submodule": "frames-deprecated"
         },
         {
             "file": "app/components/exp-lookit-start-recording/component.js",
